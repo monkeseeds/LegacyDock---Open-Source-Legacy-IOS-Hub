@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legacydock.dev/schemas/snapshot.schema.json",
+  "title": "LegacyDock Snapshot",
+  "type": "object",
+  "required": ["id", "title", "createdAt", "deviceId", "packageIds", "repositoryIds", "state", "hash"],
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "deviceId": { "type": "string" },
+    "packageIds": { "type": "array", "items": { "type": "string" } },
+    "repositoryIds": { "type": "array", "items": { "type": "string" } },
+    "state": { "type": "string", "enum": ["verified", "restorable", "needs-review", "failed"] },
+    "hash": { "type": "string" }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legacydock.dev/schemas/repository.schema.json",
+  "title": "LegacyDock Repository",
+  "type": "object",
+  "required": ["id", "name", "url", "status", "packageIndexHash"],
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "url": { "type": "string", "format": "uri" },
+    "status": { "type": "string", "enum": ["verified", "slow", "dead", "duplicate-risk", "unknown"] },
+    "lastRefreshDays": { "type": "integer", "minimum": 0 },
+    "trust": { "type": "number", "minimum": 0, "maximum": 100 },
+    "packageIndexHash": { "type": "string" },
+    "tags": { "type": "array", "items": { "type": "string" } }
+  }
+}

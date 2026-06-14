@@ -1,0 +1,20 @@
+{
+  "name": "legacydock",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Open-source, local-first hub for preserving and maintaining legacy iOS devices.",
+  "type": "module",
+  "scripts": {
+    "start": "npx serve .",
+    "check": "node --check app.js"
+  },
+  "keywords": [
+    "ios",
+    "legacy-ios",
+    "preservation",
+    "jailbreak",
+    "local-first",
+    "open-source"
+  ],
+  "license": "AGPL-3.0-only"
+}

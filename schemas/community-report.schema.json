@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legacydock.dev/schemas/community-report.schema.json",
+  "title": "LegacyDock Community Compatibility Report",
+  "type": "object",
+  "required": ["packageId", "packageVersion", "deviceIdentifier", "firmware", "outcome", "createdAt"],
+  "properties": {
+    "packageId": { "type": "string" },
+    "packageVersion": { "type": "string" },
+    "deviceIdentifier": { "type": "string" },
+    "firmware": { "type": "string" },
+    "outcome": { "type": "string", "enum": ["success", "failed", "bootloop", "springboard-crash", "manual-rollback"] },
+    "batteryImpact": { "type": "string", "enum": ["positive", "neutral", "small", "moderate", "heavy", "unknown"] },
+    "performanceImpact": { "type": "string", "enum": ["positive", "neutral", "small", "moderate", "heavy", "unknown"] },
+    "anonymousInstallId": { "type": "string" },
+    "createdAt": { "type": "string", "format": "date-time" }
+  }
+}

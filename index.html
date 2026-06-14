@@ -3,238 +3,262 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>LegacyDock Prototype</title>
+    <meta
+      name="description"
+      content="LegacyDock is an open-source, local-first operating center for preserving and maintaining legacy iOS 6 through iOS 9 devices."
+    />
+    <meta property="og:title" content="LegacyDock" />
+    <meta property="og:description" content="The preservation hub for legacy iPhone, iPad, and iPod touch devices." />
+    <meta property="og:image" content="./assets/legacydock-hero.png" />
+    <title>LegacyDock - Open Source Legacy iOS Hub</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="shell">
-      <aside class="sidebar" aria-label="Primary">
-        <div class="brand">
-          <span class="brand-mark" aria-hidden="true">LD</span>
-          <span>
-            <strong>LegacyDock</strong>
-            <small>Local workspace</small>
-          </span>
+    <header class="site-header" data-header>
+      <a class="brand" href="#top" aria-label="LegacyDock home">
+        <span class="brand-orb">LD</span>
+        <span>
+          <strong>LegacyDock</strong>
+          <small>Open Source Legacy iOS Hub</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#platform">Platform</a>
+        <a href="#console">Console</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#roadmap">Roadmap</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" data-theme-toggle title="Toggle theme" aria-label="Toggle theme">◐</button>
+        <a class="pill-button" href="#console">Open Console</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero-section" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="kicker">Local-first preservation for iOS 6 through iOS 9</p>
+          <h1 id="hero-title">LegacyDock</h1>
+          <p class="hero-lede">
+            A beautiful open-source home base for detecting, repairing, snapshotting, and documenting legacy Apple devices without locking users into a cloud account.
+          </p>
+          <div class="hero-actions">
+            <a class="aqua-button" href="#console">Launch product demo</a>
+            <a class="glass-button" href="./docs/legacydock-blueprint.md">Read blueprint</a>
+          </div>
+          <div class="hero-stats" aria-label="Project pillars">
+            <span><strong>100%</strong> local core</span>
+            <span><strong>AGPLv3</strong> open source</span>
+            <span><strong>Opt-in</strong> cloud</span>
+          </div>
         </div>
+        <figure class="hero-visual">
+          <img src="./assets/legacydock-hero.png" alt="LegacyDock preservation workbench with connected legacy devices" />
+        </figure>
+      </section>
 
-        <nav class="nav-list" aria-label="Sections">
-          <button class="nav-item active" data-view="dashboard" title="Dashboard" aria-label="Dashboard">
-            <span class="icon">⌂</span><span>Dashboard</span>
-          </button>
-          <button class="nav-item" data-view="marketplace" title="Marketplace" aria-label="Marketplace">
-            <span class="icon">⌕</span><span>Marketplace</span>
-          </button>
-          <button class="nav-item" data-view="health" title="Health Center" aria-label="Health Center">
-            <span class="icon">✚</span><span>Health</span>
-          </button>
-          <button class="nav-item" data-view="snapshots" title="Snapshots" aria-label="Snapshots">
-            <span class="icon">◷</span><span>Snapshots</span>
-          </button>
-          <button class="nav-item" data-view="preservation" title="Preservation" aria-label="Preservation">
-            <span class="icon">▣</span><span>Archive</span>
-          </button>
-          <button class="nav-item" data-view="cloud" title="Cloud" aria-label="Cloud">
-            <span class="icon">☁</span><span>Cloud</span>
-          </button>
-        </nav>
+      <section class="marquee-strip" aria-label="Supported workflows">
+        <span>Device Detection</span>
+        <span>Compatibility Scores</span>
+        <span>Repository Repair</span>
+        <span>Dependency Resolution</span>
+        <span>Local Snapshots</span>
+        <span>Preservation Reports</span>
+        <span>Community Intelligence</span>
+      </section>
 
-        <div class="side-panel">
-          <small>Connected</small>
-          <strong id="connectedCount">3 devices</strong>
-          <div class="mini-meter"><span style="width: 72%"></span></div>
+      <section class="section product-band" id="platform" aria-labelledby="platform-title">
+        <div class="section-copy">
+          <p class="kicker">Not another package manager</p>
+          <h2 id="platform-title">A preservation platform with a local brain.</h2>
+          <p>
+            LegacyDock combines a desktop companion, compatibility engine, repository scanner, package marketplace, snapshot engine, and archival report generator into one coherent workspace.
+          </p>
         </div>
-      </aside>
+        <div class="feature-grid">
+          <article>
+            <span class="feature-icon">01</span>
+            <h3>Device-aware intelligence</h3>
+            <p>Firmware, model identifier, jailbreak state, storage, memory, battery, and package context shape every recommendation.</p>
+          </article>
+          <article>
+            <span class="feature-icon">02</span>
+            <h3>Safety before convenience</h3>
+            <p>Every risky action has a preview, explicit warning, recovery plan, and snapshot path before execution.</p>
+          </article>
+          <article>
+            <span class="feature-icon">03</span>
+            <h3>Preservation mode</h3>
+            <p>Create reproducible manifests with package versions, repository state, preferences, hashes, and collector notes.</p>
+          </article>
+          <article>
+            <span class="feature-icon">04</span>
+            <h3>Open-core ready</h3>
+            <p>The local client stays useful forever. Cloud sync, backups, teams, and aggregated intelligence are optional convenience.</p>
+          </article>
+        </div>
+      </section>
 
-      <main class="main">
-        <header class="topbar">
-          <label class="search" for="globalSearch">
-            <span aria-hidden="true">⌕</span>
-            <input id="globalSearch" type="search" placeholder="Search devices, packages, repositories" />
+      <section class="console-wrap" id="console" aria-labelledby="console-title">
+        <div class="console-head">
+          <div>
+            <p class="kicker">Working product skeleton</p>
+            <h2 id="console-title">LegacyDock Console</h2>
+          </div>
+          <label class="search-box" for="searchInput">
+            <span>⌕</span>
+            <input id="searchInput" type="search" placeholder="Search devices, packages, repositories, snapshots" />
           </label>
-          <div class="top-actions">
-            <button class="icon-button" id="scanButton" title="Scan devices" aria-label="Scan devices">↻</button>
-            <button class="icon-button" id="themeButton" title="Toggle theme" aria-label="Toggle theme">◐</button>
-            <button class="primary-button" id="snapshotNow">Create snapshot</button>
-          </div>
-        </header>
+        </div>
 
-        <section class="view active" id="dashboard" aria-labelledby="dashboardTitle">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Operating center</p>
-              <h1 id="dashboardTitle">Device dashboard</h1>
-            </div>
-            <div class="segmented" role="tablist" aria-label="Device filter">
-              <button class="active" data-device-filter="all">All</button>
-              <button data-device-filter="stable">Stable</button>
-              <button data-device-filter="attention">Review</button>
-            </div>
-          </div>
+        <div class="console-shell">
+          <aside class="console-sidebar" aria-label="Console sections">
+            <button class="console-tab active" data-view="dashboard">Dashboard</button>
+            <button class="console-tab" data-view="marketplace">Marketplace</button>
+            <button class="console-tab" data-view="health">Health Center</button>
+            <button class="console-tab" data-view="snapshots">Snapshots</button>
+            <button class="console-tab" data-view="preservation">Preservation</button>
+            <button class="console-tab" data-view="cloud">Cloud</button>
+          </aside>
 
-          <div class="dashboard-grid">
-            <section class="device-list" id="deviceList" aria-label="Connected devices"></section>
-
-            <section class="detail-pane" aria-label="Selected device">
-              <div class="device-hero">
-                <div class="phone-frame" aria-hidden="true">
-                  <div class="phone-screen">
-                    <span id="phoneModel">iPhone 4</span>
-                    <small id="phoneFirmware">iOS 7.1.2</small>
-                  </div>
-                </div>
+          <div class="console-main">
+            <section class="console-view active" id="dashboard-view" aria-labelledby="dashboard-heading">
+              <div class="view-head">
                 <div>
-                  <p class="eyebrow" id="detailIdentifier">iPhone3,1</p>
-                  <h2 id="detailName">iPhone 4</h2>
-                  <p class="muted" id="detailSummary">Jailbroken with Cydia, 7 repositories, 43 installed packages.</p>
+                  <p class="kicker">Connected devices</p>
+                  <h3 id="dashboard-heading">Operating Center</h3>
+                </div>
+                <div class="segmented" role="tablist" aria-label="Device filter">
+                  <button class="active" data-device-filter="all">All</button>
+                  <button data-device-filter="stable">Stable</button>
+                  <button data-device-filter="attention">Review</button>
                 </div>
               </div>
-
-              <div class="score-grid" id="scoreGrid"></div>
-
-              <div class="split">
-                <div class="surface">
-                  <div class="surface-head">
-                    <h3>Recommended</h3>
-                    <button class="text-button" data-view-jump="marketplace">Browse</button>
-                  </div>
-                  <div class="recommendations" id="recommendations"></div>
-                </div>
-                <div class="surface">
-                  <div class="surface-head">
-                    <h3>Repositories</h3>
-                    <button class="text-button" id="repairRepos">Repair</button>
-                  </div>
-                  <div class="repo-list" id="repoList"></div>
-                </div>
+              <div class="device-workspace">
+                <div class="device-list" data-device-list></div>
+                <div class="device-detail" data-device-detail></div>
               </div>
             </section>
-          </div>
-        </section>
 
-        <section class="view" id="marketplace" aria-labelledby="marketplaceTitle">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Compatibility-aware</p>
-              <h1 id="marketplaceTitle">Package marketplace</h1>
-            </div>
-            <div class="segmented" role="tablist" aria-label="Package categories">
-              <button class="active" data-package-filter="all">All</button>
-              <button data-package-filter="safe">Safe</button>
-              <button data-package-filter="repair">Repair</button>
-              <button data-package-filter="theme">Themes</button>
-            </div>
-          </div>
-          <div class="market-grid" id="packageGrid"></div>
-        </section>
+            <section class="console-view" id="marketplace-view" aria-labelledby="marketplace-heading">
+              <div class="view-head">
+                <div>
+                  <p class="kicker">Explainable compatibility</p>
+                  <h3 id="marketplace-heading">Marketplace</h3>
+                </div>
+                <div class="segmented" role="tablist" aria-label="Package filter">
+                  <button class="active" data-package-filter="all">All</button>
+                  <button data-package-filter="safe">Safe</button>
+                  <button data-package-filter="repair">Repair</button>
+                  <button data-package-filter="theme">Themes</button>
+                </div>
+              </div>
+              <div class="package-grid" data-package-grid></div>
+            </section>
 
-        <section class="view" id="health" aria-labelledby="healthTitle">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Safety first</p>
-              <h1 id="healthTitle">Health Center</h1>
-            </div>
-            <button class="primary-button" id="runHealthScan">Run scan</button>
-          </div>
-          <div class="health-layout">
-            <div class="health-score">
-              <span id="healthScore">86</span>
-              <small>overall health</small>
-            </div>
-            <div class="issue-list" id="issueList"></div>
-          </div>
-        </section>
+            <section class="console-view" id="health-view" aria-labelledby="health-heading">
+              <div class="view-head">
+                <div>
+                  <p class="kicker">Local repair planner</p>
+                  <h3 id="health-heading">Health Center</h3>
+                </div>
+                <button class="aqua-button compact" data-run-health>Run scan</button>
+              </div>
+              <div class="health-grid">
+                <div class="health-dial" data-health-score>86</div>
+                <div class="issue-list" data-issue-list></div>
+              </div>
+            </section>
 
-        <section class="view" id="snapshots" aria-labelledby="snapshotsTitle">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Git plus Time Machine</p>
-              <h1 id="snapshotsTitle">Snapshots</h1>
-            </div>
-            <button class="primary-button" id="captureSnapshot">Capture</button>
-          </div>
-          <div class="timeline" id="snapshotTimeline"></div>
-        </section>
+            <section class="console-view" id="snapshots-view" aria-labelledby="snapshots-heading">
+              <div class="view-head">
+                <div>
+                  <p class="kicker">Git plus Time Machine</p>
+                  <h3 id="snapshots-heading">Snapshots</h3>
+                </div>
+                <button class="aqua-button compact" data-capture-snapshot>Capture snapshot</button>
+              </div>
+              <div class="snapshot-tools">
+                <div class="timeline" data-snapshot-timeline></div>
+                <div class="diff-panel" data-snapshot-diff></div>
+              </div>
+            </section>
 
-        <section class="view" id="preservation" aria-labelledby="preservationTitle">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Collector mode</p>
-              <h1 id="preservationTitle">Preservation archive</h1>
-            </div>
-            <button class="primary-button" id="exportReport">Export report</button>
-          </div>
-          <div class="archive-grid">
-            <div class="surface preservation-card">
-              <h3>Selected device profile</h3>
-              <dl id="archiveProfile"></dl>
-            </div>
-            <div class="surface preservation-card">
-              <h3>Reproducibility</h3>
-              <div class="check-list" id="archiveChecks"></div>
-            </div>
-            <div class="surface preservation-card wide">
-              <h3>Package manifest</h3>
-              <pre id="manifestPreview"></pre>
-            </div>
-          </div>
-        </section>
+            <section class="console-view" id="preservation-view" aria-labelledby="preservation-heading">
+              <div class="view-head">
+                <div>
+                  <p class="kicker">Collector archive</p>
+                  <h3 id="preservation-heading">Preservation Report</h3>
+                </div>
+                <button class="aqua-button compact" data-export-report>Export report</button>
+              </div>
+              <div class="preservation-grid">
+                <div class="panel" data-preservation-profile></div>
+                <div class="panel" data-preservation-checks></div>
+                <div class="panel wide"><pre data-manifest-preview></pre></div>
+              </div>
+            </section>
 
-        <section class="view" id="cloud" aria-labelledby="cloudTitle">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Optional convenience</p>
-              <h1 id="cloudTitle">Cloud workspace</h1>
-            </div>
-            <label class="toggle">
-              <input id="telemetryToggle" type="checkbox" />
-              <span>Opt-in intelligence</span>
-            </label>
+            <section class="console-view" id="cloud-view" aria-labelledby="cloud-heading">
+              <div class="view-head">
+                <div>
+                  <p class="kicker">Convenience, not lock-in</p>
+                  <h3 id="cloud-heading">Cloud Workspace</h3>
+                </div>
+                <label class="toggle"><input type="checkbox" data-telemetry-toggle /> Opt-in intelligence</label>
+              </div>
+              <div class="plan-grid" data-plan-grid></div>
+            </section>
           </div>
-          <div class="plans">
-            <article class="plan active">
-              <small>Free</small>
-              <strong>$0</strong>
-              <p>Unlimited local devices, snapshots, package checks, and health scans.</p>
-            </article>
-            <article class="plan">
-              <small>Cloud</small>
-              <strong>$3/mo</strong>
-              <p>Encrypted backup sync, device history, collections, and favorites.</p>
-            </article>
-            <article class="plan">
-              <small>Plus</small>
-              <strong>$7/mo</strong>
-              <p>Smart recommendations, analytics, shared collections, and community tools.</p>
-            </article>
-            <article class="plan">
-              <small>Studio</small>
-              <strong>$15/mo</strong>
-              <p>Inventory, team workspaces, repair history, customer notes, and priority support.</p>
-            </article>
-          </div>
-        </section>
-      </main>
-    </div>
-
-    <dialog id="installDialog" class="modal">
-      <form method="dialog">
-        <div class="modal-head">
-          <div>
-            <p class="eyebrow">Safety review</p>
-            <h2 id="modalTitle">Install package</h2>
-          </div>
-          <button class="icon-button" value="cancel" title="Close" aria-label="Close">×</button>
         </div>
-        <div class="risk-strip" id="riskStrip"></div>
-        <div class="modal-grid" id="modalDetails"></div>
+      </section>
+
+      <section class="section architecture-band" id="architecture" aria-labelledby="architecture-title">
+        <div class="section-copy">
+          <p class="kicker">Architecture</p>
+          <h2 id="architecture-title">Built as a local core with optional network services.</h2>
+        </div>
+        <div class="architecture-map">
+          <article><strong>Desktop Shell</strong><span>Tauri or Electron host with device adapter bridge.</span></article>
+          <article><strong>Local Core</strong><span>SQLite, schemas, compatibility rules, snapshots, reports.</span></article>
+          <article><strong>Adapters</strong><span>libimobiledevice, AFC, SSH, package manager parsing, archive APIs.</span></article>
+          <article><strong>Cloud</strong><span>Encrypted sync, community intelligence, teams, APIs, analytics.</span></article>
+        </div>
+      </section>
+
+      <section class="section roadmap-band" id="roadmap" aria-labelledby="roadmap-title">
+        <div class="section-copy">
+          <p class="kicker">Roadmap</p>
+          <h2 id="roadmap-title">From demo to preservation infrastructure.</h2>
+        </div>
+        <div class="roadmap-list">
+          <article><span>Phase 1</span><h3>Trustworthy local core</h3><p>Device profiles, local data store, marketplace metadata, snapshots, preservation reports.</p></article>
+          <article><span>Phase 2</span><h3>Safe management</h3><p>Repository operations, dependency graph, install previews, health scanner, restore previews.</p></article>
+          <article><span>Phase 3</span><h3>Community intelligence</h3><p>Opt-in compatibility reports, success rates, performance impact, conflict reports, recommendations.</p></article>
+          <article><span>Phase 4</span><h3>Cloud convenience</h3><p>Encrypted backup sync, shared collections, team inventory, repair history, hosted APIs.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="safety-dialog" data-install-dialog>
+      <form method="dialog">
+        <div class="dialog-head">
+          <div>
+            <p class="kicker">Safety review</p>
+            <h2 data-dialog-title>Package</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="Close">×</button>
+        </div>
+        <div class="risk-strip" data-dialog-risks></div>
+        <div class="dialog-grid" data-dialog-body></div>
         <menu>
-          <button class="text-button" value="cancel">Cancel</button>
-          <button class="primary-button" id="confirmInstall" value="default">Install</button>
+          <button class="glass-button compact" value="cancel">Cancel</button>
+          <button class="aqua-button compact" value="default" data-confirm-install>Queue install</button>
         </menu>
       </form>
     </dialog>
 
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="toast" data-toast role="status" aria-live="polite"></div>
     <script src="./app.js"></script>
   </body>
 </html>

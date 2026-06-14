@@ -1,427 +1,498 @@
 const devices = [
-  {
-    id: "iphone4",
-    name: "iPhone 4",
-    identifier: "iPhone3,1",
-    chip: "A4",
-    firmware: "iOS 7.1.2",
-    jailbreak: "p0sixspwn",
-    manager: "Cydia",
-    packages: 43,
-    repositories: 7,
-    storage: 68,
-    memory: 54,
-    battery: "82%",
-    status: "stable",
-    scores: { Compatibility: 94, Stability: 88, Community: 91, Performance: 72 },
-    recommendations: ["iCleaner Pro", "NoSlowAnimations", "OpenSSH"],
-    repos: [
-      ["BigBoss", "Verified"],
-      ["ModMyi Archive", "Slow"],
-      ["Cydia/Telesphoreo", "Verified"]
-    ]
-  },
-  {
-    id: "ipad2",
-    name: "iPad 2",
-    identifier: "iPad2,1",
-    chip: "A5",
-    firmware: "iOS 9.3.5",
-    jailbreak: "Phoenix",
-    manager: "Cydia",
-    packages: 31,
-    repositories: 5,
-    storage: 82,
-    memory: 71,
-    battery: "74%",
-    status: "attention",
-    scores: { Compatibility: 81, Stability: 69, Community: 77, Performance: 58 },
-    recommendations: ["Speed Intensifier", "Filza File Manager", "BatteryLife"],
-    repos: [
-      ["BigBoss", "Verified"],
-      ["Legacy Archive", "Duplicate"],
-      ["Cydia/Telesphoreo", "Verified"]
-    ]
-  },
-  {
-    id: "iphone5",
-    name: "iPhone 5",
-    identifier: "iPhone5,2",
-    chip: "A6",
-    firmware: "iOS 8.4.1",
-    jailbreak: "EtasonJB",
-    manager: "Cydia",
-    packages: 57,
-    repositories: 9,
-    storage: 49,
-    memory: 46,
-    battery: "91%",
-    status: "stable",
-    scores: { Compatibility: 90, Stability: 83, Community: 86, Performance: 80 },
-    recommendations: ["WinterBoard", "Activator", "PreferenceLoader"],
-    repos: [
-      ["BigBoss", "Verified"],
-      ["Chariz Legacy", "Verified"],
-      ["ModMyi Archive", "Slow"]
-    ]
-  }
+  { id: "iphone4-black-32", name: "iPhone 4", identifier: "iPhone3,1", chip: "A4", firmware: "7.1.2", os: "iOS", jailbreak: "p0sixspwn", manager: "Cydia", packageCount: 43, repositoryCount: 7, storageUsed: 68, memoryPressure: 54, batteryHealth: 82, status: "stable", services: ["AFC", "SSH", "Lockdown"], installedPackages: ["winterboard", "icleaner-pro", "openssh", "preferenceloader", "mobilesubstrate"], repositories: ["bigboss", "cydia-telesphoreo", "modmyi-archive", "legacy-archive"], notes: "Collector unit with stable Cydia environment and clean baseline snapshot." },
+  { id: "ipad2-wifi-16", name: "iPad 2", identifier: "iPad2,1", chip: "A5", firmware: "9.3.5", os: "iOS", jailbreak: "Phoenix", manager: "Cydia", packageCount: 31, repositoryCount: 5, storageUsed: 82, memoryPressure: 71, batteryHealth: 74, status: "attention", services: ["AFC", "Lockdown"], installedPackages: ["icleaner-pro", "batterylife", "filza", "preferenceloader"], repositories: ["bigboss", "legacy-archive", "legacy-archive-mirror", "cydia-telesphoreo"], notes: "Needs repository cleanup and dependency review before more tweaks are installed." },
+  { id: "iphone5-white-64", name: "iPhone 5", identifier: "iPhone5,2", chip: "A6", firmware: "8.4.1", os: "iOS", jailbreak: "EtasonJB", manager: "Cydia", packageCount: 57, repositoryCount: 9, storageUsed: 49, memoryPressure: 46, batteryHealth: 91, status: "stable", services: ["AFC", "SSH", "Lockdown"], installedPackages: ["winterboard", "activator", "icleaner-pro", "noslowanimations", "openssh"], repositories: ["bigboss", "chariz-legacy", "modmyi-archive", "cydia-telesphoreo"], notes: "Primary testing device for theme and performance package compatibility." }
+];
+
+const repositories = [
+  { id: "bigboss", name: "BigBoss", url: "http://apt.thebigboss.org/repofiles/cydia/", status: "verified", lastRefreshDays: 2, trust: 98, packageIndexHash: "sha256:bb4c-local-fixture", tags: ["core", "legacy"] },
+  { id: "cydia-telesphoreo", name: "Cydia/Telesphoreo", url: "http://apt.saurik.com/", status: "verified", lastRefreshDays: 5, trust: 96, packageIndexHash: "sha256:ct7-local-fixture", tags: ["core"] },
+  { id: "modmyi-archive", name: "ModMyi Archive", url: "http://apt.modmyi.com/", status: "slow", lastRefreshDays: 42, trust: 76, packageIndexHash: "sha256:mm1-local-fixture", tags: ["archive"] },
+  { id: "legacy-archive", name: "Legacy Archive", url: "https://legacy.example/archive", status: "duplicate-risk", lastRefreshDays: 8, trust: 84, packageIndexHash: "sha256:la9-local-fixture", tags: ["archive", "community"] },
+  { id: "legacy-archive-mirror", name: "Legacy Archive Mirror", url: "https://mirror.legacy.example/archive", status: "duplicate-risk", lastRefreshDays: 8, trust: 80, packageIndexHash: "sha256:la9-local-fixture", tags: ["archive", "mirror"] },
+  { id: "chariz-legacy", name: "Chariz Legacy", url: "https://repo.chariz.com/", status: "verified", lastRefreshDays: 4, trust: 91, packageIndexHash: "sha256:cz6-local-fixture", tags: ["marketplace"] }
 ];
 
 const packages = [
-  {
-    name: "WinterBoard",
-    category: "theme",
-    version: "0.9.3919",
-    rating: "4.8",
-    risk: "Low",
-    success: "99%",
-    impact: "Minimal",
-    compatibility: ["iOS 6", "iOS 7", "iOS 8"],
-    summary: "Classic theming engine with strong legacy device support.",
-    notes: "Known conflict with IconOmatic on iOS 7.",
-    dependencies: ["mobilesubstrate", "preferenceloader"]
-  },
-  {
-    name: "iCleaner Pro",
-    category: "repair",
-    version: "7.7.5",
-    rating: "4.9",
-    risk: "Low",
-    success: "98%",
-    impact: "Improves storage",
-    compatibility: ["iOS 6", "iOS 7", "iOS 8", "iOS 9"],
-    summary: "Removes cache waste and stale package data.",
-    notes: "Create a snapshot before deep cleaning preferences.",
-    dependencies: ["apt7-lib"]
-  },
-  {
-    name: "Activator",
-    category: "safe",
-    version: "1.9.13",
-    rating: "4.7",
-    risk: "Medium",
-    success: "94%",
-    impact: "Small memory use",
-    compatibility: ["iOS 6", "iOS 7", "iOS 8"],
-    summary: "Gesture and shortcut automation for legacy iOS.",
-    notes: "Some iOS 9 builds report springboard restarts.",
-    dependencies: ["mobilesubstrate", "flipswitch"]
-  },
-  {
-    name: "NoSlowAnimations",
-    category: "safe",
-    version: "4.2.1",
-    rating: "4.6",
-    risk: "Low",
-    success: "97%",
-    impact: "Improves perceived speed",
-    compatibility: ["iOS 7", "iOS 8", "iOS 9"],
-    summary: "Reduces animation delays across older devices.",
-    notes: "Best paired with conservative animation values.",
-    dependencies: ["mobilesubstrate"]
-  },
-  {
-    name: "OpenSSH",
-    category: "repair",
-    version: "6.7p1",
-    rating: "4.5",
-    risk: "Medium",
-    success: "96%",
-    impact: "Background service",
-    compatibility: ["iOS 6", "iOS 7", "iOS 8", "iOS 9"],
-    summary: "Secure shell access for repairs, backups, and diagnostics.",
-    notes: "Change the default password immediately after install.",
-    dependencies: ["openssl", "berkeleydb"]
-  },
-  {
-    name: "Speed Intensifier",
-    category: "safe",
-    version: "9.1",
-    rating: "4.2",
-    risk: "Medium",
-    success: "89%",
-    impact: "May increase battery use",
-    compatibility: ["iOS 7", "iOS 8", "iOS 9"],
-    summary: "Accelerates UI timing for slower devices.",
-    notes: "Community reports are mixed on A5 devices.",
-    dependencies: ["mobilesubstrate"]
-  }
+  { id: "winterboard", name: "WinterBoard", category: "theme", version: "0.9.3919", repository: "bigboss", firmwareRange: ["6.0", "8.4.1"], devices: ["iPhone3,1", "iPhone5,2", "iPad2,1"], dependencies: ["mobilesubstrate", "preferenceloader"], conflicts: ["iconomatic"], rating: 4.8, communitySuccess: 99, risk: "low", batteryImpact: "minimal", performanceImpact: "light", summary: "Classic theming engine with strong legacy device support.", notes: "Known conflict with IconOmatic on some iOS 7 setups." },
+  { id: "icleaner-pro", name: "iCleaner Pro", category: "repair", version: "7.7.5", repository: "bigboss", firmwareRange: ["6.0", "9.3.5"], devices: ["iPhone3,1", "iPhone5,2", "iPad2,1"], dependencies: ["apt7-lib"], conflicts: [], rating: 4.9, communitySuccess: 98, risk: "low", batteryImpact: "positive", performanceImpact: "positive", summary: "Removes cache waste and stale package data.", notes: "Create a snapshot before deep preference cleanup." },
+  { id: "activator", name: "Activator", category: "safe", version: "1.9.13", repository: "bigboss", firmwareRange: ["6.0", "8.4.1"], devices: ["iPhone3,1", "iPhone5,2"], dependencies: ["mobilesubstrate", "flipswitch"], conflicts: ["springtomize-old"], rating: 4.7, communitySuccess: 94, risk: "medium", batteryImpact: "small", performanceImpact: "small", summary: "Gesture and shortcut automation for legacy iOS.", notes: "Some iOS 9 builds report springboard restarts." },
+  { id: "noslowanimations", name: "NoSlowAnimations", category: "safe", version: "4.2.1", repository: "chariz-legacy", firmwareRange: ["7.0", "9.3.5"], devices: ["iPhone3,1", "iPhone5,2", "iPad2,1"], dependencies: ["mobilesubstrate"], conflicts: [], rating: 4.6, communitySuccess: 97, risk: "low", batteryImpact: "neutral", performanceImpact: "positive", summary: "Reduces animation delays across older devices.", notes: "Best paired with conservative animation values." },
+  { id: "openssh", name: "OpenSSH", category: "repair", version: "6.7p1", repository: "cydia-telesphoreo", firmwareRange: ["6.0", "9.3.5"], devices: ["iPhone3,1", "iPhone5,2", "iPad2,1"], dependencies: ["openssl", "berkeleydb"], conflicts: [], rating: 4.5, communitySuccess: 96, risk: "medium", batteryImpact: "background service", performanceImpact: "light", summary: "Secure shell access for repairs, backups, and diagnostics.", notes: "Change the default password immediately after install." },
+  { id: "batterylife", name: "BatteryLife", category: "diagnostic", version: "1.6.10", repository: "bigboss", firmwareRange: ["7.0", "9.3.5"], devices: ["iPhone5,2", "iPad2,1"], dependencies: ["preferenceloader"], conflicts: [], rating: 4.4, communitySuccess: 93, risk: "low", batteryImpact: "neutral", performanceImpact: "light", summary: "Displays battery diagnostics and cycle health.", notes: "Useful for repair shop intake and collector records." },
+  { id: "filza", name: "Filza File Manager", category: "repair", version: "3.5.2", repository: "bigboss", firmwareRange: ["7.0", "9.3.5"], devices: ["iPhone5,2", "iPad2,1"], dependencies: ["zip", "unzip", "coreutils"], conflicts: [], rating: 4.6, communitySuccess: 92, risk: "medium", batteryImpact: "neutral", performanceImpact: "light", summary: "On-device file manager for advanced repairs.", notes: "Powerful tool. LegacyDock should warn before destructive file edits." }
 ];
 
-const issues = [
-  { title: "Duplicate Legacy Archive repository", severity: "Medium", detail: "Two source URLs resolve to the same package index.", action: "Merge duplicate" },
-  { title: "Stale package lists", severity: "Low", detail: "ModMyi Archive has not refreshed in 42 days.", action: "Refresh source" },
-  { title: "PreferenceLoader mismatch", severity: "Medium", detail: "Installed version is older than three dependent tweaks expect.", action: "Queue update" },
-  { title: "Storage waste detected", severity: "Low", detail: "1.2 GB of cache files can be reviewed safely.", action: "Review cleanup" }
+const seedSnapshots = [
+  { id: "snap-clean-iphone4", title: "Clean jailbreak baseline", createdAt: "2026-06-14T21:12:00+08:00", deviceId: "iphone4-black-32", packageIds: ["icleaner-pro", "openssh", "preferenceloader", "mobilesubstrate"], repositoryIds: ["bigboss", "cydia-telesphoreo"], state: "verified", hash: "sha256:legacydock-clean-baseline" },
+  { id: "snap-theme-iphone5", title: "Theme pack experiment", createdAt: "2026-06-13T18:40:00+08:00", deviceId: "iphone5-white-64", packageIds: ["winterboard", "activator", "icleaner-pro", "noslowanimations"], repositoryIds: ["bigboss", "chariz-legacy", "modmyi-archive"], state: "restorable", hash: "sha256:legacydock-theme-pack" },
+  { id: "snap-shop-ipad2", title: "Repair shop intake", createdAt: "2026-06-11T10:25:00+08:00", deviceId: "ipad2-wifi-16", packageIds: ["icleaner-pro", "batterylife", "filza"], repositoryIds: ["bigboss", "legacy-archive", "legacy-archive-mirror"], state: "needs-review", hash: "sha256:legacydock-shop-intake" }
 ];
 
-let selectedDevice = devices[0];
-let packageFilter = "all";
-let deviceFilter = "all";
-let searchTerm = "";
-let snapshots = [
-  { title: "Clean jailbreak baseline", date: "2026-06-14 21:12", device: "iPhone 4", packages: 38, state: "Verified" },
-  { title: "Theme pack experiment", date: "2026-06-13 18:40", device: "iPhone 5", packages: 57, state: "Restorable" },
-  { title: "Repair shop intake", date: "2026-06-11 10:25", device: "iPad 2", packages: 29, state: "Needs review" }
+const cloudPlans = [
+  { name: "Free", price: "$0", summary: "Unlimited local devices, local snapshots, repository checks, health scans, and preservation exports." },
+  { name: "Cloud", price: "$3/mo", summary: "Encrypted backup sync, cross-device history, favorites, and collections." },
+  { name: "Plus", price: "$7/mo", summary: "Smart recommendations, advanced analytics, shared collections, and premium community features." },
+  { name: "Studio", price: "$15/mo", summary: "Repair shop inventory, customer notes, shared backups, team workspaces, and priority support." }
 ];
 
-const $ = (selector) => document.querySelector(selector);
-const $$ = (selector) => Array.from(document.querySelectorAll(selector));
-
-function badge(text, type = "") {
-  return `<span class="badge ${type}">${text}</span>`;
+function parseVersion(version) {
+  return String(version).split(".").map((part) => Number(part.padEnd(2, "0"))).reduce((total, part, index) => total + part / Math.pow(100, index), 0);
 }
 
-function severityClass(value) {
-  if (value === "Low" || value === "Verified" || value === "Restorable") return "ok";
-  if (value === "Medium" || value === "Slow" || value === "Duplicate" || value === "Needs review") return "warn";
-  return "danger";
+function inFirmwareRange(firmware, range) {
+  const current = parseVersion(firmware);
+  return current >= parseVersion(range[0]) && current <= parseVersion(range[1]);
+}
+
+function evaluateCompatibility(device, pkg) {
+  const firmwareOk = inFirmwareRange(device.firmware, pkg.firmwareRange);
+  const deviceOk = pkg.devices.includes(device.identifier);
+  const missingDependencies = pkg.dependencies.filter((dependency) => !device.installedPackages.includes(dependency));
+  const installedConflicts = pkg.conflicts.filter((conflict) => device.installedPackages.includes(conflict));
+  const checks = [
+    { label: "Firmware", state: firmwareOk ? "pass" : "block", detail: firmwareOk ? `${device.os} ${device.firmware} is inside ${pkg.firmwareRange.join(" to ")}.` : `${device.os} ${device.firmware} is outside ${pkg.firmwareRange.join(" to ")}.` },
+    { label: "Device", state: deviceOk ? "pass" : "block", detail: deviceOk ? `${device.identifier} is listed as supported.` : `${device.identifier} is not in package metadata.` },
+    { label: "Dependencies", state: missingDependencies.length ? "warn" : "pass", detail: missingDependencies.length ? `Missing dependencies: ${missingDependencies.join(", ")}.` : "All known dependencies are already present." },
+    { label: "Conflicts", state: installedConflicts.length ? "warn" : "pass", detail: installedConflicts.length ? `Known installed conflicts: ${installedConflicts.join(", ")}.` : "No known installed conflicts detected." },
+    { label: "Community", state: pkg.communitySuccess >= 95 ? "pass" : pkg.communitySuccess >= 90 ? "warn" : "block", detail: `${pkg.communitySuccess}% opt-in community success rate.` }
+  ];
+  const blocked = checks.some((check) => check.state === "block");
+  const warnings = checks.filter((check) => check.state === "warn").length;
+  const score = Math.max(0, Math.round(pkg.communitySuccess - warnings * 6 - (blocked ? 36 : 0)));
+  return { supported: !blocked, recommendation: blocked ? "Not recommended" : warnings ? "Review first" : "Recommended", score, checks };
+}
+
+function scoreDevice(device, packageList) {
+  const supportedCount = packageList.filter((pkg) => evaluateCompatibility(device, pkg).supported).length;
+  return {
+    Compatibility: Math.round((supportedCount / packageList.length) * 100),
+    Stability: Math.max(0, Math.round(100 - device.memoryPressure * 0.28 - (device.status === "attention" ? 14 : 0))),
+    Community: Math.round(packageList.reduce((sum, pkg) => sum + pkg.communitySuccess, 0) / packageList.length),
+    Performance: Math.max(0, Math.round(100 - device.storageUsed * 0.22 - device.memoryPressure * 0.18))
+  };
+}
+
+function scanRepositories(device, repositoryList) {
+  const selected = repositoryList.filter((repo) => device.repositories.includes(repo.id));
+  const hashMap = new Map();
+  const issues = [];
+  selected.forEach((repo) => {
+    if (repo.status === "slow") issues.push({ severity: "low", title: `${repo.name} is slow`, detail: `${repo.name} has not refreshed in ${repo.lastRefreshDays} days.`, action: "Refresh source" });
+    if (repo.lastRefreshDays > 30) issues.push({ severity: "medium", title: `${repo.name} package lists are stale`, detail: "Stale package indexes can hide dependency updates and conflict metadata.", action: "Rebuild index" });
+    const existing = hashMap.get(repo.packageIndexHash);
+    if (existing) issues.push({ severity: "medium", title: "Duplicate repository index", detail: `${repo.name} mirrors the same package index as ${existing.name}.`, action: "Merge duplicate" });
+    else hashMap.set(repo.packageIndexHash, repo);
+  });
+  if (!device.services.includes("SSH")) issues.push({ severity: "low", title: "SSH repair channel unavailable", detail: "Some advanced recovery workflows need SSH. Only enable it when needed and secure credentials.", action: "Review access" });
+  return issues;
+}
+
+function createSnapshot(device, repositoryList, packageList) {
+  const stamp = new Date().toISOString();
+  const packageIds = packageList.filter((pkg) => device.installedPackages.includes(pkg.id)).map((pkg) => pkg.id);
+  const repositoryIds = repositoryList.filter((repo) => device.repositories.includes(repo.id)).map((repo) => repo.id);
+  return { id: `snap-${device.id}-${Date.now()}`, title: `${device.name} working set`, createdAt: stamp, deviceId: device.id, packageIds, repositoryIds, state: "verified", hash: `local:${device.identifier}:${packageIds.length}:${repositoryIds.length}:${stamp}` };
+}
+
+function diffSnapshots(left, right) {
+  const leftPackages = new Set(left.packageIds);
+  const rightPackages = new Set(right.packageIds);
+  return {
+    added: [...rightPackages].filter((id) => !leftPackages.has(id)),
+    removed: [...leftPackages].filter((id) => !rightPackages.has(id)),
+    unchanged: [...rightPackages].filter((id) => leftPackages.has(id))
+  };
+}
+
+function buildPreservationReport(device, repositoryList, packageList, snapshot) {
+  return {
+    schema: "legacydock.preservation-report.v1",
+    generatedAt: new Date().toISOString(),
+    device: { name: device.name, identifier: device.identifier, chip: device.chip, firmware: `${device.os} ${device.firmware}`, jailbreak: device.jailbreak, packageManager: device.manager, batteryHealth: device.batteryHealth, notes: device.notes },
+    repositories: repositoryList.filter((repo) => device.repositories.includes(repo.id)).map((repo) => ({ name: repo.name, url: repo.url, status: repo.status, packageIndexHash: repo.packageIndexHash })),
+    packages: packageList.filter((pkg) => device.installedPackages.includes(pkg.id)).map((pkg) => ({ id: pkg.id, name: pkg.name, version: pkg.version, repository: pkg.repository, dependencies: pkg.dependencies })),
+    snapshot: snapshot ? { id: snapshot.id, title: snapshot.title, createdAt: snapshot.createdAt, hash: snapshot.hash } : null
+  };
+}
+
+function downloadReport(report) {
+  const blob = new Blob([JSON.stringify(report, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `legacydock-${report.device.identifier}-preservation-report.json`;
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
+const STORE_KEY = "legacydock.demo.workspace";
+
+function loadWorkspace(fallback) {
+  try {
+    const stored = localStorage.getItem(STORE_KEY);
+    return stored ? { ...fallback, ...JSON.parse(stored) } : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function saveWorkspace(nextState) {
+  localStorage.setItem(STORE_KEY, JSON.stringify({
+    selectedDeviceId: nextState.selectedDeviceId,
+    snapshots: nextState.snapshots,
+    telemetryEnabled: nextState.telemetryEnabled
+  }));
+}
+
+const $ = (selector, scope = document) => scope.querySelector(selector);
+const $$ = (selector, scope = document) => Array.from(scope.querySelectorAll(selector));
+
+const state = loadWorkspace({
+  selectedDeviceId: devices[0].id,
+  deviceFilter: "all",
+  packageFilter: "all",
+  searchTerm: "",
+  snapshots: seedSnapshots,
+  telemetryEnabled: false
+});
+
+function selectedDevice() {
+  return devices.find((device) => device.id === state.selectedDeviceId) || devices[0];
+}
+
+function selectedSnapshot() {
+  return state.snapshots.find((snapshot) => snapshot.deviceId === selectedDevice().id) || state.snapshots[0];
+}
+
+function badge(text, kind = "neutral") {
+  return `<span class="badge ${kind}">${text}</span>`;
+}
+
+function severityKind(value) {
+  if (["pass", "low", "verified", "restorable", "safe", "Recommended"].includes(value)) return "good";
+  if (["warn", "medium", "slow", "needs-review", "Review first"].includes(value)) return "warn";
+  if (["block", "high", "Not recommended"].includes(value)) return "bad";
+  return "neutral";
+}
+
+function matchesSearch(...values) {
+  if (!state.searchTerm) return true;
+  return values.join(" ").toLowerCase().includes(state.searchTerm);
 }
 
 function renderDevices() {
+  const list = $("[data-device-list]");
   const filtered = devices.filter((device) => {
-    const matchesFilter = deviceFilter === "all" || device.status === deviceFilter;
-    const haystack = `${device.name} ${device.identifier} ${device.firmware} ${device.jailbreak}`.toLowerCase();
-    return matchesFilter && haystack.includes(searchTerm);
+    const filterMatch = state.deviceFilter === "all" || device.status === state.deviceFilter;
+    return filterMatch && matchesSearch(device.name, device.identifier, device.firmware, device.jailbreak, device.manager);
   });
 
-  $("#connectedCount").textContent = `${devices.length} devices`;
-  $("#deviceList").innerHTML = filtered.map((device) => `
-    <button class="device-card ${device.id === selectedDevice.id ? "active" : ""}" data-device="${device.id}">
-      <div class="card-row">
-        <div>
-          <strong>${device.name}</strong>
-          <div class="muted">${device.identifier} · ${device.firmware}</div>
+  list.innerHTML = filtered.map((device) => {
+    const scores = scoreDevice(device, packages);
+    return `
+      <button class="device-card ${device.id === state.selectedDeviceId ? "active" : ""}" data-device-id="${device.id}">
+        <div class="card-top">
+          <span class="device-dot"></span>
+          <div>
+            <strong>${device.name}</strong>
+            <small>${device.identifier} · ${device.os} ${device.firmware}</small>
+          </div>
+          ${badge(device.status === "stable" ? "Stable" : "Review", device.status === "stable" ? "good" : "warn")}
         </div>
-        ${badge(device.status === "stable" ? "Stable" : "Review", device.status === "stable" ? "ok" : "warn")}
-      </div>
-      <div class="badges">
-        ${badge(device.chip)}
-        ${badge(device.jailbreak)}
-        ${badge(device.manager)}
-      </div>
-      <div class="meter">
-        <label><span>Storage</span><span>${device.storage}%</span></label>
-        <div class="meter-track"><div class="meter-fill" style="width: ${device.storage}%"></div></div>
-      </div>
-    </button>
-  `).join("");
+        <div class="badge-row">
+          ${badge(device.chip)}
+          ${badge(device.jailbreak)}
+          ${badge(device.manager)}
+        </div>
+        <div class="meter">
+          <label><span>Compatibility</span><span>${scores.Compatibility}%</span></label>
+          <div><i style="width:${scores.Compatibility}%"></i></div>
+        </div>
+      </button>
+    `;
+  }).join("");
 
-  $$(".device-card").forEach((card) => {
+  $$(".device-card", list).forEach((card) => {
     card.addEventListener("click", () => {
-      selectedDevice = devices.find((device) => device.id === card.dataset.device);
-      renderAll();
+      state.selectedDeviceId = card.dataset.deviceId;
+      persistAndRender();
     });
   });
 }
 
 function renderDeviceDetail() {
-  $("#phoneModel").textContent = selectedDevice.name;
-  $("#phoneFirmware").textContent = selectedDevice.firmware;
-  $("#detailIdentifier").textContent = selectedDevice.identifier;
-  $("#detailName").textContent = selectedDevice.name;
-  $("#detailSummary").textContent = `${selectedDevice.jailbreak} with ${selectedDevice.manager}, ${selectedDevice.repositories} repositories, ${selectedDevice.packages} installed packages.`;
+  const device = selectedDevice();
+  const scores = scoreDevice(device, packages);
+  const repoIssues = scanRepositories(device, repositories);
+  const recommended = packages
+    .map((pkg) => ({ pkg, result: evaluateCompatibility(device, pkg) }))
+    .filter((item) => item.result.supported)
+    .sort((a, b) => b.result.score - a.result.score)
+    .slice(0, 4);
 
-  $("#scoreGrid").innerHTML = Object.entries(selectedDevice.scores).map(([label, value]) => `
-    <div class="score">
-      <small>${label}</small>
-      <strong>${value}</strong>
-      <div class="meter-track"><div class="meter-fill" style="width: ${value}%"></div></div>
-    </div>
-  `).join("");
-
-  $("#recommendations").innerHTML = selectedDevice.recommendations.map((name) => {
-    const item = packages.find((pkg) => pkg.name === name) || packages[0];
-    return `
-      <div class="recommendation">
-        <span>${name}</span>
-        ${badge(`${item.success} success`, severityClass(item.risk))}
+  $("[data-device-detail]").innerHTML = `
+    <div class="device-hero-card">
+      <div class="ios-device">
+        <div class="speaker"></div>
+        <div class="screen">
+          <span>${device.name}</span>
+          <small>${device.os} ${device.firmware}</small>
+        </div>
+        <div class="home-button"></div>
       </div>
-    `;
-  }).join("");
-
-  $("#repoList").innerHTML = selectedDevice.repos.map(([name, state]) => `
-    <div class="repo">
-      <span>${name}</span>
-      ${badge(state, severityClass(state))}
+      <div>
+        <p class="kicker">${device.identifier}</p>
+        <h3>${device.name}</h3>
+        <p>${device.jailbreak} with ${device.manager}. ${device.packageCount} packages, ${device.repositoryCount} repositories, ${device.batteryHealth}% battery health.</p>
+        <div class="badge-row">
+          ${device.services.map((service) => badge(service, "neutral")).join("")}
+        </div>
+      </div>
     </div>
-  `).join("");
+    <div class="score-grid">
+      ${Object.entries(scores).map(([label, score]) => `
+        <div class="score-card">
+          <small>${label}</small>
+          <strong>${score}</strong>
+          <div class="meter slim"><div><i style="width:${score}%"></i></div></div>
+        </div>
+      `).join("")}
+    </div>
+    <div class="detail-grid">
+      <div class="panel">
+        <div class="panel-head"><h4>Recommended installs</h4><button class="mini-button" data-jump="marketplace">Browse</button></div>
+        <div class="list-stack">
+          ${recommended.map(({ pkg, result }) => `
+            <div class="list-row">
+              <span>${pkg.name}</span>
+              ${badge(`${result.score}% fit`, result.score > 90 ? "good" : "warn")}
+            </div>
+          `).join("")}
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h4>Repository status</h4><button class="mini-button" data-jump="health">Repair</button></div>
+        <div class="list-stack">
+          ${repositories.filter((repo) => device.repositories.includes(repo.id)).map((repo) => `
+            <div class="list-row">
+              <span>${repo.name}</span>
+              ${badge(repo.status, repo.status === "verified" ? "good" : "warn")}
+            </div>
+          `).join("")}
+        </div>
+        <p class="panel-note">${repoIssues.length} health recommendation${repoIssues.length === 1 ? "" : "s"} found.</p>
+      </div>
+    </div>
+  `;
+
+  $$("[data-jump]").forEach((button) => {
+    button.addEventListener("click", () => activateView(button.dataset.jump));
+  });
 }
 
 function renderPackages() {
+  const device = selectedDevice();
+  const grid = $("[data-package-grid]");
   const filtered = packages.filter((pkg) => {
-    const matchesFilter = packageFilter === "all" || pkg.category === packageFilter || (packageFilter === "safe" && pkg.risk === "Low");
-    const haystack = `${pkg.name} ${pkg.summary} ${pkg.category} ${pkg.compatibility.join(" ")}`.toLowerCase();
-    return matchesFilter && haystack.includes(searchTerm);
+    const filterMatch =
+      state.packageFilter === "all" ||
+      pkg.category === state.packageFilter ||
+      (state.packageFilter === "safe" && pkg.risk === "low");
+    return filterMatch && matchesSearch(pkg.name, pkg.category, pkg.summary, pkg.repository);
   });
 
-  $("#packageGrid").innerHTML = filtered.map((pkg) => `
-    <article class="package-card">
-      <div class="package-head">
-        <div class="package-icon">${pkg.name.slice(0, 2).toUpperCase()}</div>
-        ${badge(pkg.risk, severityClass(pkg.risk))}
-      </div>
-      <div>
-        <h3>${pkg.name}</h3>
-        <p>${pkg.summary}</p>
-      </div>
-      <div class="badges">
-        ${pkg.compatibility.map((item) => badge(item)).join("")}
-      </div>
-      <div class="package-actions">
-        <span class="muted">${pkg.rating} rating · ${pkg.success} success</span>
-        <button class="primary-button install-button" data-package="${pkg.name}">Review</button>
-      </div>
-    </article>
-  `).join("");
+  grid.innerHTML = filtered.map((pkg) => {
+    const result = evaluateCompatibility(device, pkg);
+    return `
+      <article class="package-card">
+        <div class="package-media"><span>${pkg.name.slice(0, 2).toUpperCase()}</span></div>
+        <div class="package-body">
+          <div class="card-top">
+            <div>
+              <h4>${pkg.name}</h4>
+              <small>${pkg.version} · ${pkg.category}</small>
+            </div>
+            ${badge(result.recommendation, severityKind(result.recommendation))}
+          </div>
+          <p>${pkg.summary}</p>
+          <div class="badge-row">
+            ${badge(`${result.score}% compatibility`, result.score > 90 ? "good" : "warn")}
+            ${badge(`${pkg.communitySuccess}% success`, pkg.communitySuccess >= 95 ? "good" : "warn")}
+            ${badge(`${pkg.risk} risk`, severityKind(pkg.risk))}
+          </div>
+        </div>
+        <button class="aqua-button compact" data-review-package="${pkg.id}">Review</button>
+      </article>
+    `;
+  }).join("");
 
-  $$(".install-button").forEach((button) => {
-    button.addEventListener("click", () => openInstallDialog(button.dataset.package));
+  $$("[data-review-package]").forEach((button) => {
+    button.addEventListener("click", () => openInstallDialog(button.dataset.reviewPackage));
   });
 }
 
-function openInstallDialog(packageName) {
-  const pkg = packages.find((item) => item.name === packageName);
-  $("#modalTitle").textContent = pkg.name;
-  $("#riskStrip").innerHTML = [
-    badge(`${pkg.risk} risk`, severityClass(pkg.risk)),
-    badge(`${pkg.success} community success`, "ok"),
-    badge(pkg.impact, pkg.impact.includes("battery") ? "warn" : "ok")
-  ].join("");
-  $("#modalDetails").innerHTML = [
-    ["Compatibility", `${pkg.compatibility.join(", ")} on ${selectedDevice.name}: ${pkg.compatibility.some((item) => selectedDevice.firmware.startsWith(item)) ? "supported" : "review required"}`],
-    ["Dependencies", pkg.dependencies.join(", ")],
-    ["Known issues", pkg.notes],
-    ["Recovery", "A snapshot will be created before installation."]
-  ].map(([title, value]) => `
-    <div class="modal-detail">
-      <strong>${title}</strong>
-      <p class="muted">${value}</p>
-    </div>
-  `).join("");
+function openInstallDialog(packageId) {
+  const device = selectedDevice();
+  const pkg = packages.find((item) => item.id === packageId);
+  const result = evaluateCompatibility(device, pkg);
+  const dialog = $("[data-install-dialog]");
 
-  $("#confirmInstall").onclick = () => {
-    toast(`${pkg.name} queued with pre-install snapshot protection.`);
-  };
-  $("#installDialog").showModal();
+  $("[data-dialog-title]").textContent = pkg.name;
+  $("[data-dialog-risks]").innerHTML = [
+    badge(result.recommendation, severityKind(result.recommendation)),
+    badge(`${pkg.communitySuccess}% community success`, pkg.communitySuccess >= 95 ? "good" : "warn"),
+    badge(`${pkg.batteryImpact} battery`, pkg.batteryImpact === "positive" ? "good" : "neutral")
+  ].join("");
+  $("[data-dialog-body]").innerHTML = result.checks.map((check) => `
+    <div class="dialog-card">
+      <div class="card-top"><strong>${check.label}</strong>${badge(check.state, severityKind(check.state))}</div>
+      <p>${check.detail}</p>
+    </div>
+  `).join("") + `
+    <div class="dialog-card">
+      <div class="card-top"><strong>Recovery</strong>${badge("snapshot first", "good")}</div>
+      <p>LegacyDock will capture a local snapshot before any install or repository mutation.</p>
+    </div>
+  `;
+
+  $("[data-confirm-install]").onclick = () => toast(`${pkg.name} queued with pre-install snapshot protection.`);
+  dialog.showModal();
 }
 
 function renderHealth() {
-  $("#issueList").innerHTML = issues.map((issue, index) => `
-    <article class="issue-card" data-issue="${index}">
-      <div class="issue-head">
-        <h3>${issue.title}</h3>
-        ${badge(issue.severity, severityClass(issue.severity))}
+  const device = selectedDevice();
+  const repoIssues = scanRepositories(device, repositories);
+  const packageWarnings = packages
+    .map((pkg) => ({ pkg, result: evaluateCompatibility(device, pkg) }))
+    .filter((item) => item.result.checks.some((check) => check.state === "warn"));
+
+  const issues = [
+    ...repoIssues,
+    ...packageWarnings.slice(0, 3).map(({ pkg, result }) => ({
+      severity: result.score > 85 ? "low" : "medium",
+      title: `${pkg.name} needs review`,
+      detail: result.checks.filter((check) => check.state === "warn").map((check) => check.detail).join(" "),
+      action: "Open review"
+    }))
+  ];
+
+  const healthScore = Math.max(42, 100 - issues.length * 6 - Math.round(device.memoryPressure * 0.08));
+  $("[data-health-score]").innerHTML = `<strong>${healthScore}</strong><span>overall health</span>`;
+  $("[data-issue-list]").innerHTML = issues.map((issue) => `
+    <article class="issue-card">
+      <div class="card-top">
+        <h4>${issue.title}</h4>
+        ${badge(issue.severity, severityKind(issue.severity))}
       </div>
       <p>${issue.detail}</p>
-      <button class="text-button repair-button" data-issue="${index}">${issue.action}</button>
+      <button class="mini-button" data-stage-repair>${issue.action}</button>
     </article>
   `).join("");
 
-  $$(".repair-button").forEach((button) => {
+  $$("[data-stage-repair]").forEach((button) => {
     button.addEventListener("click", () => {
-      const card = button.closest(".issue-card");
-      card.remove();
-      const score = Math.min(99, Number($("#healthScore").textContent) + 3);
-      $("#healthScore").textContent = score;
-      toast("Repair action staged locally.");
+      button.textContent = "Staged";
+      button.disabled = true;
+      toast("Repair action staged locally. No device changes were made.");
     });
   });
 }
 
 function renderSnapshots() {
-  $("#snapshotTimeline").innerHTML = snapshots.map((snapshot) => `
-    <article class="timeline-item">
-      <div class="timeline-head">
+  const device = selectedDevice();
+  const deviceSnapshots = state.snapshots.filter((snapshot) => snapshot.deviceId === device.id);
+  const fallback = state.snapshots.slice(0, 2);
+  const visible = deviceSnapshots.length ? deviceSnapshots : fallback;
+  const diff = visible.length > 1 ? diffSnapshots(visible[1], visible[0]) : { added: [], removed: [], unchanged: visible[0]?.packageIds || [] };
+
+  $("[data-snapshot-timeline]").innerHTML = visible.map((snapshot) => `
+    <article class="snapshot-card">
+      <div class="card-top">
         <div>
-          <h3>${snapshot.title}</h3>
-          <div class="muted">${snapshot.date} · ${snapshot.device}</div>
+          <h4>${snapshot.title}</h4>
+          <small>${new Date(snapshot.createdAt).toLocaleString()}</small>
         </div>
-        ${badge(snapshot.state, severityClass(snapshot.state))}
+        ${badge(snapshot.state, severityKind(snapshot.state))}
       </div>
-      <p class="muted">${snapshot.packages} packages, repositories, preferences, and metadata captured.</p>
+      <p>${snapshot.packageIds.length} packages, ${snapshot.repositoryIds.length} repositories, preferences, and metadata captured.</p>
+      <code>${snapshot.hash}</code>
+    </article>
+  `).join("");
+
+  $("[data-snapshot-diff]").innerHTML = `
+    <div class="panel">
+      <h4>Latest diff</h4>
+      <div class="diff-grid">
+        <span>Added</span><strong>${diff.added.length}</strong>
+        <span>Removed</span><strong>${diff.removed.length}</strong>
+        <span>Unchanged</span><strong>${diff.unchanged.length}</strong>
+      </div>
+      <p class="panel-note">Restore previews compare manifests before touching the device.</p>
+    </div>
+  `;
+}
+
+function renderPreservation() {
+  const device = selectedDevice();
+  const report = buildPreservationReport(device, repositories, packages, selectedSnapshot());
+  $("[data-preservation-profile]").innerHTML = `
+    <h4>Selected profile</h4>
+    <dl class="profile-list">
+      ${Object.entries(report.device).map(([key, value]) => `<dt>${key}</dt><dd>${value}</dd>`).join("")}
+    </dl>
+  `;
+  $("[data-preservation-checks]").innerHTML = `
+    <h4>Reproducibility checks</h4>
+    <div class="list-stack">
+      ${["Package versions", "Repository hashes", "Device metadata", "Snapshot recovery plan"].map((item) => `
+        <div class="list-row"><span>${item}</span>${badge("captured", "good")}</div>
+      `).join("")}
+    </div>
+  `;
+  $("[data-manifest-preview]").textContent = JSON.stringify(report, null, 2);
+}
+
+function renderPlans() {
+  $("[data-plan-grid]").innerHTML = cloudPlans.map((plan, index) => `
+    <article class="plan-card ${index === 0 ? "active" : ""}">
+      <small>${plan.name}</small>
+      <strong>${plan.price}</strong>
+      <p>${plan.summary}</p>
     </article>
   `).join("");
 }
 
-function renderArchive() {
-  const profile = {
-    Model: selectedDevice.name,
-    Identifier: selectedDevice.identifier,
-    Chip: selectedDevice.chip,
-    Firmware: selectedDevice.firmware,
-    Jailbreak: selectedDevice.jailbreak,
-    "Package manager": selectedDevice.manager,
-    Battery: selectedDevice.battery,
-    "Installed packages": selectedDevice.packages
-  };
-
-  $("#archiveProfile").innerHTML = Object.entries(profile).map(([key, value]) => `
-    <dt>${key}</dt><dd>${value}</dd>
-  `).join("");
-
-  $("#archiveChecks").innerHTML = [
-    ["Package versions", "Captured"],
-    ["Repository metadata", "Captured"],
-    ["Preference hashes", "Pending"],
-    ["Recovery snapshot", "Ready"]
-  ].map(([label, state]) => `
-    <div class="check">
-      <span>${label}</span>
-      ${badge(state, state === "Pending" ? "warn" : "ok")}
-    </div>
-  `).join("");
-
-  const manifest = {
-    device: selectedDevice.identifier,
-    firmware: selectedDevice.firmware,
-    repositories: selectedDevice.repos.map(([name, state]) => ({ name, state })),
-    packages: packages.slice(0, 4).map((pkg) => ({
-      name: pkg.name,
-      version: pkg.version,
-      dependencies: pkg.dependencies
-    }))
-  };
-  $("#manifestPreview").textContent = JSON.stringify(manifest, null, 2);
-}
-
-function createSnapshot() {
-  const now = new Date();
-  snapshots = [{
-    title: `${selectedDevice.name} working set`,
-    date: now.toISOString().slice(0, 16).replace("T", " "),
-    device: selectedDevice.name,
-    packages: selectedDevice.packages,
-    state: "Verified"
-  }, ...snapshots];
-  renderSnapshots();
+function captureSnapshot() {
+  const snapshot = createSnapshot(selectedDevice(), repositories, packages);
+  state.snapshots = [snapshot, ...state.snapshots];
+  persistAndRender();
+  activateView("snapshots");
   toast("Snapshot captured locally.");
 }
 
 function exportReport() {
-  const report = {
-    generatedAt: new Date().toISOString(),
-    product: "LegacyDock",
-    mode: "Preservation",
-    selectedDevice,
-    manifest: JSON.parse($("#manifestPreview").textContent)
-  };
-  const blob = new Blob([JSON.stringify(report, null, 2)], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = `legacydock-${selectedDevice.identifier}-preservation-report.json`;
-  link.click();
-  URL.revokeObjectURL(url);
+  const report = buildPreservationReport(selectedDevice(), repositories, packages, selectedSnapshot());
+  downloadReport(report);
   toast("Preservation report exported.");
 }
 
+function activateView(name) {
+  $$(".console-tab").forEach((button) => button.classList.toggle("active", button.dataset.view === name));
+  $$(".console-view").forEach((view) => view.classList.toggle("active", view.id === `${name}-view`));
+}
+
 function toast(message) {
-  const node = $("#toast");
+  const node = $("[data-toast]");
   node.textContent = message;
   node.classList.add("show");
   window.clearTimeout(toast.timer);
-  toast.timer = window.setTimeout(() => node.classList.remove("show"), 2400);
+  toast.timer = window.setTimeout(() => node.classList.remove("show"), 2600);
+}
+
+function persistAndRender() {
+  saveWorkspace(state);
+  renderAll();
 }
 
 function renderAll() {
@@ -430,55 +501,44 @@ function renderAll() {
   renderPackages();
   renderHealth();
   renderSnapshots();
-  renderArchive();
+  renderPreservation();
+  renderPlans();
 }
 
-$$(".nav-item").forEach((button) => {
-  button.addEventListener("click", () => {
-    $$(".nav-item").forEach((item) => item.classList.toggle("active", item === button));
-    $$(".view").forEach((view) => view.classList.toggle("active", view.id === button.dataset.view));
-  });
-});
-
-$$("[data-view-jump]").forEach((button) => {
-  button.addEventListener("click", () => {
-    $(`.nav-item[data-view="${button.dataset.viewJump}"]`).click();
-  });
+$$(".console-tab").forEach((button) => {
+  button.addEventListener("click", () => activateView(button.dataset.view));
 });
 
 $$("[data-device-filter]").forEach((button) => {
   button.addEventListener("click", () => {
-    deviceFilter = button.dataset.deviceFilter;
+    state.deviceFilter = button.dataset.deviceFilter;
     $$("[data-device-filter]").forEach((item) => item.classList.toggle("active", item === button));
-    renderDevices();
+    persistAndRender();
   });
 });
 
 $$("[data-package-filter]").forEach((button) => {
   button.addEventListener("click", () => {
-    packageFilter = button.dataset.packageFilter;
+    state.packageFilter = button.dataset.packageFilter;
     $$("[data-package-filter]").forEach((item) => item.classList.toggle("active", item === button));
-    renderPackages();
+    persistAndRender();
   });
 });
 
-$("#globalSearch").addEventListener("input", (event) => {
-  searchTerm = event.target.value.trim().toLowerCase();
+$("#searchInput").addEventListener("input", (event) => {
+  state.searchTerm = event.target.value.trim().toLowerCase();
   renderDevices();
   renderPackages();
 });
 
-$("#scanButton").addEventListener("click", () => toast("Device scan complete. No risky changes made."));
-$("#snapshotNow").addEventListener("click", createSnapshot);
-$("#captureSnapshot").addEventListener("click", createSnapshot);
-$("#runHealthScan").addEventListener("click", () => toast("Health scan refreshed compatibility and repository checks."));
-$("#repairRepos").addEventListener("click", () => toast("Repository repair plan prepared."));
-$("#exportReport").addEventListener("click", exportReport);
-$("#telemetryToggle").addEventListener("change", (event) => {
+$("[data-capture-snapshot]").addEventListener("click", captureSnapshot);
+$("[data-run-health]").addEventListener("click", () => toast("Health scan refreshed local compatibility and repository checks."));
+$("[data-export-report]").addEventListener("click", exportReport);
+$("[data-telemetry-toggle]").addEventListener("change", (event) => {
+  state.telemetryEnabled = event.target.checked;
+  persistAndRender();
   toast(event.target.checked ? "Anonymous community intelligence enabled." : "Community intelligence disabled.");
 });
-$("#themeButton").addEventListener("click", () => {
-  document.documentElement.classList.toggle("light");
-});
+$("[data-theme-toggle]").addEventListener("click", () => document.documentElement.classList.toggle("light"));
 
 renderAll();

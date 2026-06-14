@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legacydock.dev/schemas/package.schema.json",
+  "title": "LegacyDock Package",
+  "type": "object",
+  "required": ["id", "name", "version", "repository", "firmwareRange", "dependencies", "conflicts"],
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "category": { "type": "string" },
+    "version": { "type": "string" },
+    "repository": { "type": "string" },
+    "firmwareRange": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": { "type": "string" }
+    },
+    "devices": { "type": "array", "items": { "type": "string" } },
+    "dependencies": { "type": "array", "items": { "type": "string" } },
+    "conflicts": { "type": "array", "items": { "type": "string" } },
+    "rating": { "type": "number", "minimum": 0, "maximum": 5 },
+    "communitySuccess": { "type": "number", "minimum": 0, "maximum": 100 },
+    "risk": { "type": "string", "enum": ["low", "medium", "high"] },
+    "batteryImpact": { "type": "string" },
+    "performanceImpact": { "type": "string" },
+    "summary": { "type": "string" },
+    "notes": { "type": "string" }
+  }
+}

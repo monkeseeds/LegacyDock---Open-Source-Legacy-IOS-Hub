@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legacydock.dev/schemas/device-profile.schema.json",
+  "title": "LegacyDock Device Profile",
+  "type": "object",
+  "required": ["id", "name", "identifier", "firmware", "jailbreak", "manager", "installedPackages", "repositories"],
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "identifier": { "type": "string", "examples": ["iPhone3,1", "iPad2,1"] },
+    "chip": { "type": "string" },
+    "firmware": { "type": "string" },
+    "os": { "type": "string", "enum": ["iOS", "iPhone OS"] },
+    "jailbreak": { "type": "string" },
+    "manager": { "type": "string" },
+    "packageCount": { "type": "integer", "minimum": 0 },
+    "repositoryCount": { "type": "integer", "minimum": 0 },
+    "storageUsed": { "type": "number", "minimum": 0, "maximum": 100 },
+    "memoryPressure": { "type": "number", "minimum": 0, "maximum": 100 },
+    "batteryHealth": { "type": "number", "minimum": 0, "maximum": 100 },
+    "status": { "type": "string", "enum": ["stable", "attention", "archived"] },
+    "services": { "type": "array", "items": { "type": "string" } },
+    "installedPackages": { "type": "array", "items": { "type": "string" } },
+    "repositories": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "string" }
+  }
+}
