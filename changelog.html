@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Latest LegacyDock release notes and product updates." />
+    <title>LegacyDock Changelog</title>
+    <link rel="icon" href="./assets/logodock.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="brand" href="./index.html" aria-label="LegacyDock home">
+        <img src="./assets/logodock.svg" alt="" />
+        <span>
+          <strong>LegacyDock</strong>
+          <small>Changelog</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="./index.html#browse">Browse</a>
+        <a href="./docs.html">Docs</a>
+        <a href="./changelog.html">Changelog</a>
+        <a href="./pricing.html">Pricing</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" data-theme-toggle title="Toggle theme" aria-label="Toggle theme">
+          <img src="./assets/icons/theme.svg" alt="" />
+        </button>
+        <a class="icon-button icon-link" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub" target="_blank" rel="noreferrer" title="Open GitHub repository" aria-label="Open GitHub repository">
+          <img src="./assets/icons/github.svg" alt="" />
+        </a>
+        <a class="pill-button" href="./console.html">Open Console</a>
+      </div>
+    </header>
+
+    <main class="content-page changelog-page">
+      <section class="page-hero compact-page-hero" aria-labelledby="changelog-title">
+        <p class="kicker">Changelog</p>
+        <h1 id="changelog-title">Latest LegacyDock updates.</h1>
+        <p>Release notes for the website, console prototype, compatibility catalog, docs, and product direction.</p>
+      </section>
+
+      <section class="release-stream" aria-label="Release notes">
+        <article class="release-entry">
+          <time datetime="2026-06-15">June 15, 2026</time>
+          <div class="release-card">
+            <span class="release-type">Site update</span>
+            <h2>Docs, changelog, and pricing now live as separate pages</h2>
+            <p>
+              LegacyDock now has dedicated docs, changelog, and pricing routes with header navigation updated across the landing page and console.
+            </p>
+            <ul>
+              <li>Added a documentation shell with side navigation and on-page anchors.</li>
+              <li>Added a date-grouped changelog stream.</li>
+              <li>Added a full pricing comparison page with local-first positioning.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="release-entry">
+          <time datetime="2026-06-14">June 14, 2026</time>
+          <div class="release-card">
+            <span class="release-type">Product foundation</span>
+            <h2>Console split, dark-first landing page, and full iOS 6-9 catalog</h2>
+            <p>
+              The working console moved to its own page, the landing page adopted the current LegacyDock logo and dark storefront direction, and the demo compatibility engine gained a full iOS 6.0 through 9.3.6 release catalog.
+            </p>
+            <ul>
+              <li>Added 44 indexed iOS releases from 6.0 through 9.3.6.</li>
+              <li>Added GitHub and theme icon controls in the header.</li>
+              <li>Added vector icons for package and preservation surfaces.</li>
+              <li>Added credited Legacy iOS Kit and iOS Obscura Server integration notes.</li>
+            </ul>
+            <a class="secondary-button compact" href="./CHANGELOG.md">Read markdown changelog</a>
+          </div>
+        </article>
+
+        <article class="release-entry">
+          <time datetime="2026-06-14">Earlier</time>
+          <div class="release-card">
+            <span class="release-type">Prototype</span>
+            <h2>Initial product shell</h2>
+            <p>
+              LegacyDock began as a static product foundation with dashboard, marketplace, health center, snapshots, preservation report export, schemas, and planning docs.
+            </p>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script src="./site.js"></script>
+  </body>
+</html>

@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="LegacyDock docs for the local-first legacy iOS preservation console." />
+    <title>LegacyDock Docs</title>
+    <link rel="icon" href="./assets/logodock.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="brand" href="./index.html" aria-label="LegacyDock home">
+        <img src="./assets/logodock.svg" alt="" />
+        <span>
+          <strong>LegacyDock</strong>
+          <small>Docs</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="./index.html#browse">Browse</a>
+        <a href="./docs.html">Docs</a>
+        <a href="./changelog.html">Changelog</a>
+        <a href="./pricing.html">Pricing</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" data-theme-toggle title="Toggle theme" aria-label="Toggle theme">
+          <img src="./assets/icons/theme.svg" alt="" />
+        </button>
+        <a class="icon-button icon-link" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub" target="_blank" rel="noreferrer" title="Open GitHub repository" aria-label="Open GitHub repository">
+          <img src="./assets/icons/github.svg" alt="" />
+        </a>
+        <a class="pill-button" href="./console.html">Open Console</a>
+      </div>
+    </header>
+
+    <main class="content-page docs-page">
+      <section class="page-hero compact-page-hero" aria-labelledby="docs-title">
+        <p class="kicker">Documentation</p>
+        <h1 id="docs-title">Understand every device-changing step before you take it.</h1>
+        <p>
+          LegacyDock docs explain the local-first model, compatibility checks, restoration handoffs, and preservation reports that protect older iOS devices.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-button" href="./console.html">Launch console</a>
+          <a class="secondary-button" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub" target="_blank" rel="noreferrer">Edit on GitHub</a>
+        </div>
+      </section>
+
+      <section class="docs-layout" aria-label="LegacyDock documentation">
+        <aside class="docs-sidebar" aria-label="Documentation navigation">
+          <strong>Get started</strong>
+          <a href="#overview">Overview</a>
+          <a href="#quickstart">Quickstart</a>
+          <a href="#concepts">Core concepts</a>
+          <strong>Reference</strong>
+          <a href="#safety">Safety model</a>
+          <a href="#schemas">Schemas</a>
+          <a href="#integrations">Integrations</a>
+        </aside>
+
+        <article class="docs-article">
+          <section id="overview">
+            <p class="kicker">Overview</p>
+            <h2>LegacyDock Desktop</h2>
+            <p>
+              LegacyDock is designed as a local-first operating center for iOS 6 through iOS 9 devices. The web UI you see now is the shared product surface for the future desktop shell.
+            </p>
+            <div class="doc-card-grid">
+              <a class="doc-card" href="./docs/legacydock-blueprint.md">
+                <span>01</span>
+                <h3>Product Blueprint</h3>
+                <p>Mission, user model, open-source boundary, and cloud service positioning.</p>
+              </a>
+              <a class="doc-card" href="./docs/architecture.md">
+                <span>02</span>
+                <h3>Architecture</h3>
+                <p>Desktop shell, local engines, adapters, schemas, and future services.</p>
+              </a>
+              <a class="doc-card" href="./docs/integrations.md">
+                <span>03</span>
+                <h3>Integrations</h3>
+                <p>Credited research and safe handoff rules for upstream ecosystem tools.</p>
+              </a>
+              <a class="doc-card" href="./docs/community-intelligence.md">
+                <span>04</span>
+                <h3>Community Intelligence</h3>
+                <p>Opt-in reporting, privacy guardrails, and compatibility signal design.</p>
+              </a>
+            </div>
+          </section>
+
+          <section id="quickstart">
+            <p class="kicker">Quickstart</p>
+            <h2>Try the current build</h2>
+            <ol class="numbered-list">
+              <li>Open the landing page and start in dark theme by default.</li>
+              <li>Launch the console to inspect demo devices and iOS compatibility coverage.</li>
+              <li>Review a package to see firmware, device, dependency, conflict, and community checks.</li>
+              <li>Capture a snapshot or export a preservation report from the console.</li>
+            </ol>
+          </section>
+
+          <section id="concepts">
+            <p class="kicker">Core concepts</p>
+            <h2>The product model</h2>
+            <div class="concept-grid">
+              <article>
+                <h3>Local core</h3>
+                <p>Device detection, repository parsing, snapshots, reports, and safety checks should work without an account.</p>
+              </article>
+              <article>
+                <h3>Compatibility catalog</h3>
+                <p>LegacyDock currently indexes every iOS 6.0 through 9.3.6 release in the demo compatibility engine.</p>
+              </article>
+              <article>
+                <h3>Restoration Lab</h3>
+                <p>Advanced jailbreak, restore, SHSH, and ramdisk flows are handled as credited, explicit external handoffs.</p>
+              </article>
+            </div>
+          </section>
+
+          <section id="safety">
+            <p class="kicker">Safety model</p>
+            <h2>Snapshot first, explain risk, require consent</h2>
+            <p>
+              LegacyDock should not silently mutate a device. A real production action should show exact firmware, model, dependencies, conflicts, recovery options, and a snapshot recommendation before execution.
+            </p>
+          </section>
+
+          <section id="schemas">
+            <p class="kicker">Schemas</p>
+            <h2>Stable records for preservation</h2>
+            <p>
+              The repository includes JSON schemas for device profiles, packages, repositories, snapshots, restoration workflows, and community reports.
+            </p>
+          </section>
+
+          <section id="integrations">
+            <p class="kicker">Integrations</p>
+            <h2>Respect upstream work</h2>
+            <p>
+              LegacyDock credits Legacy iOS Kit and iOS Obscura Server as relevant prior art. The current repository does not vendor their code.
+            </p>
+          </section>
+        </article>
+
+        <aside class="on-this-page" aria-label="On this page">
+          <strong>On this page</strong>
+          <a href="#overview">Overview</a>
+          <a href="#quickstart">Quickstart</a>
+          <a href="#concepts">Core concepts</a>
+          <a href="#safety">Safety model</a>
+          <a href="#schemas">Schemas</a>
+          <a href="#integrations">Integrations</a>
+        </aside>
+      </section>
+    </main>
+
+    <script src="./site.js"></script>
+  </body>
+</html>

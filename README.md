@@ -10,6 +10,7 @@ This repository now contains a fuller static product foundation:
 
 - proper landing page with a retro-modern Apple-inspired visual direction,
 - Jan.ai-inspired product storytelling and Flathub-inspired browse/storefront flow,
+- standalone docs, changelog, and pricing pages,
 - separate `console.html` product console,
 - dark theme by default,
 - working product console demo,
@@ -46,6 +47,9 @@ Then open the shown local URL.
 .
 |-- index.html
 |-- console.html
+|-- docs.html
+|-- changelog.html
+|-- pricing.html
 |-- styles.css
 |-- app.js
 |-- site.js

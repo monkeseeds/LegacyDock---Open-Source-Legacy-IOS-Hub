@@ -2,6 +2,8 @@
 
 ## 2026-06-14
 
+- Added standalone `docs.html`, `changelog.html`, and `pricing.html` pages.
+- Updated homepage and console navigation to route to the standalone pages.
 - Split the working console into `console.html`.
 - Rebuilt the landing page around Docs, Changelog, and Pricing.
 - Added the attached LegacyDock SVG logo as the primary brand asset.

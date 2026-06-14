@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="LegacyDock pricing for local-first preservation, optional cloud sync, and repair shop workflows." />
+    <title>LegacyDock Pricing</title>
+    <link rel="icon" href="./assets/logodock.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="brand" href="./index.html" aria-label="LegacyDock home">
+        <img src="./assets/logodock.svg" alt="" />
+        <span>
+          <strong>LegacyDock</strong>
+          <small>Pricing</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="./index.html#browse">Browse</a>
+        <a href="./docs.html">Docs</a>
+        <a href="./changelog.html">Changelog</a>
+        <a href="./pricing.html">Pricing</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" data-theme-toggle title="Toggle theme" aria-label="Toggle theme">
+          <img src="./assets/icons/theme.svg" alt="" />
+        </button>
+        <a class="icon-button icon-link" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub" target="_blank" rel="noreferrer" title="Open GitHub repository" aria-label="Open GitHub repository">
+          <img src="./assets/icons/github.svg" alt="" />
+        </a>
+        <a class="pill-button" href="./console.html">Open Console</a>
+      </div>
+    </header>
+
+    <main class="content-page pricing-page">
+      <section class="page-hero pricing-hero" aria-labelledby="pricing-title">
+        <p class="kicker">Pricing</p>
+        <h1 id="pricing-title">Find the right plan for preserving legacy iOS devices.</h1>
+        <p>
+          LegacyDock's local core should stay open source and useful without an account. Paid plans are for encrypted sync, shared collections, community intelligence, and repair shop workflows.
+        </p>
+        <div class="billing-switch" aria-label="Billing options">
+          <a class="active" href="#plans">Monthly</a>
+          <a href="#plans">Yearly planned</a>
+        </div>
+      </section>
+
+      <section class="pricing-table" id="plans" aria-label="LegacyDock plans">
+        <article class="pricing-plan">
+          <small>Free</small>
+          <h2>$0</h2>
+          <p>For collectors, hobbyists, and anyone preserving their own devices locally.</p>
+          <a class="secondary-button compact" href="./console.html">Start locally</a>
+          <ul>
+            <li>Unlimited local devices</li>
+            <li>Local snapshots and report export</li>
+            <li>Repository health checks</li>
+            <li>iOS 6.0 through 9.3.6 catalog</li>
+            <li>No account required</li>
+          </ul>
+        </article>
+
+        <article class="pricing-plan featured-plan">
+          <small>Cloud</small>
+          <h2>$3/mo</h2>
+          <p>For users who want encrypted history across machines without giving up local control.</p>
+          <a class="primary-button compact" href="./console.html#cloud">Compare in console</a>
+          <ul>
+            <li>Encrypted backup sync</li>
+            <li>Cross-device snapshot history</li>
+            <li>Collections and favorites</li>
+            <li>Cloud conflict recovery</li>
+            <li>All Free features</li>
+          </ul>
+        </article>
+
+        <article class="pricing-plan">
+          <small>Plus</small>
+          <h2>$7/mo</h2>
+          <p>For active maintainers who want smarter recommendations and community signals.</p>
+          <a class="secondary-button compact" href="./console.html#cloud">Explore Plus</a>
+          <ul>
+            <li>Smart compatibility recommendations</li>
+            <li>Advanced analytics</li>
+            <li>Shared collections</li>
+            <li>Premium community intelligence</li>
+            <li>All Cloud features</li>
+          </ul>
+        </article>
+
+        <article class="pricing-plan">
+          <small>Studio</small>
+          <h2>$15/mo</h2>
+          <p>For repair shops, refurbishers, and teams managing many preserved devices.</p>
+          <a class="secondary-button compact" href="./console.html#cloud">Explore Studio</a>
+          <ul>
+            <li>Repair shop inventory</li>
+            <li>Customer notes and shared backups</li>
+            <li>Team workspaces</li>
+            <li>Priority support planning</li>
+            <li>All Plus features</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="feature-comparison" aria-labelledby="compare-title">
+        <div>
+          <p class="kicker">Plan principles</p>
+          <h2 id="compare-title">The open-source app stays useful on its own.</h2>
+        </div>
+        <div class="comparison-grid">
+          <article>
+            <h3>Local-first by default</h3>
+            <p>Device data, compatibility checks, snapshots, and exports should work offline in the local app.</p>
+          </article>
+          <article>
+            <h3>Cloud is convenience</h3>
+            <p>Paid cloud plans should add sync, shared history, analytics, and collaboration, not basic device access.</p>
+          </article>
+          <article>
+            <h3>No hidden telemetry</h3>
+            <p>Community intelligence should be opt-in, explainable, and safe for sensitive device histories.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="./site.js"></script>
+  </body>
+</html>

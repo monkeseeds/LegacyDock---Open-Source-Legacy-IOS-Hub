@@ -432,6 +432,15 @@ h4 {
 .tool-steps a,
 .changelog-list article,
 .pricing-grid article,
+.doc-card,
+.docs-sidebar,
+.on-this-page,
+.docs-article,
+.release-card,
+.pricing-plan,
+.feature-comparison,
+.comparison-grid article,
+.concept-grid article,
 .panel,
 .score-card,
 .plan-card,
@@ -479,6 +488,13 @@ h4 {
 .tool-steps p,
 .changelog-list p,
 .pricing-grid p,
+.page-hero p,
+.doc-card p,
+.docs-article p,
+.release-card p,
+.pricing-plan p,
+.comparison-grid p,
+.concept-grid p,
 .package-card p,
 .issue-card p,
 .snapshot-card p,
@@ -571,6 +587,234 @@ h4 {
   display: block;
   margin: 10px 0;
   font-size: 2.1rem;
+}
+
+.content-page {
+  padding: 76px 44px;
+}
+
+.page-hero {
+  display: grid;
+  gap: 14px;
+  min-height: 360px;
+  align-content: center;
+  margin-bottom: 32px;
+  padding: 40px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(110, 168, 255, 0.16), rgba(123, 216, 143, 0.08)),
+    var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.compact-page-hero {
+  min-height: 300px;
+}
+
+.page-hero h1 {
+  max-width: 960px;
+}
+
+.page-hero p {
+  max-width: 760px;
+  font-size: 1.05rem;
+}
+
+.docs-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr) 190px;
+  gap: 22px;
+  align-items: start;
+}
+
+.docs-sidebar,
+.on-this-page {
+  position: sticky;
+  top: 96px;
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  background: var(--surface-2);
+}
+
+.docs-sidebar strong,
+.on-this-page strong {
+  margin-top: 6px;
+  color: var(--ink);
+}
+
+.docs-sidebar a,
+.on-this-page a {
+  color: var(--muted);
+  font-weight: 720;
+}
+
+.docs-sidebar a:hover,
+.on-this-page a:hover {
+  color: var(--blue);
+}
+
+.docs-article {
+  padding: 30px;
+}
+
+.docs-article section + section {
+  margin-top: 44px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.doc-card-grid,
+.concept-grid,
+.comparison-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 18px;
+}
+
+.doc-card,
+.concept-grid article,
+.comparison-grid article {
+  padding: 18px;
+}
+
+.doc-card span {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 30px;
+  margin-bottom: 18px;
+  border-radius: var(--radius);
+  background: rgba(110, 168, 255, 0.12);
+  color: var(--blue);
+  font-weight: 900;
+}
+
+.numbered-list {
+  display: grid;
+  gap: 12px;
+  padding-left: 22px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.release-stream {
+  display: grid;
+  gap: 28px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.release-entry {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.release-entry time {
+  position: sticky;
+  top: 100px;
+  color: var(--muted);
+  font-weight: 820;
+}
+
+.release-card {
+  padding: 24px;
+}
+
+.release-type {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  margin-bottom: 16px;
+  padding: 0 10px;
+  border: 1px solid rgba(110, 168, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(110, 168, 255, 0.12);
+  color: var(--blue);
+  font-size: 0.8rem;
+  font-weight: 850;
+}
+
+.release-card ul,
+.pricing-plan ul {
+  display: grid;
+  gap: 10px;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.pricing-hero {
+  text-align: center;
+  justify-items: center;
+}
+
+.billing-switch {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.billing-switch a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: var(--radius);
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.billing-switch a.active {
+  background: rgba(110, 168, 255, 0.14);
+  color: var(--blue);
+}
+
+.pricing-table {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.pricing-plan {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  min-height: 520px;
+  padding: 22px;
+}
+
+.pricing-plan small {
+  color: var(--muted);
+  font-weight: 850;
+}
+
+.pricing-plan h2 {
+  margin-bottom: 0;
+  font-size: 2.5rem;
+}
+
+.featured-plan {
+  border-color: rgba(123, 216, 143, 0.34);
+  background:
+    linear-gradient(180deg, rgba(123, 216, 143, 0.09), transparent 42%),
+    var(--surface);
+}
+
+.feature-comparison {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);
+  gap: 26px;
+  margin-top: 28px;
+  padding: 26px;
 }
 
 .console-page {
@@ -1175,7 +1419,9 @@ pre {
 
   .public-section,
   .tools-section,
-  .changelog-section {
+  .changelog-section,
+  .docs-layout,
+  .feature-comparison {
     grid-template-columns: 1fr;
   }
 
@@ -1183,9 +1429,20 @@ pre {
     position: static;
   }
 
+  .docs-sidebar,
+  .on-this-page,
+  .release-entry time {
+    position: static;
+  }
+
+  .on-this-page {
+    display: none;
+  }
+
   .metric-grid,
   .pricing-grid,
-  .plan-grid {
+  .plan-grid,
+  .pricing-table {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -1201,7 +1458,8 @@ pre {
   .tools-section,
   .changelog-section,
   .pricing-section,
-  .console-page {
+  .console-page,
+  .content-page {
     padding-inline: 18px;
   }
 
@@ -1231,11 +1489,15 @@ pre {
   .detail-grid,
   .health-grid,
   .snapshot-tools,
-  .restoration-grid,
-  .preservation-grid,
-  .package-grid,
-  .tool-steps,
-  .changelog-list {
+    .restoration-grid,
+    .preservation-grid,
+    .package-grid,
+    .tool-steps,
+    .changelog-list,
+    .doc-card-grid,
+    .concept-grid,
+    .comparison-grid,
+    .release-entry {
     grid-template-columns: 1fr;
   }
 
@@ -1302,9 +1564,30 @@ pre {
   .metric-grid,
   .pricing-grid,
   .plan-grid,
+  .pricing-table,
   .score-grid,
   .dialog-grid {
     grid-template-columns: 1fr;
+  }
+
+  .page-hero,
+  .docs-article,
+  .release-card,
+  .pricing-plan,
+  .feature-comparison {
+    padding: 18px;
+  }
+
+  .pricing-plan {
+    min-height: auto;
+  }
+
+  .billing-switch {
+    width: 100%;
+  }
+
+  .billing-switch a {
+    flex: 1;
   }
 
   .featured-card,
