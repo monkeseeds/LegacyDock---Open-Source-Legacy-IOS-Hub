@@ -174,8 +174,17 @@ svg {
 }
 
 .icon-button img {
+  display: block;
   width: 20px;
   height: 20px;
+  margin: auto;
+  object-fit: contain;
+}
+
+.icon-link img[src$="github.svg"] {
+  width: 19px;
+  height: 19px;
+  transform: translate(-0.5px, -0.5px);
 }
 
 .icon-button:hover,
@@ -1921,7 +1930,7 @@ pre {
 .doctor-showcase,
 .care-panel {
   display: grid;
-  grid-template-columns: 0.78fr 1.42fr;
+  grid-template-columns: 0.58fr 1.62fr;
   gap: 28px;
   margin-top: 22px;
   padding: 30px;
@@ -1941,8 +1950,8 @@ pre {
 
 .doctor-console {
   display: grid;
-  grid-template-columns: 130px minmax(0, 1fr) 220px;
-  gap: 14px;
+  grid-template-columns: 112px minmax(340px, 1fr) 210px;
+  gap: 12px;
   padding: 14px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px;
@@ -2005,17 +2014,34 @@ pre {
 
 .mini-metrics span {
   display: grid;
-  gap: 4px;
+  gap: 6px;
+  align-content: center;
+  justify-items: center;
+  min-height: 92px;
+  min-width: 0;
   padding: 12px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.06);
   color: rgba(255, 255, 255, 0.68);
   font-size: 0.72rem;
+  line-height: 1.2;
+  text-align: center;
 }
 
 .mini-metrics strong {
   color: #8bdc76;
   font-size: 1.8rem;
+  line-height: 1;
+}
+
+.mini-metrics small {
+  display: block;
+  max-width: 100%;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.68rem;
+  line-height: 1.2;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .recommend-panel em {
