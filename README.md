@@ -10,6 +10,8 @@ This repository now contains a fuller static product foundation:
 
 - proper landing page with a retro-modern Apple-inspired visual direction,
 - Jan.ai-inspired product storytelling and Flathub-inspired browse/storefront flow,
+- separate `console.html` product console,
+- dark theme by default,
 - working product console demo,
 - device dashboard,
 - compatibility-aware marketplace,
@@ -19,6 +21,7 @@ This repository now contains a fuller static product foundation:
 - snapshot creation and diffing,
 - preservation report export,
 - optional cloud workspace positioning,
+- full iOS 6.x.x through iOS 9.x.x compatibility catalog,
 - JSON schemas for the core data model,
 - local engines for compatibility, repository scanning, snapshots, and reports,
 - architecture, integration, community intelligence, and roadmap docs.
@@ -42,14 +45,18 @@ Then open the shown local URL.
 ```text
 .
 |-- index.html
+|-- console.html
 |-- styles.css
 |-- app.js
+|-- site.js
+|-- CHANGELOG.md
 |-- assets/
 |   |-- legacydock-hero.png
 |   `-- logodock.svg
 |-- src/
 |   |-- data/
 |   |   |-- catalog.js
+|   |   |-- iosVersions.js
 |   |   `-- restorationMatrix.js
 |   `-- lib/
 |       |-- adapters.js
@@ -89,7 +96,7 @@ See:
 - [Architecture](docs/architecture.md)
 - [Integration Research](docs/integrations.md)
 - [Community Intelligence](docs/community-intelligence.md)
-- [Roadmap](docs/roadmap.md)
+- [Changelog](CHANGELOG.md)
 - [Product Blueprint](docs/legacydock-blueprint.md)
 
 ## Credits And Prior Art

@@ -16,7 +16,7 @@
   </head>
   <body>
     <header class="site-header" data-header>
-      <a class="brand" href="#top" aria-label="LegacyDock home">
+      <a class="brand" href="./index.html" aria-label="LegacyDock home">
         <img src="./assets/logodock.svg" alt="" />
         <span>
           <strong>LegacyDock</strong>
@@ -25,20 +25,25 @@
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="#browse">Browse</a>
-        <a href="#console">Console</a>
-        <a href="#ecosystem">Ecosystem</a>
-        <a href="#roadmap">Roadmap</a>
+        <a href="#docs">Docs</a>
+        <a href="#changelog">Changelog</a>
+        <a href="#pricing">Pricing</a>
       </nav>
       <div class="header-actions">
-        <button class="icon-button" data-theme-toggle title="Toggle theme" aria-label="Toggle theme">Theme</button>
-        <a class="pill-button" href="#console">Open Console</a>
+        <button class="icon-button" data-theme-toggle title="Toggle theme" aria-label="Toggle theme">
+          <img src="./assets/icons/theme.svg" alt="" />
+        </button>
+        <a class="icon-button icon-link" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub" target="_blank" rel="noreferrer" title="Open GitHub repository" aria-label="Open GitHub repository">
+          <img src="./assets/icons/github.svg" alt="" />
+        </a>
+        <a class="pill-button" href="./console.html">Open Console</a>
       </div>
     </header>
 
     <main id="top">
       <section class="hero-section" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <div class="announcement">New: Restoration Lab now includes Legacy iOS Kit handoff guidance</div>
+          <div class="announcement">Now mapping compatibility across every iOS 6.x.x, 7.x.x, 8.x.x, and 9.x.x release</div>
           <img class="hero-logo" src="./assets/logodock.svg" alt="LegacyDock logo" />
           <p class="kicker">Local-first preservation for iOS 6 through iOS 9</p>
           <h1 id="hero-title">Meet LegacyDock</h1>
@@ -46,8 +51,8 @@
             The open-source app store, repair desk, and preservation notebook for legacy iPhone, iPad, and iPod touch devices.
           </p>
           <div class="hero-actions">
-            <a class="primary-button" href="#console">Launch demo</a>
-            <a class="secondary-button" href="./docs/legacydock-blueprint.md">Read blueprint</a>
+            <a class="primary-button" href="./console.html">Launch console</a>
+            <a class="secondary-button" href="#docs">Read docs</a>
           </div>
           <div class="download-row" aria-label="Platform support">
             <span>macOS planned</span>
@@ -63,26 +68,26 @@
             <p class="kicker">Browse the preservation hub</p>
             <h2 id="browse-title">Everything your old iOS device needs, in one place.</h2>
           </div>
-          <a class="secondary-button compact" href="#console">Explore console</a>
+          <a class="secondary-button compact" href="./console.html#marketplace">Explore console</a>
         </div>
 
-        <div class="home-search" aria-label="Search preview">
+        <a class="home-search" href="./console.html#marketplace" aria-label="Open console search">
           <span>Search devices, packages, repositories, restore paths</span>
-          <strong>Press / in the desktop app</strong>
-        </div>
+          <strong>Open searchable console</strong>
+        </a>
 
         <div class="category-tabs" aria-label="Featured categories">
-          <span>Trending</span>
-          <span>Verified</span>
-          <span>Repair</span>
-          <span>Themes</span>
-          <span>Restoration</span>
-          <span>Archives</span>
+          <a href="./console.html#marketplace">Trending</a>
+          <a href="./console.html#marketplace">Verified</a>
+          <a href="./console.html#health">Repair</a>
+          <a href="./console.html#marketplace">Themes</a>
+          <a href="./console.html#restoration">Restoration</a>
+          <a href="./console.html#preservation">Archives</a>
         </div>
 
         <div class="app-grid">
           <article class="app-card featured-card">
-            <div class="app-icon"><img src="./assets/logodock.svg" alt="" /></div>
+            <div class="app-icon"><img src="./assets/icons/preservation.svg" alt="" /></div>
             <div>
               <p class="kicker">App of the day</p>
               <h3>Preservation Mode</h3>
@@ -90,22 +95,22 @@
             </div>
           </article>
           <article class="app-card">
-            <div class="app-icon text-icon">WB</div>
+            <div class="app-icon"><img src="./assets/icons/theme-package.svg" alt="" /></div>
             <h3>WinterBoard</h3>
             <p>Classic theming, checked against firmware and conflict data.</p>
           </article>
           <article class="app-card">
-            <div class="app-icon text-icon">IC</div>
+            <div class="app-icon"><img src="./assets/icons/cleaner.svg" alt="" /></div>
             <h3>iCleaner Pro</h3>
             <p>Storage cleanup with snapshot-first repair guidance.</p>
           </article>
           <article class="app-card">
-            <div class="app-icon text-icon">SH</div>
+            <div class="app-icon"><img src="./assets/icons/shsh.svg" alt="" /></div>
             <h3>SHSH Readiness</h3>
             <p>External handoff planning for restore and downgrade research.</p>
           </article>
           <article class="app-card">
-            <div class="app-icon text-icon">AR</div>
+            <div class="app-icon"><img src="./assets/icons/archive.svg" alt="" /></div>
             <h3>Archive Discovery</h3>
             <p>Metadata-only research paths for preserved legacy software.</p>
           </article>
@@ -120,223 +125,97 @@
         <div class="metric-grid">
           <article><strong>AGPLv3</strong><span>local core license</span></article>
           <article><strong>0</strong><span>accounts required</span></article>
-          <article><strong>5</strong><span>data schemas</span></article>
+          <article><strong>44</strong><span>iOS releases indexed</span></article>
           <article><strong>4</strong><span>restoration workflows</span></article>
         </div>
       </section>
 
-      <section class="tools-section" id="platform" aria-labelledby="platform-title">
+      <section class="tools-section" id="docs" aria-labelledby="docs-title">
         <div class="section-copy">
-          <p class="kicker">Platform flow</p>
-          <h2 id="platform-title">A calm path from unknown device to documented environment.</h2>
+          <p class="kicker">Docs</p>
+          <h2 id="docs-title">Clear product docs before risky device operations.</h2>
         </div>
         <div class="tool-steps">
-          <article>
+          <a href="./docs/legacydock-blueprint.md">
             <span>1</span>
-            <h3>Detect</h3>
-            <p>Identify model, firmware, package manager, repositories, storage, battery, and available services.</p>
-          </article>
-          <article>
+            <h3>Product Blueprint</h3>
+            <p>Mission, principles, local-first business model, cloud boundary, and product scope.</p>
+          </a>
+          <a href="./docs/architecture.md">
             <span>2</span>
-            <h3>Browse</h3>
-            <p>Search packages and repositories through compatibility-aware cards instead of scattered forum posts.</p>
-          </article>
-          <article>
+            <h3>Architecture</h3>
+            <p>Desktop shell, local core, adapters, schemas, restoration lab, and future cloud services.</p>
+          </a>
+          <a href="./docs/integrations.md">
             <span>3</span>
-            <h3>Repair</h3>
-            <p>Stage repository fixes, dependency reviews, restore research, and SSH repair plans with visible risk.</p>
-          </article>
-          <article>
+            <h3>Integrations</h3>
+            <p>Credited research around Legacy iOS Kit, iOS Obscura Server, and safe external handoff.</p>
+          </a>
+          <a href="./docs/community-intelligence.md">
             <span>4</span>
-            <h3>Archive</h3>
-            <p>Export manifests and snapshots so collectors can reproduce and document historical device states.</p>
+            <h3>Community Intelligence</h3>
+            <p>Opt-in reporting rules, privacy guardrails, and explainable compatibility signals.</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="changelog-section" id="changelog" aria-labelledby="changelog-title">
+        <div>
+          <p class="kicker">Changelog</p>
+          <h2 id="changelog-title">What changed recently.</h2>
+        </div>
+        <div class="changelog-list">
+          <article>
+            <span>Latest</span>
+            <h3>Console split into its own page</h3>
+            <p>The landing page now focuses on product storytelling while the working console lives at `console.html`.</p>
+          </article>
+          <article>
+            <span>Compatibility</span>
+            <h3>iOS 6.x.x to iOS 9.x.x catalog</h3>
+            <p>LegacyDock now indexes every known iOS 6, 7, 8, and 9 point release in the demo compatibility engine.</p>
+          </article>
+          <article>
+            <span>Design</span>
+            <h3>Dark-first storefront</h3>
+            <p>Updated flow, logo usage, vector icons, GitHub link, and cleaner app-store cards.</p>
           </article>
         </div>
       </section>
 
-      <section class="console-wrap" id="console" aria-labelledby="console-title">
-        <div class="console-head">
+      <section class="pricing-section" id="pricing" aria-labelledby="pricing-title">
+        <div class="storefront-head">
           <div>
-            <p class="kicker">Working product skeleton</p>
-            <h2 id="console-title">LegacyDock Console</h2>
+            <p class="kicker">Pricing</p>
+            <h2 id="pricing-title">The software is free. Convenience is paid.</h2>
           </div>
-          <label class="search-box" for="searchInput">
-            <span>Search</span>
-            <input id="searchInput" type="search" placeholder="Search devices, packages, repositories, snapshots" />
-          </label>
+          <a class="secondary-button compact" href="./console.html#cloud">Compare in console</a>
         </div>
-
-        <div class="console-shell">
-          <aside class="console-sidebar" aria-label="Console sections">
-            <button class="console-tab active" data-view="dashboard">Dashboard</button>
-            <button class="console-tab" data-view="marketplace">Marketplace</button>
-            <button class="console-tab" data-view="health">Health Center</button>
-            <button class="console-tab" data-view="restoration">Restoration Lab</button>
-            <button class="console-tab" data-view="snapshots">Snapshots</button>
-            <button class="console-tab" data-view="preservation">Preservation</button>
-            <button class="console-tab" data-view="cloud">Cloud</button>
-          </aside>
-
-          <div class="console-main">
-            <section class="console-view active" id="dashboard-view" aria-labelledby="dashboard-heading">
-              <div class="view-head">
-                <div>
-                  <p class="kicker">Connected devices</p>
-                  <h3 id="dashboard-heading">Operating Center</h3>
-                </div>
-                <div class="segmented" role="tablist" aria-label="Device filter">
-                  <button class="active" data-device-filter="all">All</button>
-                  <button data-device-filter="stable">Stable</button>
-                  <button data-device-filter="attention">Review</button>
-                </div>
-              </div>
-              <div class="device-workspace">
-                <div class="device-list" data-device-list></div>
-                <div class="device-detail" data-device-detail></div>
-              </div>
-            </section>
-
-            <section class="console-view" id="marketplace-view" aria-labelledby="marketplace-heading">
-              <div class="view-head">
-                <div>
-                  <p class="kicker">Explainable compatibility</p>
-                  <h3 id="marketplace-heading">Marketplace</h3>
-                </div>
-                <div class="segmented" role="tablist" aria-label="Package filter">
-                  <button class="active" data-package-filter="all">All</button>
-                  <button data-package-filter="safe">Safe</button>
-                  <button data-package-filter="repair">Repair</button>
-                  <button data-package-filter="theme">Themes</button>
-                </div>
-              </div>
-              <div class="package-grid" data-package-grid></div>
-            </section>
-
-            <section class="console-view" id="health-view" aria-labelledby="health-heading">
-              <div class="view-head">
-                <div>
-                  <p class="kicker">Local repair planner</p>
-                  <h3 id="health-heading">Health Center</h3>
-                </div>
-                <button class="primary-button compact" data-run-health>Run scan</button>
-              </div>
-              <div class="health-grid">
-                <div class="health-dial" data-health-score>86</div>
-                <div class="issue-list" data-issue-list></div>
-              </div>
-            </section>
-
-            <section class="console-view" id="restoration-view" aria-labelledby="restoration-heading">
-              <div class="view-head">
-                <div>
-                  <p class="kicker">Guided handoff</p>
-                  <h3 id="restoration-heading">Restoration Lab</h3>
-                </div>
-                <a class="secondary-button compact" href="https://github.com/LukeZGD/Legacy-iOS-Kit/wiki/Jailbreaking" target="_blank" rel="noreferrer">Open source guide</a>
-              </div>
-              <div class="restoration-grid">
-                <div class="workflow-list" data-restoration-list></div>
-                <div class="panel" data-restoration-source></div>
-              </div>
-            </section>
-
-            <section class="console-view" id="snapshots-view" aria-labelledby="snapshots-heading">
-              <div class="view-head">
-                <div>
-                  <p class="kicker">Git plus Time Machine</p>
-                  <h3 id="snapshots-heading">Snapshots</h3>
-                </div>
-                <button class="primary-button compact" data-capture-snapshot>Capture snapshot</button>
-              </div>
-              <div class="snapshot-tools">
-                <div class="timeline" data-snapshot-timeline></div>
-                <div class="diff-panel" data-snapshot-diff></div>
-              </div>
-            </section>
-
-            <section class="console-view" id="preservation-view" aria-labelledby="preservation-heading">
-              <div class="view-head">
-                <div>
-                  <p class="kicker">Collector archive</p>
-                  <h3 id="preservation-heading">Preservation Report</h3>
-                </div>
-                <button class="primary-button compact" data-export-report>Export report</button>
-              </div>
-              <div class="preservation-grid">
-                <div class="panel" data-preservation-profile></div>
-                <div class="panel" data-preservation-checks></div>
-                <div class="panel wide"><pre data-manifest-preview></pre></div>
-              </div>
-            </section>
-
-            <section class="console-view" id="cloud-view" aria-labelledby="cloud-heading">
-              <div class="view-head">
-                <div>
-                  <p class="kicker">Convenience, not lock-in</p>
-                  <h3 id="cloud-heading">Cloud Workspace</h3>
-                </div>
-                <label class="toggle"><input type="checkbox" data-telemetry-toggle /> Opt-in intelligence</label>
-              </div>
-              <div class="plan-grid" data-plan-grid></div>
-            </section>
-          </div>
-        </div>
-      </section>
-
-      <section class="ecosystem-section" id="ecosystem" aria-labelledby="ecosystem-title">
-        <div>
-          <p class="kicker">Ecosystem-aware</p>
-          <h2 id="ecosystem-title">LegacyDock documents and credits the tools the community already trusts.</h2>
-        </div>
-        <div class="source-grid">
+        <div class="pricing-grid">
           <article>
-            <h3>Legacy iOS Kit</h3>
-            <p>External handoff research for SHSH, restore, downgrade, jailbreak matrix, and SSH ramdisk workflows.</p>
+            <small>Free</small>
+            <strong>$0</strong>
+            <p>Unlimited local devices, local snapshots, repository checks, health scans, offline cache, and preservation exports.</p>
           </article>
           <article>
-            <h3>iOS Obscura Server</h3>
-            <p>Prior art for metadata search around archived legacy iOS software, without redistributing copyrighted apps.</p>
+            <small>Cloud</small>
+            <strong>$3/mo</strong>
+            <p>Encrypted backup sync, cross-device history, collections, and favorites.</p>
           </article>
           <article>
-            <h3>Local adapters</h3>
-            <p>Future bridge for libimobiledevice, AFC, SSH, package index parsing, and SQLite-backed snapshots.</p>
+            <small>Plus</small>
+            <strong>$7/mo</strong>
+            <p>Smart recommendations, shared collections, analytics, and premium community features.</p>
           </article>
-        </div>
-      </section>
-
-      <section class="roadmap-section" id="roadmap" aria-labelledby="roadmap-title">
-        <div>
-          <p class="kicker">Roadmap</p>
-          <h2 id="roadmap-title">From browseable hub to preservation infrastructure.</h2>
-        </div>
-        <div class="roadmap-list">
-          <article><span>Phase 1</span><h3>Local core</h3><p>Device profiles, marketplace metadata, snapshots, reports, and schemas.</p></article>
-          <article><span>Phase 2</span><h3>Safe management</h3><p>Repository repair, dependency previews, health scans, and restore previews.</p></article>
-          <article><span>Phase 3</span><h3>Restoration guidance</h3><p>SHSH readiness, jailbreak lookup, and external toolkit handoff with warnings.</p></article>
-          <article><span>Phase 4</span><h3>Cloud convenience</h3><p>Encrypted backups, collections, device history, and team inventory.</p></article>
+          <article>
+            <small>Studio</small>
+            <strong>$15/mo</strong>
+            <p>Repair shop inventory, customer notes, shared backups, team workspaces, and priority support.</p>
+          </article>
         </div>
       </section>
     </main>
 
-    <dialog class="safety-dialog" data-install-dialog>
-      <form method="dialog">
-        <div class="dialog-head">
-          <div>
-            <p class="kicker">Safety review</p>
-            <h2 data-dialog-title>Package</h2>
-          </div>
-          <button class="icon-button" value="cancel" aria-label="Close">Close</button>
-        </div>
-        <div class="risk-strip" data-dialog-risks></div>
-        <div class="dialog-grid" data-dialog-body></div>
-        <menu>
-          <button class="secondary-button compact" value="cancel">Cancel</button>
-          <button class="primary-button compact" value="default" data-confirm-install>Queue install</button>
-        </menu>
-      </form>
-    </dialog>
-
-    <div class="toast" data-toast role="status" aria-live="polite"></div>
-    <script src="./app.js"></script>
+    <script src="./site.js"></script>
   </body>
 </html>

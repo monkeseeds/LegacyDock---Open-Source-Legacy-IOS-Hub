@@ -7,9 +7,9 @@ LegacyDock is designed as a local-first system with optional cloud services. The
 | Layer | Responsibility |
 | --- | --- |
 | Landing site | Public project explanation, roadmap, trust model, and demo entry point |
-| Console UI | Device dashboard, marketplace, health scans, snapshots, preservation reports, and cloud settings |
+| Console UI | Separate `console.html` app surface for device dashboard, marketplace, health scans, snapshots, preservation reports, and cloud settings |
 | Data catalog | Seed data for devices, repositories, packages, snapshots, and plans |
-| Local engines | Compatibility scoring, repository scanning, snapshot creation, manifest diffing, report generation |
+| Local engines | iOS 6.x.x-9.x.x version catalog, compatibility scoring, repository scanning, snapshot creation, manifest diffing, report generation |
 | Schemas | Stable contracts for device profiles, packages, repositories, snapshots, and community reports |
 | Restoration Lab | SHSH preservation planning, restore-readiness guidance, jailbreak method lookup, and external toolkit handoff |
 | Future adapters | libimobiledevice, AFC, SSH, package index parsers, restore-tool handoff, archive discovery connectors |

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="LegacyDock Console demo for compatibility, package safety, snapshots, restoration guidance, and preservation reports." />
+    <title>LegacyDock Console</title>
+    <link rel="icon" href="./assets/logodock.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="brand" href="./index.html" aria-label="LegacyDock home">
+        <img src="./assets/logodock.svg" alt="" />
+        <span>
+          <strong>LegacyDock</strong>
+          <small>Console</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="./index.html#docs">Docs</a>
+        <a href="./index.html#changelog">Changelog</a>
+        <a href="./index.html#pricing">Pricing</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" data-theme-toggle title="Toggle theme" aria-label="Toggle theme">
+          <img src="./assets/icons/theme.svg" alt="" />
+        </button>
+        <a class="icon-button icon-link" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub" target="_blank" rel="noreferrer" title="Open GitHub repository" aria-label="Open GitHub repository">
+          <img src="./assets/icons/github.svg" alt="" />
+        </a>
+        <a class="pill-button" href="./index.html">Home</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="console-page" id="console" aria-labelledby="console-title">
+        <div class="console-head">
+          <div>
+            <p class="kicker">Working product skeleton</p>
+            <h1 id="console-title">LegacyDock Console</h1>
+          </div>
+          <label class="search-box" for="searchInput">
+            <span>Search</span>
+            <input id="searchInput" type="search" placeholder="Search devices, packages, repositories, snapshots" />
+          </label>
+        </div>
+
+        <div class="console-shell">
+          <aside class="console-sidebar" aria-label="Console sections">
+            <button class="console-tab active" data-view="dashboard">Dashboard</button>
+            <button class="console-tab" data-view="marketplace">Marketplace</button>
+            <button class="console-tab" data-view="health">Health Center</button>
+            <button class="console-tab" data-view="restoration">Restoration Lab</button>
+            <button class="console-tab" data-view="snapshots">Snapshots</button>
+            <button class="console-tab" data-view="preservation">Preservation</button>
+            <button class="console-tab" data-view="cloud">Cloud</button>
+          </aside>
+
+          <div class="console-main">
+            <section class="console-view active" id="dashboard-view" aria-labelledby="dashboard-heading">
+              <div class="view-head">
+                <div>
+                  <p class="kicker">Connected devices</p>
+                  <h2 id="dashboard-heading">Operating Center</h2>
+                </div>
+                <div class="segmented" role="tablist" aria-label="Device filter">
+                  <button class="active" data-device-filter="all">All</button>
+                  <button data-device-filter="stable">Stable</button>
+                  <button data-device-filter="attention">Review</button>
+                </div>
+              </div>
+              <div class="compatibility-strip" data-compatibility-matrix></div>
+              <div class="device-workspace">
+                <div class="device-list" data-device-list></div>
+                <div class="device-detail" data-device-detail></div>
+              </div>
+            </section>
+
+            <section class="console-view" id="marketplace-view" aria-labelledby="marketplace-heading">
+              <div class="view-head">
+                <div>
+                  <p class="kicker">Explainable compatibility</p>
+                  <h2 id="marketplace-heading">Marketplace</h2>
+                </div>
+                <div class="segmented" role="tablist" aria-label="Package filter">
+                  <button class="active" data-package-filter="all">All</button>
+                  <button data-package-filter="safe">Safe</button>
+                  <button data-package-filter="repair">Repair</button>
+                  <button data-package-filter="theme">Themes</button>
+                </div>
+              </div>
+              <div class="package-grid" data-package-grid></div>
+            </section>
+
+            <section class="console-view" id="health-view" aria-labelledby="health-heading">
+              <div class="view-head">
+                <div>
+                  <p class="kicker">Local repair planner</p>
+                  <h2 id="health-heading">Health Center</h2>
+                </div>
+                <button class="primary-button compact" data-run-health>Run scan</button>
+              </div>
+              <div class="health-grid">
+                <div class="health-dial" data-health-score>86</div>
+                <div class="issue-list" data-issue-list></div>
+              </div>
+            </section>
+
+            <section class="console-view" id="restoration-view" aria-labelledby="restoration-heading">
+              <div class="view-head">
+                <div>
+                  <p class="kicker">Guided handoff</p>
+                  <h2 id="restoration-heading">Restoration Lab</h2>
+                </div>
+                <a class="secondary-button compact" href="https://github.com/LukeZGD/Legacy-iOS-Kit/wiki/Jailbreaking" target="_blank" rel="noreferrer">Open source guide</a>
+              </div>
+              <div class="restoration-grid">
+                <div class="workflow-list" data-restoration-list></div>
+                <div class="panel" data-restoration-source></div>
+              </div>
+            </section>
+
+            <section class="console-view" id="snapshots-view" aria-labelledby="snapshots-heading">
+              <div class="view-head">
+                <div>
+                  <p class="kicker">Git plus Time Machine</p>
+                  <h2 id="snapshots-heading">Snapshots</h2>
+                </div>
+                <button class="primary-button compact" data-capture-snapshot>Capture snapshot</button>
+              </div>
+              <div class="snapshot-tools">
+                <div class="timeline" data-snapshot-timeline></div>
+                <div class="diff-panel" data-snapshot-diff></div>
+              </div>
+            </section>
+
+            <section class="console-view" id="preservation-view" aria-labelledby="preservation-heading">
+              <div class="view-head">
+                <div>
+                  <p class="kicker">Collector archive</p>
+                  <h2 id="preservation-heading">Preservation Report</h2>
+                </div>
+                <button class="primary-button compact" data-export-report>Export report</button>
+              </div>
+              <div class="preservation-grid">
+                <div class="panel" data-preservation-profile></div>
+                <div class="panel" data-preservation-checks></div>
+                <div class="panel wide"><pre data-manifest-preview></pre></div>
+              </div>
+            </section>
+
+            <section class="console-view" id="cloud-view" aria-labelledby="cloud-heading">
+              <div class="view-head">
+                <div>
+                  <p class="kicker">Convenience, not lock-in</p>
+                  <h2 id="cloud-heading">Cloud Workspace</h2>
+                </div>
+                <label class="toggle"><input type="checkbox" data-telemetry-toggle /> Opt-in intelligence</label>
+              </div>
+              <div class="plan-grid" data-plan-grid></div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="safety-dialog" data-install-dialog>
+      <form method="dialog">
+        <div class="dialog-head">
+          <div>
+            <p class="kicker">Safety review</p>
+            <h2 data-dialog-title>Package</h2>
+          </div>
+          <button class="icon-button text-control" value="cancel" aria-label="Close">Close</button>
+        </div>
+        <div class="risk-strip" data-dialog-risks></div>
+        <div class="dialog-grid" data-dialog-body></div>
+        <menu>
+          <button class="secondary-button compact" value="cancel">Cancel</button>
+          <button class="primary-button compact" value="default" data-confirm-install>Queue install</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <div class="toast" data-toast role="status" aria-live="polite"></div>
+    <script src="./site.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

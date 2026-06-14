@@ -6,6 +6,7 @@
 - JSON schemas for core entities.
 - Mock device, package, repository, and snapshot data.
 - Compatibility engine.
+- iOS 6.x.x through iOS 9.x.x compatibility catalog.
 - Repository scanner.
 - Snapshot creation and diffing.
 - Preservation report export.

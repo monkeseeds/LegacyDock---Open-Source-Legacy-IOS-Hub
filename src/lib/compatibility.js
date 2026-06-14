@@ -1,3 +1,5 @@
+import { iosCompatibilityVersions } from "../data/iosVersions.js";
+
 function parseVersion(version) {
   return String(version).split(".").map((part) => Number(part.padEnd(2, "0"))).reduce((total, part, index) => {
     return total + part / Math.pow(100, index);
@@ -9,12 +11,29 @@ function inFirmwareRange(firmware, range) {
   return current >= parseVersion(range[0]) && current <= parseVersion(range[1]);
 }
 
+export function compatibleVersionsForRange(range) {
+  return iosCompatibilityVersions.filter((version) => inFirmwareRange(version, range));
+}
+
+export function platformSupportsFirmware(firmware) {
+  return iosCompatibilityVersions.includes(firmware);
+}
+
 export function evaluateCompatibility(device, pkg) {
   const checks = [];
+  const catalogOk = platformSupportsFirmware(device.firmware);
   const firmwareOk = inFirmwareRange(device.firmware, pkg.firmwareRange);
   const deviceOk = pkg.devices.includes(device.identifier);
   const missingDependencies = pkg.dependencies.filter((dependency) => !device.installedPackages.includes(dependency));
   const installedConflicts = pkg.conflicts.filter((conflict) => device.installedPackages.includes(conflict));
+
+  checks.push({
+    label: "Platform catalog",
+    state: catalogOk ? "pass" : "block",
+    detail: catalogOk
+      ? `${device.os} ${device.firmware} is in the LegacyDock iOS 6.x.x-9.x.x catalog.`
+      : `${device.os} ${device.firmware} is outside the current LegacyDock catalog.`
+  });
 
   checks.push({
     label: "Firmware",

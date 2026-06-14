@@ -13,14 +13,21 @@ const repositories = [
   { id: "chariz-legacy", name: "Chariz Legacy", url: "https://repo.chariz.com/", status: "verified", lastRefreshDays: 4, trust: 91, packageIndexHash: "sha256:cz6-local-fixture", tags: ["marketplace"] }
 ];
 
+const iosCompatibilityVersions = [
+  "6.0", "6.0.1", "6.0.2", "6.1", "6.1.1", "6.1.2", "6.1.3", "6.1.4", "6.1.5", "6.1.6",
+  "7.0", "7.0.1", "7.0.2", "7.0.3", "7.0.4", "7.0.5", "7.0.6", "7.1", "7.1.1", "7.1.2",
+  "8.0", "8.0.1", "8.0.2", "8.1", "8.1.1", "8.1.2", "8.1.3", "8.2", "8.3", "8.4", "8.4.1",
+  "9.0", "9.0.1", "9.0.2", "9.1", "9.2", "9.2.1", "9.3", "9.3.1", "9.3.2", "9.3.3", "9.3.4", "9.3.5", "9.3.6"
+];
+
 const packages = [
-  { id: "winterboard", name: "WinterBoard", category: "theme", version: "0.9.3919", repository: "bigboss", firmwareRange: ["6.0", "8.4.1"], devices: ["iPhone3,1", "iPhone5,2", "iPad2,1"], dependencies: ["mobilesubstrate", "preferenceloader"], conflicts: ["iconomatic"], rating: 4.8, communitySuccess: 99, risk: "low", batteryImpact: "minimal", performanceImpact: "light", summary: "Classic theming engine with strong legacy device support.", notes: "Known conflict with IconOmatic on some iOS 7 setups." },
-  { id: "icleaner-pro", name: "iCleaner Pro", category: "repair", version: "7.7.5", repository: "bigboss", firmwareRange: ["6.0", "9.3.5"], devices: ["iPhone3,1", "iPhone5,2", "iPad2,1"], dependencies: ["apt7-lib"], conflicts: [], rating: 4.9, communitySuccess: 98, risk: "low", batteryImpact: "positive", performanceImpact: "positive", summary: "Removes cache waste and stale package data.", notes: "Create a snapshot before deep preference cleanup." },
-  { id: "activator", name: "Activator", category: "safe", version: "1.9.13", repository: "bigboss", firmwareRange: ["6.0", "8.4.1"], devices: ["iPhone3,1", "iPhone5,2"], dependencies: ["mobilesubstrate", "flipswitch"], conflicts: ["springtomize-old"], rating: 4.7, communitySuccess: 94, risk: "medium", batteryImpact: "small", performanceImpact: "small", summary: "Gesture and shortcut automation for legacy iOS.", notes: "Some iOS 9 builds report springboard restarts." },
-  { id: "noslowanimations", name: "NoSlowAnimations", category: "safe", version: "4.2.1", repository: "chariz-legacy", firmwareRange: ["7.0", "9.3.5"], devices: ["iPhone3,1", "iPhone5,2", "iPad2,1"], dependencies: ["mobilesubstrate"], conflicts: [], rating: 4.6, communitySuccess: 97, risk: "low", batteryImpact: "neutral", performanceImpact: "positive", summary: "Reduces animation delays across older devices.", notes: "Best paired with conservative animation values." },
-  { id: "openssh", name: "OpenSSH", category: "repair", version: "6.7p1", repository: "cydia-telesphoreo", firmwareRange: ["6.0", "9.3.5"], devices: ["iPhone3,1", "iPhone5,2", "iPad2,1"], dependencies: ["openssl", "berkeleydb"], conflicts: [], rating: 4.5, communitySuccess: 96, risk: "medium", batteryImpact: "background service", performanceImpact: "light", summary: "Secure shell access for repairs, backups, and diagnostics.", notes: "Change the default password immediately after install." },
-  { id: "batterylife", name: "BatteryLife", category: "diagnostic", version: "1.6.10", repository: "bigboss", firmwareRange: ["7.0", "9.3.5"], devices: ["iPhone5,2", "iPad2,1"], dependencies: ["preferenceloader"], conflicts: [], rating: 4.4, communitySuccess: 93, risk: "low", batteryImpact: "neutral", performanceImpact: "light", summary: "Displays battery diagnostics and cycle health.", notes: "Useful for repair shop intake and collector records." },
-  { id: "filza", name: "Filza File Manager", category: "repair", version: "3.5.2", repository: "bigboss", firmwareRange: ["7.0", "9.3.5"], devices: ["iPhone5,2", "iPad2,1"], dependencies: ["zip", "unzip", "coreutils"], conflicts: [], rating: 4.6, communitySuccess: 92, risk: "medium", batteryImpact: "neutral", performanceImpact: "light", summary: "On-device file manager for advanced repairs.", notes: "Powerful tool. LegacyDock should warn before destructive file edits." }
+  { id: "winterboard", name: "WinterBoard", category: "theme", version: "0.9.3919", repository: "bigboss", firmwareRange: ["6.0", "9.3.6"], devices: ["iPhone3,1", "iPhone5,2", "iPad2,1"], dependencies: ["mobilesubstrate", "preferenceloader"], conflicts: ["iconomatic"], rating: 4.8, communitySuccess: 99, risk: "low", batteryImpact: "minimal", performanceImpact: "light", summary: "Classic theming engine with strong legacy device support.", notes: "Known conflict with IconOmatic on some iOS 7 setups." },
+  { id: "icleaner-pro", name: "iCleaner Pro", category: "repair", version: "7.7.5", repository: "bigboss", firmwareRange: ["6.0", "9.3.6"], devices: ["iPhone3,1", "iPhone5,2", "iPad2,1"], dependencies: ["apt7-lib"], conflicts: [], rating: 4.9, communitySuccess: 98, risk: "low", batteryImpact: "positive", performanceImpact: "positive", summary: "Removes cache waste and stale package data.", notes: "Create a snapshot before deep preference cleanup." },
+  { id: "activator", name: "Activator", category: "safe", version: "1.9.13", repository: "bigboss", firmwareRange: ["6.0", "9.3.6"], devices: ["iPhone3,1", "iPhone5,2"], dependencies: ["mobilesubstrate", "flipswitch"], conflicts: ["springtomize-old"], rating: 4.7, communitySuccess: 94, risk: "medium", batteryImpact: "small", performanceImpact: "small", summary: "Gesture and shortcut automation for legacy iOS.", notes: "Some iOS 9 builds report springboard restarts." },
+  { id: "noslowanimations", name: "NoSlowAnimations", category: "safe", version: "4.2.1", repository: "chariz-legacy", firmwareRange: ["6.0", "9.3.6"], devices: ["iPhone3,1", "iPhone5,2", "iPad2,1"], dependencies: ["mobilesubstrate"], conflicts: [], rating: 4.6, communitySuccess: 97, risk: "low", batteryImpact: "neutral", performanceImpact: "positive", summary: "Reduces animation delays across older devices.", notes: "Best paired with conservative animation values." },
+  { id: "openssh", name: "OpenSSH", category: "repair", version: "6.7p1", repository: "cydia-telesphoreo", firmwareRange: ["6.0", "9.3.6"], devices: ["iPhone3,1", "iPhone5,2", "iPad2,1"], dependencies: ["openssl", "berkeleydb"], conflicts: [], rating: 4.5, communitySuccess: 96, risk: "medium", batteryImpact: "background service", performanceImpact: "light", summary: "Secure shell access for repairs, backups, and diagnostics.", notes: "Change the default password immediately after install." },
+  { id: "batterylife", name: "BatteryLife", category: "diagnostic", version: "1.6.10", repository: "bigboss", firmwareRange: ["6.0", "9.3.6"], devices: ["iPhone5,2", "iPad2,1"], dependencies: ["preferenceloader"], conflicts: [], rating: 4.4, communitySuccess: 93, risk: "low", batteryImpact: "neutral", performanceImpact: "light", summary: "Displays battery diagnostics and cycle health.", notes: "Useful for repair shop intake and collector records." },
+  { id: "filza", name: "Filza File Manager", category: "repair", version: "3.5.2", repository: "bigboss", firmwareRange: ["6.0", "9.3.6"], devices: ["iPhone5,2", "iPad2,1"], dependencies: ["zip", "unzip", "coreutils"], conflicts: [], rating: 4.6, communitySuccess: 92, risk: "medium", batteryImpact: "neutral", performanceImpact: "light", summary: "On-device file manager for advanced repairs.", notes: "Powerful tool. LegacyDock should warn before destructive file edits." }
 ];
 
 const seedSnapshots = [
@@ -89,12 +96,22 @@ function inFirmwareRange(firmware, range) {
   return current >= parseVersion(range[0]) && current <= parseVersion(range[1]);
 }
 
+function compatibleVersionsForRange(range) {
+  return iosCompatibilityVersions.filter((version) => inFirmwareRange(version, range));
+}
+
+function platformSupportsFirmware(firmware) {
+  return iosCompatibilityVersions.includes(firmware);
+}
+
 function evaluateCompatibility(device, pkg) {
+  const catalogOk = platformSupportsFirmware(device.firmware);
   const firmwareOk = inFirmwareRange(device.firmware, pkg.firmwareRange);
   const deviceOk = pkg.devices.includes(device.identifier);
   const missingDependencies = pkg.dependencies.filter((dependency) => !device.installedPackages.includes(dependency));
   const installedConflicts = pkg.conflicts.filter((conflict) => device.installedPackages.includes(conflict));
   const checks = [
+    { label: "Platform catalog", state: catalogOk ? "pass" : "block", detail: catalogOk ? `${device.os} ${device.firmware} is in the LegacyDock iOS 6.x.x-9.x.x catalog.` : `${device.os} ${device.firmware} is outside the current LegacyDock catalog.` },
     { label: "Firmware", state: firmwareOk ? "pass" : "block", detail: firmwareOk ? `${device.os} ${device.firmware} is inside ${pkg.firmwareRange.join(" to ")}.` : `${device.os} ${device.firmware} is outside ${pkg.firmwareRange.join(" to ")}.` },
     { label: "Device", state: deviceOk ? "pass" : "block", detail: deviceOk ? `${device.identifier} is listed as supported.` : `${device.identifier} is not in package metadata.` },
     { label: "Dependencies", state: missingDependencies.length ? "warn" : "pass", detail: missingDependencies.length ? `Missing dependencies: ${missingDependencies.join(", ")}.` : "All known dependencies are already present." },
@@ -105,6 +122,17 @@ function evaluateCompatibility(device, pkg) {
   const warnings = checks.filter((check) => check.state === "warn").length;
   const score = Math.max(0, Math.round(pkg.communitySuccess - warnings * 6 - (blocked ? 36 : 0)));
   return { supported: !blocked, recommendation: blocked ? "Not recommended" : warnings ? "Review first" : "Recommended", score, checks };
+}
+
+function packageIcon(pkg) {
+  const paths = {
+    theme: '<path fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" d="M24 7 41 17v14L24 41 7 31V17L24 7Z"/><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" d="m8 17 16 10 16-10M24 27v13"/><circle cx="24" cy="17" r="4" fill="currentColor"/>',
+    repair: '<path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M18 8h12l2 10H16l2-10ZM14 18h20l5 22H9l5-22Z"/><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" d="M17 28h14M19 35h10"/>',
+    safe: '<path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M12 25 21 34 37 15"/><path fill="none" stroke="currentColor" stroke-width="3" d="M24 43a19 19 0 1 0 0-38 19 19 0 0 0 0 38Z"/>',
+    diagnostic: '<rect x="7" y="17" width="31" height="16" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" d="M41 22v6M14 25h7M25 25h5"/>'
+  };
+  const fallback = '<path fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" d="M14 6h14l8 8v28H14V6Z"/><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" d="M27 7v9h8M20 25h12M20 32h8"/>';
+  return `<svg viewBox="0 0 48 48" aria-hidden="true">${paths[pkg.category] || fallback}</svg>`;
 }
 
 function scoreDevice(device, packageList) {
@@ -291,6 +319,36 @@ function renderDevices() {
   });
 }
 
+function renderCompatibilityMatrix() {
+  const target = $("[data-compatibility-matrix]");
+  if (!target) return;
+
+  const selected = selectedDevice();
+  const majorGroups = ["6", "7", "8", "9"].map((major) => ({
+    major,
+    versions: iosCompatibilityVersions.filter((version) => version.startsWith(`${major}.`))
+  }));
+
+  target.innerHTML = `
+    <div class="compatibility-summary">
+      <div>
+        <p class="kicker">Compatibility catalog</p>
+        <h3>iOS 6.x.x through iOS 9.x.x</h3>
+        <p class="panel-note">${iosCompatibilityVersions.length} subversions indexed. Selected device firmware ${selected.os} ${selected.firmware} is ${platformSupportsFirmware(selected.firmware) ? "covered" : "not covered"}.</p>
+      </div>
+      ${badge(`${iosCompatibilityVersions[0]} to ${iosCompatibilityVersions[iosCompatibilityVersions.length - 1]}`, "good")}
+    </div>
+    ${majorGroups.map((group) => `
+      <div>
+        <strong>iOS ${group.major}.x.x</strong>
+        <div class="version-grid">
+          ${group.versions.map((version) => `<span class="version-chip">${version}</span>`).join("")}
+        </div>
+      </div>
+    `).join("")}
+  `;
+}
+
 function renderDeviceDetail() {
   const device = selectedDevice();
   const scores = scoreDevice(device, packages);
@@ -376,7 +434,7 @@ function renderPackages() {
     const result = evaluateCompatibility(device, pkg);
     return `
       <article class="package-card">
-        <div class="package-media"><span>${pkg.name.slice(0, 2).toUpperCase()}</span></div>
+        <div class="package-media">${packageIcon(pkg)}</div>
         <div class="package-body">
           <div class="card-top">
             <div>
@@ -388,6 +446,7 @@ function renderPackages() {
           <p>${pkg.summary}</p>
           <div class="badge-row">
             ${badge(`${result.score}% compatibility`, result.score > 90 ? "good" : "warn")}
+            ${badge(`${compatibleVersionsForRange(pkg.firmwareRange).length} iOS builds`, "neutral")}
             ${badge(`${pkg.communitySuccess}% success`, pkg.communitySuccess >= 95 ? "good" : "warn")}
             ${badge(`${pkg.risk} risk`, severityKind(pkg.risk))}
           </div>
@@ -591,6 +650,11 @@ function activateView(name) {
   $$(".console-view").forEach((view) => view.classList.toggle("active", view.id === `${name}-view`));
 }
 
+function viewFromHash() {
+  const value = window.location.hash.replace("#", "").replace("-view", "");
+  return ["dashboard", "marketplace", "health", "restoration", "snapshots", "preservation", "cloud"].includes(value) ? value : null;
+}
+
 function toast(message) {
   const node = $("[data-toast]");
   node.textContent = message;
@@ -605,6 +669,7 @@ function persistAndRender() {
 }
 
 function renderAll() {
+  renderCompatibilityMatrix();
   renderDevices();
   renderDeviceDetail();
   renderPackages();
@@ -616,7 +681,10 @@ function renderAll() {
 }
 
 $$(".console-tab").forEach((button) => {
-  button.addEventListener("click", () => activateView(button.dataset.view));
+  button.addEventListener("click", () => {
+    activateView(button.dataset.view);
+    history.replaceState(null, "", `#${button.dataset.view}`);
+  });
 });
 
 $$("[data-device-filter]").forEach((button) => {
@@ -649,6 +717,6 @@ $("[data-telemetry-toggle]").addEventListener("change", (event) => {
   persistAndRender();
   toast(event.target.checked ? "Anonymous community intelligence enabled." : "Community intelligence disabled.");
 });
-$("[data-theme-toggle]").addEventListener("click", () => document.documentElement.classList.toggle("light"));
-
 renderAll();
+const initialView = viewFromHash();
+if (initialView) activateView(initialView);
