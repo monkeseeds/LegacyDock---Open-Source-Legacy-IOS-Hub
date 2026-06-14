@@ -364,7 +364,8 @@ h4 {
 .plan-grid,
 .score-grid,
 .detail-grid,
-.preservation-grid {
+.preservation-grid,
+.restoration-grid {
   display: grid;
   gap: 14px;
 }
@@ -383,7 +384,8 @@ h4 {
 .snapshot-card,
 .device-card,
 .package-card,
-.dialog-card {
+.dialog-card,
+.workflow-card {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--panel);
@@ -525,6 +527,7 @@ h4 {
 .package-grid,
 .issue-list,
 .timeline,
+.workflow-list,
 .list-stack {
   display: grid;
   gap: 12px;
@@ -714,7 +717,8 @@ h4 {
 
 .detail-grid,
 .health-grid,
-.snapshot-tools {
+.snapshot-tools,
+.restoration-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px;
@@ -722,8 +726,30 @@ h4 {
 
 .panel,
 .issue-card,
-.snapshot-card {
+.snapshot-card,
+.workflow-card {
   padding: 16px;
+}
+
+.workflow-card.active {
+  border-color: rgba(124, 240, 191, 0.42);
+}
+
+.workflow-steps {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.source-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  text-decoration: none;
 }
 
 .list-row {
@@ -1028,6 +1054,7 @@ pre {
   .detail-grid,
   .health-grid,
   .snapshot-tools,
+  .restoration-grid,
   .preservation-grid,
   .package-grid,
   .feature-grid,

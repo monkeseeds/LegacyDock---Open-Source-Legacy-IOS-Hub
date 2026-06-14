@@ -14,6 +14,7 @@ This repository now contains a fuller static product foundation:
 - compatibility-aware marketplace,
 - explainable package safety review,
 - repository health scanner,
+- restoration guidance lab,
 - snapshot creation and diffing,
 - preservation report export,
 - optional cloud workspace positioning,
@@ -46,12 +47,14 @@ Then open the shown local URL.
 |   `-- legacydock-hero.png
 |-- src/
 |   |-- data/
-|   |   `-- catalog.js
+|   |   |-- catalog.js
+|   |   `-- restorationMatrix.js
 |   `-- lib/
 |       |-- adapters.js
 |       |-- compatibility.js
 |       |-- localStore.js
 |       |-- preservationReport.js
+|       |-- restorationAdvisor.js
 |       |-- repositoryScanner.js
 |       `-- snapshotEngine.js
 |-- schemas/
@@ -94,6 +97,7 @@ LegacyDock is inspired by open-source, local-first, and developer-focused produc
 Special ecosystem credit:
 
 - [CatsLover2006/iOSobscuraServer](https://github.com/CatsLover2006/iOSobscuraServer) for useful prior art around searching legacy iOS archival metadata. LegacyDock does not vendor that code in this repository; future archive discovery integrations should credit upstream work, preserve license obligations, and focus on metadata and user-controlled preservation workflows.
+- [LukeZGD/Legacy-iOS-Kit](https://github.com/LukeZGD/Legacy-iOS-Kit) for major prior art around restore/downgrade workflows, SHSH blob saving, jailbreak guidance, SSH ramdisk utilities, and legacy device support research. LegacyDock uses it as credited integration research and external handoff inspiration, not as bundled code.
 
 ## Legal And Safety Notes
 

@@ -11,7 +11,8 @@ LegacyDock is designed as a local-first system with optional cloud services. The
 | Data catalog | Seed data for devices, repositories, packages, snapshots, and plans |
 | Local engines | Compatibility scoring, repository scanning, snapshot creation, manifest diffing, report generation |
 | Schemas | Stable contracts for device profiles, packages, repositories, snapshots, and community reports |
-| Future adapters | libimobiledevice, AFC, SSH, package index parsers, archive discovery connectors |
+| Restoration Lab | SHSH preservation planning, restore-readiness guidance, jailbreak method lookup, and external toolkit handoff |
+| Future adapters | libimobiledevice, AFC, SSH, package index parsers, restore-tool handoff, archive discovery connectors |
 
 ## Native App Direction
 
@@ -22,6 +23,7 @@ The likely production shape is:
 3. Web UI reused from this project.
 4. Optional local HTTP or IPC API between the UI and the local core.
 5. Cloud sync as an optional account-backed service, never required for local use.
+6. External toolkit handoff for dangerous restore or jailbreak workflows until native safety gates are mature.
 
 Electron remains a fallback if Node-native device libraries or cross-platform USB handling prove substantially easier there.
 

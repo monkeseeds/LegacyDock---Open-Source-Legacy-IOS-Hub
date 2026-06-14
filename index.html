@@ -116,6 +116,7 @@
             <button class="console-tab active" data-view="dashboard">Dashboard</button>
             <button class="console-tab" data-view="marketplace">Marketplace</button>
             <button class="console-tab" data-view="health">Health Center</button>
+            <button class="console-tab" data-view="restoration">Restoration Lab</button>
             <button class="console-tab" data-view="snapshots">Snapshots</button>
             <button class="console-tab" data-view="preservation">Preservation</button>
             <button class="console-tab" data-view="cloud">Cloud</button>
@@ -170,6 +171,20 @@
               </div>
             </section>
 
+            <section class="console-view" id="restoration-view" aria-labelledby="restoration-heading">
+              <div class="view-head">
+                <div>
+                  <p class="kicker">Guided handoff</p>
+                  <h3 id="restoration-heading">Restoration Lab</h3>
+                </div>
+                <a class="glass-button compact" href="https://github.com/LukeZGD/Legacy-iOS-Kit/wiki/Jailbreaking" target="_blank" rel="noreferrer">Open source guide</a>
+              </div>
+              <div class="restoration-grid">
+                <div class="workflow-list" data-restoration-list></div>
+                <div class="panel" data-restoration-source></div>
+              </div>
+            </section>
+
             <section class="console-view" id="snapshots-view" aria-labelledby="snapshots-heading">
               <div class="view-head">
                 <div>
@@ -221,7 +236,7 @@
         <div class="architecture-map">
           <article><strong>Desktop Shell</strong><span>Tauri or Electron host with device adapter bridge.</span></article>
           <article><strong>Local Core</strong><span>SQLite, schemas, compatibility rules, snapshots, reports.</span></article>
-          <article><strong>Adapters</strong><span>libimobiledevice, AFC, SSH, package manager parsing, archive APIs.</span></article>
+          <article><strong>Adapters</strong><span>libimobiledevice, AFC, SSH, package manager parsing, restore-tool handoff, archive APIs.</span></article>
           <article><strong>Cloud</strong><span>Encrypted sync, community intelligence, teams, APIs, analytics.</span></article>
         </div>
       </section>
@@ -234,7 +249,7 @@
         <div class="roadmap-list">
           <article><span>Phase 1</span><h3>Trustworthy local core</h3><p>Device profiles, local data store, marketplace metadata, snapshots, preservation reports.</p></article>
           <article><span>Phase 2</span><h3>Safe management</h3><p>Repository operations, dependency graph, install previews, health scanner, restore previews.</p></article>
-          <article><span>Phase 3</span><h3>Community intelligence</h3><p>Opt-in compatibility reports, success rates, performance impact, conflict reports, recommendations.</p></article>
+          <article><span>Phase 3</span><h3>Restoration guidance</h3><p>SHSH capture, restore eligibility, jailbreak method lookup, and external toolkit handoff with clear warnings.</p></article>
           <article><span>Phase 4</span><h3>Cloud convenience</h3><p>Encrypted backup sync, shared collections, team inventory, repair history, hosted APIs.</p></article>
         </div>
       </section>

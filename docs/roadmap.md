@@ -9,6 +9,7 @@
 - Repository scanner.
 - Snapshot creation and diffing.
 - Preservation report export.
+- Restoration Lab with credited Legacy iOS Kit handoff guidance.
 
 ## Phase 2: Native Desktop MVP
 
@@ -27,7 +28,15 @@
 - Restore preview from snapshot.
 - Explicit risk gates for destructive actions.
 
-## Phase 4: Community Intelligence
+## Phase 4: Restoration And Jailbreak Guidance
+
+- SHSH blob capture readiness checks.
+- Restore and downgrade eligibility matrix.
+- Jailbreak method lookup by device, firmware, and tethering model.
+- External handoff links to credited tools and guides.
+- Repair history records for restore, sideload, and ramdisk workflows.
+
+## Phase 5: Community Intelligence
 
 - Opt-in anonymous reports.
 - Compatibility database.
@@ -35,7 +44,7 @@
 - Conflict and crash intelligence.
 - Recommendation engine.
 
-## Phase 5: Cloud Convenience
+## Phase 6: Cloud Convenience
 
 - Encrypted snapshot sync.
 - Shared collections.

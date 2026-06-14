@@ -28,5 +28,11 @@ export const adapterContracts = [
     name: "Archive Discovery Adapter",
     status: "research",
     purpose: "Explore metadata-only integrations with archival projects such as iOS Obscura Server."
+  },
+  {
+    id: "legacy-ios-kit-handoff",
+    name: "Legacy iOS Kit Handoff Adapter",
+    status: "research",
+    purpose: "Use Legacy iOS Kit as credited prior art for SHSH, restore/downgrade, jailbreak-method lookup, and SSH ramdisk planning without bundling its code or tools."
   }
 ];

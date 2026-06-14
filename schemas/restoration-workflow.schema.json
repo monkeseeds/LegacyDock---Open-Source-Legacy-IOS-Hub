@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legacydock.dev/schemas/restoration-workflow.schema.json",
+  "title": "LegacyDock Restoration Workflow",
+  "type": "object",
+  "required": ["id", "name", "source", "sourceUrl", "risk", "summary", "steps"],
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "source": { "type": "string" },
+    "sourceUrl": { "type": "string", "format": "uri" },
+    "risk": { "type": "string", "enum": ["low", "medium", "high"] },
+    "families": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["32-bit", "64-bit"] }
+    },
+    "chips": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "firmwareRange": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": { "type": "string" }
+    },
+    "summary": { "type": "string" },
+    "steps": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    }
+  }
+}
