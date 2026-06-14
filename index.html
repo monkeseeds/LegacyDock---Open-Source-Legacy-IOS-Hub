@@ -14,7 +14,7 @@
     <link rel="icon" href="./assets/logodock.svg" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body>
+  <body class="marketing-body">
     <header class="site-header" data-header>
       <a class="brand" href="./index.html" aria-label="LegacyDock home">
         <img src="./assets/logodock.svg" alt="" />
@@ -41,182 +41,151 @@
     </header>
 
     <main id="top">
-      <section class="hero-section" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <div class="announcement">Now mapping compatibility across every iOS 6.x.x, 7.x.x, 8.x.x, and 9.x.x release</div>
-          <img class="hero-logo" src="./assets/logodock.svg" alt="LegacyDock logo" />
-          <p class="kicker">Local-first preservation for iOS 6 through iOS 9</p>
-          <h1 id="hero-title">Meet LegacyDock</h1>
-          <p class="hero-lede">
-            The open-source app store, repair desk, and preservation notebook for legacy iPhone, iPad, and iPod touch devices.
-          </p>
-          <div class="hero-actions">
-            <a class="primary-button" href="./console.html">Launch console</a>
-            <a class="secondary-button" href="./docs.html">Read docs</a>
-          </div>
-          <div class="download-row" aria-label="Platform support">
-            <span>macOS planned</span>
-            <span>Windows planned</span>
-            <span>Linux planned</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="storefront" id="browse" aria-labelledby="browse-title">
-        <div class="storefront-head">
-          <div>
-            <p class="kicker">Browse the preservation hub</p>
-            <h2 id="browse-title">Everything your old iOS device needs, in one place.</h2>
-          </div>
-          <a class="secondary-button compact" href="./console.html#marketplace">Explore console</a>
-        </div>
-
-        <a class="home-search" href="./console.html#marketplace" aria-label="Open console search">
-          <span>Search devices, packages, repositories, restore paths</span>
-          <strong>Open searchable console</strong>
-        </a>
-
-        <div class="category-tabs" aria-label="Featured categories">
-          <a href="./console.html#marketplace">Trending</a>
-          <a href="./console.html#marketplace">Verified</a>
-          <a href="./console.html#health">Repair</a>
-          <a href="./console.html#marketplace">Themes</a>
-          <a href="./console.html#restoration">Restoration</a>
-          <a href="./console.html#preservation">Archives</a>
-        </div>
-
-        <div class="app-grid">
-          <article class="app-card featured-card">
-            <div class="app-icon"><img src="./assets/icons/preservation.svg" alt="" /></div>
-            <div>
-              <p class="kicker">App of the day</p>
-              <h3>Preservation Mode</h3>
-              <p>Create reproducible device manifests with packages, repositories, hashes, notes, and recovery context.</p>
+      <section class="ld-hero" aria-labelledby="hero-title">
+        <div class="phone-stage" aria-hidden="true">
+          <div class="back-device one"></div>
+          <div class="back-device two"></div>
+          <div class="iphone-frame">
+            <div class="phone-speaker"></div>
+            <div class="phone-screen">
+              <div class="phone-status"><span>No SIM</span><span>2:16 PM</span><span>93%</span></div>
+              <div class="phone-title">LegacyDock</div>
+              <div class="doctor-card">
+                <span>Device Doctor</span>
+                <strong>98</strong>
+                <small>out of 100</small>
+                <div class="sparkline"></div>
+              </div>
+              <div class="phone-row"><span>Performance</span><strong>94</strong></div>
+              <div class="phone-row"><span>Battery</span><strong>93</strong></div>
+              <div class="phone-row"><span>Compatibility</span><strong>100</strong></div>
+              <div class="phone-row"><span>Repository Health</span><strong>98</strong></div>
+              <div class="phone-tabs"><span>Home</span><span>Packages</span><span>Snapshots</span><span>More</span></div>
             </div>
-          </article>
-          <article class="app-card">
-            <div class="app-icon"><img src="./assets/icons/theme-package.svg" alt="" /></div>
-            <h3>WinterBoard</h3>
-            <p>Classic theming, checked against firmware and conflict data.</p>
-          </article>
-          <article class="app-card">
-            <div class="app-icon"><img src="./assets/icons/cleaner.svg" alt="" /></div>
-            <h3>iCleaner Pro</h3>
-            <p>Storage cleanup with snapshot-first repair guidance.</p>
-          </article>
-          <article class="app-card">
-            <div class="app-icon"><img src="./assets/icons/shsh.svg" alt="" /></div>
-            <h3>SHSH Readiness</h3>
-            <p>External handoff planning for restore and downgrade research.</p>
-          </article>
-          <article class="app-card">
-            <div class="app-icon"><img src="./assets/icons/archive.svg" alt="" /></div>
-            <h3>Archive Discovery</h3>
-            <p>Metadata-only research paths for preserved legacy software.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="public-section" aria-labelledby="public-title">
-        <div>
-          <p class="kicker">Built in public</p>
-          <h2 id="public-title">Open source where it matters. Local where it counts.</h2>
-        </div>
-        <div class="metric-grid">
-          <article><strong>AGPLv3</strong><span>local core license</span></article>
-          <article><strong>0</strong><span>accounts required</span></article>
-          <article><strong>44</strong><span>iOS releases indexed</span></article>
-          <article><strong>4</strong><span>restoration workflows</span></article>
-        </div>
-      </section>
-
-      <section class="tools-section" id="docs" aria-labelledby="docs-title">
-        <div class="section-copy">
-          <p class="kicker">Docs</p>
-          <h2 id="docs-title">Clear product docs before risky device operations.</h2>
-          <a class="secondary-button compact" href="./docs.html">Open docs</a>
-        </div>
-        <div class="tool-steps">
-          <a href="./docs/legacydock-blueprint.md">
-            <span>1</span>
-            <h3>Product Blueprint</h3>
-            <p>Mission, principles, local-first business model, cloud boundary, and product scope.</p>
-          </a>
-          <a href="./docs/architecture.md">
-            <span>2</span>
-            <h3>Architecture</h3>
-            <p>Desktop shell, local core, adapters, schemas, restoration lab, and future cloud services.</p>
-          </a>
-          <a href="./docs/integrations.md">
-            <span>3</span>
-            <h3>Integrations</h3>
-            <p>Credited research around Legacy iOS Kit, iOS Obscura Server, and safe external handoff.</p>
-          </a>
-          <a href="./docs/community-intelligence.md">
-            <span>4</span>
-            <h3>Community Intelligence</h3>
-            <p>Opt-in reporting rules, privacy guardrails, and explainable compatibility signals.</p>
-          </a>
-        </div>
-      </section>
-
-      <section class="changelog-section" id="changelog" aria-labelledby="changelog-title">
-        <div>
-          <p class="kicker">Changelog</p>
-          <h2 id="changelog-title">What changed recently.</h2>
-          <a class="secondary-button compact" href="./changelog.html">View changelog</a>
-        </div>
-        <div class="changelog-list">
-          <article>
-            <span>Latest</span>
-            <h3>Console split into its own page</h3>
-            <p>The landing page now focuses on product storytelling while the working console lives at console.html.</p>
-          </article>
-          <article>
-            <span>Compatibility</span>
-            <h3>iOS 6.x.x to iOS 9.x.x catalog</h3>
-            <p>LegacyDock now indexes every known iOS 6, 7, 8, and 9 point release in the demo compatibility engine.</p>
-          </article>
-          <article>
-            <span>Design</span>
-            <h3>Dark-first storefront</h3>
-            <p>Updated flow, logo usage, vector icons, GitHub link, and cleaner app-store cards.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="pricing-section" id="pricing" aria-labelledby="pricing-title">
-        <div class="storefront-head">
-          <div>
-            <p class="kicker">Pricing</p>
-            <h2 id="pricing-title">The software is free. Convenience is paid.</h2>
+            <div class="phone-home"></div>
           </div>
-          <a class="secondary-button compact" href="./pricing.html">Open pricing</a>
         </div>
-        <div class="pricing-grid">
-          <article>
-            <small>Free</small>
-            <strong>$0</strong>
-            <p>Unlimited local devices, local snapshots, repository checks, health scans, offline cache, and preservation exports.</p>
-          </article>
-          <article>
-            <small>Cloud</small>
-            <strong>$3/mo</strong>
-            <p>Encrypted backup sync, cross-device history, collections, and favorites.</p>
-          </article>
-          <article>
-            <small>Plus</small>
-            <strong>$7/mo</strong>
-            <p>Smart recommendations, shared collections, analytics, and premium community features.</p>
-          </article>
-          <article>
-            <small>Studio</small>
-            <strong>$15/mo</strong>
-            <p>Repair shop inventory, customer notes, shared backups, team workspaces, and priority support.</p>
-          </article>
+
+        <div class="ld-hero-copy">
+          <div class="hero-badge">Open source</div>
+          <h1 id="hero-title">Manage.<br />Preserve.<br />Enhance.</h1>
+          <p>LegacyDock is the modern operating center for legacy iPhones, iPads, and iPods running iOS 6 through iOS 9.</p>
+          <div class="hero-actions">
+            <a class="primary-button" href="./console.html">Open Console</a>
+            <a class="secondary-button" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub" target="_blank" rel="noreferrer">View on GitHub</a>
+          </div>
+          <p class="hero-note">Open-source. Local-first. Community-driven.</p>
+        </div>
+      </section>
+
+      <section class="ld-section feature-strip" id="browse" aria-labelledby="browse-title">
+        <article class="feature-card">
+          <img src="./assets/icons/compatibility.svg" alt="" />
+          <h2 id="browse-title">Compatibility Intelligence</h2>
+          <p>Firmware-aware checks across every iOS 6.0 through iOS 9.3.6 release.</p>
+          <a href="./console.html#marketplace">Learn more -></a>
+        </article>
+        <article class="feature-card">
+          <img src="./assets/icons/preservation.svg" alt="" />
+          <h2>Snapshots & Restore</h2>
+          <p>One-click local snapshots and complete preservation report exports.</p>
+          <a href="./console.html#snapshots">Learn more -></a>
+        </article>
+        <article class="feature-card">
+          <img src="./assets/icons/battery.svg" alt="" />
+          <h2>Device Doctor</h2>
+          <p>Scan health, packages, battery, storage, and repository risks.</p>
+          <a href="./console.html#health">Learn more -></a>
+        </article>
+        <article class="feature-card">
+          <img src="./assets/icons/archive.svg" alt="" />
+          <h2>Repository Management</h2>
+          <p>Spot stale sources, duplicate mirrors, and dependency problems.</p>
+          <a href="./console.html#health">Learn more -></a>
+        </article>
+        <article class="feature-card">
+          <img src="./assets/icons/shsh.svg" alt="" />
+          <h2>Restoration Guidance</h2>
+          <p>Plan SHSH, jailbreak, restore, and ramdisk handoffs before risk.</p>
+          <a href="./console.html#restoration">Learn more -></a>
+        </article>
+      </section>
+
+      <section class="ld-section doctor-showcase" aria-labelledby="doctor-title">
+        <div class="doctor-copy">
+          <p class="kicker">Device Doctor</p>
+          <h2 id="doctor-title">Know your device. Keep it healthy.</h2>
+          <p>Run a full health scan to detect issues, optimize performance, and get trusted recommendations powered by local rules and community research.</p>
+          <a class="primary-button compact" href="./console.html#health">Run Scan</a>
+        </div>
+        <div class="doctor-console" aria-label="Device Doctor preview">
+          <aside>
+            <span>Overview</span>
+            <span>Packages</span>
+            <span>Repositories</span>
+            <span>Storage</span>
+            <span>Battery</span>
+            <span>Report</span>
+          </aside>
+          <div class="health-panel">
+            <div class="panel-head"><strong>Overall Health</strong><a href="./console.html#preservation">View full report -></a></div>
+            <div class="score-line"><strong>98</strong><span class="green-line"></span></div>
+            <div class="mini-metrics">
+              <span><strong>94</strong>Performance</span>
+              <span><strong>93</strong>Battery</span>
+              <span><strong>100</strong>Compatibility</span>
+              <span><strong>98</strong>Repository Health</span>
+            </div>
+          </div>
+          <div class="recommend-panel">
+            <strong>Recommendations</strong>
+            <span>2 duplicate repositories <em>Fix</em></span>
+            <span>1 outdated package <em>Review</em></span>
+            <span>1 missing dependency <em>Fix</em></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="ld-section stat-strip" aria-label="LegacyDock statistics">
+        <article><strong>44</strong><span>iOS Releases Indexed</span></article>
+        <article><strong>7</strong><span>Verified Demo Packages</span></article>
+        <article><strong>6</strong><span>Repository Sources</span></article>
+        <article><strong>4</strong><span>Restoration Workflows</span></article>
+      </section>
+
+      <section class="ld-section care-panel" aria-labelledby="care-title">
+        <div>
+          <p class="kicker">LegacyDock Care</p>
+          <h2 id="care-title">Intelligent care for your legacy devices.</h2>
+          <p>Unlock compatibility intelligence, cloud sync planning, health history, and community-powered repair recommendations.</p>
+          <a class="secondary-button compact" href="./pricing.html">Learn More</a>
+        </div>
+        <div class="care-grid">
+          <article><strong>Intelligent Repair</strong><span>One-click repair plans with rollback context.</span></article>
+          <article><strong>Bootloop Risk</strong><span>Know the risk before you install.</span></article>
+          <article><strong>Health Timeline</strong><span>Track changes and device history.</span></article>
+          <article><strong>Cloud Sync</strong><span>Backups, sync, and cross-device history.</span></article>
+          <article><strong>Smart Alternatives</strong><span>Safer package recommendations.</span></article>
+          <article><strong>Snapshot Intelligence</strong><span>Automatic snapshot recommendations.</span></article>
         </div>
       </section>
     </main>
+
+    <footer class="ld-footer">
+      <div>
+        <a class="brand" href="./index.html" aria-label="LegacyDock home">
+          <img src="./assets/logodock.svg" alt="" />
+          <span><strong>LegacyDock</strong><small>Manage, preserve, enhance.</small></span>
+        </a>
+      </div>
+      <nav aria-label="Footer navigation">
+        <a href="#browse">Browse</a>
+        <a href="./docs.html">Docs</a>
+        <a href="./changelog.html">Changelog</a>
+        <a href="./pricing.html">Pricing</a>
+      </nav>
+      <p>Made for the legacy iOS community.</p>
+    </footer>
 
     <script src="./site.js"></script>
   </body>

@@ -2,6 +2,7 @@
 
 ## 2026-06-14
 
+- Rebuilt the public website UI around the supplied LegacyDock reference style with a black device hero, white feature cards, Device Doctor preview, updated statistics, and matching public-page treatment.
 - Added standalone `docs.html`, `changelog.html`, and `pricing.html` pages.
 - Updated homepage and console navigation to route to the standalone pages.
 - Split the working console into `console.html`.
