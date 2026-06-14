@@ -15,6 +15,9 @@ This repository now contains a fuller static product foundation:
 - dark theme by default,
 - working product console demo,
 - device dashboard,
+- Device Doctor health dashboard with explainable performance, stability, battery, storage, compatibility, and repository scores,
+- basic diagnostics for repositories, packages, dependencies, storage, battery, and compatibility,
+- LegacyDock Care intelligence for repair plans, community signals, bootloop risk, smart alternatives, modernization guidance, snapshot intelligence, and health timeline,
 - compatibility-aware marketplace,
 - explainable package safety review,
 - repository health scanner,
@@ -26,6 +29,7 @@ This repository now contains a fuller static product foundation:
 - JSON schemas for the core data model,
 - local engines for compatibility, repository scanning, snapshots, and reports,
 - production-oriented local core modules for `libimobiledevice` discovery, Debian package index parsing, dependency resolution, guarded operation planning, and JSON workspace persistence,
+- reusable Device Doctor core modules for explainable diagnostics, Care repair planning, community intelligence, snapshot intelligence, and health timeline data,
 - CLI commands for device discovery, doctor checks, install planning, snapshots, preservation reports, and package index imports,
 - automated tests for core parsing, adapter mapping, dependency resolution, and safety gates,
 - architecture, integration, community intelligence, and roadmap docs.
@@ -95,6 +99,7 @@ npm run check
 |   `-- core/
 |       |-- dependencyResolver.js
 |       |-- deviceAdapter.js
+|       |-- deviceDoctor.js
 |       |-- operationPlanner.js
 |       |-- packageIndex.js
 |       `-- workspaceStore.js
@@ -127,6 +132,7 @@ The static app is a product and architecture scaffold. The likely production dir
 See:
 
 - [Architecture](docs/architecture.md)
+- [Device Doctor And Care](docs/device-doctor-care.md)
 - [Integration Research](docs/integrations.md)
 - [Commercial Readiness Plan](docs/commercial-readiness.md)
 - [Community Intelligence](docs/community-intelligence.md)

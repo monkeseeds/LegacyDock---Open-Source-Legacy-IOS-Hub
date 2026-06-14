@@ -2,6 +2,9 @@
 
 ## 2026-06-15
 
+- Expanded Device Doctor into an explainable health dashboard with performance, stability, battery, storage, compatibility, repository, and overall health scores.
+- Added LegacyDock Care intelligence panels for repair plans, community intelligence, bootloop risk, smart alternatives, modernization guidance, snapshot intelligence, and health timeline.
+- Updated pricing around the "scanning is free, intelligence is premium" model with LegacyDock Care at $4.99/month or $39/year.
 - Added a production-oriented local core with `libimobiledevice` discovery, Debian package index parsing, dependency resolution, guarded install planning, and JSON workspace persistence.
 - Added `cli.js` commands for device discovery, doctor checks, install planning, snapshots, preservation reports, and package index imports.
 - Added automated Node tests for adapter mapping, package index parsing, dependency resolution, and device mutation safety gates.

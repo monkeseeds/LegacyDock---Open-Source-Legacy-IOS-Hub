@@ -323,17 +323,17 @@ export const cloudPlans = [
   {
     name: "Free",
     price: "$0",
-    summary: "Unlimited local devices, local snapshots, repository checks, health scans, and preservation exports."
+    summary: "Unlimited Device Doctor scans, local devices, local snapshots, repository checks, compatibility checks, backups, and offline workflows."
   },
   {
-    name: "Cloud",
-    price: "$3/mo",
-    summary: "Encrypted backup sync, cross-device history, favorites, and collections."
+    name: "LegacyDock Care",
+    price: "$4.99/mo",
+    summary: "Intelligent repair plans, community intelligence, bootloop risk, smart alternatives, modernization guidance, health timeline, cloud sync, and backups."
   },
   {
-    name: "Plus",
-    price: "$7/mo",
-    summary: "Smart recommendations, advanced analytics, shared collections, and premium community features."
+    name: "Care Yearly",
+    price: "$39/yr",
+    summary: "All LegacyDock Care intelligence with yearly billing for collectors and active maintainers."
   },
   {
     name: "Studio",

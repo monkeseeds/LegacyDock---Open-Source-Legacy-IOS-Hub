@@ -2,9 +2,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { devices, packages } from "../src/data/catalog.js";
 import { mapLockdownInfoToDevice } from "../src/core/deviceAdapter.js";
+import { buildDiagnostics, buildDoctorScores, buildRepairPlan, buildSnapshotIntelligence } from "../src/core/deviceDoctor.js";
 import { parsePackageIndex, parseRelationshipList } from "../src/core/packageIndex.js";
 import { resolveInstallPlan } from "../src/core/dependencyResolver.js";
 import { planInstallOperation } from "../src/core/operationPlanner.js";
+import { repositories, snapshots } from "../src/data/catalog.js";
 
 test("maps libimobiledevice lockdown output into a LegacyDock device profile", () => {
   const device = mapLockdownInfoToDevice({
@@ -56,4 +58,17 @@ test("blocks unsafe install plans before device mutation", () => {
   assert.equal(plan.safeToQueue, false);
   assert.match(plan.confirmationPhrase, /INSTALL batterylife ON iPhone3,1/);
   assert.ok(plan.blocks.some((block) => block.includes("not in package metadata")));
+});
+
+test("builds explainable Device Doctor scores and diagnostics", () => {
+  const device = devices.find((item) => item.id === "ipad2-wifi-16");
+  const scores = buildDoctorScores(device, repositories, packages);
+  const diagnostics = buildDiagnostics(device, repositories, packages);
+  const plan = buildRepairPlan(device, repositories, packages);
+  const snapshot = buildSnapshotIntelligence(device, snapshots);
+
+  assert.ok(scores.find((score) => score.id === "health").explanation.includes("Average"));
+  assert.ok(diagnostics.some((issue) => issue.title.includes("Duplicate repository index")));
+  assert.ok(plan.steps.length > 0);
+  assert.equal(snapshot.rollbackAvailable, true);
 });

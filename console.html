@@ -50,7 +50,7 @@
           <aside class="console-sidebar" aria-label="Console sections">
             <button class="console-tab active" data-view="dashboard">Dashboard</button>
             <button class="console-tab" data-view="marketplace">Marketplace</button>
-            <button class="console-tab" data-view="health">Health Center</button>
+            <button class="console-tab" data-view="health">Device Doctor</button>
             <button class="console-tab" data-view="restoration">Restoration Lab</button>
             <button class="console-tab" data-view="snapshots">Snapshots</button>
             <button class="console-tab" data-view="preservation">Preservation</button>
@@ -96,14 +96,26 @@
             <section class="console-view" id="health-view" aria-labelledby="health-heading">
               <div class="view-head">
                 <div>
-                  <p class="kicker">Local repair planner</p>
-                  <h2 id="health-heading">Health Center</h2>
+                  <p class="kicker">Device Doctor and LegacyDock Care</p>
+                  <h2 id="health-heading">Device Doctor</h2>
                 </div>
                 <button class="primary-button compact" data-run-health>Run scan</button>
               </div>
-              <div class="health-grid">
-                <div class="health-dial" data-health-score>86</div>
+              <div class="doctor-layout">
+                <div class="doctor-score-panel">
+                  <div class="health-dial" data-health-score>86</div>
+                  <div class="doctor-score-list" data-doctor-score-list></div>
+                </div>
                 <div class="issue-list" data-issue-list></div>
+              </div>
+              <div class="care-console" aria-label="LegacyDock Care intelligence">
+                <div class="panel care-panel-block" data-repair-plan></div>
+                <div class="panel care-panel-block" data-community-intel></div>
+                <div class="panel care-panel-block" data-bootloop-risk></div>
+                <div class="panel care-panel-block" data-smart-alternatives></div>
+                <div class="panel care-panel-block" data-modernization></div>
+                <div class="panel care-panel-block" data-snapshot-intel></div>
+                <div class="panel care-panel-block wide" data-health-timeline></div>
               </div>
             </section>
 

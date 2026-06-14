@@ -38,6 +38,8 @@ Core local entities:
 - `InstallReport`: device, package, result, risk, logs, timing, and optional anonymous community signal.
 - `Snapshot`: package list, repositories, preferences, hashes, metadata, created date, and restore plan.
 - `HealthIssue`: severity, explanation, affected component, recommendation, and recovery option.
+- `DeviceDoctorScore`: explainable health, performance, stability, battery, storage, compatibility, and repository scores.
+- `CareRepairPlan`: premium repair sequence with expected changes, risk, rollback availability, estimated time, and snapshot requirements.
 
 ## Safety Rules
 
@@ -105,4 +107,3 @@ The included static prototype demonstrates the intended first-run product shape:
 - local snapshot timeline,
 - preservation manifest preview,
 - optional cloud positioning.
-

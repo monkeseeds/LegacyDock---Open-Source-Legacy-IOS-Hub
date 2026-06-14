@@ -10,7 +10,7 @@ LegacyDock is designed as a local-first system with optional cloud services. The
 | Console UI | Separate `console.html` app surface for device dashboard, marketplace, health scans, snapshots, preservation reports, and cloud settings |
 | Data catalog | Seed data for devices, repositories, packages, snapshots, and plans |
 | Local engines | iOS 6.x.x-9.x.x version catalog, compatibility scoring, repository scanning, snapshot creation, manifest diffing, report generation |
-| Local core | CLI-ready modules for libimobiledevice discovery, Debian package index parsing, dependency resolution, guarded install planning, and JSON persistence |
+| Local core | CLI-ready modules for libimobiledevice discovery, Device Doctor diagnostics, Care repair planning, Debian package index parsing, dependency resolution, guarded install planning, and JSON persistence |
 | Schemas | Stable contracts for device profiles, packages, repositories, snapshots, and community reports |
 | Restoration Lab | SHSH preservation planning, restore-readiness guidance, jailbreak method lookup, and external toolkit handoff |
 | Future adapters | libimobiledevice, AFC, SSH, package index parsers, restore-tool handoff, archive discovery connectors |
@@ -20,6 +20,7 @@ LegacyDock is designed as a local-first system with optional cloud services. The
 The repository now includes an executable local core under `src/core/`:
 
 - `deviceAdapter.js` wraps `idevice_id` and `ideviceinfo` when `libimobiledevice` is installed.
+- `deviceDoctor.js` builds explainable health scores, diagnostics, Care repair plans, community intelligence, bootloop risk, smart alternatives, modernization guidance, snapshot intelligence, and timeline data.
 - `packageIndex.js` parses Debian `Packages` metadata into LegacyDock package records.
 - `dependencyResolver.js` builds install plans, missing dependency lists, and conflict reports.
 - `operationPlanner.js` combines compatibility, dependency, risk, snapshot, and confirmation requirements before any future mutation executor can run.

@@ -37,9 +37,9 @@ const seedSnapshots = [
 ];
 
 const cloudPlans = [
-  { name: "Free", price: "$0", summary: "Unlimited local devices, local snapshots, repository checks, health scans, and preservation exports." },
-  { name: "Cloud", price: "$3/mo", summary: "Encrypted backup sync, cross-device history, favorites, and collections." },
-  { name: "Plus", price: "$7/mo", summary: "Smart recommendations, advanced analytics, shared collections, and premium community features." },
+  { name: "Free", price: "$0", summary: "Unlimited Device Doctor scans, local snapshots, repository checks, compatibility checks, backups, and offline workflows." },
+  { name: "LegacyDock Care", price: "$4.99/mo", summary: "Intelligent repair plans, community intelligence, bootloop risk, smart alternatives, modernization guidance, health timeline, cloud sync, and backups." },
+  { name: "Care Yearly", price: "$39/yr", summary: "All LegacyDock Care intelligence with yearly billing for collectors and active maintainers." },
   { name: "Studio", price: "$15/mo", summary: "Repair shop inventory, customer notes, shared backups, team workspaces, and priority support." }
 ];
 
@@ -186,6 +186,154 @@ function scanRepositories(device, repositoryList) {
   return issues;
 }
 
+function average(values) {
+  return Math.round(values.reduce((sum, value) => sum + value, 0) / values.length);
+}
+
+function repositoryHealthScore(repoIssues) {
+  const penalty = repoIssues.reduce((total, issue) => total + (issue.severity === "medium" ? 10 : issue.severity === "high" ? 18 : 5), 0);
+  return Math.max(0, 100 - penalty);
+}
+
+function doctorScores(device) {
+  const base = scoreDevice(device, packages);
+  const repoIssues = scanRepositories(device, repositories);
+  const battery = Math.max(0, Math.min(100, Number(device.batteryHealth || 0)));
+  const storage = Math.max(0, Math.round(100 - Number(device.storageUsed || 0) * 0.72));
+  const repository = repositoryHealthScore(repoIssues);
+  const scores = [
+    { id: "performance", label: "Performance", value: base.Performance, explanation: "Starts at 100 and subtracts storage pressure and memory pressure." },
+    { id: "stability", label: "Stability", value: base.Stability, explanation: "Starts at 100 and subtracts memory pressure plus review-state penalties." },
+    { id: "battery", label: "Battery", value: battery, explanation: "Uses detected or recorded battery capacity where available." },
+    { id: "storage", label: "Storage", value: storage, explanation: "Estimates remaining safety margin from current storage usage." },
+    { id: "compatibility", label: "Compatibility", value: base.Compatibility, explanation: "Percent of known catalog packages supported by this firmware and device identifier." },
+    { id: "repository", label: "Repository Health", value: repository, explanation: "Starts at 100 and subtracts duplicate, stale, slow, dead, or invalid repository findings." }
+  ];
+  return [{ id: "health", label: "Overall Health", value: average(scores.map((score) => score.value)), explanation: "Average of every explainable Device Doctor score." }, ...scores];
+}
+
+function doctorDiagnostics(device) {
+  const repoIssues = scanRepositories(device, repositories).map((issue) => ({
+    ...issue,
+    category: "repository",
+    why: issue.title.includes("Duplicate")
+      ? "Duplicate repositories may slow refresh operations and create duplicate package entries."
+      : "Repository problems can hide dependency updates, conflict metadata, and repair paths.",
+    recommendation: issue.action
+  }));
+  const packageIssues = packages.flatMap((pkg) => {
+    const result = evaluateCompatibility(device, pkg);
+    return result.checks
+      .filter((check) => check.state !== "pass")
+      .map((check) => ({
+        severity: check.state === "block" ? "high" : "medium",
+        category: "package",
+        title: `${pkg.name}: ${check.label}`,
+        detail: check.detail,
+        why: check.state === "block" ? "This package may fail or destabilize the device." : "This should be reviewed before making changes.",
+        recommendation: result.recommendation
+      }));
+  });
+
+  if (device.storageUsed >= 80) {
+    packageIssues.push({
+      severity: "medium",
+      category: "storage",
+      title: "Storage pressure detected",
+      detail: `${device.name} is using ${device.storageUsed}% of its recorded storage.`,
+      why: "Low storage can cause package installs, restores, and cache refreshes to fail.",
+      recommendation: "Create a snapshot, then clean caches and orphaned package files."
+    });
+  }
+
+  if (device.batteryHealth && device.batteryHealth < 80) {
+    packageIssues.push({
+      severity: "medium",
+      category: "battery",
+      title: "Battery health needs attention",
+      detail: `${device.name} battery health is recorded at ${device.batteryHealth}%.`,
+      why: "Weak batteries increase the risk of failed restores and unexpected shutdowns.",
+      recommendation: "Charge fully before repair operations and consider battery service."
+    });
+  }
+
+  return [...repoIssues, ...packageIssues];
+}
+
+function careRepairPlan(device) {
+  const diagnostics = doctorDiagnostics(device);
+  return {
+    estimatedSeconds: Math.max(15, diagnostics.slice(0, 5).length * 8),
+    rollbackAvailable: Boolean(selectedSnapshot()),
+    steps: diagnostics.slice(0, 5).map((issue) => ({
+      title: issue.recommendation,
+      risk: issue.severity,
+      changes: issue.category === "repository" ? "Repository metadata only" : "Package plan only",
+      why: issue.why
+    }))
+  };
+}
+
+function communitySignals(pkg) {
+  return {
+    installs: Math.round(pkg.communitySuccess * 186 + pkg.rating * 1000),
+    success: `${pkg.communitySuccess}%`,
+    battery: pkg.batteryImpact,
+    performance: pkg.performanceImpact,
+    stability: pkg.risk === "low" ? "Excellent" : "Review first",
+    conflicts: pkg.conflicts.length,
+    recommended: pkg.communitySuccess >= 95 && pkg.risk === "low"
+  };
+}
+
+function bootloopRisk(pkg) {
+  const confidence = Math.max(40, Math.min(99, pkg.communitySuccess - (pkg.risk === "medium" ? 4 : 0)));
+  return {
+    risk: pkg.risk === "low" ? "Very Low" : pkg.risk === "medium" ? "Moderate" : "High",
+    confidence,
+    reports: pkg.risk === "low" ? 0 : pkg.conflicts.length + 1,
+    incompatibilities: pkg.conflicts
+  };
+}
+
+function smartAlternatives(targetPackage) {
+  return packages
+    .filter((pkg) => pkg.id !== targetPackage.id && (pkg.category === targetPackage.category || pkg.risk === "low"))
+    .sort((a, b) => b.communitySuccess - a.communitySuccess)
+    .slice(0, 3)
+    .map((pkg) => ({ name: pkg.name, reason: `${pkg.communitySuccess}% success, ${pkg.risk} risk, ${pkg.performanceImpact} performance impact.` }));
+}
+
+function modernizationRecommendations(device) {
+  return [
+    { title: "Certificate and TLS review", detail: "Improves access to modern HTTPS services where legacy firmware still allows it.", confidence: device.firmware.startsWith("9.") ? 92 : 84 },
+    { title: "Conservative animation tuning", detail: "Makes older devices feel faster without heavy system modifications.", confidence: 95 },
+    { title: "Repository cleanup", detail: "Speeds refreshes and reduces duplicate package metadata.", confidence: 97 }
+  ];
+}
+
+function snapshotIntelligence(device) {
+  const latest = state.snapshots.find((snapshot) => snapshot.deviceId === device.id);
+  return {
+    rollbackAvailable: Boolean(latest),
+    latest: latest?.title || "No snapshot yet",
+    recovery: latest ? "About 2 minutes" : "Unavailable until a snapshot exists",
+    recommendation: latest ? "Use the latest snapshot as rollback before repair." : "Create a local snapshot before running any repair."
+  };
+}
+
+function healthTimeline(device) {
+  return [
+    ...state.snapshots.filter((snapshot) => snapshot.deviceId === device.id).slice(0, 3).map((snapshot) => ({
+      type: "Snapshot",
+      title: snapshot.title,
+      detail: `${snapshot.packageIds.length} packages and ${snapshot.repositoryIds.length} repositories captured.`,
+      date: snapshot.createdAt
+    })),
+    { type: "Scan", title: "Device Doctor scan", detail: "Health, compatibility, repository, package, battery, and storage checks refreshed locally.", date: new Date().toISOString() }
+  ].sort((a, b) => new Date(b.date) - new Date(a.date));
+}
+
 function createSnapshot(device, repositoryList, packageList) {
   const stamp = new Date().toISOString();
   const packageIds = packageList.filter((pkg) => device.installedPackages.includes(pkg.id)).map((pkg) => pkg.id);
@@ -294,7 +442,7 @@ function renderDevices() {
           <span class="device-dot"></span>
           <div>
             <strong>${device.name}</strong>
-            <small>${device.identifier} · ${device.os} ${device.firmware}</small>
+            <small>${device.identifier} &middot; ${device.os} ${device.firmware}</small>
           </div>
           ${badge(device.status === "stable" ? "Stable" : "Review", device.status === "stable" ? "good" : "warn")}
         </div>
@@ -439,7 +587,7 @@ function renderPackages() {
           <div class="card-top">
             <div>
               <h4>${pkg.name}</h4>
-              <small>${pkg.version} · ${pkg.category}</small>
+              <small>${pkg.version} &middot; ${pkg.category}</small>
             </div>
             ${badge(result.recommendation, severityKind(result.recommendation))}
           </div>
@@ -491,33 +639,118 @@ function openInstallDialog(packageId) {
 
 function renderHealth() {
   const device = selectedDevice();
-  const repoIssues = scanRepositories(device, repositories);
-  const packageWarnings = packages
+  const scores = doctorScores(device);
+  const issues = doctorDiagnostics(device);
+  const plan = careRepairPlan(device);
+  const primaryPackage = packages
     .map((pkg) => ({ pkg, result: evaluateCompatibility(device, pkg) }))
-    .filter((item) => item.result.checks.some((check) => check.state === "warn"));
+    .sort((a, b) => b.result.score - a.result.score)[0].pkg;
+  const signals = communitySignals(primaryPackage);
+  const risk = bootloopRisk(primaryPackage);
+  const snapshot = snapshotIntelligence(device);
 
-  const issues = [
-    ...repoIssues,
-    ...packageWarnings.slice(0, 3).map(({ pkg, result }) => ({
-      severity: result.score > 85 ? "low" : "medium",
-      title: `${pkg.name} needs review`,
-      detail: result.checks.filter((check) => check.state === "warn").map((check) => check.detail).join(" "),
-      action: "Open review"
-    }))
-  ];
+  $("[data-health-score]").innerHTML = `<strong>${scores[0].value}</strong><span>overall health</span>`;
+  $("[data-doctor-score-list]").innerHTML = scores.map((score) => `
+    <button class="doctor-score-card" data-score-explanation="${score.explanation}">
+      <span>${score.label}</span>
+      <strong>${score.value}</strong>
+      <small>${score.explanation}</small>
+    </button>
+  `).join("");
 
-  const healthScore = Math.max(42, 100 - issues.length * 6 - Math.round(device.memoryPressure * 0.08));
-  $("[data-health-score]").innerHTML = `<strong>${healthScore}</strong><span>overall health</span>`;
-  $("[data-issue-list]").innerHTML = issues.map((issue) => `
+  $("[data-issue-list]").innerHTML = issues.slice(0, 8).map((issue) => `
     <article class="issue-card">
       <div class="card-top">
         <h4>${issue.title}</h4>
         ${badge(issue.severity, severityKind(issue.severity))}
       </div>
       <p>${issue.detail}</p>
-      <button class="mini-button" data-stage-repair>${issue.action}</button>
+      <p class="panel-note">${issue.why}</p>
+      <button class="mini-button" data-stage-repair>${issue.recommendation}</button>
     </article>
   `).join("");
+
+  $("[data-repair-plan]").innerHTML = `
+    <h3>Intelligent Repair Plan</h3>
+    <p class="panel-note">LegacyDock Care converts diagnostics into an explainable, rollback-aware repair sequence.</p>
+    <div class="care-meta">
+      ${badge(`${plan.estimatedSeconds}s estimate`, "good")}
+      ${badge(plan.rollbackAvailable ? "Rollback available" : "Snapshot needed", plan.rollbackAvailable ? "good" : "warn")}
+    </div>
+    <ol class="care-steps">
+      ${plan.steps.map((step) => `
+        <li>
+          <strong>${step.title}</strong>
+          <span>${step.why}</span>
+          <small>${step.changes} &middot; ${step.risk} risk</small>
+        </li>
+      `).join("") || "<li><strong>No repairs needed</strong><span>Device Doctor did not find actionable issues.</span><small>Keep a fresh snapshot anyway.</small></li>"}
+    </ol>
+    <button class="primary-button compact" data-stage-care-repair>Run Repair</button>
+  `;
+
+  $("[data-community-intel]").innerHTML = `
+    <h3>Community Intelligence</h3>
+    <p class="panel-note">${primaryPackage.name} on ${device.name}</p>
+    <div class="intel-grid">
+      <span>Community installs<strong>${signals.installs.toLocaleString()}</strong></span>
+      <span>Success rate<strong>${signals.success}</strong></span>
+      <span>Battery impact<strong>${signals.battery}</strong></span>
+      <span>Performance<strong>${signals.performance}</strong></span>
+      <span>Known conflicts<strong>${signals.conflicts}</strong></span>
+      <span>Recommended<strong>${signals.recommended ? "Yes" : "Review"}</strong></span>
+    </div>
+  `;
+
+  $("[data-bootloop-risk]").innerHTML = `
+    <h3>Bootloop Risk</h3>
+    <div class="risk-readout">
+      <strong>${risk.risk}</strong>
+      <span>${risk.confidence}% community confidence</span>
+      <small>${risk.reports} confirmed reports &middot; ${risk.incompatibilities.length || 0} known incompatibilities</small>
+    </div>
+  `;
+
+  $("[data-smart-alternatives]").innerHTML = `
+    <h3>Smart Alternatives</h3>
+    <div class="list-stack">
+      ${smartAlternatives(primaryPackage).map((item) => `
+        <div class="list-row"><span>${item.name}<small>${item.reason}</small></span>${badge("Care", "good")}</div>
+      `).join("")}
+    </div>
+  `;
+
+  $("[data-modernization]").innerHTML = `
+    <h3>Device Modernization Assistant</h3>
+    <div class="list-stack">
+      ${modernizationRecommendations(device).map((item) => `
+        <div class="list-row"><span>${item.title}<small>${item.detail}</small></span>${badge(`${item.confidence}%`, "good")}</div>
+      `).join("")}
+    </div>
+  `;
+
+  $("[data-snapshot-intel]").innerHTML = `
+    <h3>Snapshot Intelligence</h3>
+    <div class="list-stack">
+      <div class="list-row"><span>Rollback</span>${badge(snapshot.rollbackAvailable ? "available" : "missing", snapshot.rollbackAvailable ? "good" : "warn")}</div>
+      <div class="list-row"><span>Latest snapshot</span><strong>${snapshot.latest}</strong></div>
+      <div class="list-row"><span>Recovery estimate</span><strong>${snapshot.recovery}</strong></div>
+    </div>
+    <p class="panel-note">${snapshot.recommendation}</p>
+  `;
+
+  $("[data-health-timeline]").innerHTML = `
+    <h3>Health Timeline</h3>
+    <div class="timeline-list">
+      ${healthTimeline(device).map((item) => `
+        <article>
+          <small>${item.type} &middot; ${new Date(item.date).toLocaleString()}</small>
+          <strong>${item.title}</strong>
+          <span>${item.detail}</span>
+        </article>
+      `).join("")}
+    </div>
+  `;
 
   $$("[data-stage-repair]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -525,6 +758,14 @@ function renderHealth() {
       button.disabled = true;
       toast("Repair action staged locally. No device changes were made.");
     });
+  });
+
+  $$("[data-score-explanation]").forEach((button) => {
+    button.addEventListener("click", () => toast(button.dataset.scoreExplanation));
+  });
+
+  $("[data-stage-care-repair]").addEventListener("click", () => {
+    toast("Care repair plan staged with snapshot rollback. No device changes were made.");
   });
 }
 

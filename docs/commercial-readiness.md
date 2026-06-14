@@ -8,6 +8,9 @@ LegacyDock now has a production-oriented local core, but the project should stil
 - iOS 6.x.x through iOS 9.x.x compatibility catalog.
 - Package compatibility scoring.
 - Repository health checks.
+- Explainable Device Doctor score model.
+- Basic diagnostics for repositories, packages, dependencies, storage, battery, and compatibility.
+- LegacyDock Care repair-plan, community-intelligence, bootloop-risk, smart-alternative, modernization, snapshot-intelligence, and health-timeline models.
 - Snapshot and preservation report generation.
 - `libimobiledevice` discovery adapter boundary.
 - Debian `Packages` index parser.

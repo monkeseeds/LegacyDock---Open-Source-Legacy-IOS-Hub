@@ -3,9 +3,9 @@ import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { devices, packages, repositories, snapshots } from "./src/data/catalog.js";
 import { buildPreservationReport } from "./src/lib/preservationReport.js";
-import { scanRepositories } from "./src/lib/repositoryScanner.js";
 import { createSnapshot } from "./src/lib/snapshotEngine.js";
 import { createLibimobiledeviceAdapter } from "./src/core/deviceAdapter.js";
+import { buildDiagnostics, buildDoctorScores, buildRepairPlan } from "./src/core/deviceDoctor.js";
 import { parsePackageIndex } from "./src/core/packageIndex.js";
 import { planInstallOperation } from "./src/core/operationPlanner.js";
 import { updateJsonStore } from "./src/core/workspaceStore.js";
@@ -60,7 +60,12 @@ Commands:
 
   if (command === "doctor") {
     const device = findDevice(args[0]);
-    printJson({ device: device.name, issues: scanRepositories(device, repositories) });
+    printJson({
+      device: device.name,
+      scores: buildDoctorScores(device, repositories, packages),
+      diagnostics: buildDiagnostics(device, repositories, packages),
+      careRepairPlan: buildRepairPlan(device, repositories, packages)
+    });
     return;
   }
 
