@@ -9,6 +9,7 @@ It is not another jailbreak tool, piracy surface, or package manager clone. Lega
 This repository now contains a fuller static product foundation:
 
 - proper landing page with a retro-modern Apple-inspired visual direction,
+- Jan.ai-inspired product storytelling and Flathub-inspired browse/storefront flow,
 - working product console demo,
 - device dashboard,
 - compatibility-aware marketplace,
@@ -44,7 +45,8 @@ Then open the shown local URL.
 |-- styles.css
 |-- app.js
 |-- assets/
-|   `-- legacydock-hero.png
+|   |-- legacydock-hero.png
+|   `-- logodock.svg
 |-- src/
 |   |-- data/
 |   |   |-- catalog.js
