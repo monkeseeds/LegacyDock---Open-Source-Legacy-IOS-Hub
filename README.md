@@ -1,1 +1,1 @@
-# LegacyDock---Open-Source-Legacy-IOS-Hub
+# LegacyDock - Open-Source-Legacy-IOS-Hub.
