@@ -38,4 +38,4 @@ Early product prototype. The current site is static HTML, CSS, and JavaScript in
 
 ## License
 
-License selection is pending. The recommended long-term model is an open-core architecture with AGPLv3 for local open-source components and proprietary hosted services for optional cloud convenience.
+This repository is licensed under the GNU Affero General Public License v3.0. See [LICENSE](LICENSE).
