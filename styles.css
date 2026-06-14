@@ -2345,6 +2345,227 @@ pre {
   color: var(--marketing-ink);
 }
 
+.console-body {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(114, 139, 169, 0.14), transparent 32%),
+    var(--marketing-bg);
+}
+
+.console-body .console-page {
+  width: min(1120px, calc(100% - 48px));
+  min-height: auto;
+  margin-inline: auto;
+  padding: 34px 0 48px;
+  color: var(--marketing-ink);
+}
+
+.console-body .console-head {
+  min-height: 292px;
+  margin-bottom: 22px;
+  padding: 42px;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(127, 154, 188, 0.24), transparent 25%),
+    radial-gradient(circle at 24% 100%, rgba(255, 255, 255, 0.12), transparent 26%),
+    linear-gradient(135deg, #06080b, #121821 68%, #07090c);
+  color: white;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.2);
+}
+
+.console-body .console-head h1 {
+  max-width: 720px;
+  margin-top: 10px;
+  font-size: clamp(3.4rem, 7vw, 5.8rem);
+  line-height: 0.92;
+  background: linear-gradient(180deg, #ffffff 16%, #8293aa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.console-body .console-head .kicker {
+  color: #74a7ff;
+}
+
+.console-body .search-box {
+  align-self: center;
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.console-body .search-box input {
+  color: white;
+}
+
+.console-body .search-box input::placeholder {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.console-body .console-shell {
+  min-height: 760px;
+  border-color: var(--marketing-line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 24px 70px rgba(20, 28, 40, 0.08);
+}
+
+.console-body .console-sidebar {
+  gap: 8px;
+  padding: 16px;
+  border-right-color: var(--marketing-line);
+  background: #f0f2f5;
+}
+
+.console-body .console-tab {
+  min-height: 48px;
+  border-color: var(--marketing-line);
+  border-radius: 10px;
+  background: white;
+  color: #303842;
+}
+
+.console-body .console-tab.active {
+  border-color: #0c1015;
+  background: #0c1015;
+  color: white;
+}
+
+.console-body .console-main {
+  padding: 24px;
+  color: var(--marketing-ink);
+}
+
+.console-body .view-head {
+  min-height: 70px;
+  margin-bottom: 20px;
+}
+
+.console-body .view-head h2 {
+  color: var(--marketing-ink);
+}
+
+.console-body .segmented {
+  border-color: var(--marketing-line);
+  background: #f3f5f7;
+}
+
+.console-body .segmented button {
+  color: var(--marketing-muted);
+}
+
+.console-body .segmented button.active {
+  border-color: #0c1015;
+  background: #0c1015;
+  color: white;
+}
+
+.console-body .compatibility-strip,
+.console-body .panel,
+.console-body .score-card,
+.console-body .plan-card,
+.console-body .issue-card,
+.console-body .snapshot-card,
+.console-body .device-card,
+.console-body .device-hero-card,
+.console-body .package-card,
+.console-body .dialog-card,
+.console-body .workflow-card,
+.console-body .doctor-score-card,
+.console-body .care-steps li,
+.console-body .timeline-list article,
+.console-body .intel-grid span {
+  border-color: var(--marketing-line);
+  background: white;
+  color: var(--marketing-ink);
+  box-shadow: 0 18px 44px rgba(20, 28, 40, 0.06);
+}
+
+.console-body .compatibility-strip {
+  background: #f9fafb;
+}
+
+.console-body .device-card.active {
+  border-color: #0c1015;
+  background: #f3f5f7;
+}
+
+.console-body .health-dial {
+  min-height: 330px;
+  border-color: rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 48% 56%, rgba(255, 255, 255, 0.42), transparent 9%),
+    linear-gradient(140deg, #5f8dcc, #72d48c 62%, #f5c56f);
+  box-shadow: 0 24px 70px rgba(20, 28, 40, 0.14);
+}
+
+.console-body .health-dial strong {
+  font-size: 5.3rem;
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.28);
+}
+
+.console-body .doctor-score-card strong,
+.console-body .score-card strong,
+.console-body .risk-readout strong {
+  color: #16803a;
+}
+
+.console-body .risk-readout {
+  border-color: rgba(22, 128, 58, 0.18);
+  background: rgba(22, 128, 58, 0.06);
+}
+
+.console-body .badge.good {
+  color: #16803a;
+  border-color: rgba(22, 128, 58, 0.18);
+  background: rgba(22, 128, 58, 0.06);
+}
+
+.console-body .badge.warn {
+  color: #946200;
+  border-color: rgba(148, 98, 0, 0.2);
+  background: rgba(148, 98, 0, 0.07);
+}
+
+.console-body .badge.bad {
+  color: #b42318;
+  border-color: rgba(180, 35, 24, 0.18);
+  background: rgba(180, 35, 24, 0.06);
+}
+
+.console-body .mini-button {
+  border-color: var(--marketing-line);
+  background: #f7f8fb;
+  color: var(--marketing-ink);
+}
+
+.console-body .primary-button {
+  background: #0c1015;
+  color: white;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.16);
+}
+
+.console-body .secondary-button {
+  border-color: var(--marketing-line);
+  background: white;
+  color: var(--marketing-ink);
+}
+
+.console-body .package-media,
+.console-body .ios-device,
+.console-body .care-steps li,
+.console-body .timeline-list article,
+.console-body .intel-grid span {
+  background: #f7f8fb;
+}
+
+.console-body .safety-dialog {
+  border-color: var(--marketing-line);
+  background: white;
+  color: var(--marketing-ink);
+}
+
 @media (max-width: 1180px) {
   .ld-hero {
     grid-template-columns: 1fr;
