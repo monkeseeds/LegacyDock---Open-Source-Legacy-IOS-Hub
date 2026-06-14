@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LegacyDock Prototype</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar" aria-label="Primary">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">LD</span>
+          <span>
+            <strong>LegacyDock</strong>
+            <small>Local workspace</small>
+          </span>
+        </div>
+
+        <nav class="nav-list" aria-label="Sections">
+          <button class="nav-item active" data-view="dashboard" title="Dashboard" aria-label="Dashboard">
+            <span class="icon">⌂</span><span>Dashboard</span>
+          </button>
+          <button class="nav-item" data-view="marketplace" title="Marketplace" aria-label="Marketplace">
+            <span class="icon">⌕</span><span>Marketplace</span>
+          </button>
+          <button class="nav-item" data-view="health" title="Health Center" aria-label="Health Center">
+            <span class="icon">✚</span><span>Health</span>
+          </button>
+          <button class="nav-item" data-view="snapshots" title="Snapshots" aria-label="Snapshots">
+            <span class="icon">◷</span><span>Snapshots</span>
+          </button>
+          <button class="nav-item" data-view="preservation" title="Preservation" aria-label="Preservation">
+            <span class="icon">▣</span><span>Archive</span>
+          </button>
+          <button class="nav-item" data-view="cloud" title="Cloud" aria-label="Cloud">
+            <span class="icon">☁</span><span>Cloud</span>
+          </button>
+        </nav>
+
+        <div class="side-panel">
+          <small>Connected</small>
+          <strong id="connectedCount">3 devices</strong>
+          <div class="mini-meter"><span style="width: 72%"></span></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <label class="search" for="globalSearch">
+            <span aria-hidden="true">⌕</span>
+            <input id="globalSearch" type="search" placeholder="Search devices, packages, repositories" />
+          </label>
+          <div class="top-actions">
+            <button class="icon-button" id="scanButton" title="Scan devices" aria-label="Scan devices">↻</button>
+            <button class="icon-button" id="themeButton" title="Toggle theme" aria-label="Toggle theme">◐</button>
+            <button class="primary-button" id="snapshotNow">Create snapshot</button>
+          </div>
+        </header>
+
+        <section class="view active" id="dashboard" aria-labelledby="dashboardTitle">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Operating center</p>
+              <h1 id="dashboardTitle">Device dashboard</h1>
+            </div>
+            <div class="segmented" role="tablist" aria-label="Device filter">
+              <button class="active" data-device-filter="all">All</button>
+              <button data-device-filter="stable">Stable</button>
+              <button data-device-filter="attention">Review</button>
+            </div>
+          </div>
+
+          <div class="dashboard-grid">
+            <section class="device-list" id="deviceList" aria-label="Connected devices"></section>
+
+            <section class="detail-pane" aria-label="Selected device">
+              <div class="device-hero">
+                <div class="phone-frame" aria-hidden="true">
+                  <div class="phone-screen">
+                    <span id="phoneModel">iPhone 4</span>
+                    <small id="phoneFirmware">iOS 7.1.2</small>
+                  </div>
+                </div>
+                <div>
+                  <p class="eyebrow" id="detailIdentifier">iPhone3,1</p>
+                  <h2 id="detailName">iPhone 4</h2>
+                  <p class="muted" id="detailSummary">Jailbroken with Cydia, 7 repositories, 43 installed packages.</p>
+                </div>
+              </div>
+
+              <div class="score-grid" id="scoreGrid"></div>
+
+              <div class="split">
+                <div class="surface">
+                  <div class="surface-head">
+                    <h3>Recommended</h3>
+                    <button class="text-button" data-view-jump="marketplace">Browse</button>
+                  </div>
+                  <div class="recommendations" id="recommendations"></div>
+                </div>
+                <div class="surface">
+                  <div class="surface-head">
+                    <h3>Repositories</h3>
+                    <button class="text-button" id="repairRepos">Repair</button>
+                  </div>
+                  <div class="repo-list" id="repoList"></div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="marketplace" aria-labelledby="marketplaceTitle">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Compatibility-aware</p>
+              <h1 id="marketplaceTitle">Package marketplace</h1>
+            </div>
+            <div class="segmented" role="tablist" aria-label="Package categories">
+              <button class="active" data-package-filter="all">All</button>
+              <button data-package-filter="safe">Safe</button>
+              <button data-package-filter="repair">Repair</button>
+              <button data-package-filter="theme">Themes</button>
+            </div>
+          </div>
+          <div class="market-grid" id="packageGrid"></div>
+        </section>
+
+        <section class="view" id="health" aria-labelledby="healthTitle">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Safety first</p>
+              <h1 id="healthTitle">Health Center</h1>
+            </div>
+            <button class="primary-button" id="runHealthScan">Run scan</button>
+          </div>
+          <div class="health-layout">
+            <div class="health-score">
+              <span id="healthScore">86</span>
+              <small>overall health</small>
+            </div>
+            <div class="issue-list" id="issueList"></div>
+          </div>
+        </section>
+
+        <section class="view" id="snapshots" aria-labelledby="snapshotsTitle">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Git plus Time Machine</p>
+              <h1 id="snapshotsTitle">Snapshots</h1>
+            </div>
+            <button class="primary-button" id="captureSnapshot">Capture</button>
+          </div>
+          <div class="timeline" id="snapshotTimeline"></div>
+        </section>
+
+        <section class="view" id="preservation" aria-labelledby="preservationTitle">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Collector mode</p>
+              <h1 id="preservationTitle">Preservation archive</h1>
+            </div>
+            <button class="primary-button" id="exportReport">Export report</button>
+          </div>
+          <div class="archive-grid">
+            <div class="surface preservation-card">
+              <h3>Selected device profile</h3>
+              <dl id="archiveProfile"></dl>
+            </div>
+            <div class="surface preservation-card">
+              <h3>Reproducibility</h3>
+              <div class="check-list" id="archiveChecks"></div>
+            </div>
+            <div class="surface preservation-card wide">
+              <h3>Package manifest</h3>
+              <pre id="manifestPreview"></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="cloud" aria-labelledby="cloudTitle">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Optional convenience</p>
+              <h1 id="cloudTitle">Cloud workspace</h1>
+            </div>
+            <label class="toggle">
+              <input id="telemetryToggle" type="checkbox" />
+              <span>Opt-in intelligence</span>
+            </label>
+          </div>
+          <div class="plans">
+            <article class="plan active">
+              <small>Free</small>
+              <strong>$0</strong>
+              <p>Unlimited local devices, snapshots, package checks, and health scans.</p>
+            </article>
+            <article class="plan">
+              <small>Cloud</small>
+              <strong>$3/mo</strong>
+              <p>Encrypted backup sync, device history, collections, and favorites.</p>
+            </article>
+            <article class="plan">
+              <small>Plus</small>
+              <strong>$7/mo</strong>
+              <p>Smart recommendations, analytics, shared collections, and community tools.</p>
+            </article>
+            <article class="plan">
+              <small>Studio</small>
+              <strong>$15/mo</strong>
+              <p>Inventory, team workspaces, repair history, customer notes, and priority support.</p>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="installDialog" class="modal">
+      <form method="dialog">
+        <div class="modal-head">
+          <div>
+            <p class="eyebrow">Safety review</p>
+            <h2 id="modalTitle">Install package</h2>
+          </div>
+          <button class="icon-button" value="cancel" title="Close" aria-label="Close">×</button>
+        </div>
+        <div class="risk-strip" id="riskStrip"></div>
+        <div class="modal-grid" id="modalDetails"></div>
+        <menu>
+          <button class="text-button" value="cancel">Cancel</button>
+          <button class="primary-button" id="confirmInstall" value="default">Install</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
