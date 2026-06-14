@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-06-15
+
+- Added a production-oriented local core with `libimobiledevice` discovery, Debian package index parsing, dependency resolution, guarded install planning, and JSON workspace persistence.
+- Added `cli.js` commands for device discovery, doctor checks, install planning, snapshots, preservation reports, and package index imports.
+- Added automated Node tests for adapter mapping, package index parsing, dependency resolution, and device mutation safety gates.
+- Added a commercial readiness document that separates current working capabilities from remaining paid-product release gates.
+
 ## 2026-06-14
 
 - Rebuilt the public website UI around the supplied LegacyDock reference style with a black device hero, white feature cards, Device Doctor preview, updated statistics, and matching public-page treatment.

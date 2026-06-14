@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "npx serve .",
-    "check": "node --check app.js"
+    "cli": "node cli.js",
+    "check": "node --check app.js && node --check site.js && node --check cli.js",
+    "test": "node --test"
   },
   "keywords": [
     "ios",

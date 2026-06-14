@@ -25,6 +25,9 @@ This repository now contains a fuller static product foundation:
 - full iOS 6.x.x through iOS 9.x.x compatibility catalog,
 - JSON schemas for the core data model,
 - local engines for compatibility, repository scanning, snapshots, and reports,
+- production-oriented local core modules for `libimobiledevice` discovery, Debian package index parsing, dependency resolution, guarded operation planning, and JSON workspace persistence,
+- CLI commands for device discovery, doctor checks, install planning, snapshots, preservation reports, and package index imports,
+- automated tests for core parsing, adapter mapping, dependency resolution, and safety gates,
 - architecture, integration, community intelligence, and roadmap docs.
 
 The site is built with static HTML, CSS, and JavaScript so it can run directly on GitHub Pages without a build pipeline.
@@ -41,6 +44,24 @@ npx serve .
 
 Then open the shown local URL.
 
+For local core workflows:
+
+```bash
+npm run cli -- devices
+npm run cli -- discover
+npm run cli -- doctor iphone4-black-32
+npm run cli -- plan-install iphone4-black-32 winterboard
+npm run cli -- snapshot iphone4-black-32
+npm run cli -- report iphone4-black-32
+```
+
+Run checks:
+
+```bash
+npm test
+npm run check
+```
+
 ## Project Structure
 
 ```text
@@ -53,6 +74,7 @@ Then open the shown local URL.
 |-- styles.css
 |-- app.js
 |-- site.js
+|-- cli.js
 |-- CHANGELOG.md
 |-- assets/
 |   |-- legacydock-hero.png
@@ -62,15 +84,22 @@ Then open the shown local URL.
 |   |   |-- catalog.js
 |   |   |-- iosVersions.js
 |   |   `-- restorationMatrix.js
-|   `-- lib/
-|       |-- adapters.js
-|       |-- compatibility.js
-|       |-- localStore.js
-|       |-- preservationReport.js
-|       |-- restorationAdvisor.js
-|       |-- repositoryScanner.js
-|       `-- snapshotEngine.js
+|   |-- lib/
+|   |   |-- adapters.js
+|   |   |-- compatibility.js
+|   |   |-- localStore.js
+|   |   |-- preservationReport.js
+|   |   |-- restorationAdvisor.js
+|   |   |-- repositoryScanner.js
+|   |   `-- snapshotEngine.js
+|   `-- core/
+|       |-- dependencyResolver.js
+|       |-- deviceAdapter.js
+|       |-- operationPlanner.js
+|       |-- packageIndex.js
+|       `-- workspaceStore.js
 |-- schemas/
+|-- test/
 |-- docs/
 `-- .github/workflows/pages.yml
 ```
@@ -99,6 +128,7 @@ See:
 
 - [Architecture](docs/architecture.md)
 - [Integration Research](docs/integrations.md)
+- [Commercial Readiness Plan](docs/commercial-readiness.md)
 - [Community Intelligence](docs/community-intelligence.md)
 - [Changelog](CHANGELOG.md)
 - [Product Blueprint](docs/legacydock-blueprint.md)
