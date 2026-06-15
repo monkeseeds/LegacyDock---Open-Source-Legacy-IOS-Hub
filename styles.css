@@ -3318,9 +3318,9 @@ pre {
 }
 
 .header-actions .icon-link {
-  width: 48px;
-  height: 48px;
-  min-height: 48px;
+  width: 42px;
+  height: 42px;
+  min-height: 42px;
   padding: 0;
   border-color: transparent;
   background: transparent;
@@ -3329,8 +3329,8 @@ pre {
 }
 
 .header-actions .icon-link img[src$="github.svg"] {
-  width: 48px;
-  height: 48px;
+  width: 42px;
+  height: 42px;
   margin: 0;
   border-radius: 10px;
   object-fit: contain;
