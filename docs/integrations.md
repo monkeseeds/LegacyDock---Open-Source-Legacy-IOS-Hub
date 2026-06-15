@@ -12,6 +12,7 @@ LegacyDock should use open-source ecosystem work respectfully and legally. This 
 | APT repository parser | Packages, dependencies, conflicts, changelogs, repository health | Can power local compatibility checks |
 | Archive discovery | Metadata search for preserved software and historical package references | Must avoid unauthorized redistribution |
 | Legacy iOS Kit handoff | Restore/downgrade research, SHSH preservation, jailbreak method lookup, SSH ramdisk planning | Should be external, credited, and gated behind warnings |
+| Repository Hub | Repository metadata, health, compatibility, service restoration, dead repo archive, and community resources | Metadata only; do not mirror packages or imply ownership of third-party repositories |
 
 ## iOS Obscura Server Credit
 
@@ -48,6 +49,21 @@ LegacyDock should not silently wrap destructive restore or jailbreak operations.
 - preserve GPL obligations if code is ever copied or derived.
 
 Current repository status: no Legacy iOS Kit code is vendored or copied.
+
+## Repository And Community Credits
+
+The Repository Hub seed catalog references long-running legacy iOS ecosystem sources and projects, including BigBoss, Cydia/Telesphoreo, ModMyi Archive, Chariz, SkyGlow, Yzu, Galactic Server, TubeRepair, MapsX, Veteris, SBSettings, iFile, Activator, iCleaner, RecordMyScreen, ColoredKnob, LiveWallpaper, r/LegacyJailbreak, iPhoneOS Obscura, and related community-maintained resources.
+
+LegacyDock should treat these as credited ecosystem references. The current repository stores fixture metadata, health states, compatibility notes, and user guidance. It does not vendor repository code, mirror package files, redistribute copyrighted content, or claim ownership of third-party package names.
+
+Future live integrations should:
+
+- credit repository and package maintainers near any imported metadata,
+- preserve source URLs and maintainer fields,
+- separate verified facts from community reports,
+- avoid scraping or mirroring package payloads without permission,
+- respect upstream licenses and terms,
+- and provide takedown or correction paths for maintainers.
 
 ## Non-Goals
 

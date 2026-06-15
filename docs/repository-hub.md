@@ -16,6 +16,14 @@ LegacyDock now includes a Repository Hub inside the console. Its purpose is to r
 - Community resource center for r/LegacyJailbreak, iPhoneOS Obscura, Legacy iOS Kit, and related trusted resources.
 - Device-specific smart recommendations based on selected model and firmware.
 
+## Credits And Prior Art
+
+The seed catalog credits and references the legacy iOS ecosystem rather than replacing it. BigBoss, Cydia/Telesphoreo, ModMyi Archive, Chariz, SkyGlow, Yzu, Galactic Server, TubeRepair, MapsX, Veteris, SBSettings, iFile, Activator, iCleaner, RecordMyScreen, ColoredKnob, LiveWallpaper, r/LegacyJailbreak, iPhoneOS Obscura, Legacy iOS Kit, and related community resources all inform the fixture metadata and product direction.
+
+LegacyDock does not own those repositories or packages. The current Hub is metadata-first: source URLs, compatibility notes, health status, service restoration guidance, and community resource links. It does not mirror package payloads or redistribute copyrighted software.
+
+Future live repository integrations should keep maintainer credits visible, preserve source URLs, separate verified status from community reports, and provide maintainers a path to correct metadata.
+
 ## Device Doctor Integration
 
 Device Doctor uses the repository catalog to detect stale sources, duplicate mirrors, missing recommended repositories, broken package metadata, and compatible restoration packages.

@@ -112,6 +112,9 @@ Special ecosystem credit:
 
 - [CatsLover2006/iOSobscuraServer](https://github.com/CatsLover2006/iOSobscuraServer) for useful prior art around searching legacy iOS archival metadata. LegacyDock does not vendor that code in this repository; future archive discovery integrations should credit upstream work, preserve license obligations, and focus on metadata and user-controlled preservation workflows.
 - [LukeZGD/Legacy-iOS-Kit](https://github.com/LukeZGD/Legacy-iOS-Kit) for major prior art around restore/downgrade workflows, SHSH blob saving, jailbreak guidance, SSH ramdisk utilities, and legacy device support research. LegacyDock uses it as credited integration research and external handoff inspiration, not as bundled code.
+- BigBoss, Cydia/Telesphoreo, ModMyi Archive, Chariz, SkyGlow, Yzu, Galactic Server, and other legacy Cydia repository maintainers for the ecosystem knowledge represented by the Repository Hub seed catalog. LegacyDock stores metadata and user-facing guidance only; it does not mirror, vendor, or redistribute repository packages.
+- r/LegacyJailbreak and the broader legacy iOS Discord/forum/archive community for years of device compatibility notes, service restoration research, dead repository reports, and preservation practices.
+- TubeRepair, MapsX, Veteris, SBSettings, iFile, Activator, iCleaner, RecordMyScreen, ColoredKnob, LiveWallpaper, and similar legacy projects are credited as ecosystem references in the fixture catalog. Their names, packages, and repositories remain owned by their respective maintainers.
 
 ## License
 
