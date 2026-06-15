@@ -3334,7 +3334,8 @@ pre {
   margin: 0;
   border-radius: 10px;
   object-fit: contain;
-  transform: none;
+  transform: scale(1.28);
+  transform-origin: center;
 }
 
 .header-actions .icon-link:hover {
