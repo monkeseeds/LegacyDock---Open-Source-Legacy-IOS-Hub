@@ -1,22 +1,11 @@
 # LegacyDock
 
-LegacyDock is an open-source, local-first operating center for preserving, maintaining, repairing, enhancing, and documenting legacy Apple devices running iOS 6 through iOS 9.
+LegacyDock is an open-source, local-first project for preserving, maintaining, repairing, enhancing, and documenting legacy Apple devices running iOS 6 through iOS 9.
 
-It is not another jailbreak tool, piracy surface, or package manager clone. LegacyDock is meant to become the trusted hub users open when they need to understand an old iPhone, iPad, or iPod touch and safely manage its software environment.
+
 
 ## What Is Included Now
-
-This repository now contains a fuller static product foundation:
-
-- proper landing page with a retro-modern Apple-inspired visual direction,
-- Jan.ai-inspired product storytelling and Flathub-inspired browse/storefront flow,
-- standalone docs, changelog, and pricing pages,
-- separate `console.html` product console,
-- dark theme by default,
-- working product console demo,
-- device dashboard,
-- Device Doctor health dashboard with explainable performance, stability, battery, storage, compatibility, and repository scores,
-- basic diagnostics for repositories, packages, dependencies, storage, battery, and compatibility,
+- Basic diagnostics for repositories, packages, dependencies, storage, battery, and compatibility,
 - LegacyDock Care intelligence for repair plans, community signals, bootloop risk, smart alternatives, modernization guidance, snapshot intelligence, and health timeline,
 - Legacy Repository Hub with searchable repositories, package browsing, health status, essential tweaks, service restoration catalog, submissions, dead repo archive, community resources, and device-specific recommendations,
 - compatibility-aware marketplace,
@@ -72,16 +61,6 @@ npm run check
 ```text
 https://monkeseeds.github.io/LegacyDock---Open-Source-Legacy-IOS-Hub/
 ```
-
-## Core Principles
-
-- Open-source local core
-- Local-first and useful without an account
-- Privacy focused
-- Safety before convenience
-- Transparent compatibility and risk explanations
-- Optional cloud services for sync, backup, and community intelligence
-- Long-term preservation of legacy hardware
 
 ## Technical Direction
 
