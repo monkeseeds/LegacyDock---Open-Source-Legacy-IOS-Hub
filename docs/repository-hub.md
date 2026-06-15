@@ -10,15 +10,15 @@ LegacyDock now includes a Repository Hub inside the console. Its purpose is to r
 - Browser-safe manual health refresh using the local community database.
 - Package browser with version, dependency, compatibility, repository, rating, verification, and last-updated metadata.
 - Essential tweaks database for utilities, recording, UI, restoration, and applications.
-- Legacy service catalog for TubeRepair, MapsX, Weather, iTunes Store, App Store, push notifications, Siri, Game Center, and YouTube restoration research.
+- Legacy service catalog for [TubeRepair](http://cydia.skyglow.es/), [MapsX](http://cydia.skyglow.es/), Weather, iTunes Store, App Store, push notifications, Siri, Game Center, and YouTube restoration research.
 - Repository submission form staged for future moderation.
 - Dead repository archive with original URLs, mirror status, and recovery instructions.
-- Community resource center for r/LegacyJailbreak, iPhoneOS Obscura, Legacy iOS Kit, and related trusted resources.
+- Community resource center for [r/LegacyJailbreak](https://www.reddit.com/r/LegacyJailbreak/), [iPhoneOS Obscura](https://github.com/CatsLover2006/iOSobscuraServer), [Legacy iOS Kit](https://github.com/LukeZGD/Legacy-iOS-Kit), and related trusted resources.
 - Device-specific smart recommendations based on selected model and firmware.
 
 ## Credits And Prior Art
 
-The seed catalog credits and references the legacy iOS ecosystem rather than replacing it. BigBoss, Cydia/Telesphoreo, ModMyi Archive, Chariz, SkyGlow, Yzu, Galactic Server, TubeRepair, MapsX, Veteris, SBSettings, iFile, Activator, iCleaner, RecordMyScreen, ColoredKnob, LiveWallpaper, r/LegacyJailbreak, iPhoneOS Obscura, Legacy iOS Kit, and related community resources all inform the fixture metadata and product direction.
+The seed catalog credits and references the legacy iOS ecosystem rather than replacing it. [BigBoss](http://apt.thebigboss.org/repofiles/cydia/), [Cydia/Telesphoreo](http://apt.saurik.com/), [ModMyi Archive](http://apt.modmyi.com/), [Chariz](https://repo.chariz.com/), [SkyGlow](http://cydia.skyglow.es/), [Yzu](http://yzu.moe/dev/), [Galactic Server](http://repo.galactic-server.info/), [TubeRepair](http://cydia.skyglow.es/), [MapsX](http://cydia.skyglow.es/), [Veteris](http://yzu.moe/dev/), [SBSettings](http://repo.galactic-server.info/), [iFile](http://apt.thebigboss.org/repofiles/cydia/), [Activator](http://apt.thebigboss.org/repofiles/cydia/), [iCleaner](http://apt.thebigboss.org/repofiles/cydia/), [RecordMyScreen](http://apt.thebigboss.org/repofiles/cydia/), [ColoredKnob](http://apt.thebigboss.org/repofiles/cydia/), [LiveWallpaper](http://apt.thebigboss.org/repofiles/cydia/), [r/LegacyJailbreak](https://www.reddit.com/r/LegacyJailbreak/), [iPhoneOS Obscura](https://github.com/CatsLover2006/iOSobscuraServer), [Legacy iOS Kit](https://github.com/LukeZGD/Legacy-iOS-Kit), and related community resources all inform the fixture metadata and product direction.
 
 LegacyDock does not own those repositories or packages. The current Hub is metadata-first: source URLs, compatibility notes, health status, service restoration guidance, and community resource links. It does not mirror package payloads or redistribute copyrighted software.
 
