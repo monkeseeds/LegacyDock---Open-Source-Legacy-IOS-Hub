@@ -2,6 +2,7 @@
 
 ## 2026-06-15
 
+- Added the full desktop Console workspace to the Tauri app with Devices, Repositories, Package Browser, Device Doctor, Snapshots, Reports, and resource views.
 - Added the Releases page, replaced public Browse/Open Console navigation with Releases, and configured GitHub Actions to build Windows and macOS desktop artifacts.
 - Replaced the LegacyDock logo assets with the supplied SVG and added the desktop Setup Wizard flow for local legacy iOS onboarding.
 - Installed desktop npm dependencies, added the desktop lockfile, upgraded Vite tooling to clear npm audit findings, and verified the React/Vite production build.

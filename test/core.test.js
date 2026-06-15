@@ -219,6 +219,11 @@ test("includes the desktop setup wizard and synchronized logo assets", async () 
   assert.match(desktopApp, /iOS 3-9 supported/);
   assert.match(desktopApp, /MapsX/);
   assert.match(desktopApp, /TubeRepair/);
+  assert.match(desktopApp, /LegacyDock Console/);
+  assert.match(desktopApp, /Repository Hub/);
+  assert.match(desktopApp, /Package Browser/);
+  assert.match(desktopApp, /Snapshots/);
+  assert.match(desktopApp, /Preservation and setup exports/);
   assert.equal(sharedHash, desktopHash);
 });
 

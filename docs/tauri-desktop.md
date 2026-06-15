@@ -2,7 +2,7 @@
 
 LegacyDock now has a Tauri desktop scaffold with a React, Vite, and Tailwind frontend plus a Rust native backend.
 
-The first desktop experience is a Setup Wizard that guides beginners through device detection, compatibility, curated repositories, essential setup, Device Doctor, legacy service restoration, and a final local report.
+The first desktop experience is a Setup Wizard that guides beginners through device detection, compatibility, curated repositories, essential setup, Device Doctor, legacy service restoration, and a final local report. The app also includes an embedded Console workspace for devices, repositories, package browsing, diagnostics, snapshots, reports, and community resources.
 
 ## Stack
 

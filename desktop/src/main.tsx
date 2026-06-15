@@ -51,6 +51,9 @@ type SetupItem = {
   instructions: string;
 };
 
+type AppMode = "wizard" | "console";
+type ConsoleTab = "devices" | "repositories" | "packages" | "doctor" | "snapshots" | "reports";
+
 const wizardSteps = [
   "Welcome",
   "Detect",
@@ -63,15 +66,38 @@ const wizardSteps = [
 ];
 
 const curatedRepos = [
-  { name: "BigBoss", url: "http://apt.thebigboss.org/repofiles/cydia/", reason: "Core utilities, Activator, iCleaner, iFile, and classic packages." },
-  { name: "SkyGlow", url: "http://cydia.skyglow.es/", reason: "Service restoration packages such as MapsX and TubeRepair." },
-  { name: "Yzu", url: "http://yzu.moe/dev/", reason: "Legacy application preservation tools including Veteris." },
-  { name: "Galactic Server", url: "http://repo.galactic-server.info/", reason: "Classic utility packages such as SBSettings." }
+  { name: "BigBoss", url: "http://apt.thebigboss.org/repofiles/cydia/", reason: "Core utilities, Activator, iCleaner, iFile, and classic packages.", category: "Essential", status: "Verified", packageCount: 18421, rating: 4.9, maintainer: "BigBoss team", notes: "HTTP is normal for older Cydia setups." },
+  { name: "SkyGlow", url: "http://cydia.skyglow.es/", reason: "Service restoration packages such as MapsX and TubeRepair.", category: "Service Restoration", status: "Verified", packageCount: 42, rating: 4.7, maintainer: "SkyGlow community", notes: "Recommended for iOS 6 restoration experiments." },
+  { name: "Yzu", url: "http://yzu.moe/dev/", reason: "Legacy application preservation tools including Veteris.", category: "Applications", status: "Degraded", packageCount: 18, rating: 4.5, maintainer: "Yzu", notes: "Useful for app restoration, but responses may redirect." },
+  { name: "Galactic Server", url: "http://repo.galactic-server.info/", reason: "Classic utility packages such as SBSettings.", category: "Utilities", status: "Verified", packageCount: 73, rating: 4.4, maintainer: "Galactic Server", notes: "Good utility source for iOS 5 and iOS 6 devices." }
 ];
 
 const recommendedPackages = ["Activator", "iCleaner", "iFile", "SBSettings", "Veteris", "MapsX", "TubeRepair"];
 const unsupportedPackages = ["Heavy WinterBoard theme stacks", "Newer rootless tweaks", "iOS 10+ only packages"];
 const knownRisks = ["HTTP-only repositories are normal on older Cydia but should be reviewed.", "Snapshot before changing sources.", "Avoid stacking lock screen and SpringBoard tweaks."];
+
+const consolePackages = [
+  { name: "Activator", category: "Utilities", version: "1.9.13", repository: "BigBoss", ios: "iOS 3-9", status: "Verified Working", risk: "Medium", rating: 4.7, dependencies: "MobileSubstrate, Flipswitch", summary: "Gesture and shortcut automation for legacy iOS." },
+  { name: "iCleaner", category: "Utilities", version: "7.7.5", repository: "BigBoss", ios: "iOS 5-9", status: "Verified Working", risk: "Low", rating: 4.9, dependencies: "APT libraries", summary: "Cache cleanup and package maintenance for low-storage devices." },
+  { name: "iFile", category: "Utilities", version: "2.2.0", repository: "BigBoss", ios: "iOS 3-9", status: "Verified Working", risk: "Medium", rating: 4.7, dependencies: "MobileSubstrate", summary: "Classic file manager for on-device maintenance." },
+  { name: "SBSettings", category: "Utilities", version: "6.0.5", repository: "Galactic Server", ios: "iOS 3-6", status: "Verified Working", risk: "Low", rating: 4.6, dependencies: "MobileSubstrate", summary: "Fast toggles for classic jailbroken setups." },
+  { name: "RecordMyScreen", category: "Recording", version: "1.3.0", repository: "BigBoss", ios: "iOS 5-7", status: "Partial", risk: "Medium", rating: 4.2, dependencies: "MobileSubstrate", summary: "Screen recording utility for older devices." },
+  { name: "MapsX", category: "Restoration", version: "1.0.4", repository: "SkyGlow", ios: "iOS 6", status: "Verified Working", risk: "Low", rating: 4.8, dependencies: "SkyGlow repo", summary: "Restores Maps behavior on iOS 6-era devices." },
+  { name: "TubeRepair", category: "Restoration", version: "1.2.0", repository: "SkyGlow", ios: "iOS 5-7", status: "Experimental", risk: "Medium", rating: 4.5, dependencies: "SkyGlow repo", summary: "Restores classic YouTube playback paths where supported." },
+  { name: "Veteris", category: "Applications", version: "2.0", repository: "Yzu", ios: "iOS 5-6", status: "Verified Working", risk: "Low", rating: 4.8, dependencies: "Yzu repo", summary: "Legacy app discovery and preservation utility." }
+];
+
+const snapshotRecords = [
+  { title: "Clean baseline", date: "2026-06-15", device: "iPhone 4", packages: 18, repos: 4, status: "Rollback ready" },
+  { title: "After restoration tools", date: "2026-06-15", device: "iPhone 4", packages: 24, repos: 4, status: "Review recommended" },
+  { title: "Pre-theme install", date: "2026-06-14", device: "iPad 2", packages: 31, repos: 5, status: "Archived" }
+];
+
+const communityResources = [
+  { name: "r/LegacyJailbreak", type: "Community", value: "Reddit troubleshooting and setup reports" },
+  { name: "iPhoneOS Obscura", type: "Archive", value: "Historical iOS software preservation resource" },
+  { name: "Legacy iOS Kit", type: "Tooling", value: "Jailbreak and restoration workflow reference" }
+];
 
 const setupItems: SetupItem[] = [
   {
@@ -206,7 +232,11 @@ function doctorIssues(device: Device) {
 }
 
 function App() {
+  const [appMode, setAppMode] = useState<AppMode>("wizard");
   const [step, setStep] = useState(0);
+  const [consoleTab, setConsoleTab] = useState<ConsoleTab>("devices");
+  const [search, setSearch] = useState("");
+  const [packageFilter, setPackageFilter] = useState("All");
   const [devices, setDevices] = useState<Device[]>([]);
   const [selectedDevice, setSelectedDevice] = useState<Device>(fallbackDevice());
   const [scores, setScores] = useState<DoctorScore[]>([]);
@@ -216,6 +246,15 @@ function App() {
 
   const issues = useMemo(() => doctorIssues(selectedDevice), [selectedDevice]);
   const supportedRange = Number(selectedDevice.firmware.split(".")[0]) >= 3 && Number(selectedDevice.firmware.split(".")[0]) <= 9;
+  const visiblePackages = useMemo(() => {
+    const query = search.trim().toLowerCase();
+    return consolePackages.filter((pkg) => {
+      const matchesFilter = packageFilter === "All" || pkg.category === packageFilter || pkg.ios.includes(packageFilter);
+      const matchesSearch = !query || [pkg.name, pkg.repository, pkg.category, pkg.ios, pkg.status, pkg.summary].some((field) => field.toLowerCase().includes(query));
+      return matchesFilter && matchesSearch;
+    });
+  }, [packageFilter, search]);
+  const detectedDevices = devices.length ? devices : [selectedDevice, { ...fallbackDevice(), id: "demo-ipad2", name: "iPad 2", identifier: "iPad2,1", firmware: "9.3.5", battery_health: 74, status: "demo" }];
 
   async function discover() {
     setStatus("Scanning USB connection locally...");
@@ -413,28 +452,207 @@ function App() {
     </section>
   ];
 
+  const packageFilters = ["All", "Utilities", "Restoration", "Applications", "Recording", "iOS 6", "iOS 9"];
+
+  const consoleView = {
+    devices: <section className="console-grid" key="console-devices">
+      <article className="panel large-panel">
+        <div className="panel-head">
+          <div><Pill>Device Console</Pill><h2>Connected and saved devices</h2></div>
+          <button onClick={discover}><Smartphone size={16} /> Detect</button>
+        </div>
+        <div className="device-console-grid">
+          {detectedDevices.map((device) => <button className={`console-device-card ${selectedDevice.id === device.id ? "active" : ""}`} key={device.id} onClick={() => setSelectedDevice(device)}>
+            <Smartphone size={34} />
+            <span><strong>{device.name}</strong><small>{device.identifier} / iOS {device.firmware}</small><small>{device.status === "demo" ? "Demo profile until USB detection is available" : device.status}</small></span>
+            <Pill tone={Number(device.firmware.split(".")[0]) <= 9 ? "good" : "warn"}>{Number(device.firmware.split(".")[0]) <= 9 ? "Supported" : "Review"}</Pill>
+          </button>)}
+        </div>
+      </article>
+      <article className="panel">
+        <Pill tone="good">Read-only first</Pill>
+        <h2>{selectedDevice.name}</h2>
+        <div className="summary-grid single-column">
+          <div><span>Firmware</span><strong>iOS {selectedDevice.firmware}</strong><small>{selectedDevice.identifier}</small></div>
+          <div><span>Battery</span><strong>{selectedDevice.battery_health || "Unknown"}{selectedDevice.battery_health ? "%" : ""}</strong><small>Reported locally when available</small></div>
+          <div><span>Mutation</span><strong>Disabled</strong><small>Manual install guidance only</small></div>
+        </div>
+      </article>
+    </section>,
+    repositories: <section className="panel" key="console-repos">
+      <div className="panel-head">
+        <div><Pill>Repository Hub</Pill><h2>Curated sources and health</h2></div>
+        <button onClick={checkRepos}><RefreshCcw size={16} /> Refresh health</button>
+      </div>
+      <div className="repo-health-strip">
+        <article><strong>{curatedRepos.filter((repo) => repo.status === "Verified").length}</strong><span>Verified repos</span></article>
+        <article><strong>{curatedRepos.reduce((total, repo) => total + repo.packageCount, 0).toLocaleString()}</strong><span>Indexed packages</span></article>
+        <article><strong>{repoHealth.filter((repo) => repo.package_index_available).length || "Manual"}</strong><span>Package indexes</span></article>
+        <article><strong>HTTP/SSL</strong><span>Compatibility checked</span></article>
+      </div>
+      <div className="repository-console-list">
+        {curatedRepos.map((repo) => {
+          const health = repoHealth.find((item) => item.url === repo.url);
+          return <article className="repository-console-card" key={repo.url}>
+            <div>
+              <Pill tone={repo.status === "Verified" ? "good" : "warn"}>{repo.status}</Pill>
+              <h3>{repo.name}</h3>
+              <p>{repo.reason}</p>
+              <small>{repo.url}</small>
+            </div>
+            <dl>
+              <div><dt>Category</dt><dd>{repo.category}</dd></div>
+              <div><dt>Packages</dt><dd>{repo.packageCount.toLocaleString()}</dd></div>
+              <div><dt>Rating</dt><dd>{repo.rating}/5</dd></div>
+              <div><dt>Maintainer</dt><dd>{repo.maintainer}</dd></div>
+            </dl>
+            <div className="repo-actions">
+              <Pill tone={health?.status === "online" ? "good" : health?.status === "offline" ? "bad" : "warn"}>{health?.status || "not checked"}</Pill>
+              <button onClick={() => navigator.clipboard.writeText(repo.url)}><Clipboard size={15} /> Copy URL</button>
+            </div>
+          </article>;
+        })}
+      </div>
+    </section>,
+    packages: <section className="panel" key="console-packages">
+      <div className="panel-head">
+        <div><Pill>Package Browser</Pill><h2>Browse compatible tweaks without opening Cydia</h2></div>
+        <Pill tone="good">{visiblePackages.length} shown</Pill>
+      </div>
+      <div className="filter-row">
+        {packageFilters.map((filter) => <button className={packageFilter === filter ? "active-filter" : ""} key={filter} onClick={() => setPackageFilter(filter)}>{filter}</button>)}
+      </div>
+      <div className="package-console-grid">
+        {visiblePackages.map((pkg) => <article className="package-console-card" key={pkg.name}>
+          <div className="package-thumb"><PackageSearch size={28} /></div>
+          <div>
+            <Pill tone={pkg.status === "Verified Working" ? "good" : pkg.status === "Partial" ? "warn" : "neutral"}>{pkg.status}</Pill>
+            <h3>{pkg.name}</h3>
+            <p>{pkg.summary}</p>
+          </div>
+          <dl>
+            <div><dt>Version</dt><dd>{pkg.version}</dd></div>
+            <div><dt>Repository</dt><dd>{pkg.repository}</dd></div>
+            <div><dt>Compatibility</dt><dd>{pkg.ios}</dd></div>
+            <div><dt>Dependencies</dt><dd>{pkg.dependencies}</dd></div>
+          </dl>
+          <div className="repo-actions">
+            <Pill tone={pkg.risk === "Low" ? "good" : "warn"}>{pkg.risk} risk</Pill>
+            <button onClick={() => navigator.clipboard.writeText(`${pkg.name} - ${pkg.repository}`)}><Clipboard size={15} /> Copy install note</button>
+          </div>
+        </article>)}
+      </div>
+    </section>,
+    doctor: <section className="console-grid" key="console-doctor">
+      <article className="panel">
+        <div className="panel-head">
+          <div><Pill>Device Doctor</Pill><h2>Diagnostics center</h2></div>
+          <button onClick={() => runDoctor()}><HeartPulse size={16} /> Run scan</button>
+        </div>
+        <div className="score-list">{scores.map((score) => <div key={score.label} className="score-row"><span>{score.label}<small>{score.explanation}</small></span><strong>{score.value}</strong></div>)}</div>
+      </article>
+      <article className="panel">
+        <Pill tone="warn">Issues and fixes</Pill>
+        <h2>Manual repair plan</h2>
+        <div className="issue-list">{issues.map((issue) => <div className="issue-card" key={issue.title}><Pill tone={issue.severity === "Medium" ? "warn" : "good"}>{issue.severity}</Pill><strong>{issue.title}</strong><small>{issue.explanation}</small><em>{issue.fix}</em></div>)}</div>
+      </article>
+    </section>,
+    snapshots: <section className="console-grid" key="console-snapshots">
+      <article className="panel large-panel">
+        <div className="panel-head"><div><Pill>Snapshots</Pill><h2>Local rollback records</h2></div><button onClick={() => setStatus("Snapshot capture is planned; current build exports manual reports.")}><Archive size={16} /> Capture preview</button></div>
+        <div className="snapshot-list">
+          {snapshotRecords.map((snapshot) => <article className="snapshot-card" key={snapshot.title}>
+            <Archive size={22} />
+            <span><strong>{snapshot.title}</strong><small>{snapshot.device} / {snapshot.date}</small><small>{snapshot.packages} packages and {snapshot.repos} repos</small></span>
+            <Pill tone={snapshot.status === "Rollback ready" ? "good" : "warn"}>{snapshot.status}</Pill>
+          </article>)}
+        </div>
+      </article>
+      <article className="panel">
+        <Pill>Diff Preview</Pill>
+        <h2>Last known changes</h2>
+        <ul className="plain-list">
+          <li>SkyGlow source added for restoration packages.</li>
+          <li>MapsX and TubeRepair marked as service restoration candidates.</li>
+          <li>No automatic rollback will run until safe mutation executor is enabled.</li>
+        </ul>
+      </article>
+    </section>,
+    reports: <section className="console-grid" key="console-reports">
+      <article className="panel">
+        <Pill>Reports</Pill>
+        <h2>Preservation and setup exports</h2>
+        <div className="action-panel">
+          <button onClick={exportReport}><FileDown size={17} /> Export setup report</button>
+          <button onClick={copyRepos}><Clipboard size={17} /> Copy repo list</button>
+          <button onClick={saveProfile}><Database size={17} /> Save device profile</button>
+        </div>
+      </article>
+      <article className="panel">
+        <Pill>Community Resources</Pill>
+        <h2>Trusted starting points</h2>
+        <div className="resource-list">
+          {communityResources.map((resource) => <article className="resource-row" key={resource.name}><ShieldCheck size={18} /><span><strong>{resource.name}</strong><small>{resource.type} / {resource.value}</small></span></article>)}
+        </div>
+      </article>
+    </section>
+  }[consoleTab];
+
   return (
     <main className="app-shell">
       <aside className="sidebar">
-        <div className="brand"><img src="/logodock.svg" alt="" /><div><strong>LegacyDock</strong><span>Setup Wizard</span></div></div>
-        <nav>{wizardSteps.map((label, index) => <button key={label} className={step === index ? "active" : ""} onClick={() => setStep(index)}><CheckCircle2 size={17} /> {label}</button>)}</nav>
+        <div className="brand"><img src="/logodock.svg" alt="" /><div><strong>LegacyDock</strong><span>{appMode === "wizard" ? "Setup Wizard" : "Console"}</span></div></div>
+        <div className="mode-switch" aria-label="Application mode">
+          <button className={appMode === "wizard" ? "active" : ""} onClick={() => setAppMode("wizard")}><CheckCircle2 size={16} /> Setup</button>
+          <button className={appMode === "console" ? "active" : ""} onClick={() => setAppMode("console")}><Activity size={16} /> Console</button>
+        </div>
+        {appMode === "wizard" ? (
+          <nav>{wizardSteps.map((label, index) => <button key={label} className={step === index ? "active" : ""} onClick={() => setStep(index)}><CheckCircle2 size={17} /> {label}</button>)}</nav>
+        ) : (
+          <nav>
+            <button className={consoleTab === "devices" ? "active" : ""} onClick={() => setConsoleTab("devices")}><Smartphone size={17} /> Devices</button>
+            <button className={consoleTab === "repositories" ? "active" : ""} onClick={() => setConsoleTab("repositories")}><Database size={17} /> Repositories</button>
+            <button className={consoleTab === "packages" ? "active" : ""} onClick={() => setConsoleTab("packages")}><PackageSearch size={17} /> Packages</button>
+            <button className={consoleTab === "doctor" ? "active" : ""} onClick={() => setConsoleTab("doctor")}><HeartPulse size={17} /> Device Doctor</button>
+            <button className={consoleTab === "snapshots" ? "active" : ""} onClick={() => setConsoleTab("snapshots")}><Archive size={17} /> Snapshots</button>
+            <button className={consoleTab === "reports" ? "active" : ""} onClick={() => setConsoleTab("reports")}><ShieldCheck size={17} /> Reports</button>
+          </nav>
+        )}
         <a className="github-link" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub"><Github size={16} /> GitHub</a>
       </aside>
 
       <section className="workspace">
         <header className="topbar">
-          <div><Pill tone="good">Local MVP / no accounts</Pill><h1>Legacy iOS setup, made obvious.</h1><p>{status}</p></div>
+          <div>
+            <Pill tone="good">Local MVP / no accounts</Pill>
+            <h1>{appMode === "wizard" ? "Legacy iOS setup, made obvious." : "LegacyDock Console"}</h1>
+            <p>{appMode === "wizard" ? status : "Repository hub, package browser, Device Doctor, snapshots, and reports inside the desktop app."}</p>
+          </div>
           <div className="actions">
             <button onClick={discover}><Smartphone size={17} /> Detect</button>
             <button onClick={copyRepos}><PackageCheck size={17} /> Copy repos</button>
           </div>
         </header>
-        <section className="stepper">{wizardSteps.map((label, index) => <button key={label} className={step === index ? "current" : completed.length && index < step ? "done" : ""} onClick={() => setStep(index)}>{index + 1}<span>{label}</span></button>)}</section>
-        {stepView[step]}
-        <footer className="wizard-footer">
-          <button disabled={step === 0} onClick={() => setStep((current) => Math.max(0, current - 1))}>Back</button>
-          <button className="primary-action" disabled={step === wizardSteps.length - 1} onClick={() => setStep((current) => Math.min(wizardSteps.length - 1, current + 1))}>Continue</button>
-        </footer>
+        {appMode === "console" && (
+          <section className="console-toolbar">
+            <label className="search-field">
+              <PackageSearch size={17} />
+              <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search packages, repos, categories, iOS versions" />
+            </label>
+            <button onClick={() => runDoctor()}><HeartPulse size={16} /> Scan</button>
+            <button onClick={checkRepos}><RefreshCcw size={16} /> Check repos</button>
+          </section>
+        )}
+        {appMode === "wizard" ? (
+          <>
+            <section className="stepper">{wizardSteps.map((label, index) => <button key={label} className={step === index ? "current" : completed.length && index < step ? "done" : ""} onClick={() => setStep(index)}>{index + 1}<span>{label}</span></button>)}</section>
+            {stepView[step]}
+            <footer className="wizard-footer">
+              <button disabled={step === 0} onClick={() => setStep((current) => Math.max(0, current - 1))}>Back</button>
+              <button className="primary-action" disabled={step === wizardSteps.length - 1} onClick={() => setStep((current) => Math.min(wizardSteps.length - 1, current + 1))}>Continue</button>
+            </footer>
+          </>
+        ) : consoleView}
       </section>
     </main>
   );

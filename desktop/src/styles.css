@@ -22,14 +22,19 @@ body {
 }
 
 button,
-a {
+a,
+input {
   min-height: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.06);
   color: inherit;
   font: inherit;
   font-weight: 850;
+}
+
+button,
+a {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
   text-decoration: none;
 }
 
@@ -104,9 +109,26 @@ nav,
 .issue-list,
 .checklist,
 .action-panel,
-.plain-list {
+.plain-list,
+.snapshot-list,
+.resource-list {
   display: grid;
   gap: 10px;
+}
+
+.mode-switch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.mode-switch button {
+  min-height: 38px;
+  padding-inline: 8px;
 }
 
 nav button,
@@ -117,7 +139,9 @@ nav button,
   color: #b9c2d0;
 }
 
-nav button.active {
+nav button.active,
+.mode-switch button.active,
+.filter-row button.active-filter {
   border-color: rgba(120, 180, 255, 0.36);
   background: rgba(120, 180, 255, 0.14);
   color: #8fc7ff;
@@ -236,7 +260,11 @@ h3 {
 .stat-grid,
 .recommendation-columns,
 .summary-grid,
-.service-grid {
+.service-grid,
+.console-grid,
+.device-console-grid,
+.package-console-grid,
+.repo-health-strip {
   display: grid;
   gap: 16px;
 }
@@ -248,6 +276,46 @@ h3 {
 .panel {
   min-width: 0;
   padding: 18px;
+}
+
+.console-toolbar {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) auto auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.search-field svg {
+  color: #8fc7ff;
+  flex: 0 0 auto;
+}
+
+.search-field input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+
+.console-grid {
+  grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);
 }
 
 .large-panel {
@@ -443,6 +511,163 @@ h3 {
   margin-top: 18px;
 }
 
+.single-column {
+  grid-template-columns: 1fr;
+}
+
+.device-console-grid,
+.package-console-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.console-device-card,
+.repository-console-card,
+.package-console-card,
+.snapshot-card,
+.resource-row {
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.console-device-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  min-height: 118px;
+  padding: 16px;
+  text-align: left;
+}
+
+.console-device-card.active {
+  border-color: rgba(123, 216, 143, 0.35);
+  background: rgba(123, 216, 143, 0.08);
+}
+
+.console-device-card span,
+.snapshot-card span,
+.resource-row span {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.repo-health-strip {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 16px;
+}
+
+.repo-health-strip article {
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.repo-health-strip strong {
+  color: #7bd88f;
+  font-size: 1.45rem;
+}
+
+.repo-health-strip span {
+  color: #9aa4b2;
+  font-size: 0.8rem;
+}
+
+.repository-console-list {
+  display: grid;
+  gap: 12px;
+}
+
+.repository-console-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+}
+
+.repository-console-card p,
+.package-console-card p {
+  margin-top: 8px;
+  color: #b9c2d0;
+  line-height: 1.45;
+}
+
+dl {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+dl div {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 10px;
+}
+
+dt {
+  color: #9aa4b2;
+  font-size: 0.78rem;
+}
+
+dd {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filter-row button {
+  min-height: 34px;
+}
+
+.package-console-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 14px;
+  padding: 16px;
+}
+
+.package-console-card dl,
+.package-console-card .repo-actions {
+  grid-column: 1 / -1;
+}
+
+.package-thumb {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(143, 199, 255, 0.1);
+  color: #8fc7ff;
+}
+
+.snapshot-card,
+.resource-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  padding: 14px;
+}
+
+.resource-row {
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
 .action-panel {
   align-content: start;
 }
@@ -454,4 +679,23 @@ h3 {
 
 .wizard-footer {
   justify-content: flex-end;
+}
+
+@media (max-width: 1280px) {
+  body {
+    min-width: 980px;
+  }
+
+  .console-grid,
+  .wizard-grid,
+  .repository-console-card {
+    grid-template-columns: 1fr;
+  }
+
+  .repo-health-strip,
+  .device-console-grid,
+  .package-console-grid,
+  .service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
