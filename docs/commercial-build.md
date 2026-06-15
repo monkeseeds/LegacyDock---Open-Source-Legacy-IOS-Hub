@@ -49,6 +49,10 @@ The API is local-first and conservative. It plans operations, creates local snap
 ## Commercial Contracts Added
 
 - Tauri desktop workspace in `desktop/` and `src-tauri/`.
+- Windows-first Tauri packaging targets: `nsis` and `msi`.
+- Tauri update-feed scaffold at `updates/stable.json`.
+- Rust SQLite migration runner in `src-tauri/src/migrations.rs`.
+- Installed desktop npm dependencies, generated `desktop/package-lock.json`, fixed npm audit findings, and verified the React/Vite production frontend build.
 - Desktop shell contract for menus, tray behavior, bundled local API startup, permissions, and update channels.
 - Durable storage abstraction with a SQLite schema and JSON fallback when SQLite is unavailable.
 - Read-only live device inspection parsers for Cydia sources, dpkg package state, package manager inference, and SSH credential policy.
@@ -72,10 +76,9 @@ The override is stored in local storage for future console sessions.
 
 ## Next Commercial Milestones
 
-- Install local Rust, Tauri, and Node desktop dependencies.
-- Add real SQLite driver packaging and migration execution to the desktop app bundle.
+- Install local Rust, Cargo, and Tauri platform prerequisites.
 - Connect real hardware through libimobiledevice, AFC, and opt-in SSH testing.
 - Add Stripe keys, price IDs, customer portal, and webhook deployment.
 - Add hosted cloud storage, moderation queues, and recommendation services.
-- Add signing certificates, notarization, installer publishing, and auto-update feeds.
-- Add final privacy policy, terms pages, telemetry consent UI, and hosted data deletion flows.
+- Add signing certificates, notarization, installer publishing, and real signed auto-update feed entries.
+- Add telemetry consent UI and hosted data deletion flows.

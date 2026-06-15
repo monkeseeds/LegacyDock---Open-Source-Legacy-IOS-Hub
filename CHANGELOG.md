@@ -2,6 +2,8 @@
 
 ## 2026-06-15
 
+- Installed desktop npm dependencies, added the desktop lockfile, upgraded Vite tooling to clear npm audit findings, and verified the React/Vite production build.
+- Updated README direction, added Windows-first Tauri packaging targets, update-feed scaffold, Rust SQLite migration runner, privacy/terms docs, and preliminary third-party license review.
 - Added the Tauri desktop application scaffold with React, Vite, Tailwind, Rust command modules, SQLite initialization, repository health checks, package parsing, device discovery boundaries, and dry-run mutation planning.
 - Added commercial readiness contracts for desktop shell behavior, durable SQLite-style storage, read-only live inspection, safe mutation queueing, package index ingestion, entitlements, encrypted cloud sync, compliance, and release manifests.
 - Added release verification workflow scaffolding for syntax checks, tests, and source checksums without requiring signing certificates or store credentials.

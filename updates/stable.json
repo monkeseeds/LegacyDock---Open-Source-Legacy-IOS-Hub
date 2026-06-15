@@ -1,0 +1,11 @@
+{
+  "version": "0.1.0",
+  "notes": "Initial LegacyDock desktop scaffold. Stable auto-update is not enabled until installer signing is configured.",
+  "pub_date": "2026-06-15T00:00:00Z",
+  "platforms": {
+    "windows-x86_64": {
+      "signature": "SIGNATURE_REQUIRED_BEFORE_STABLE_RELEASE",
+      "url": "https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/releases/download/v0.1.0/LegacyDock_0.1.0_x64-setup.exe"
+    }
+  }
+}

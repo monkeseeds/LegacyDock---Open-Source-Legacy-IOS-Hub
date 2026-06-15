@@ -10,6 +10,7 @@ LegacyDock now has a Tauri desktop scaffold with a React, Vite, and Tailwind fro
 - Data: SQLite through `rusqlite`
 - Repository checks: Rust `reqwest`
 - Device detection: `libimobiledevice` command boundary
+- Packaging: Windows `nsis` and `msi` first
 
 ## Workspace
 
@@ -21,10 +22,16 @@ assets/         Existing LegacyDock brand assets reused by the desktop app
 
 ## Commands
 
-These require local setup of Node packages, Rust, and Tauri prerequisites:
+Node desktop dependencies have been installed and the React/Vite frontend build has been verified.
 
 ```bash
 npm run desktop:install
+npm run desktop:frontend
+```
+
+These still require Rust, Cargo, and Tauri platform prerequisites:
+
+```bash
 npm run desktop:dev
 npm run desktop:build
 ```
@@ -51,11 +58,21 @@ plan_safe_mutation
 
 The mutation command is dry-run only. It requires a snapshot and exact confirmation phrase before queuing, and still does not change a device.
 
+## Storage
+
+`initialize_database` runs the Rust migration runner in `src-tauri/src/migrations.rs`. The first migration creates tables for devices, snapshots, repositories, package indexes, health history, submissions, settings, and entitlements.
+
 ## Setup Still Required
 
 - Install Rust and platform build tools.
 - Install Tauri prerequisites for Windows, macOS, or Linux.
-- Run `npm run desktop:install`.
 - Install `libimobiledevice` for real USB detection.
 - Add signing certificates before stable installers.
 - Add physical device QA before enabling native mutation executors.
+
+## Current Local Verification
+
+- `npm run desktop:install` completed.
+- `npm run desktop:frontend` completed.
+- `npm --prefix desktop audit --json` reports 0 vulnerabilities.
+- Rust/Cargo are not installed on this machine yet, so native Tauri compilation was not run.

@@ -8,24 +8,15 @@ Have fun!
 
 
 ## What Is Included Now
-- Basic diagnostics for repositories, packages, dependencies, storage, battery, and compatibility,
-- LegacyDock Care intelligence for repair plans, community signals, bootloop risk, smart alternatives, modernization guidance, snapshot intelligence, and health timeline,
-- Legacy Repository Hub with searchable repositories, package browsing, health status, essential tweaks, service restoration catalog, submissions, dead repo archive, community resources, and device-specific recommendations,
-- compatibility-aware marketplace,
-- explainable package safety review,
-- repository health scanner,
-- restoration guidance lab,
-- snapshot creation and diffing,
-- preservation report export,
-- optional cloud workspace positioning,
-- full iOS 6.x.x through iOS 9.x.x compatibility catalog,
-- JSON schemas for the core data model,
-- local engines for compatibility, repository scanning, snapshots, and reports,
-- production-oriented local core modules for `libimobiledevice` discovery, Debian package index parsing, dependency resolution, guarded operation planning, and JSON workspace persistence,
-- reusable Device Doctor core modules for explainable diagnostics, Care repair planning, community intelligence, snapshot intelligence, and health timeline data,
-- CLI commands for device discovery, doctor checks, install planning, snapshots, preservation reports, and package index imports,
-- automated tests for core parsing, adapter mapping, dependency resolution, and safety gates,
-- architecture, integration, community intelligence, and roadmap docs.
+- Static website, docs, changelog, pricing page, and GitHub Pages-ready console.
+- Tauri desktop scaffold with React, Vite, Tailwind, and Rust command modules.
+- Local API for devices, repositories, packages, Device Doctor, snapshots, reports, package ingestion, entitlements, cloud contracts, compliance, and release metadata.
+- Repository Hub, package browser, essential tweaks, restoration catalog, dead repo archive, and community resource links.
+- iOS 6.0 through iOS 9.3.6 compatibility catalog.
+- Device Doctor and LegacyDock Care logic for diagnostics, repair planning, bootloop risk, smart alternatives, and health timelines.
+- Safety-gated install planning, dry-run mutation queue, snapshot creation, and preservation report export.
+- Durable storage contracts with SQLite schema plus JSON fallback.
+- CLI commands, JSON schemas, release workflow scaffold, and automated tests.
 
 The site is built with static HTML, CSS, and JavaScript so it can run directly on GitHub Pages without a build pipeline.
 
@@ -67,13 +58,13 @@ https://monkeseeds.github.io/LegacyDock---Open-Source-Legacy-IOS-Hub/
 
 ## Technical Direction
 
-The static app is a product and architecture scaffold. The likely production direction is:
+The production direction is:
 
-1. Tauri desktop shell for macOS, Windows, and Linux.
-2. Rust local core for device adapters, SQLite, snapshots, and file IO.
-3. Reused web UI for dashboard and marketplace flows.
-4. Adapter layer for libimobiledevice, AFC, SSH, package index parsing, and archive discovery.
-5. Optional cloud services for encrypted sync, team inventory, and aggregated compatibility intelligence.
+1. Tauri desktop app with a React/Vite/Tailwind interface and Rust backend.
+2. Windows installers first, followed by macOS and Linux once signing and QA are ready.
+3. SQLite for local device state, snapshots, repository indexes, reports, settings, and entitlements.
+4. Read-only `libimobiledevice`, AFC, package-state, and repository inspection before any device mutation.
+5. Optional hosted services later for Stripe entitlements, encrypted sync, backups, teams, moderation, and compatibility intelligence.
 
 See:
 

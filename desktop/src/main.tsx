@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { invoke } from "@tauri-apps/api/core";
 import { Activity, Archive, Database, Github, HardDrive, HeartPulse, PackageSearch, ShieldCheck, Smartphone } from "lucide-react";
-import logoUrl from "../../assets/logodock.svg?url";
 import "./styles.css";
 
 type Device = {
@@ -86,7 +85,7 @@ function App() {
     <main className="app-shell">
       <aside className="sidebar">
         <div className="brand">
-          <img src={logoUrl} alt="" />
+          <img src="/logodock.svg" alt="" />
           <div>
             <strong>LegacyDock</strong>
             <span>Tauri Desktop</span>

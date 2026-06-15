@@ -1,6 +1,7 @@
 mod database;
 mod device;
 mod diagnostics;
+mod migrations;
 mod mutation;
 mod packages;
 mod repository;

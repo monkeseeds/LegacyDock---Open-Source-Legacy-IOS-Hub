@@ -192,11 +192,16 @@ test("exposes commercial readiness endpoints", async () => {
 test("defines Tauri desktop workspace configuration", async () => {
   const tauriConfig = JSON.parse(await readFile("src-tauri/tauri.conf.json", "utf8"));
   const desktopPackage = JSON.parse(await readFile("desktop/package.json", "utf8"));
+  const updateFeed = JSON.parse(await readFile("updates/stable.json", "utf8"));
+  const migrations = await readFile("src-tauri/src/migrations.rs", "utf8");
 
   assert.equal(tauriConfig.productName, "LegacyDock");
   assert.equal(tauriConfig.build.devUrl, "http://127.0.0.1:1420");
   assert.equal(tauriConfig.build.frontendDist, "../desktop/dist");
+  assert.deepEqual(tauriConfig.bundle.targets, ["nsis", "msi"]);
   assert.ok(desktopPackage.dependencies.react);
   assert.ok(desktopPackage.devDependencies["@tauri-apps/cli"]);
   assert.ok(desktopPackage.devDependencies.tailwindcss);
+  assert.equal(updateFeed.platforms["windows-x86_64"].signature, "SIGNATURE_REQUIRED_BEFORE_STABLE_RELEASE");
+  assert.match(migrations, /schema_migrations/);
 });

@@ -21,6 +21,7 @@ LegacyDock now has a production-oriented local core, but the project should stil
 - Console runtime bridge that hydrates catalog data from the local API and routes snapshots, install plans, and preservation reports through it when available.
 - Desktop shell contract for app menus, tray behavior, bundled local service startup, permissions, and update policy.
 - Tauri v2 desktop scaffold with React, Vite, Tailwind, and Rust command modules for diagnostics, repository checks, package parsing, database initialization, device discovery, and dry-run mutation planning.
+- Windows-first Tauri packaging targets, update-feed scaffold, privacy notes, terms, and preliminary third-party license review.
 - SQLite schema and durable storage abstraction with JSON fallback for development environments.
 - Read-only live inspection parsers for Cydia sources, dpkg status, package manager inference, and SSH credential policy.
 - Safe mutation queue with preflight checks, required snapshots, confirmation phrases, and rollback previews.
@@ -55,6 +56,6 @@ npm run api
 - Add cryptographic snapshot manifests and restore previews.
 - Enable device mutation executors only after hardware preflight, snapshots, rollback, and recovery workflows are proven.
 - Add Stripe checkout, portal, webhooks, hosted entitlements, encrypted cloud sync, and team inventory services.
-- Add final privacy policy, terms, telemetry consent UI, and hosted data deletion flows.
+- Add telemetry consent UI and hosted data deletion flows.
 - Run physical QA across representative iOS 6, 7, 8, and 9 devices.
 - Complete license review before copying, linking, or bundling GPL ecosystem tools.
