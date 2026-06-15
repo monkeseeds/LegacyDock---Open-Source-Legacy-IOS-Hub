@@ -16,7 +16,7 @@
   --violet: #b79cff;
   --shadow: 0 20px 60px rgba(0, 0, 0, 0.34);
   --radius: 8px;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Helvetica Neue", Helvetica, "Lucida Grande", Arial, sans-serif;
 }
 
 :root.light {
@@ -3106,6 +3106,215 @@ pre {
   border-color: var(--marketing-line);
   background: white;
   color: var(--marketing-ink);
+}
+
+/* Classic Apple / Cydia skin. Keeps layout intact while shifting the visual language. */
+.marketing-body {
+  --marketing-bg: #dfe3e8;
+  --marketing-ink: #111820;
+  --marketing-muted: #56606b;
+  --marketing-line: rgba(61, 72, 86, 0.22);
+  --marketing-card: rgba(250, 251, 252, 0.9);
+  --marketing-dark: #0a0d11;
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0 1px, rgba(0, 0, 0, 0.035) 1px 2px),
+    linear-gradient(180deg, #eef1f4 0%, #d9dde2 48%, #cfd4da 100%);
+  font-family: "Helvetica Neue", Helvetica, "Lucida Grande", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.marketing-body .site-header {
+  border-bottom-color: rgba(255, 255, 255, 0.18);
+  background:
+    linear-gradient(180deg, rgba(78, 88, 101, 0.96), rgba(33, 39, 47, 0.96) 50%, rgba(13, 17, 22, 0.98)),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 3px);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.18),
+    0 1px 0 rgba(0, 0, 0, 0.58),
+    0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.marketing-body .brand img,
+.marketing-body .hero-logo {
+  border-radius: 12px;
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.28),
+    0 8px 20px rgba(0, 0, 0, 0.28);
+}
+
+.marketing-body .site-nav {
+  font-size: 0.9rem;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.72);
+}
+
+.marketing-body .icon-button,
+.marketing-body .pill-button,
+.marketing-body .secondary-button,
+.marketing-body .glass-button,
+.marketing-body .primary-button,
+.marketing-body .mini-button,
+.marketing-body .console-tab,
+.marketing-body .segmented button {
+  border-color: rgba(0, 0, 0, 0.28);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(218, 224, 231, 0.86) 48%, rgba(177, 186, 197, 0.9));
+  color: #131920;
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.86),
+    inset 0 -1px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.22);
+  text-shadow: 0 1px rgba(255, 255, 255, 0.58);
+}
+
+.marketing-body .primary-button,
+.marketing-body .aqua-button,
+.marketing-body .console-tab.active,
+.marketing-body .segmented button.active {
+  border-color: #164f8d;
+  background:
+    linear-gradient(180deg, #8fd3ff 0%, #3d91df 48%, #1165b5 49%, #0a4e93 100%);
+  color: white;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.48);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.42),
+    inset 0 -1px rgba(0, 0, 0, 0.2),
+    0 5px 16px rgba(17, 101, 181, 0.28);
+}
+
+.ld-hero {
+  background:
+    linear-gradient(90deg, rgba(5, 7, 10, 0.94), rgba(12, 16, 22, 0.78) 52%, rgba(12, 16, 22, 0.48)),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 4px),
+    linear-gradient(180deg, #151b23 0%, #090c11 58%, #030406 100%);
+}
+
+.ld-hero::after {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 42%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 5px);
+}
+
+.ld-hero-copy h1,
+.console-body .console-head h1 {
+  background: linear-gradient(180deg, #ffffff 0%, #d8e0ea 45%, #94a5ba 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.42);
+}
+
+.hero-badge,
+.announcement {
+  border-color: rgba(255, 255, 255, 0.22);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05)),
+    rgba(15, 22, 31, 0.72);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.18);
+}
+
+.iphone-frame {
+  border-color: #4d5560;
+  background:
+    linear-gradient(145deg, #39424d, #06080b 58%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 4px);
+}
+
+.phone-screen,
+.doctor-card,
+.phone-row {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035)),
+    #111822;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.feature-card,
+.stat-strip article,
+.marketing-body .docs-article,
+.marketing-body .docs-sidebar,
+.marketing-body .on-this-page,
+.marketing-body .doc-card,
+.marketing-body .release-card,
+.marketing-body .pricing-plan,
+.marketing-body .feature-comparison,
+.marketing-body .comparison-grid article,
+.marketing-body .concept-grid article,
+.marketing-body .release-body,
+.marketing-body .asset-group,
+.console-body .panel,
+.console-body .score-card,
+.console-body .plan-card,
+.console-body .issue-card,
+.console-body .snapshot-card,
+.console-body .device-card,
+.console-body .device-hero-card,
+.console-body .package-card,
+.console-body .repository-card,
+.console-body .repo-package-card,
+.console-body .essential-card,
+.console-body .service-card,
+.console-body .repo-summary-grid article,
+.console-body .resource-row,
+.console-body .dialog-card,
+.console-body .workflow-card,
+.console-body .doctor-score-card {
+  border-color: rgba(62, 75, 89, 0.22);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(235, 239, 243, 0.92)),
+    var(--marketing-card);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.92),
+    0 16px 36px rgba(38, 48, 62, 0.14);
+}
+
+.doctor-showcase,
+.care-panel,
+.console-body .console-head {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 28%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 4px),
+    linear-gradient(135deg, #121923, #070a0f 72%, #020304);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.12),
+    0 28px 74px rgba(20, 27, 36, 0.22);
+}
+
+.marketing-body .page-hero {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.09), transparent 34%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 4px),
+    linear-gradient(135deg, #151d28, #070a0e 72%);
+}
+
+.console-body {
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0 1px, rgba(0, 0, 0, 0.035) 1px 2px),
+    linear-gradient(180deg, #eef1f4 0%, #d9dde2 48%, #cfd4da 100%);
+}
+
+.console-body .console-sidebar {
+  background:
+    linear-gradient(180deg, #f6f7f9, #dce2e8),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.35) 0 1px, transparent 1px 4px);
+}
+
+.console-body .console-shell {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(230, 235, 241, 0.9));
+}
+
+.marketing-body .asset-group h3,
+.marketing-body .asset-row:hover,
+.console-body .compatibility-strip,
+.console-body .segmented,
+.console-body .package-media,
+.console-body .package-screenshot,
+.console-body .care-steps li,
+.console-body .timeline-list article,
+.console-body .intel-grid span {
+  background:
+    linear-gradient(180deg, #f7f8fa, #e4e9ef);
 }
 
 @media (max-width: 1180px) {
