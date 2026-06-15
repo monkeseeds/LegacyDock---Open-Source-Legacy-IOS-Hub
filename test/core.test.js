@@ -7,6 +7,7 @@ import { parsePackageIndex, parseRelationshipList } from "../src/core/packageInd
 import { resolveInstallPlan } from "../src/core/dependencyResolver.js";
 import { planInstallOperation } from "../src/core/operationPlanner.js";
 import { repositories, snapshots } from "../src/data/catalog.js";
+import { createCommercialApi } from "../src/core/commercialApi.js";
 
 test("maps libimobiledevice lockdown output into a LegacyDock device profile", () => {
   const device = mapLockdownInfoToDevice({
@@ -71,4 +72,20 @@ test("builds explainable Device Doctor scores and diagnostics", () => {
   assert.ok(diagnostics.some((issue) => issue.title.includes("Duplicate repository index")));
   assert.ok(plan.steps.length > 0);
   assert.equal(snapshot.rollbackAvailable, true);
+});
+
+test("serves commercial local API responses without device mutation", async () => {
+  const api = createCommercialApi({ workspacePath: "work/test-commercial-api.json" });
+  const status = await api.handle("GET", "/api/status");
+  const doctor = await api.handle("GET", "/api/devices/iphone4-black-32/doctor");
+  const plan = await api.handle("POST", "/api/install-plan", {
+    deviceId: "iphone4-black-32",
+    packageId: "winterboard",
+    snapshotId: "snap-clean-iphone4"
+  });
+
+  assert.equal(status.status, 200);
+  assert.equal(status.body.deviceMutationEnabled, false);
+  assert.ok(doctor.body.scores.some((score) => score.id === "repository"));
+  assert.equal(plan.body.plan.execution, "queue-only");
 });

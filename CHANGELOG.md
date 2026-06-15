@@ -2,6 +2,7 @@
 
 ## 2026-06-15
 
+- Began the commercial build with a local API service for status, readiness gates, devices, Device Doctor, repositories, packages, install plans, snapshots, preservation reports, and pricing plans.
 - Added the Legacy Repository Hub with searchable repository cards, health status, Cydia add/copy actions, package browsing, essential tweaks, service restoration catalog, dead repo archive, community resources, and smart recommendations.
 - Updated credits and prior-art notes for legacy repository maintainers, service restoration projects, and community resources represented in the Repository Hub.
 - Expanded Device Doctor into an explainable health dashboard with performance, stability, battery, storage, compatibility, repository, and overall health scores.
