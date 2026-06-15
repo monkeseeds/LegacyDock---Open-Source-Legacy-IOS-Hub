@@ -66,47 +66,10 @@ npm test
 npm run check
 ```
 
-## Project Structure
+## Project Link
 
 ```text
-.
-|-- index.html
-|-- console.html
-|-- docs.html
-|-- changelog.html
-|-- pricing.html
-|-- styles.css
-|-- app.js
-|-- site.js
-|-- cli.js
-|-- CHANGELOG.md
-|-- assets/
-|   |-- legacydock-hero.png
-|   `-- logodock.svg
-|-- src/
-|   |-- data/
-|   |   |-- catalog.js
-|   |   |-- iosVersions.js
-|   |   `-- restorationMatrix.js
-|   |-- lib/
-|   |   |-- adapters.js
-|   |   |-- compatibility.js
-|   |   |-- localStore.js
-|   |   |-- preservationReport.js
-|   |   |-- restorationAdvisor.js
-|   |   |-- repositoryScanner.js
-|   |   `-- snapshotEngine.js
-|   `-- core/
-|       |-- dependencyResolver.js
-|       |-- deviceAdapter.js
-|       |-- deviceDoctor.js
-|       |-- operationPlanner.js
-|       |-- packageIndex.js
-|       `-- workspaceStore.js
-|-- schemas/
-|-- test/
-|-- docs/
-`-- .github/workflows/pages.yml
+https://monkeseeds.github.io/LegacyDock---Open-Source-Legacy-IOS-Hub/
 ```
 
 ## Core Principles
