@@ -2,6 +2,7 @@
 
 ## 2026-06-15
 
+- Replaced the LegacyDock logo assets with the supplied SVG and added the desktop Setup Wizard flow for local legacy iOS onboarding.
 - Installed desktop npm dependencies, added the desktop lockfile, upgraded Vite tooling to clear npm audit findings, and verified the React/Vite production build.
 - Updated README direction, added Windows-first Tauri packaging targets, update-feed scaffold, Rust SQLite migration runner, privacy/terms docs, and preliminary third-party license review.
 - Added the Tauri desktop application scaffold with React, Vite, Tailwind, Rust command modules, SQLite initialization, repository health checks, package parsing, device discovery boundaries, and dry-run mutation planning.

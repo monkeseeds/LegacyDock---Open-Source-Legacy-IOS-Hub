@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { devices, packages } from "../src/data/catalog.js";
 import { mapLockdownInfoToDevice } from "../src/core/deviceAdapter.js";
 import { buildDiagnostics, buildDoctorScores, buildRepairPlan, buildSnapshotIntelligence } from "../src/core/deviceDoctor.js";
@@ -204,4 +205,19 @@ test("defines Tauri desktop workspace configuration", async () => {
   assert.ok(desktopPackage.devDependencies.tailwindcss);
   assert.equal(updateFeed.platforms["windows-x86_64"].signature, "SIGNATURE_REQUIRED_BEFORE_STABLE_RELEASE");
   assert.match(migrations, /schema_migrations/);
+});
+
+test("includes the desktop setup wizard and synchronized logo assets", async () => {
+  const desktopApp = await readFile("desktop/src/main.tsx", "utf8");
+  const sharedLogo = await readFile("assets/logodock.svg", "utf8");
+  const desktopLogo = await readFile("desktop/public/logodock.svg", "utf8");
+  const sharedHash = createHash("sha256").update(sharedLogo).digest("hex");
+  const desktopHash = createHash("sha256").update(desktopLogo).digest("hex");
+
+  assert.match(desktopApp, /Setup Wizard/);
+  assert.match(desktopApp, /Connect your legacy iOS device to begin/);
+  assert.match(desktopApp, /iOS 3-9 supported/);
+  assert.match(desktopApp, /MapsX/);
+  assert.match(desktopApp, /TubeRepair/);
+  assert.equal(sharedHash, desktopHash);
 });

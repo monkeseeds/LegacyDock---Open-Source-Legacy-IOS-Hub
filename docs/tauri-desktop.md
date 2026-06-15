@@ -2,6 +2,8 @@
 
 LegacyDock now has a Tauri desktop scaffold with a React, Vite, and Tailwind frontend plus a Rust native backend.
 
+The first desktop experience is a Setup Wizard that guides beginners through device detection, compatibility, curated repositories, essential setup, Device Doctor, legacy service restoration, and a final local report.
+
 ## Stack
 
 - Frontend: React, Vite, Tailwind, lucide-react
@@ -57,6 +59,16 @@ plan_safe_mutation
 ```
 
 The mutation command is dry-run only. It requires a snapshot and exact confirmation phrase before queuing, and still does not change a device.
+
+## Setup Wizard
+
+The MVP wizard is local-only:
+
+- No backend, accounts, cloud sync, or payments.
+- Curated repository and compatibility data are bundled.
+- Device detection uses the local Rust command boundary when available.
+- No automatic installs or device mutations.
+- Final summary can export a text report, copy repo URLs, and save the profile locally.
 
 ## Storage
 

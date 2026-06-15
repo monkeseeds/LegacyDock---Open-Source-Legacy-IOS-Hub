@@ -49,6 +49,7 @@ The API is local-first and conservative. It plans operations, creates local snap
 ## Commercial Contracts Added
 
 - Tauri desktop workspace in `desktop/` and `src-tauri/`.
+- Desktop Setup Wizard for welcome, detection, compatibility, repo health, essential setup, Device Doctor, service restoration, and final summary.
 - Windows-first Tauri packaging targets: `nsis` and `msi`.
 - Tauri update-feed scaffold at `updates/stable.json`.
 - Rust SQLite migration runner in `src-tauri/src/migrations.rs`.
@@ -78,6 +79,7 @@ The override is stored in local storage for future console sessions.
 
 - Install local Rust, Cargo, and Tauri platform prerequisites.
 - Connect real hardware through libimobiledevice, AFC, and opt-in SSH testing.
+- Upgrade setup report export from text to PDF after the desktop PDF pipeline is selected.
 - Add Stripe keys, price IDs, customer portal, and webhook deployment.
 - Add hosted cloud storage, moderation queues, and recommendation services.
 - Add signing certificates, notarization, installer publishing, and real signed auto-update feed entries.

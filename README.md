@@ -10,6 +10,7 @@ Have fun!
 ## What Is Included Now
 - Static website, docs, changelog, pricing page, and GitHub Pages-ready console.
 - Tauri desktop scaffold with React, Vite, Tailwind, and Rust command modules.
+- Desktop Setup Wizard for beginner-friendly device detection, compatibility, repo health, essential setup, Device Doctor, service restoration, and final setup reports.
 - Local API for devices, repositories, packages, Device Doctor, snapshots, reports, package ingestion, entitlements, cloud contracts, compliance, and release metadata.
 - Repository Hub, package browser, essential tweaks, restoration catalog, dead repo archive, and community resource links.
 - iOS 6.0 through iOS 9.3.6 compatibility catalog.
@@ -61,10 +62,11 @@ https://monkeseeds.github.io/LegacyDock---Open-Source-Legacy-IOS-Hub/
 The production direction is:
 
 1. Tauri desktop app with a React/Vite/Tailwind interface and Rust backend.
-2. Windows installers first, followed by macOS and Linux once signing and QA are ready.
-3. SQLite for local device state, snapshots, repository indexes, reports, settings, and entitlements.
-4. Read-only `libimobiledevice`, AFC, package-state, and repository inspection before any device mutation.
-5. Optional hosted services later for Stripe entitlements, encrypted sync, backups, teams, moderation, and compatibility intelligence.
+2. Setup Wizard first, then deeper dashboard tools after a device profile exists.
+3. Windows installers first, followed by macOS and Linux once signing and QA are ready.
+4. SQLite for local device state, snapshots, repository indexes, reports, settings, and entitlements.
+5. Read-only `libimobiledevice`, AFC, package-state, and repository inspection before any device mutation.
+6. Optional hosted services later for Stripe entitlements, encrypted sync, backups, teams, moderation, and compatibility intelligence.
 
 See:
 
