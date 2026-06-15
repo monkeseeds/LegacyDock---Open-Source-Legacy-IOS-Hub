@@ -3317,6 +3317,46 @@ pre {
     linear-gradient(180deg, #f7f8fa, #e4e9ef);
 }
 
+.header-actions .icon-link {
+  width: 48px;
+  height: 48px;
+  min-height: 48px;
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.header-actions .icon-link img[src$="github.svg"] {
+  width: 48px;
+  height: 48px;
+  margin: 0;
+  border-radius: 10px;
+  object-fit: contain;
+  transform: none;
+}
+
+.header-actions .icon-link:hover {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
+  transform: translateY(-1px);
+}
+
+.marketing-body .header-actions .icon-link {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.marketing-body .header-actions .icon-link:hover {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
+}
+
 @media (max-width: 1180px) {
   .repo-release-head {
     align-items: start;
