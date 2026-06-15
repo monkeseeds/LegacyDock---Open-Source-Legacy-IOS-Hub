@@ -231,8 +231,13 @@ test("publishes releases navigation and desktop artifact workflow", async () => 
   assert.doesNotMatch(index.match(/<nav class="site-nav"[\s\S]*?<\/nav>/)?.[0] || "", /Browse|Open Console/);
   assert.match(index, /href="\.\/releases\.html">Releases/);
   assert.match(docs, /href="\.\/releases\.html">Releases/);
+  assert.match(releases, /Releases &middot; LegacyDock/);
+  assert.match(releases, /class="release-tabs"/);
+  assert.match(releases, /class="github-release"/);
+  assert.match(releases, /class="release-assets"/);
   assert.match(releases, /Windows[\s\S]*\.exe/);
   assert.match(releases, /macOS[\s\S]*\.dmg/);
+  assert.match(releases, /Source code \(zip\)/);
   assert.match(workflow, /LegacyDock-Windows/);
   assert.match(workflow, /LegacyDock-macOS/);
 });

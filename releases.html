@@ -30,74 +30,128 @@
         <a class="icon-button icon-link" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub" target="_blank" rel="noreferrer" title="Open GitHub repository" aria-label="Open GitHub repository">
           <img src="./assets/icons/github.svg" alt="" />
         </a>
-        <a class="pill-button" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/releases" target="_blank" rel="noreferrer">GitHub Releases</a>
+        <a class="pill-button" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/actions/workflows/release.yml" target="_blank" rel="noreferrer">Builds</a>
       </div>
     </header>
 
-    <main class="content-page pricing-page">
-      <section class="page-hero pricing-hero" aria-labelledby="releases-title">
-        <p class="kicker">Desktop Releases</p>
-        <h1 id="releases-title">Windows first. macOS next. Linux later.</h1>
-        <p>
-          LegacyDock is being packaged as a Tauri desktop app with a Rust backend and React setup wizard. Release artifacts are built through GitHub Actions so Windows and macOS installers can be produced on their native runners.
-        </p>
-        <div class="hero-actions">
-          <a class="primary-button" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/actions/workflows/release.yml" target="_blank" rel="noreferrer">Build installers</a>
-          <a class="secondary-button" href="./docs/release-and-updates.md">Release notes</a>
+    <main class="content-page releases-page">
+      <section class="repo-release-head" aria-labelledby="releases-title">
+        <div>
+          <p class="kicker">Desktop Releases</p>
+          <h1 id="releases-title">Releases &middot; LegacyDock</h1>
+          <p>Windows and macOS desktop builds are produced by GitHub Actions. Linux packaging comes later.</p>
+        </div>
+        <div class="release-head-actions">
+          <a class="secondary-button compact" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/releases" target="_blank" rel="noreferrer">GitHub releases</a>
+          <a class="primary-button compact" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/actions/workflows/release.yml" target="_blank" rel="noreferrer">Run release build</a>
         </div>
       </section>
 
-      <section class="pricing-table" aria-label="Installer targets">
-        <article class="pricing-plan featured-plan">
-          <small>Windows</small>
-          <h2>.exe</h2>
-          <p>Primary desktop target. Produces NSIS setup `.exe` and MSI artifacts from the Windows release workflow.</p>
-          <a class="primary-button compact" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/actions/workflows/release.yml" target="_blank" rel="noreferrer">Build Windows Installer</a>
-          <ul>
-            <li>Target: Windows 10/11 x64</li>
-            <li>Bundle: NSIS `.exe`</li>
-            <li>Bundle: MSI</li>
-            <li>Status: unsigned until certificate setup</li>
-          </ul>
+      <section class="release-tabs" aria-label="Release navigation">
+        <a class="active" href="#latest">Releases</a>
+        <a href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/tags" target="_blank" rel="noreferrer">Tags</a>
+        <a href="./updates/stable.json">Update feed</a>
+      </section>
+
+      <section class="github-release-list" aria-label="LegacyDock release list">
+        <article class="github-release" id="latest">
+          <aside class="release-meta">
+            <strong>v0.1.0</strong>
+            <span>Latest</span>
+            <small>June 15, 2026</small>
+          </aside>
+
+          <div class="release-body">
+            <div class="release-title-row">
+              <div>
+                <h2>LegacyDock Desktop Preview</h2>
+                <p>Tag <code>v0.1.0</code> &middot; Tauri desktop scaffold &middot; setup wizard preview</p>
+              </div>
+              <span class="release-badge">Pre-release</span>
+            </div>
+
+            <div class="release-notes">
+              <h3>What changed</h3>
+              <ul>
+                <li>Added Tauri desktop app scaffold with React, Vite, Tailwind, and Rust command modules.</li>
+                <li>Added Desktop Setup Wizard for detection, compatibility, repository health, setup checklist, Device Doctor, service restoration, and final report export.</li>
+                <li>Configured Windows and macOS artifact jobs through GitHub Actions.</li>
+                <li>Kept device-changing actions disabled; current setup guidance is manual and local-first.</li>
+              </ul>
+
+              <h3>Install notes</h3>
+              <p>
+                Early artifacts are unsigned until signing certificates and Apple notarization credentials are configured.
+                Windows SmartScreen and macOS Gatekeeper may warn on preview builds.
+              </p>
+            </div>
+
+            <details class="release-assets" open>
+              <summary>Assets</summary>
+              <div class="asset-group">
+                <h3>Windows</h3>
+                <a class="asset-row" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/actions/workflows/release.yml" target="_blank" rel="noreferrer">
+                  <span>
+                    <strong>LegacyDock_0.1.0_x64-setup.exe</strong>
+                    <small>NSIS setup installer - generated by the Windows release job</small>
+                  </span>
+                  <em>Build artifact</em>
+                </a>
+                <a class="asset-row" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/actions/workflows/release.yml" target="_blank" rel="noreferrer">
+                  <span>
+                    <strong>LegacyDock_0.1.0_x64_en-US.msi</strong>
+                    <small>MSI installer - generated by the Windows release job</small>
+                  </span>
+                  <em>Build artifact</em>
+                </a>
+              </div>
+
+              <div class="asset-group">
+                <h3>macOS</h3>
+                <a class="asset-row" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/actions/workflows/release.yml" target="_blank" rel="noreferrer">
+                  <span>
+                    <strong>LegacyDock_0.1.0_universal.dmg</strong>
+                    <small>macOS DMG - generated by the macOS release job</small>
+                  </span>
+                  <em>Build artifact</em>
+                </a>
+              </div>
+
+              <div class="asset-group">
+                <h3>Source</h3>
+                <a class="asset-row" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/archive/refs/heads/main.zip" target="_blank" rel="noreferrer">
+                  <span>
+                    <strong>Source code (zip)</strong>
+                    <small>Current main branch source archive</small>
+                  </span>
+                  <em>Download</em>
+                </a>
+                <a class="asset-row" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/archive/refs/heads/main.tar.gz" target="_blank" rel="noreferrer">
+                  <span>
+                    <strong>Source code (tar.gz)</strong>
+                    <small>Current main branch source archive</small>
+                  </span>
+                  <em>Download</em>
+                </a>
+              </div>
+            </details>
+          </div>
         </article>
 
-        <article class="pricing-plan">
-          <small>macOS</small>
-          <h2>.dmg</h2>
-          <p>Second desktop target. Produces a macOS DMG from the macOS release workflow runner.</p>
-          <a class="secondary-button compact" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/actions/workflows/release.yml" target="_blank" rel="noreferrer">Build macOS DMG</a>
-          <ul>
-            <li>Target: Apple Silicon and Intel runners</li>
-            <li>Bundle: DMG</li>
-            <li>Status: unsigned until Apple Developer setup</li>
-            <li>Notarization required before stable release</li>
-          </ul>
-        </article>
-
-        <article class="pricing-plan">
-          <small>Linux</small>
-          <h2>Later</h2>
-          <p>Linux packaging is intentionally deferred until Windows and macOS release flows are stable.</p>
-          <a class="secondary-button compact" href="./docs/release-and-updates.md">View Roadmap</a>
-          <ul>
-            <li>Future: AppImage</li>
-            <li>Future: Deb</li>
-            <li>Requires Linux QA</li>
-            <li>Not part of first release pass</li>
-          </ul>
-        </article>
-
-        <article class="pricing-plan">
-          <small>Updater</small>
-          <h2>Feed</h2>
-          <p>Auto-update feed scaffolding exists, but stable updates stay disabled until artifacts are signed.</p>
-          <a class="secondary-button compact" href="./updates/stable.json">View Feed</a>
-          <ul>
-            <li>Feed: `updates/stable.json`</li>
-            <li>Requires Tauri signing key</li>
-            <li>Requires signed installers</li>
-            <li>Dev artifacts are manual downloads</li>
-          </ul>
+        <article class="github-release">
+          <aside class="release-meta">
+            <strong>v0.0.x</strong>
+            <span>History</span>
+            <small>Earlier</small>
+          </aside>
+          <div class="release-body compact-release">
+            <h2>Website and local-core prototypes</h2>
+            <p>
+              Earlier builds added the public website, docs, changelog, pricing, static console, local API,
+              repository hub, compatibility catalog, and commercial-readiness contracts.
+            </p>
+            <a class="secondary-button compact" href="./changelog.html">View changelog</a>
+          </div>
         </article>
       </section>
     </main>
