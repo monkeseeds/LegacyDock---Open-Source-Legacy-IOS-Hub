@@ -12,7 +12,7 @@ The first desktop experience is a Setup Wizard that guides beginners through dev
 - Data: SQLite through `rusqlite`
 - Repository checks: Rust `reqwest`
 - Device detection: `libimobiledevice` command boundary
-- Packaging: Windows `nsis` and `msi` first
+- Packaging: Windows `nsis` setup `.exe`, Windows `msi`, and macOS `dmg` first
 
 ## Workspace
 
@@ -29,6 +29,8 @@ Node desktop dependencies have been installed and the React/Vite frontend build 
 ```bash
 npm run desktop:install
 npm run desktop:frontend
+npm run desktop:build:windows
+npm run desktop:build:macos
 ```
 
 These still require Rust, Cargo, and Tauri platform prerequisites:

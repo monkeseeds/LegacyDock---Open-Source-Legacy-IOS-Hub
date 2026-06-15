@@ -22,7 +22,7 @@ LegacyDock now has a production-oriented local core, but the project should stil
 - Desktop shell contract for app menus, tray behavior, bundled local service startup, permissions, and update policy.
 - Tauri v2 desktop scaffold with React, Vite, Tailwind, and Rust command modules for diagnostics, repository checks, package parsing, database initialization, device discovery, and dry-run mutation planning.
 - Desktop Setup Wizard for local, beginner-friendly legacy iOS setup across detection, compatibility, repositories, recommendations, Device Doctor, service restoration, and summary reports.
-- Windows-first Tauri packaging targets, update-feed scaffold, privacy notes, terms, and preliminary third-party license review.
+- Windows and macOS Tauri packaging targets, update-feed scaffold, privacy notes, terms, and preliminary third-party license review.
 - SQLite schema and durable storage abstraction with JSON fallback for development environments.
 - Read-only live inspection parsers for Cydia sources, dpkg status, package manager inference, and SSH credential policy.
 - Safe mutation queue with preflight checks, required snapshots, confirmation phrases, and rollback previews.

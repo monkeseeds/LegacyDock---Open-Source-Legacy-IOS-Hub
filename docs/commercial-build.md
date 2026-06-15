@@ -50,8 +50,9 @@ The API is local-first and conservative. It plans operations, creates local snap
 
 - Tauri desktop workspace in `desktop/` and `src-tauri/`.
 - Desktop Setup Wizard for welcome, detection, compatibility, repo health, essential setup, Device Doctor, service restoration, and final summary.
-- Windows-first Tauri packaging targets: `nsis` and `msi`.
+- First release Tauri packaging targets: Windows `nsis` setup `.exe`, Windows `msi`, and macOS `dmg`.
 - Tauri update-feed scaffold at `updates/stable.json`.
+- GitHub Actions desktop release jobs for Windows and macOS installer artifacts.
 - Rust SQLite migration runner in `src-tauri/src/migrations.rs`.
 - Installed desktop npm dependencies, generated `desktop/package-lock.json`, fixed npm audit findings, and verified the React/Vite production frontend build.
 - Desktop shell contract for menus, tray behavior, bundled local API startup, permissions, and update channels.
@@ -77,10 +78,10 @@ The override is stored in local storage for future console sessions.
 
 ## Next Commercial Milestones
 
-- Install local Rust, Cargo, and Tauri platform prerequisites.
+- Install local Rust, Cargo, and Tauri platform prerequisites for local builds, or use GitHub Actions release artifacts.
 - Connect real hardware through libimobiledevice, AFC, and opt-in SSH testing.
 - Upgrade setup report export from text to PDF after the desktop PDF pipeline is selected.
 - Add Stripe keys, price IDs, customer portal, and webhook deployment.
 - Add hosted cloud storage, moderation queues, and recommendation services.
-- Add signing certificates, notarization, installer publishing, and real signed auto-update feed entries.
+- Add signing certificates, Apple notarization, installer publishing, and real signed auto-update feed entries.
 - Add telemetry consent UI and hosted data deletion flows.

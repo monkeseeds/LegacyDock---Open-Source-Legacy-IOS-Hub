@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="LegacyDock desktop releases for Windows and macOS." />
+    <title>LegacyDock Releases</title>
+    <link rel="icon" href="./assets/logodock.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="marketing-body">
+    <header class="site-header" data-header>
+      <a class="brand" href="./index.html" aria-label="LegacyDock home">
+        <img src="./assets/logodock.svg" alt="" />
+        <span>
+          <strong>LegacyDock</strong>
+          <small>Releases</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="./docs.html">Docs</a>
+        <a href="./changelog.html">Changelog</a>
+        <a href="./releases.html">Releases</a>
+        <a href="./pricing.html">Pricing</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" data-theme-toggle title="Toggle theme" aria-label="Toggle theme">
+          <img src="./assets/icons/theme.svg" alt="" />
+        </button>
+        <a class="icon-button icon-link" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub" target="_blank" rel="noreferrer" title="Open GitHub repository" aria-label="Open GitHub repository">
+          <img src="./assets/icons/github.svg" alt="" />
+        </a>
+        <a class="pill-button" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/releases" target="_blank" rel="noreferrer">GitHub Releases</a>
+      </div>
+    </header>
+
+    <main class="content-page pricing-page">
+      <section class="page-hero pricing-hero" aria-labelledby="releases-title">
+        <p class="kicker">Desktop Releases</p>
+        <h1 id="releases-title">Windows first. macOS next. Linux later.</h1>
+        <p>
+          LegacyDock is being packaged as a Tauri desktop app with a Rust backend and React setup wizard. Release artifacts are built through GitHub Actions so Windows and macOS installers can be produced on their native runners.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-button" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/actions/workflows/release.yml" target="_blank" rel="noreferrer">Build installers</a>
+          <a class="secondary-button" href="./docs/release-and-updates.md">Release notes</a>
+        </div>
+      </section>
+
+      <section class="pricing-table" aria-label="Installer targets">
+        <article class="pricing-plan featured-plan">
+          <small>Windows</small>
+          <h2>.exe</h2>
+          <p>Primary desktop target. Produces NSIS setup `.exe` and MSI artifacts from the Windows release workflow.</p>
+          <a class="primary-button compact" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/actions/workflows/release.yml" target="_blank" rel="noreferrer">Build Windows Installer</a>
+          <ul>
+            <li>Target: Windows 10/11 x64</li>
+            <li>Bundle: NSIS `.exe`</li>
+            <li>Bundle: MSI</li>
+            <li>Status: unsigned until certificate setup</li>
+          </ul>
+        </article>
+
+        <article class="pricing-plan">
+          <small>macOS</small>
+          <h2>.dmg</h2>
+          <p>Second desktop target. Produces a macOS DMG from the macOS release workflow runner.</p>
+          <a class="secondary-button compact" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/actions/workflows/release.yml" target="_blank" rel="noreferrer">Build macOS DMG</a>
+          <ul>
+            <li>Target: Apple Silicon and Intel runners</li>
+            <li>Bundle: DMG</li>
+            <li>Status: unsigned until Apple Developer setup</li>
+            <li>Notarization required before stable release</li>
+          </ul>
+        </article>
+
+        <article class="pricing-plan">
+          <small>Linux</small>
+          <h2>Later</h2>
+          <p>Linux packaging is intentionally deferred until Windows and macOS release flows are stable.</p>
+          <a class="secondary-button compact" href="./docs/release-and-updates.md">View Roadmap</a>
+          <ul>
+            <li>Future: AppImage</li>
+            <li>Future: Deb</li>
+            <li>Requires Linux QA</li>
+            <li>Not part of first release pass</li>
+          </ul>
+        </article>
+
+        <article class="pricing-plan">
+          <small>Updater</small>
+          <h2>Feed</h2>
+          <p>Auto-update feed scaffolding exists, but stable updates stay disabled until artifacts are signed.</p>
+          <a class="secondary-button compact" href="./updates/stable.json">View Feed</a>
+          <ul>
+            <li>Feed: `updates/stable.json`</li>
+            <li>Requires Tauri signing key</li>
+            <li>Requires signed installers</li>
+            <li>Dev artifacts are manual downloads</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+
+    <script src="./site.js"></script>
+  </body>
+</html>

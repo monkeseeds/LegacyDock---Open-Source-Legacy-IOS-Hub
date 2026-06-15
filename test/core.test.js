@@ -199,7 +199,7 @@ test("defines Tauri desktop workspace configuration", async () => {
   assert.equal(tauriConfig.productName, "LegacyDock");
   assert.equal(tauriConfig.build.devUrl, "http://127.0.0.1:1420");
   assert.equal(tauriConfig.build.frontendDist, "../desktop/dist");
-  assert.deepEqual(tauriConfig.bundle.targets, ["nsis", "msi"]);
+  assert.deepEqual(tauriConfig.bundle.targets, ["nsis", "msi", "dmg"]);
   assert.ok(desktopPackage.dependencies.react);
   assert.ok(desktopPackage.devDependencies["@tauri-apps/cli"]);
   assert.ok(desktopPackage.devDependencies.tailwindcss);
@@ -220,4 +220,19 @@ test("includes the desktop setup wizard and synchronized logo assets", async () 
   assert.match(desktopApp, /MapsX/);
   assert.match(desktopApp, /TubeRepair/);
   assert.equal(sharedHash, desktopHash);
+});
+
+test("publishes releases navigation and desktop artifact workflow", async () => {
+  const index = await readFile("index.html", "utf8");
+  const docs = await readFile("docs.html", "utf8");
+  const releases = await readFile("releases.html", "utf8");
+  const workflow = await readFile(".github/workflows/release.yml", "utf8");
+
+  assert.doesNotMatch(index.match(/<nav class="site-nav"[\s\S]*?<\/nav>/)?.[0] || "", /Browse|Open Console/);
+  assert.match(index, /href="\.\/releases\.html">Releases/);
+  assert.match(docs, /href="\.\/releases\.html">Releases/);
+  assert.match(releases, /Windows[\s\S]*\.exe/);
+  assert.match(releases, /macOS[\s\S]*\.dmg/);
+  assert.match(workflow, /LegacyDock-Windows/);
+  assert.match(workflow, /LegacyDock-macOS/);
 });

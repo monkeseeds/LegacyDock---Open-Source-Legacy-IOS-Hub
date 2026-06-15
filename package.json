@@ -11,6 +11,8 @@
     "desktop:install": "npm --prefix desktop install",
     "desktop:dev": "npm --prefix desktop run tauri:dev",
     "desktop:build": "npm --prefix desktop run tauri:build",
+    "desktop:build:windows": "npm --prefix desktop run tauri:build:windows",
+    "desktop:build:macos": "npm --prefix desktop run tauri:build:macos",
     "desktop:frontend": "npm --prefix desktop run build",
     "check": "node --check app.js && node --check site.js && node --check cli.js && node --check server.js && node --check src/core/commercialApi.js && node --check src/core/durableStore.js && node --check src/core/liveDeviceInspector.js && node --check src/core/mutationExecutor.js && node --check src/core/repositoryIngestion.js && node --check src/core/entitlements.js && node --check src/core/cloudServices.js && node --check src/core/compliance.js && node --check src/core/releasePipeline.js && node --check src/core/desktopShell.js",
     "test": "node --test"
