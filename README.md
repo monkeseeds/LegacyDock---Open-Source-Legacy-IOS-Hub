@@ -33,7 +33,7 @@ npm test
 npm run check
 ```
 
-## Project Link
+## Website Link
 
 ```text
 https://monkeseeds.github.io/LegacyDock---Open-Source-Legacy-IOS-Hub/
