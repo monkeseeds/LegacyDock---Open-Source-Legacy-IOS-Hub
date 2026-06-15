@@ -863,7 +863,9 @@ function renderPreservation() {
 }
 
 function renderPlans() {
-  $("[data-plan-grid]").innerHTML = cloudPlans.map((plan, index) => `
+  const planGrid = $("[data-plan-grid]");
+  if (!planGrid) return;
+  planGrid.innerHTML = cloudPlans.map((plan, index) => `
     <article class="plan-card ${index === 0 ? "active" : ""}">
       <small>${plan.name}</small>
       <strong>${plan.price}</strong>
@@ -893,7 +895,7 @@ function activateView(name) {
 
 function viewFromHash() {
   const value = window.location.hash.replace("#", "").replace("-view", "");
-  return ["dashboard", "marketplace", "health", "restoration", "snapshots", "preservation", "cloud"].includes(value) ? value : null;
+  return ["dashboard", "marketplace", "health", "restoration", "snapshots", "preservation"].includes(value) ? value : null;
 }
 
 function toast(message) {
@@ -953,11 +955,14 @@ $("#searchInput").addEventListener("input", (event) => {
 $("[data-capture-snapshot]").addEventListener("click", captureSnapshot);
 $("[data-run-health]").addEventListener("click", () => toast("Health scan refreshed local compatibility and repository checks."));
 $("[data-export-report]").addEventListener("click", exportReport);
-$("[data-telemetry-toggle]").addEventListener("change", (event) => {
-  state.telemetryEnabled = event.target.checked;
-  persistAndRender();
-  toast(event.target.checked ? "Anonymous community intelligence enabled." : "Community intelligence disabled.");
-});
+const telemetryToggle = $("[data-telemetry-toggle]");
+if (telemetryToggle) {
+  telemetryToggle.addEventListener("change", (event) => {
+    state.telemetryEnabled = event.target.checked;
+    persistAndRender();
+    toast(event.target.checked ? "Anonymous community intelligence enabled." : "Community intelligence disabled.");
+  });
+}
 renderAll();
 const initialView = viewFromHash();
 if (initialView) activateView(initialView);

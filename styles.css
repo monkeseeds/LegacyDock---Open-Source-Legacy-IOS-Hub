@@ -182,9 +182,10 @@ svg {
 }
 
 .icon-link img[src$="github.svg"] {
-  width: 19px;
-  height: 19px;
-  transform: translate(-0.5px, -0.5px);
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  transform: translate(1.5px, -1px);
 }
 
 .icon-button:hover,
@@ -793,14 +794,19 @@ h4 {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
+  align-items: stretch;
 }
 
 .pricing-plan {
   display: grid;
   gap: 14px;
   align-content: start;
-  min-height: 520px;
+  min-height: clamp(560px, calc(100vh - 360px), 680px);
   padding: 22px;
+}
+
+.pricing-plan p {
+  min-height: 92px;
 }
 
 .pricing-plan small {
@@ -1730,6 +1736,10 @@ pre {
     min-height: auto;
   }
 
+  .pricing-plan p {
+    min-height: 0;
+  }
+
   .billing-switch {
     width: 100%;
   }
@@ -2432,8 +2442,25 @@ pre {
 }
 
 .console-body .console-main {
+  min-width: 0;
   padding: 24px;
   color: var(--marketing-ink);
+}
+
+.console-body .console-view,
+.console-body .panel,
+.console-body .preservation-grid,
+.console-body .list-row {
+  min-width: 0;
+}
+
+.console-body .list-row {
+  flex-wrap: wrap;
+}
+
+.console-body pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .console-body .view-head {
