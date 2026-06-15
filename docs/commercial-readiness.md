@@ -20,6 +20,7 @@ LegacyDock now has a production-oriented local core, but the project should stil
 - Local API service for desktop-shell integration and commercial readiness checks.
 - Console runtime bridge that hydrates catalog data from the local API and routes snapshots, install plans, and preservation reports through it when available.
 - Desktop shell contract for app menus, tray behavior, bundled local service startup, permissions, and update policy.
+- Tauri v2 desktop scaffold with React, Vite, Tailwind, and Rust command modules for diagnostics, repository checks, package parsing, database initialization, device discovery, and dry-run mutation planning.
 - SQLite schema and durable storage abstraction with JSON fallback for development environments.
 - Read-only live inspection parsers for Cydia sources, dpkg status, package manager inference, and SSH credential policy.
 - Safe mutation queue with preflight checks, required snapshots, confirmation phrases, and rollback previews.
@@ -46,7 +47,7 @@ npm run api
 
 ## Commercial Release Gates
 
-- Install and configure the chosen native desktop runtime, such as Tauri or Electron.
+- Install and configure the local Tauri desktop toolchain.
 - Add signed installers for Windows, macOS, and Linux.
 - Replace fixture package and device data with live hardware adapters after physical-device QA.
 - Package a real SQLite driver and migration runner inside the desktop app.

@@ -3,3 +3,7 @@ outputs/
 .DS_Store
 Thumbs.db
 *.log
+desktop/node_modules/
+desktop/dist/
+src-tauri/target/
+legacydock.sqlite

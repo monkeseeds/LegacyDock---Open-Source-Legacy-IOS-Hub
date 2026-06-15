@@ -1,12 +1,14 @@
 export function desktopShellContract() {
   return {
-    shell: "Electron or Tauri",
+    shell: "Tauri",
+    frontend: "React + Vite + Tailwind",
+    nativeLayer: "Rust",
     status: "contract-ready",
     localService: {
-      startup: "spawn bundled LegacyDock local API before loading console",
-      healthUrl: "http://127.0.0.1:4317/api/status",
-      shutdown: "terminate child process when the app exits",
-      portPolicy: "use 4317 by default; retry with an available local port and pass it to console.html?api="
+      startup: "Tauri initializes Rust commands directly and can optionally spawn the Node local API during migration.",
+      healthUrl: "tauri://localhost/invoke",
+      shutdown: "Rust resources close when the Tauri process exits.",
+      portPolicy: "no local HTTP port is required for native commands; keep 4317 only for the existing web console bridge."
     },
     menus: [
       { label: "LegacyDock", items: ["About", "Check for Updates", "Quit"] },

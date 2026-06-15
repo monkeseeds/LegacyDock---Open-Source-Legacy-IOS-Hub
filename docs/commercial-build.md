@@ -1,6 +1,6 @@
 # Commercial Build
 
-This is the start of the commercial-ready product path. The current milestone adds a local API boundary that a future Tauri, Electron, or native desktop shell can call without depending on a hosted account.
+This is the start of the commercial-ready product path. The current milestone adds a local API boundary plus a Tauri desktop scaffold with a React/Vite/Tailwind frontend and Rust native command layer.
 
 ## Local API
 
@@ -48,6 +48,7 @@ The API is local-first and conservative. It plans operations, creates local snap
 
 ## Commercial Contracts Added
 
+- Tauri desktop workspace in `desktop/` and `src-tauri/`.
 - Desktop shell contract for menus, tray behavior, bundled local API startup, permissions, and update channels.
 - Durable storage abstraction with a SQLite schema and JSON fallback when SQLite is unavailable.
 - Read-only live device inspection parsers for Cydia sources, dpkg package state, package manager inference, and SSH credential policy.
@@ -71,7 +72,7 @@ The override is stored in local storage for future console sessions.
 
 ## Next Commercial Milestones
 
-- Install and configure the chosen native shell runtime, such as Electron or Tauri.
+- Install local Rust, Tauri, and Node desktop dependencies.
 - Add real SQLite driver packaging and migration execution to the desktop app bundle.
 - Connect real hardware through libimobiledevice, AFC, and opt-in SSH testing.
 - Add Stripe keys, price IDs, customer portal, and webhook deployment.

@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import { devices, packages } from "../src/data/catalog.js";
 import { mapLockdownInfoToDevice } from "../src/core/deviceAdapter.js";
 import { buildDiagnostics, buildDoctorScores, buildRepairPlan, buildSnapshotIntelligence } from "../src/core/deviceDoctor.js";
@@ -182,7 +183,20 @@ test("exposes commercial readiness endpoints", async () => {
   const release = await api.handle("GET", "/api/release/manifest");
 
   assert.equal(storage.body.activeEngine, "json-fallback");
-  assert.equal(desktop.body.desktop.localService.healthUrl, "http://127.0.0.1:4317/api/status");
+  assert.equal(desktop.body.desktop.shell, "Tauri");
+  assert.equal(desktop.body.desktop.frontend, "React + Vite + Tailwind");
   assert.equal(compliance.body.ready, commercialComplianceStatus().ready);
   assert.ok(release.body.targets.some((target) => target.os === "windows"));
+});
+
+test("defines Tauri desktop workspace configuration", async () => {
+  const tauriConfig = JSON.parse(await readFile("src-tauri/tauri.conf.json", "utf8"));
+  const desktopPackage = JSON.parse(await readFile("desktop/package.json", "utf8"));
+
+  assert.equal(tauriConfig.productName, "LegacyDock");
+  assert.equal(tauriConfig.build.devUrl, "http://127.0.0.1:1420");
+  assert.equal(tauriConfig.build.frontendDist, "../desktop/dist");
+  assert.ok(desktopPackage.dependencies.react);
+  assert.ok(desktopPackage.devDependencies["@tauri-apps/cli"]);
+  assert.ok(desktopPackage.devDependencies.tailwindcss);
 });

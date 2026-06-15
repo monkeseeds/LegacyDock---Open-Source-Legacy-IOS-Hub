@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "LegacyDock",
+  "version": "0.1.0",
+  "identifier": "com.legacydock.app",
+  "build": {
+    "beforeDevCommand": "npm --prefix ../desktop run dev",
+    "beforeBuildCommand": "npm --prefix ../desktop run build",
+    "devUrl": "http://127.0.0.1:1420",
+    "frontendDist": "../desktop/dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "LegacyDock",
+        "width": 1280,
+        "height": 820,
+        "minWidth": 960,
+        "minHeight": 700,
+        "resizable": true,
+        "center": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; connect-src ipc: http://ipc.localhost https://* http://127.0.0.1:*; img-src 'self' data:; style-src 'self' 'unsafe-inline'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["msi", "nsis", "dmg", "appimage", "deb"],
+    "copyright": "Copyright LegacyDock contributors",
+    "category": "Utility",
+    "shortDescription": "Legacy iOS diagnostics and repository hub.",
+    "longDescription": "LegacyDock is a local-first desktop utility for preserving and maintaining legacy iOS devices.",
+    "windows": {
+      "wix": {
+        "language": "en-US"
+      }
+    }
+  }
+}
