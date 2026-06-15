@@ -5,9 +5,15 @@ import { devices, packages, repositories, snapshots } from "./src/data/catalog.j
 import { buildPreservationReport } from "./src/lib/preservationReport.js";
 import { createSnapshot } from "./src/lib/snapshotEngine.js";
 import { createLibimobiledeviceAdapter } from "./src/core/deviceAdapter.js";
+import { commercialComplianceStatus } from "./src/core/compliance.js";
+import { desktopShellContract } from "./src/core/desktopShell.js";
+import { commercialStoragePlan, createDurableStore } from "./src/core/durableStore.js";
 import { buildDiagnostics, buildDoctorScores, buildRepairPlan } from "./src/core/deviceDoctor.js";
+import { buildReadOnlyInspection } from "./src/core/liveDeviceInspector.js";
 import { parsePackageIndex } from "./src/core/packageIndex.js";
 import { planInstallOperation } from "./src/core/operationPlanner.js";
+import { ingestPackageIndex } from "./src/core/repositoryIngestion.js";
+import { releaseManifest } from "./src/core/releasePipeline.js";
 import { updateJsonStore } from "./src/core/workspaceStore.js";
 
 const workspacePath = resolve("work/local-workspace.json");
@@ -43,6 +49,12 @@ Commands:
   snapshot [device-id]             Create a local manifest snapshot
   report [device-id]               Print a preservation report
   parse-index <file> [repo-id]      Parse a Debian Packages index
+  ingest-index <repo-id> <file>     Ingest package index metadata
+  storage-status                    Print durable storage status
+  desktop-contract                  Print desktop shell contract
+  inspect-readonly <status> <srcs>  Parse dpkg status and Cydia sources
+  compliance                        Print privacy/legal readiness
+  release-manifest                  Print release pipeline manifest
 `);
     return;
   }
@@ -99,6 +111,50 @@ Commands:
     if (!filePath) throw new Error("parse-index requires a file path.");
     const text = await readFile(filePath, "utf8");
     printJson(parsePackageIndex(text, args[1] || "local-index"));
+    return;
+  }
+
+  if (command === "ingest-index") {
+    const repoId = args[0];
+    const filePath = args[1];
+    if (!repoId || !filePath) throw new Error("ingest-index requires a repository id and file path.");
+    const repository = repositories.find((item) => item.id === repoId);
+    if (!repository) throw new Error(`Unknown repository: ${repoId}`);
+    const text = await readFile(filePath, "utf8");
+    printJson(ingestPackageIndex({ repository, text }));
+    return;
+  }
+
+  if (command === "storage-status") {
+    const store = await createDurableStore();
+    printJson({ ...commercialStoragePlan(), activeEngine: store.engine, activePath: store.path });
+    store.close();
+    return;
+  }
+
+  if (command === "desktop-contract") {
+    printJson(desktopShellContract());
+    return;
+  }
+
+  if (command === "inspect-readonly") {
+    const statusPath = args[0];
+    const sourcesPath = args[1];
+    if (!statusPath || !sourcesPath) throw new Error("inspect-readonly requires dpkg status and sources files.");
+    printJson(buildReadOnlyInspection({
+      dpkgStatusText: await readFile(statusPath, "utf8"),
+      sourcesText: await readFile(sourcesPath, "utf8")
+    }));
+    return;
+  }
+
+  if (command === "compliance") {
+    printJson(commercialComplianceStatus());
+    return;
+  }
+
+  if (command === "release-manifest") {
+    printJson(releaseManifest());
     return;
   }
 

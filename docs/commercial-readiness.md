@@ -19,6 +19,14 @@ LegacyDock now has a production-oriented local core, but the project should stil
 - Local JSON workspace persistence for CLI workflows.
 - Local API service for desktop-shell integration and commercial readiness checks.
 - Console runtime bridge that hydrates catalog data from the local API and routes snapshots, install plans, and preservation reports through it when available.
+- Desktop shell contract for app menus, tray behavior, bundled local service startup, permissions, and update policy.
+- SQLite schema and durable storage abstraction with JSON fallback for development environments.
+- Read-only live inspection parsers for Cydia sources, dpkg status, package manager inference, and SSH credential policy.
+- Safe mutation queue with preflight checks, required snapshots, confirmation phrases, and rollback previews.
+- Package index ingestion pipeline for Debian `Packages` metadata, cache expiry, trust labels, and metadata-only repository handling.
+- Local entitlement model with signed license payloads, offline grace periods, feature gates, and Stripe integration requirements.
+- Encrypted cloud sync envelope, compatibility submission, moderation status, and hosted cloud service contracts.
+- Privacy/legal compliance checklist, data export contract, and release manifest.
 - Node test suite for core product logic.
 
 ## Local Core Commands
@@ -38,15 +46,14 @@ npm run api
 
 ## Commercial Release Gates
 
-- Build the native desktop shell with Tauri or Electron.
+- Install and configure the chosen native desktop runtime, such as Tauri or Electron.
 - Add signed installers for Windows, macOS, and Linux.
-- Replace fixture package and device data with live adapters.
-- Add read-only AFC package-state discovery.
-- Add optional SSH repair adapter with credential safety.
-- Add a durable SQLite store.
+- Replace fixture package and device data with live hardware adapters after physical-device QA.
+- Package a real SQLite driver and migration runner inside the desktop app.
+- Add native AFC/SSH execution paths after read-only inspection is validated.
 - Add cryptographic snapshot manifests and restore previews.
-- Add device mutation executors only after preflight checks, snapshots, and rollback plans are stable.
-- Add account, billing, encrypted cloud sync, and team inventory services for paid plans.
-- Add privacy policy, terms, telemetry consent, and data export flows.
+- Enable device mutation executors only after hardware preflight, snapshots, rollback, and recovery workflows are proven.
+- Add Stripe checkout, portal, webhooks, hosted entitlements, encrypted cloud sync, and team inventory services.
+- Add final privacy policy, terms, telemetry consent UI, and hosted data deletion flows.
 - Run physical QA across representative iOS 6, 7, 8, and 9 devices.
 - Complete license review before copying, linking, or bundling GPL ecosystem tools.

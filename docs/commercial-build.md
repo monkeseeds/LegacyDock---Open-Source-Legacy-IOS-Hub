@@ -21,18 +21,41 @@ http://127.0.0.1:4317
 ```text
 GET  /api/status
 GET  /api/commercial/readiness
+GET  /api/commercial/desktop
+GET  /api/storage/status
 GET  /api/pricing/plans
 GET  /api/devices
 GET  /api/devices/:id
 GET  /api/devices/:id/doctor
 GET  /api/repositories
 GET  /api/packages
+POST /api/inspect/read-only
 POST /api/install-plan
+POST /api/mutations/queue
+POST /api/repositories/ingest
 POST /api/snapshots
 GET  /api/preservation/:deviceId
+GET  /api/entitlements/status
+POST /api/entitlements/verify
+GET  /api/cloud/status
+POST /api/cloud/submissions
+GET  /api/security/compliance
+GET  /api/security/export
+GET  /api/release/manifest
 ```
 
 The API is local-first and conservative. It plans operations, creates local snapshots, generates reports, and exposes commercial readiness gates. It does not mutate connected devices.
+
+## Commercial Contracts Added
+
+- Desktop shell contract for menus, tray behavior, bundled local API startup, permissions, and update channels.
+- Durable storage abstraction with a SQLite schema and JSON fallback when SQLite is unavailable.
+- Read-only live device inspection parsers for Cydia sources, dpkg package state, package manager inference, and SSH credential policy.
+- Safe mutation queue with snapshot, confirmation phrase, preflight, and rollback preview requirements.
+- Package index ingestion for Debian `Packages` metadata, cache expiry, repository trust labels, and metadata-only redistribution policy.
+- Local entitlement payloads with signed licenses, offline grace periods, feature gates, and Stripe integration requirements.
+- Encrypted cloud sync envelopes, compatibility submissions, and hosted-service status contracts.
+- Privacy/legal compliance checklist, data export contract, and release manifest for installers, checksums, provenance, and auto-update requirements.
 
 ## Console Integration
 
@@ -48,8 +71,10 @@ The override is stored in local storage for future console sessions.
 
 ## Next Commercial Milestones
 
-- Add a durable SQLite workspace store.
-- Add signed desktop packaging.
-- Add live AFC and SSH discovery adapters.
-- Add Stripe checkout and entitlement verification.
-- Add privacy, terms, telemetry consent, and data export pages.
+- Install and configure the chosen native shell runtime, such as Electron or Tauri.
+- Add real SQLite driver packaging and migration execution to the desktop app bundle.
+- Connect real hardware through libimobiledevice, AFC, and opt-in SSH testing.
+- Add Stripe keys, price IDs, customer portal, and webhook deployment.
+- Add hosted cloud storage, moderation queues, and recommendation services.
+- Add signing certificates, notarization, installer publishing, and auto-update feeds.
+- Add final privacy policy, terms pages, telemetry consent UI, and hosted data deletion flows.

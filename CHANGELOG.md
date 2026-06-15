@@ -2,6 +2,8 @@
 
 ## 2026-06-15
 
+- Added commercial readiness contracts for desktop shell behavior, durable SQLite-style storage, read-only live inspection, safe mutation queueing, package index ingestion, entitlements, encrypted cloud sync, compliance, and release manifests.
+- Added release verification workflow scaffolding for syntax checks, tests, and source checksums without requiring signing certificates or store credentials.
 - Wired the console to the local commercial API with offline catalog fallback, API status display, API-backed install planning, snapshot capture, and preservation report export.
 - Began the commercial build with a local API service for status, readiness gates, devices, Device Doctor, repositories, packages, install plans, snapshots, preservation reports, and pricing plans.
 - Added the Legacy Repository Hub with searchable repository cards, health status, Cydia add/copy actions, package browsing, essential tweaks, service restoration catalog, dead repo archive, community resources, and smart recommendations.
