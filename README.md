@@ -1,7 +1,8 @@
 # LegacyDock
 
 LegacyDock is an open-source, local-first project for preserving, maintaining, repairing, enhancing, and documenting legacy Apple devices running iOS 6 through iOS 9.
-
+A passion project catered towards the jaibreaking, sideloading and ios enthusiast communities. 
+Have fun!
 
 
 ## What Is Included Now
