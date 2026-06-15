@@ -2,39 +2,6 @@
 
 LegacyDock is an open-source, local-first operating center for preserving, maintaining, repairing, enhancing, and documenting legacy Apple devices running iOS 6 through iOS 9.
 
-It is not another jailbreak tool, piracy surface, or package manager clone. LegacyDock is meant to become the trusted hub users open when they need to understand an old iPhone, iPad, or iPod touch and safely manage its software environment.
-
-## What Is Included Now
-
-This repository now contains a fuller static product foundation:
-
-- proper landing page with a retro-modern Apple-inspired visual direction,
-- Jan.ai-inspired product storytelling and Flathub-inspired browse/storefront flow,
-- standalone docs, changelog, and pricing pages,
-- separate `console.html` product console,
-- dark theme by default,
-- working product console demo,
-- device dashboard,
-- Device Doctor health dashboard with explainable performance, stability, battery, storage, compatibility, and repository scores,
-- basic diagnostics for repositories, packages, dependencies, storage, battery, and compatibility,
-- LegacyDock Care intelligence for repair plans, community signals, bootloop risk, smart alternatives, modernization guidance, snapshot intelligence, and health timeline,
-- compatibility-aware marketplace,
-- explainable package safety review,
-- repository health scanner,
-- restoration guidance lab,
-- snapshot creation and diffing,
-- preservation report export,
-- optional cloud workspace positioning,
-- full iOS 6.x.x through iOS 9.x.x compatibility catalog,
-- JSON schemas for the core data model,
-- local engines for compatibility, repository scanning, snapshots, and reports,
-- production-oriented local core modules for `libimobiledevice` discovery, Debian package index parsing, dependency resolution, guarded operation planning, and JSON workspace persistence,
-- reusable Device Doctor core modules for explainable diagnostics, Care repair planning, community intelligence, snapshot intelligence, and health timeline data,
-- CLI commands for device discovery, doctor checks, install planning, snapshots, preservation reports, and package index imports,
-- automated tests for core parsing, adapter mapping, dependency resolution, and safety gates,
-- architecture, integration, community intelligence, and roadmap docs.
-
-The site is built with static HTML, CSS, and JavaScript so it can run directly on GitHub Pages without a build pipeline.
 
 ## Try It Locally
 
@@ -110,12 +77,6 @@ Special ecosystem credit:
 
 - [CatsLover2006/iOSobscuraServer](https://github.com/CatsLover2006/iOSobscuraServer) for useful prior art around searching legacy iOS archival metadata. LegacyDock does not vendor that code in this repository; future archive discovery integrations should credit upstream work, preserve license obligations, and focus on metadata and user-controlled preservation workflows.
 - [LukeZGD/Legacy-iOS-Kit](https://github.com/LukeZGD/Legacy-iOS-Kit) for major prior art around restore/downgrade workflows, SHSH blob saving, jailbreak guidance, SSH ramdisk utilities, and legacy device support research. LegacyDock uses it as credited integration research and external handoff inspiration, not as bundled code.
-
-## Legal And Safety Notes
-
-LegacyDock should not distribute copyrighted apps, bypass licensing, host exploit chains, or encourage piracy. The project should focus on user-owned devices, metadata, compatibility intelligence, package state, repository management, local backups, and preservation reports.
-
-Every device-changing operation should show compatibility, risk, known issues, recovery options, and snapshot recommendations before execution.
 
 ## License
 
