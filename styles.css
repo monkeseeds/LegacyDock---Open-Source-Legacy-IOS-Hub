@@ -844,12 +844,55 @@ h4 {
   margin-bottom: 20px;
 }
 
+.console-tools {
+  display: grid;
+  grid-template-columns: auto minmax(280px, 560px);
+  align-items: center;
+  gap: 12px;
+  width: min(760px, 100%);
+}
+
+.api-status {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  gap: 2px 8px;
+  min-height: 48px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.api-status small {
+  grid-column: 2;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 750;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--red);
+  box-shadow: 0 0 0 4px rgba(255, 127, 135, 0.12);
+}
+
+.status-dot.online {
+  background: var(--green);
+  box-shadow: 0 0 0 4px rgba(123, 216, 143, 0.12);
+}
+
 .search-box {
   display: flex;
   align-items: center;
   gap: 12px;
   min-height: 48px;
-  width: min(560px, 100%);
+  width: 100%;
   padding: 0 14px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1796,11 +1839,13 @@ pre {
 
   .storefront-head,
   .console-head,
+  .console-tools,
   .view-head,
   .home-search,
   .compatibility-summary {
     align-items: stretch;
     flex-direction: column;
+    grid-template-columns: 1fr;
   }
 
   .console-shell,

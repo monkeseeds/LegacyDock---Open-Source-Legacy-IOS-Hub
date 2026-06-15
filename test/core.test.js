@@ -7,7 +7,7 @@ import { parsePackageIndex, parseRelationshipList } from "../src/core/packageInd
 import { resolveInstallPlan } from "../src/core/dependencyResolver.js";
 import { planInstallOperation } from "../src/core/operationPlanner.js";
 import { repositories, snapshots } from "../src/data/catalog.js";
-import { createCommercialApi } from "../src/core/commercialApi.js";
+import { assertPostBody, createCommercialApi } from "../src/core/commercialApi.js";
 
 test("maps libimobiledevice lockdown output into a LegacyDock device profile", () => {
   const device = mapLockdownInfoToDevice({
@@ -85,7 +85,9 @@ test("serves commercial local API responses without device mutation", async () =
   });
 
   assert.equal(status.status, 200);
+  assert.equal(status.headers["access-control-allow-origin"], "*");
   assert.equal(status.body.deviceMutationEnabled, false);
   assert.ok(doctor.body.scores.some((score) => score.id === "repository"));
   assert.equal(plan.body.plan.execution, "queue-only");
+  assert.equal(assertPostBody(null).headers["access-control-allow-methods"], "GET,POST,OPTIONS");
 });

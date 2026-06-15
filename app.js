@@ -1,10 +1,10 @@
-const devices = [
+let devices = [
   { id: "iphone4-black-32", name: "iPhone 4", identifier: "iPhone3,1", chip: "A4", firmware: "7.1.2", os: "iOS", jailbreak: "p0sixspwn", manager: "Cydia", packageCount: 43, repositoryCount: 7, storageUsed: 68, memoryPressure: 54, batteryHealth: 82, status: "stable", services: ["AFC", "SSH", "Lockdown"], installedPackages: ["winterboard", "icleaner-pro", "openssh", "preferenceloader", "mobilesubstrate"], repositories: ["bigboss", "cydia-telesphoreo", "modmyi-archive", "legacy-archive"], notes: "Collector unit with stable Cydia environment and clean baseline snapshot." },
   { id: "ipad2-wifi-16", name: "iPad 2", identifier: "iPad2,1", chip: "A5", firmware: "9.3.5", os: "iOS", jailbreak: "Phoenix", manager: "Cydia", packageCount: 31, repositoryCount: 5, storageUsed: 82, memoryPressure: 71, batteryHealth: 74, status: "attention", services: ["AFC", "Lockdown"], installedPackages: ["icleaner-pro", "batterylife", "filza", "preferenceloader"], repositories: ["bigboss", "legacy-archive", "legacy-archive-mirror", "cydia-telesphoreo"], notes: "Needs repository cleanup and dependency review before more tweaks are installed." },
   { id: "iphone5-white-64", name: "iPhone 5", identifier: "iPhone5,2", chip: "A6", firmware: "8.4.1", os: "iOS", jailbreak: "EtasonJB", manager: "Cydia", packageCount: 57, repositoryCount: 9, storageUsed: 49, memoryPressure: 46, batteryHealth: 91, status: "stable", services: ["AFC", "SSH", "Lockdown"], installedPackages: ["winterboard", "activator", "icleaner-pro", "noslowanimations", "openssh"], repositories: ["bigboss", "chariz-legacy", "modmyi-archive", "cydia-telesphoreo"], notes: "Primary testing device for theme and performance package compatibility." }
 ];
 
-const repositories = [
+let repositories = [
   { id: "bigboss", name: "BigBoss", url: "http://apt.thebigboss.org/repofiles/cydia/", description: "Essential legacy Cydia repository with utilities, UI tweaks, repair tools, and classic packages.", status: "verified", healthStatus: "online", lastRefreshDays: 2, lastHealthCheck: "5 minutes ago", lastSuccessfulPing: "5 minutes ago", httpSupport: true, sslSupport: false, packageCount: 18421, category: "Essential", communityRating: 4.9, verified: true, maintainer: "BigBoss team", packageIndexAvailable: true, redirectDetected: false, sslIssue: false, responseMs: 184, packageIndexHash: "sha256:bb4c-local-fixture", tags: ["core", "legacy"], contains: ["Activator", "iCleaner", "iFile", "RecordMyScreen", "ColoredKnob", "LiveWallpaper"], notes: "Default source for many foundational legacy tweaks. Uses HTTP, which is normal for older Cydia setups." },
   { id: "skyglow", name: "SkyGlow", url: "http://cydia.skyglow.es/", description: "Service restoration source for legacy maps, YouTube, and community repair packages.", status: "verified", healthStatus: "online", lastRefreshDays: 1, lastHealthCheck: "8 minutes ago", lastSuccessfulPing: "8 minutes ago", httpSupport: true, sslSupport: false, packageCount: 42, category: "Service Restoration", communityRating: 4.7, verified: true, maintainer: "SkyGlow community", packageIndexAvailable: true, redirectDetected: false, sslIssue: false, responseMs: 220, packageIndexHash: "sha256:sg2-local-fixture", tags: ["restoration", "services"], contains: ["MapsX", "TubeRepair", "Legacy restoration tweaks"], notes: "Recommended for iOS 6 service restoration experiments. Snapshot before changing service-related packages." },
   { id: "yzu", name: "Yzu", url: "http://yzu.moe/dev/", description: "Applications and preservation utilities for older jailbroken iOS environments.", status: "verified", healthStatus: "degraded", lastRefreshDays: 12, lastHealthCheck: "11 minutes ago", lastSuccessfulPing: "2 hours ago", httpSupport: true, sslSupport: false, packageCount: 18, category: "Applications", communityRating: 4.5, verified: true, maintainer: "Yzu", packageIndexAvailable: true, redirectDetected: true, sslIssue: false, responseMs: 1180, packageIndexHash: "sha256:yzu-local-fixture", tags: ["apps", "preservation"], contains: ["Veteris"], notes: "Useful for application restoration workflows. Marked degraded because responses may be slow or redirected." },
@@ -23,7 +23,7 @@ const iosCompatibilityVersions = [
   "9.0", "9.0.1", "9.0.2", "9.1", "9.2", "9.2.1", "9.3", "9.3.1", "9.3.2", "9.3.3", "9.3.4", "9.3.5", "9.3.6"
 ];
 
-const packages = [
+let packages = [
   { id: "winterboard", name: "WinterBoard", category: "theme", version: "0.9.3919", repository: "bigboss", firmwareRange: ["6.0", "9.3.6"], devices: ["iPhone3,1", "iPhone5,2", "iPad2,1"], dependencies: ["mobilesubstrate", "preferenceloader"], conflicts: ["iconomatic"], rating: 4.8, communitySuccess: 99, risk: "low", batteryImpact: "minimal", performanceImpact: "light", summary: "Classic theming engine with strong legacy device support.", notes: "Known conflict with IconOmatic on some iOS 7 setups." },
   { id: "icleaner-pro", name: "iCleaner Pro", category: "repair", version: "7.7.5", repository: "bigboss", firmwareRange: ["6.0", "9.3.6"], devices: ["iPhone3,1", "iPhone5,2", "iPad2,1"], dependencies: ["apt7-lib"], conflicts: [], rating: 4.9, communitySuccess: 98, risk: "low", batteryImpact: "positive", performanceImpact: "positive", summary: "Removes cache waste and stale package data.", notes: "Create a snapshot before deep preference cleanup." },
   { id: "activator", name: "Activator", category: "safe", version: "1.9.13", repository: "bigboss", firmwareRange: ["6.0", "9.3.6"], devices: ["iPhone3,1", "iPhone5,2"], dependencies: ["mobilesubstrate", "flipswitch"], conflicts: ["springtomize-old"], rating: 4.7, communitySuccess: 94, risk: "medium", batteryImpact: "small", performanceImpact: "small", summary: "Gesture and shortcut automation for legacy iOS.", notes: "Some iOS 9 builds report springboard restarts." },
@@ -81,7 +81,7 @@ const seedSnapshots = [
   { id: "snap-shop-ipad2", title: "Repair shop intake", createdAt: "2026-06-11T10:25:00+08:00", deviceId: "ipad2-wifi-16", packageIds: ["icleaner-pro", "batterylife", "filza"], repositoryIds: ["bigboss", "legacy-archive", "legacy-archive-mirror"], state: "needs-review", hash: "sha256:legacydock-shop-intake" }
 ];
 
-const cloudPlans = [
+let cloudPlans = [
   { name: "Free", price: "$0", summary: "Unlimited Device Doctor scans, local snapshots, repository checks, compatibility checks, backups, and offline workflows." },
   { name: "LegacyDock Care", price: "$4.99/mo", summary: "Intelligent repair plans, community intelligence, bootloop risk, smart alternatives, modernization guidance, health timeline, cloud sync, and backups." },
   { name: "Care Yearly", price: "$39/yr", summary: "All LegacyDock Care intelligence with yearly billing for collectors and active maintainers." },
@@ -461,6 +461,78 @@ const state = loadWorkspace({
   snapshots: seedSnapshots,
   telemetryEnabled: false
 });
+
+const requestedApiBase = new URLSearchParams(window.location.search).get("api");
+if (requestedApiBase) localStorage.setItem("legacydock.api.base", requestedApiBase);
+
+const runtime = {
+  apiBase: requestedApiBase || localStorage.getItem("legacydock.api.base") || "http://127.0.0.1:4317",
+  apiOnline: false,
+  apiStatus: null,
+  lastSync: null,
+  error: null
+};
+
+function apiUrl(path) {
+  return `${runtime.apiBase.replace(/\/$/, "")}${path}`;
+}
+
+async function apiRequest(path, options = {}) {
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), options.timeout || 1800);
+  try {
+    const response = await fetch(apiUrl(path), {
+      method: options.method || "GET",
+      headers: { "content-type": "application/json" },
+      body: options.body ? JSON.stringify(options.body) : undefined,
+      signal: controller.signal
+    });
+    const payload = response.status === 204 ? {} : await response.json();
+    if (!response.ok) throw new Error(payload.error || `Local API returned ${response.status}`);
+    runtime.apiOnline = true;
+    runtime.error = null;
+    return payload;
+  } finally {
+    window.clearTimeout(timeout);
+  }
+}
+
+async function syncCatalogFromApi() {
+  try {
+    const [status, devicePayload, repoPayload, packagePayload, planPayload] = await Promise.all([
+      apiRequest("/api/status"),
+      apiRequest("/api/devices"),
+      apiRequest("/api/repositories"),
+      apiRequest("/api/packages"),
+      apiRequest("/api/pricing/plans")
+    ]);
+    runtime.apiStatus = status;
+    devices = devicePayload.devices || devices;
+    repositories = repoPayload.repositories || repositories;
+    packages = packagePayload.packages || packages;
+    cloudPlans = planPayload.plans || cloudPlans;
+    runtime.lastSync = new Date();
+    if (!devices.some((device) => device.id === state.selectedDeviceId)) {
+      state.selectedDeviceId = devices[0]?.id;
+    }
+    renderAll();
+    toast("Connected to LegacyDock local API.");
+  } catch (error) {
+    runtime.apiOnline = false;
+    runtime.error = error.name === "AbortError" ? "Local API unavailable" : error.message;
+    renderRuntimeStatus();
+  }
+}
+
+function renderRuntimeStatus() {
+  const target = $("[data-api-status]");
+  if (!target) return;
+  target.innerHTML = `
+    <span class="status-dot ${runtime.apiOnline ? "online" : "offline"}"></span>
+    <span>${runtime.apiOnline ? "Local API" : "Offline catalog"}</span>
+    <small>${runtime.apiOnline && runtime.lastSync ? `Synced ${runtime.lastSync.toLocaleTimeString()}` : runtime.error || "Static fixture mode"}</small>
+  `;
+}
 
 function selectedDevice() {
   return devices.find((device) => device.id === state.selectedDeviceId) || devices[0];
@@ -910,6 +982,33 @@ function renderRepositories() {
   });
 }
 
+async function queueInstallPlan(packageId) {
+  const device = selectedDevice();
+  const pkg = packages.find((item) => item.id === packageId);
+  if (!runtime.apiOnline) {
+    toast(`${pkg.name} queued in offline planning mode. No device changes were made.`);
+    return;
+  }
+
+  try {
+    const payload = await apiRequest("/api/install-plan", {
+      method: "POST",
+      body: {
+        deviceId: device.id,
+        packageId,
+        snapshotId: selectedSnapshot()?.id
+      }
+    });
+    const plan = payload.plan;
+    toast(plan.safeToQueue ? `${pkg.name} queued by local API with ${plan.warnings.length} warning(s).` : `${pkg.name} blocked by local API: ${plan.blocks[0]}`);
+  } catch (error) {
+    runtime.apiOnline = false;
+    runtime.error = error.message;
+    renderRuntimeStatus();
+    toast("Local API plan failed; kept the device unchanged.");
+  }
+}
+
 function openInstallDialog(packageId) {
   const device = selectedDevice();
   const pkg = packages.find((item) => item.id === packageId);
@@ -934,7 +1033,7 @@ function openInstallDialog(packageId) {
     </div>
   `;
 
-  $("[data-confirm-install]").onclick = () => toast(`${pkg.name} queued with pre-install snapshot protection.`);
+  $("[data-confirm-install]").onclick = () => queueInstallPlan(packageId);
   dialog.showModal();
 }
 
@@ -1175,18 +1274,38 @@ function renderPlans() {
   `).join("");
 }
 
-function captureSnapshot() {
-  const snapshot = createSnapshot(selectedDevice(), repositories, packages);
-  state.snapshots = [snapshot, ...state.snapshots];
-  persistAndRender();
-  activateView("snapshots");
-  toast("Snapshot captured locally.");
+async function captureSnapshot() {
+  const device = selectedDevice();
+  try {
+    const snapshot = runtime.apiOnline
+      ? (await apiRequest("/api/snapshots", { method: "POST", body: { deviceId: device.id } })).snapshot
+      : createSnapshot(device, repositories, packages);
+    state.snapshots = [snapshot, ...state.snapshots.filter((item) => item.id !== snapshot.id)];
+    persistAndRender();
+    activateView("snapshots");
+    toast(runtime.apiOnline ? "Snapshot captured through the local API." : "Snapshot captured locally.");
+  } catch (error) {
+    runtime.apiOnline = false;
+    runtime.error = error.message;
+    renderRuntimeStatus();
+    toast("Snapshot failed; no device changes were made.");
+  }
 }
 
-function exportReport() {
-  const report = buildPreservationReport(selectedDevice(), repositories, packages, selectedSnapshot());
-  downloadReport(report);
-  toast("Preservation report exported.");
+async function exportReport() {
+  const device = selectedDevice();
+  try {
+    const report = runtime.apiOnline
+      ? (await apiRequest(`/api/preservation/${device.id}`)).report
+      : buildPreservationReport(device, repositories, packages, selectedSnapshot());
+    downloadReport(report);
+    toast(runtime.apiOnline ? "API preservation report exported." : "Preservation report exported.");
+  } catch (error) {
+    runtime.apiOnline = false;
+    runtime.error = error.message;
+    renderRuntimeStatus();
+    toast("Report export failed; local fallback remains available.");
+  }
 }
 
 function activateView(name) {
@@ -1213,6 +1332,7 @@ function persistAndRender() {
 }
 
 function renderAll() {
+  renderRuntimeStatus();
   renderCompatibilityMatrix();
   renderDevices();
   renderDeviceDetail();
@@ -1271,5 +1391,6 @@ if (telemetryToggle) {
   });
 }
 renderAll();
+syncCatalogFromApi();
 const initialView = viewFromHash();
 if (initialView) activateView(initialView);

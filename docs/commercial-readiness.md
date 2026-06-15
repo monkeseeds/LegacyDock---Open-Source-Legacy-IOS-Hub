@@ -18,6 +18,7 @@ LegacyDock now has a production-oriented local core, but the project should stil
 - Safety-gated install operation planner.
 - Local JSON workspace persistence for CLI workflows.
 - Local API service for desktop-shell integration and commercial readiness checks.
+- Console runtime bridge that hydrates catalog data from the local API and routes snapshots, install plans, and preservation reports through it when available.
 - Node test suite for core product logic.
 
 ## Local Core Commands
@@ -38,7 +39,6 @@ npm run api
 ## Commercial Release Gates
 
 - Build the native desktop shell with Tauri or Electron.
-- Wire the console to the local API when running inside the desktop shell.
 - Add signed installers for Windows, macOS, and Linux.
 - Replace fixture package and device data with live adapters.
 - Add read-only AFC package-state discovery.

@@ -5,6 +5,12 @@ import { createCommercialApi, assertPostBody } from "./src/core/commercialApi.js
 const host = "127.0.0.1";
 const port = Number(process.env.LEGACYDOCK_API_PORT || 4317);
 const api = createCommercialApi();
+const jsonHeaders = {
+  "content-type": "application/json; charset=utf-8",
+  "access-control-allow-origin": "*",
+  "access-control-allow-methods": "GET,POST,OPTIONS",
+  "access-control-allow-headers": "content-type"
+};
 
 async function readBody(request) {
   const chunks = [];
@@ -20,10 +26,10 @@ const server = createServer(async (request, response) => {
     const body = request.method === "POST" ? await readBody(request) : {};
     const invalidBody = request.method === "POST" ? assertPostBody(body) : null;
     const result = invalidBody || await api.handle(request.method, url.pathname, body);
-    response.writeHead(result.status, result.headers || { "content-type": "application/json; charset=utf-8" });
+    response.writeHead(result.status, result.headers || jsonHeaders);
     response.end(result.status === 204 ? "" : JSON.stringify(result.body, null, 2));
   } catch (error) {
-    response.writeHead(400, { "content-type": "application/json; charset=utf-8" });
+    response.writeHead(400, jsonHeaders);
     response.end(JSON.stringify({ error: error.message }, null, 2));
   }
 });

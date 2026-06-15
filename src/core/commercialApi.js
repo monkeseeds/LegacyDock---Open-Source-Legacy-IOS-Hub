@@ -65,7 +65,7 @@ function withCors(response) {
     status: response.status,
     headers: {
       "content-type": "application/json; charset=utf-8",
-      "access-control-allow-origin": "http://127.0.0.1",
+      "access-control-allow-origin": "*",
       "access-control-allow-methods": "GET,POST,OPTIONS",
       "access-control-allow-headers": "content-type"
     },
@@ -197,7 +197,7 @@ export function createCommercialApi(options = {}) {
 
 export function assertPostBody(value) {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
-    return badRequest("JSON object body required.");
+    return withCors(badRequest("JSON object body required."));
   }
   return null;
 }

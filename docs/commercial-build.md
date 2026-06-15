@@ -34,9 +34,20 @@ GET  /api/preservation/:deviceId
 
 The API is local-first and conservative. It plans operations, creates local snapshots, generates reports, and exposes commercial readiness gates. It does not mutate connected devices.
 
+## Console Integration
+
+`console.html` now attempts to connect to the local API at startup. If the API is available, the console hydrates devices, repositories, packages, and pricing plans from the service. Snapshot capture, preservation report export, and package install planning also route through the API.
+
+If the API is not running, the console stays usable in offline catalog mode with the built-in fixture data. A different API base can be supplied with:
+
+```text
+console.html?api=http://127.0.0.1:4317
+```
+
+The override is stored in local storage for future console sessions.
+
 ## Next Commercial Milestones
 
-- Wire the web console to the local API when running inside a desktop shell.
 - Add a durable SQLite workspace store.
 - Add signed desktop packaging.
 - Add live AFC and SSH discovery adapters.
