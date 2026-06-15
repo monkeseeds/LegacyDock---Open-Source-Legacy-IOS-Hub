@@ -5,12 +5,15 @@ const devices = [
 ];
 
 const repositories = [
-  { id: "bigboss", name: "BigBoss", url: "http://apt.thebigboss.org/repofiles/cydia/", status: "verified", lastRefreshDays: 2, trust: 98, packageIndexHash: "sha256:bb4c-local-fixture", tags: ["core", "legacy"] },
-  { id: "cydia-telesphoreo", name: "Cydia/Telesphoreo", url: "http://apt.saurik.com/", status: "verified", lastRefreshDays: 5, trust: 96, packageIndexHash: "sha256:ct7-local-fixture", tags: ["core"] },
-  { id: "modmyi-archive", name: "ModMyi Archive", url: "http://apt.modmyi.com/", status: "slow", lastRefreshDays: 42, trust: 76, packageIndexHash: "sha256:mm1-local-fixture", tags: ["archive"] },
-  { id: "legacy-archive", name: "Legacy Archive", url: "https://legacy.example/archive", status: "duplicate-risk", lastRefreshDays: 8, trust: 84, packageIndexHash: "sha256:la9-local-fixture", tags: ["archive", "community"] },
-  { id: "legacy-archive-mirror", name: "Legacy Archive Mirror", url: "https://mirror.legacy.example/archive", status: "duplicate-risk", lastRefreshDays: 8, trust: 80, packageIndexHash: "sha256:la9-local-fixture", tags: ["archive", "mirror"] },
-  { id: "chariz-legacy", name: "Chariz Legacy", url: "https://repo.chariz.com/", status: "verified", lastRefreshDays: 4, trust: 91, packageIndexHash: "sha256:cz6-local-fixture", tags: ["marketplace"] }
+  { id: "bigboss", name: "BigBoss", url: "http://apt.thebigboss.org/repofiles/cydia/", description: "Essential legacy Cydia repository with utilities, UI tweaks, repair tools, and classic packages.", status: "verified", healthStatus: "online", lastRefreshDays: 2, lastHealthCheck: "5 minutes ago", lastSuccessfulPing: "5 minutes ago", httpSupport: true, sslSupport: false, packageCount: 18421, category: "Essential", communityRating: 4.9, verified: true, maintainer: "BigBoss team", packageIndexAvailable: true, redirectDetected: false, sslIssue: false, responseMs: 184, packageIndexHash: "sha256:bb4c-local-fixture", tags: ["core", "legacy"], contains: ["Activator", "iCleaner", "iFile", "RecordMyScreen", "ColoredKnob", "LiveWallpaper"], notes: "Default source for many foundational legacy tweaks. Uses HTTP, which is normal for older Cydia setups." },
+  { id: "skyglow", name: "SkyGlow", url: "http://cydia.skyglow.es/", description: "Service restoration source for legacy maps, YouTube, and community repair packages.", status: "verified", healthStatus: "online", lastRefreshDays: 1, lastHealthCheck: "8 minutes ago", lastSuccessfulPing: "8 minutes ago", httpSupport: true, sslSupport: false, packageCount: 42, category: "Service Restoration", communityRating: 4.7, verified: true, maintainer: "SkyGlow community", packageIndexAvailable: true, redirectDetected: false, sslIssue: false, responseMs: 220, packageIndexHash: "sha256:sg2-local-fixture", tags: ["restoration", "services"], contains: ["MapsX", "TubeRepair", "Legacy restoration tweaks"], notes: "Recommended for iOS 6 service restoration experiments. Snapshot before changing service-related packages." },
+  { id: "yzu", name: "Yzu", url: "http://yzu.moe/dev/", description: "Applications and preservation utilities for older jailbroken iOS environments.", status: "verified", healthStatus: "degraded", lastRefreshDays: 12, lastHealthCheck: "11 minutes ago", lastSuccessfulPing: "2 hours ago", httpSupport: true, sslSupport: false, packageCount: 18, category: "Applications", communityRating: 4.5, verified: true, maintainer: "Yzu", packageIndexAvailable: true, redirectDetected: true, sslIssue: false, responseMs: 1180, packageIndexHash: "sha256:yzu-local-fixture", tags: ["apps", "preservation"], contains: ["Veteris"], notes: "Useful for application restoration workflows. Marked degraded because responses may be slow or redirected." },
+  { id: "galactic-server", name: "Galactic Server", url: "http://repo.galactic-server.info/", description: "Legacy utilities and classic system tools used by older jailbreak setups.", status: "verified", healthStatus: "online", lastRefreshDays: 4, lastHealthCheck: "6 minutes ago", lastSuccessfulPing: "6 minutes ago", httpSupport: true, sslSupport: false, packageCount: 73, category: "Utilities", communityRating: 4.4, verified: true, maintainer: "Galactic Server", packageIndexAvailable: true, redirectDetected: false, sslIssue: false, responseMs: 260, packageIndexHash: "sha256:gs7-local-fixture", tags: ["utilities"], contains: ["SBSettings", "Legacy utilities"], notes: "Good candidate for utility recommendations on iOS 5 and iOS 6 devices." },
+  { id: "cydia-telesphoreo", name: "Cydia/Telesphoreo", url: "http://apt.saurik.com/", description: "Core Cydia/Telesphoreo packages and base system dependencies.", status: "verified", healthStatus: "online", lastRefreshDays: 5, lastHealthCheck: "7 minutes ago", lastSuccessfulPing: "7 minutes ago", httpSupport: true, sslSupport: false, packageCount: 692, category: "Essential", communityRating: 4.8, verified: true, maintainer: "SaurikIT", packageIndexAvailable: true, redirectDetected: false, sslIssue: false, responseMs: 210, packageIndexHash: "sha256:ct7-local-fixture", tags: ["core"], contains: ["OpenSSH", "APT", "core libraries"], notes: "Core dependency source. Removing it can break package management." },
+  { id: "modmyi-archive", name: "ModMyi Archive", url: "http://apt.modmyi.com/", description: "Historical archive source for packages previously hosted by ModMyi.", status: "slow", healthStatus: "degraded", lastRefreshDays: 42, lastHealthCheck: "14 minutes ago", lastSuccessfulPing: "3 days ago", httpSupport: true, sslSupport: false, packageCount: 9210, category: "Archive", communityRating: 3.8, verified: false, maintainer: "Historical archive", packageIndexAvailable: true, redirectDetected: false, sslIssue: false, responseMs: 2200, packageIndexHash: "sha256:mm1-local-fixture", tags: ["archive"], contains: ["Themes", "legacy tweaks"], notes: "Preserve historical value, but prefer verified mirrors when installs fail." },
+  { id: "legacy-archive", name: "Legacy Archive", url: "https://legacy.example/archive", description: "Demo archive source used by LegacyDock for duplicate and mirror detection.", status: "duplicate-risk", healthStatus: "degraded", lastRefreshDays: 8, lastHealthCheck: "12 minutes ago", lastSuccessfulPing: "12 minutes ago", httpSupport: true, sslSupport: true, packageCount: 1800, category: "Archive", communityRating: 4.1, verified: false, maintainer: "Community mirror", packageIndexAvailable: true, redirectDetected: false, sslIssue: false, responseMs: 430, packageIndexHash: "sha256:la9-local-fixture", tags: ["archive", "community"], contains: ["Archived tweaks"], notes: "Demo mirror used to model duplicate repository behavior." },
+  { id: "legacy-archive-mirror", name: "Legacy Archive Mirror", url: "https://mirror.legacy.example/archive", description: "Mirror of the Legacy Archive demo source.", status: "duplicate-risk", healthStatus: "degraded", lastRefreshDays: 8, lastHealthCheck: "12 minutes ago", lastSuccessfulPing: "12 minutes ago", httpSupport: true, sslSupport: true, packageCount: 1800, category: "Archive", communityRating: 3.9, verified: false, maintainer: "Community mirror", packageIndexAvailable: true, redirectDetected: false, sslIssue: false, responseMs: 510, packageIndexHash: "sha256:la9-local-fixture", tags: ["archive", "mirror"], contains: ["Archived tweaks"], notes: "Same package index as Legacy Archive. Device Doctor should suggest deduplication." },
+  { id: "chariz-legacy", name: "Chariz Legacy", url: "https://repo.chariz.com/", description: "Modern repository with selected legacy-compatible packages and metadata.", status: "verified", healthStatus: "online", lastRefreshDays: 4, lastHealthCheck: "9 minutes ago", lastSuccessfulPing: "9 minutes ago", httpSupport: true, sslSupport: true, packageCount: 320, category: "Marketplace", communityRating: 4.6, verified: true, maintainer: "Chariz", packageIndexAvailable: true, redirectDetected: false, sslIssue: false, responseMs: 170, packageIndexHash: "sha256:cz6-local-fixture", tags: ["marketplace"], contains: ["NoSlowAnimations"], notes: "Useful for newer package metadata, but always verify legacy firmware support." }
 ];
 
 const iosCompatibilityVersions = [
@@ -27,7 +30,49 @@ const packages = [
   { id: "noslowanimations", name: "NoSlowAnimations", category: "safe", version: "4.2.1", repository: "chariz-legacy", firmwareRange: ["6.0", "9.3.6"], devices: ["iPhone3,1", "iPhone5,2", "iPad2,1"], dependencies: ["mobilesubstrate"], conflicts: [], rating: 4.6, communitySuccess: 97, risk: "low", batteryImpact: "neutral", performanceImpact: "positive", summary: "Reduces animation delays across older devices.", notes: "Best paired with conservative animation values." },
   { id: "openssh", name: "OpenSSH", category: "repair", version: "6.7p1", repository: "cydia-telesphoreo", firmwareRange: ["6.0", "9.3.6"], devices: ["iPhone3,1", "iPhone5,2", "iPad2,1"], dependencies: ["openssl", "berkeleydb"], conflicts: [], rating: 4.5, communitySuccess: 96, risk: "medium", batteryImpact: "background service", performanceImpact: "light", summary: "Secure shell access for repairs, backups, and diagnostics.", notes: "Change the default password immediately after install." },
   { id: "batterylife", name: "BatteryLife", category: "diagnostic", version: "1.6.10", repository: "bigboss", firmwareRange: ["6.0", "9.3.6"], devices: ["iPhone5,2", "iPad2,1"], dependencies: ["preferenceloader"], conflicts: [], rating: 4.4, communitySuccess: 93, risk: "low", batteryImpact: "neutral", performanceImpact: "light", summary: "Displays battery diagnostics and cycle health.", notes: "Useful for repair shop intake and collector records." },
-  { id: "filza", name: "Filza File Manager", category: "repair", version: "3.5.2", repository: "bigboss", firmwareRange: ["6.0", "9.3.6"], devices: ["iPhone5,2", "iPad2,1"], dependencies: ["zip", "unzip", "coreutils"], conflicts: [], rating: 4.6, communitySuccess: 92, risk: "medium", batteryImpact: "neutral", performanceImpact: "light", summary: "On-device file manager for advanced repairs.", notes: "Powerful tool. LegacyDock should warn before destructive file edits." }
+  { id: "filza", name: "Filza File Manager", category: "repair", version: "3.5.2", repository: "bigboss", firmwareRange: ["6.0", "9.3.6"], devices: ["iPhone5,2", "iPad2,1"], dependencies: ["zip", "unzip", "coreutils"], conflicts: [], rating: 4.6, communitySuccess: 92, risk: "medium", batteryImpact: "neutral", performanceImpact: "light", summary: "On-device file manager for advanced repairs.", notes: "Powerful tool. LegacyDock should warn before destructive file edits." },
+  { id: "ifile", name: "iFile", category: "utility", version: "2.2.0", repository: "bigboss", firmwareRange: ["3.0", "9.3.6"], devices: ["iPhone3,1", "iPhone5,2", "iPad2,1"], dependencies: ["mobilesubstrate"], conflicts: [], rating: 4.7, communitySuccess: 96, risk: "medium", batteryImpact: "neutral", performanceImpact: "light", summary: "Classic on-device file manager for legacy jailbreak maintenance.", notes: "Use carefully. File edits can break SpringBoard or package manager state.", developer: "Carsten Heinelt", lastUpdated: "2015-09-21", screenshot: "File browser preview", verifiedStatus: "Verified Working", lastVerified: "2026-06-15", testedIos: "iOS 6.1.3", testedDevice: "iPhone 4", contributor: "LegacyDock fixture" },
+  { id: "recordmyscreen", name: "RecordMyScreen", category: "recording", version: "1.3.0", repository: "bigboss", firmwareRange: ["5.0", "7.1.2"], devices: ["iPhone3,1", "iPad2,1"], dependencies: ["mobilesubstrate"], conflicts: [], rating: 4.2, communitySuccess: 89, risk: "medium", batteryImpact: "high while recording", performanceImpact: "moderate", summary: "Screen recording utility for older iOS devices.", notes: "Performance varies by device. Avoid long recordings on low-storage devices.", developer: "CoolStar", lastUpdated: "2014-03-20", screenshot: "Recorder controls preview", verifiedStatus: "Partial", lastVerified: "2026-06-15", testedIos: "iOS 6.1.3", testedDevice: "iPhone 4", contributor: "LegacyDock fixture" },
+  { id: "coloredknob", name: "ColoredKnob", category: "ui", version: "1.5", repository: "bigboss", firmwareRange: ["5.0", "7.1.2"], devices: ["iPhone3,1", "iPad2,1"], dependencies: ["mobilesubstrate"], conflicts: [], rating: 4.1, communitySuccess: 91, risk: "low", batteryImpact: "minimal", performanceImpact: "light", summary: "Lock screen slider customization for classic iOS releases.", notes: "Cosmetic tweak. Snapshot recommended when stacking lock screen modifications.", developer: "Legacy community", lastUpdated: "2013-12-12", screenshot: "Slider color preview", verifiedStatus: "Verified Working", lastVerified: "2026-06-15", testedIos: "iOS 6.1.3", testedDevice: "iPhone 4", contributor: "LegacyDock fixture" },
+  { id: "livewallpaper", name: "LiveWallpaper", category: "ui", version: "2.1", repository: "bigboss", firmwareRange: ["5.0", "7.1.2"], devices: ["iPhone3,1", "iPad2,1"], dependencies: ["mobilesubstrate"], conflicts: ["winterboard-heavy-theme"], rating: 4.0, communitySuccess: 86, risk: "medium", batteryImpact: "moderate", performanceImpact: "moderate", summary: "Animated wallpaper support for legacy devices.", notes: "Can reduce battery life and frame rate on A4/A5 devices.", developer: "Legacy community", lastUpdated: "2014-05-06", screenshot: "Animated wallpaper preview", verifiedStatus: "Partial", lastVerified: "2026-06-15", testedIos: "iOS 6.1.3", testedDevice: "iPhone 4", contributor: "LegacyDock fixture" },
+  { id: "mapsx", name: "MapsX", category: "restoration", version: "1.0.4", repository: "skyglow", firmwareRange: ["6.0", "6.1.6"], devices: ["iPhone3,1", "iPad2,1"], dependencies: [], conflicts: [], rating: 4.8, communitySuccess: 95, risk: "low", batteryImpact: "minimal", performanceImpact: "light", summary: "Maps service restoration tweak for iOS 6-era devices.", notes: "Requires the SkyGlow repository. Service behavior may vary by region.", developer: "SkyGlow community", lastUpdated: "2025-11-18", screenshot: "Maps restoration preview", verifiedStatus: "Verified Working", lastVerified: "2026-06-15", testedIos: "iOS 6.1.3", testedDevice: "iPhone 4", contributor: "LegacyDock fixture" },
+  { id: "tuberepair", name: "TubeRepair", category: "restoration", version: "2.0.1", repository: "skyglow", firmwareRange: ["5.0", "7.1.2"], devices: ["iPhone3,1", "iPad2,1"], dependencies: [], conflicts: [], rating: 4.7, communitySuccess: 94, risk: "medium", batteryImpact: "minimal", performanceImpact: "light", summary: "YouTube playback restoration helper for older iOS builds.", notes: "Requires compatible service endpoint configuration.", developer: "SkyGlow community", lastUpdated: "2025-12-02", screenshot: "YouTube restoration preview", verifiedStatus: "Partial", lastVerified: "2026-06-15", testedIos: "iOS 6.1.3", testedDevice: "iPhone 4", contributor: "LegacyDock fixture" },
+  { id: "veteris", name: "Veteris", category: "applications", version: "1.7.2", repository: "yzu", firmwareRange: ["5.0", "6.1.6"], devices: ["iPhone3,1", "iPad2,1"], dependencies: [], conflicts: [], rating: 4.8, communitySuccess: 96, risk: "low", batteryImpact: "minimal", performanceImpact: "light", summary: "Legacy app discovery and installation companion for preserved devices.", notes: "Requires Yzu repo. LegacyDock should treat all app acquisition as user-controlled and license-respecting.", developer: "Yzu", lastUpdated: "2024-08-12", screenshot: "Application catalog preview", verifiedStatus: "Verified Working", lastVerified: "2026-06-15", testedIos: "iOS 6.1.3", testedDevice: "iPhone 4", contributor: "LegacyDock fixture" },
+  { id: "sbsettings", name: "SBSettings", category: "utility", version: "6.0.5", repository: "galactic-server", firmwareRange: ["3.0", "6.1.6"], devices: ["iPhone3,1", "iPad2,1"], dependencies: ["mobilesubstrate"], conflicts: [], rating: 4.6, communitySuccess: 95, risk: "medium", batteryImpact: "small", performanceImpact: "light", summary: "Classic quick-toggle panel for legacy iOS.", notes: "Recommended on iOS 5 and 6. Less useful on newer Control Center-era firmware.", developer: "BigBoss / legacy community", lastUpdated: "2013-09-09", screenshot: "Toggle drawer preview", verifiedStatus: "Verified Working", lastVerified: "2026-06-15", testedIos: "iOS 6.1.3", testedDevice: "iPhone 4", contributor: "LegacyDock fixture" }
+];
+
+const essentialTweaks = [
+  { group: "Utilities", ids: ["activator", "icleaner-pro", "ifile", "sbsettings"] },
+  { group: "Recording", ids: ["recordmyscreen"] },
+  { group: "UI", ids: ["coloredknob", "livewallpaper"] },
+  { group: "Restoration", ids: ["mapsx", "tuberepair"] },
+  { group: "Applications", ids: ["veteris"] }
+];
+
+const serviceCatalog = [
+  { name: "TubeRepair", status: "Partial", description: "Restores YouTube playback paths on selected legacy iOS builds.", requiredRepo: "skyglow", supported: ["iOS 5", "iOS 6", "iOS 7"], limitations: "Endpoint availability and app version support can change.", guide: "Add SkyGlow, install TubeRepair, configure the service endpoint, then test playback." },
+  { name: "MapsX", status: "Verified Working", description: "Restores Maps behavior for iOS 6 devices where legacy services are broken.", requiredRepo: "skyglow", supported: ["iOS 6"], limitations: "Regional behavior may vary.", guide: "Add SkyGlow, install MapsX, reboot, then test Maps search and routing." },
+  { name: "Weather restoration", status: "Experimental", description: "Community-maintained fixes for older Weather endpoints.", requiredRepo: "community resource", supported: ["iOS 5", "iOS 6"], limitations: "Often endpoint-specific and may need manual configuration.", guide: "Review community notes before installing any profile or tweak." },
+  { name: "iTunes Store restoration", status: "Needs Fix", description: "Research area for legacy storefront connectivity and certificates.", requiredRepo: "none", supported: ["iOS 5", "iOS 6"], limitations: "Server-side Apple behavior may be unavailable.", guide: "Use preservation reports and certificate checks before attempting fixes." },
+  { name: "App Store restoration", status: "Experimental", description: "Tracks community attempts to improve old App Store compatibility.", requiredRepo: "Yzu / community resources", supported: ["iOS 5", "iOS 6"], limitations: "Do not bypass licensing or redistribute paid apps.", guide: "Use license-respecting archives and user-owned purchase history only." },
+  { name: "Push notification restoration", status: "Partial", description: "Research and device-specific fixes for legacy push behavior.", requiredRepo: "community resource", supported: ["iOS 6", "iOS 7"], limitations: "Depends on certificates, activation state, and server behavior.", guide: "Snapshot first, then test with one known-good app." },
+  { name: "Siri restoration", status: "Experimental", description: "Historical research for devices and firmware where Siri behavior can be restored.", requiredRepo: "community resource", supported: ["iOS 6", "iOS 7"], limitations: "Only applicable to some devices and may depend on unsupported services.", guide: "Treat as research. Do not install unknown certificates without review." },
+  { name: "Game Center restoration", status: "Needs Fix", description: "Tracks old Game Center service status and compatibility notes.", requiredRepo: "none", supported: ["iOS 5", "iOS 6"], limitations: "Server-side support may be unavailable.", guide: "Document status in the preservation report." },
+  { name: "YouTube restoration", status: "Partial", description: "Service restoration for older YouTube clients and web fallbacks.", requiredRepo: "skyglow", supported: ["iOS 5", "iOS 6", "iOS 7"], limitations: "Playback support changes with upstream endpoints.", guide: "Start with TubeRepair and keep a rollback snapshot." }
+];
+
+const deadRepositoryArchive = [
+  { name: "ModMyi", originalUrl: "http://apt.modmyi.com/", state: "Archive available", mirror: "Historical mirrors vary", recovery: "Prefer archived package lists and verify hashes before install." },
+  { name: "ZodTTD/MacCiti", originalUrl: "http://cydia.zodttd.com/repo/cydia/", state: "Completely lost", mirror: "No maintained official mirror in this fixture", recovery: "Use historical metadata only unless a trusted mirror is confirmed." },
+  { name: "Legacy Archive Demo", originalUrl: "https://legacy.example/archive", state: "Mirror available", mirror: "https://mirror.legacy.example/archive", recovery: "Device Doctor should remove one duplicate source." }
+];
+
+const communityResources = [
+  { name: "r/LegacyJailbreak", type: "Reddit", url: "https://www.reddit.com/r/LegacyJailbreak/", note: "Large community for device-specific legacy jailbreak help and restoration notes." },
+  { name: "iPhoneOS Obscura", type: "Discord / community", url: "https://github.com/CatsLover2006/iOSobscuraServer", note: "Useful prior art for legacy iOS archival metadata and search concepts." },
+  { name: "iPhoneOS Obscura Archive", type: "Archive", url: "https://github.com/CatsLover2006/iOSobscuraServer", note: "Reference point for metadata-first archive discovery. Respect licensing and copyright boundaries." },
+  { name: "Legacy iOS Kit", type: "Guide / toolkit", url: "https://github.com/LukeZGD/Legacy-iOS-Kit", note: "Restore, downgrade, SHSH, jailbreak, and ramdisk workflow reference." },
+  { name: "Legacy iOS Kit Jailbreaking Wiki", type: "Guide", url: "https://github.com/LukeZGD/Legacy-iOS-Kit/wiki/Jailbreaking", note: "Useful compatibility matrix for jailbreak method research." }
 ];
 
 const seedSnapshots = [
@@ -221,6 +266,18 @@ function doctorDiagnostics(device) {
       : "Repository problems can hide dependency updates, conflict metadata, and repair paths.",
     recommendation: issue.action
   }));
+  const missingRecommendedRepos = recommendedPackagesForDevice(device)
+    .map(({ pkg }) => packageRepository(pkg))
+    .filter((repo) => repo && !device.repositories.includes(repo.id))
+    .filter((repo, index, list) => list.findIndex((item) => item.id === repo.id) === index)
+    .map((repo) => ({
+      severity: "low",
+      category: "repository",
+      title: `Recommended repository missing: ${repo.name}`,
+      detail: `${repo.name} provides compatible packages or restoration services for ${device.name}.`,
+      why: "Adding the right source reduces manual searching and improves dependency resolution.",
+      recommendation: "Add source"
+    }));
   const packageIssues = packages.flatMap((pkg) => {
     const result = evaluateCompatibility(device, pkg);
     return result.checks
@@ -257,7 +314,7 @@ function doctorDiagnostics(device) {
     });
   }
 
-  return [...repoIssues, ...packageIssues];
+  return [...repoIssues, ...missingRecommendedRepos, ...packageIssues];
 }
 
 function careRepairPlan(device) {
@@ -398,6 +455,8 @@ const state = loadWorkspace({
   selectedDeviceId: devices[0].id,
   deviceFilter: "all",
   packageFilter: "all",
+  repositoryFilter: "all",
+  packageIosFilter: "all",
   searchTerm: "",
   snapshots: seedSnapshots,
   telemetryEnabled: false
@@ -425,6 +484,48 @@ function severityKind(value) {
 function matchesSearch(...values) {
   if (!state.searchTerm) return true;
   return values.join(" ").toLowerCase().includes(state.searchTerm);
+}
+
+function repoStatusKind(status) {
+  if (["online", "verified", "Verified Working"].includes(status)) return "good";
+  if (["degraded", "Partial", "Needs Fix", "Experimental"].includes(status)) return "warn";
+  if (["offline", "Broken"].includes(status)) return "bad";
+  return "neutral";
+}
+
+function repoHealthLabel(repo) {
+  if (repo.healthStatus === "online") return "Online";
+  if (repo.healthStatus === "degraded") return "Partial";
+  return "Offline";
+}
+
+function packageRepository(pkg) {
+  return repositories.find((repo) => repo.id === pkg.repository);
+}
+
+function packageSupportsIosFilter(pkg) {
+  if (state.packageIosFilter === "all") return true;
+  const major = state.packageIosFilter.replace("ios", "");
+  return compatibleVersionsForRange(pkg.firmwareRange).some((version) => version.startsWith(`${major}.`));
+}
+
+function communityStatus(pkg) {
+  if (pkg.verifiedStatus) return pkg.verifiedStatus;
+  if (pkg.communitySuccess >= 95) return "Verified Working";
+  if (pkg.communitySuccess >= 90) return "Partial";
+  return "Experimental";
+}
+
+function cydiaUrl(repo) {
+  return `cydia://url/https://cydia.saurik.com/api/share#?source=${encodeURIComponent(repo.url)}`;
+}
+
+function recommendedPackagesForDevice(device) {
+  return packages
+    .map((pkg) => ({ pkg, result: evaluateCompatibility(device, pkg) }))
+    .filter(({ result }) => result.supported && result.score >= 84)
+    .sort((a, b) => b.result.score - a.result.score)
+    .slice(0, 8);
 }
 
 function renderDevices() {
@@ -606,6 +707,206 @@ function renderPackages() {
 
   $$("[data-review-package]").forEach((button) => {
     button.addEventListener("click", () => openInstallDialog(button.dataset.reviewPackage));
+  });
+}
+
+function renderRepositoryFilters() {
+  const categoryTarget = $("[data-repository-filters]");
+  const iosTarget = $("[data-ios-package-filters]");
+  if (!categoryTarget || !iosTarget) return;
+  const categories = ["all", ...new Set(repositories.map((repo) => repo.category))];
+  categoryTarget.innerHTML = categories.map((category) => `
+    <button class="${state.repositoryFilter === category ? "active" : ""}" data-repository-filter="${category}">${category === "all" ? "All repos" : category}</button>
+  `).join("");
+  iosTarget.innerHTML = ["all", "ios3", "ios4", "ios5", "ios6", "ios7", "ios8", "ios9"].map((version) => `
+    <button class="${state.packageIosFilter === version ? "active" : ""}" data-ios-filter="${version}">${version === "all" ? "All iOS" : version.replace("ios", "iOS ")}</button>
+  `).join("");
+
+  $$("[data-repository-filter]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.repositoryFilter = button.dataset.repositoryFilter;
+      renderRepositories();
+    });
+  });
+  $$("[data-ios-filter]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.packageIosFilter = button.dataset.iosFilter;
+      renderRepositories();
+    });
+  });
+}
+
+function renderRepositories() {
+  const grid = $("[data-repository-grid]");
+  if (!grid) return;
+  renderRepositoryFilters();
+  const device = selectedDevice();
+  const filteredRepos = repositories.filter((repo) => {
+    const categoryMatch = state.repositoryFilter === "all" || repo.category === state.repositoryFilter;
+    return categoryMatch && matchesSearch(repo.name, repo.url, repo.description, repo.category, repo.contains.join(" "), repo.notes);
+  });
+  const filteredPackages = packages.filter((pkg) => {
+    const repo = packageRepository(pkg);
+    return packageSupportsIosFilter(pkg) && matchesSearch(pkg.name, pkg.summary, pkg.category, pkg.developer || "", repo?.name || "");
+  });
+  const onlineCount = repositories.filter((repo) => repo.healthStatus === "online").length;
+  const degradedCount = repositories.filter((repo) => repo.healthStatus === "degraded").length;
+  const verifiedCount = repositories.filter((repo) => repo.verified).length;
+
+  $("[data-repo-summary]").innerHTML = [
+    ["Repositories", repositories.length],
+    ["Online", onlineCount],
+    ["Partial", degradedCount],
+    ["Verified", verifiedCount]
+  ].map(([label, value]) => `<article><small>${label}</small><strong>${value}</strong></article>`).join("");
+
+  grid.innerHTML = filteredRepos.map((repo) => `
+    <article class="repository-card">
+      <div class="card-top">
+        <div>
+          <h4>${repo.name}</h4>
+          <small>${repo.url}</small>
+        </div>
+        ${badge(repo.verified ? "Verified" : "Community", repo.verified ? "good" : "neutral")}
+      </div>
+      <p>${repo.description}</p>
+      <div class="repo-health-row">
+        ${badge(repoHealthLabel(repo), repoStatusKind(repo.healthStatus))}
+        ${badge(repo.sslSupport ? "SSL" : "HTTP only", repo.sslSupport ? "good" : "warn")}
+        ${badge(`${repo.packageCount.toLocaleString()} packages`, "neutral")}
+        ${badge(`${repo.communityRating}/5 rating`, "good")}
+      </div>
+      <dl class="repo-meta">
+        <dt>Category</dt><dd>${repo.category}</dd>
+        <dt>Maintainer</dt><dd>${repo.maintainer || "Unknown"}</dd>
+        <dt>Last health check</dt><dd>${repo.lastHealthCheck}</dd>
+        <dt>Last successful ping</dt><dd>${repo.lastSuccessfulPing}</dd>
+        <dt>Package index</dt><dd>${repo.packageIndexAvailable ? "Available" : "Missing"}</dd>
+        <dt>Response</dt><dd>${repo.responseMs}ms${repo.redirectDetected ? ", redirect detected" : ""}${repo.sslIssue ? ", SSL issue" : ""}</dd>
+      </dl>
+      <p class="panel-note">${repo.notes}</p>
+      <div class="repo-contains">${repo.contains.map((item) => `<span>${item}</span>`).join("")}</div>
+      <div class="repo-actions">
+        <a class="mini-button" href="${cydiaUrl(repo)}">Add to Cydia</a>
+        <button class="mini-button" data-copy-repo="${repo.url}">Copy URL</button>
+      </div>
+    </article>
+  `).join("");
+
+  $("[data-repo-package-grid]").innerHTML = filteredPackages.map((pkg) => {
+    const repo = packageRepository(pkg);
+    const status = communityStatus(pkg);
+    return `
+      <article class="repo-package-card">
+        <div class="package-screenshot">${pkg.screenshot || pkg.name}</div>
+        <div>
+          <div class="card-top">
+            <div>
+              <h4>${pkg.name}</h4>
+              <small>${pkg.version} &middot; ${pkg.developer || "Legacy community"}</small>
+            </div>
+            ${badge(status, repoStatusKind(status))}
+          </div>
+          <p>${pkg.summary}</p>
+          <div class="repo-health-row">
+            ${badge(`${pkg.firmwareRange[0]}-${pkg.firmwareRange[1]}`, "neutral")}
+            ${badge(repo?.name || pkg.repository, "good")}
+            ${badge(`${pkg.rating}/5`, "good")}
+            ${badge(`${pkg.communitySuccess}% success`, pkg.communitySuccess >= 95 ? "good" : "warn")}
+          </div>
+          <p class="panel-note">Dependencies: ${(pkg.dependencies && pkg.dependencies.length) ? pkg.dependencies.join(", ") : "none recorded"}. Last updated ${pkg.lastUpdated || "unknown"}.</p>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  $("[data-essential-grid]").innerHTML = essentialTweaks.map((group) => `
+    <article class="essential-card">
+      <h4>${group.group}</h4>
+      <div class="list-stack">
+        ${group.ids.map((id) => {
+          const pkg = packages.find((item) => item.id === id);
+          const repo = packageRepository(pkg);
+          return `<div class="list-row"><span>${pkg.name}<small>${pkg.summary}</small></span>${badge(repo?.name || pkg.repository, "good")}</div>`;
+        }).join("")}
+      </div>
+    </article>
+  `).join("");
+
+  $("[data-service-grid]").innerHTML = serviceCatalog.map((service) => `
+    <article class="service-card">
+      <div class="card-top"><h4>${service.name}</h4>${badge(service.status, repoStatusKind(service.status))}</div>
+      <p>${service.description}</p>
+      <div class="repo-health-row">
+        ${service.supported.map((item) => badge(item, "neutral")).join("")}
+        ${badge(`Repo: ${repositories.find((repo) => repo.id === service.requiredRepo)?.name || service.requiredRepo}`, "good")}
+      </div>
+      <p class="panel-note"><strong>Guide:</strong> ${service.guide}</p>
+      <p class="panel-note"><strong>Known limitations:</strong> ${service.limitations}</p>
+    </article>
+  `).join("");
+
+  $("[data-submission-panel]").innerHTML = `
+    <h3>Repository Submission</h3>
+    <p class="panel-note">Submissions are staged for moderation before becoming verified.</p>
+    <form class="submission-form" data-submission-form>
+      <input name="url" placeholder="Repository URL" />
+      <input name="description" placeholder="Description" />
+      <input name="maintainer" placeholder="Maintainer" />
+      <input name="website" placeholder="Website or screenshot URL" />
+      <textarea name="notes" placeholder="Notes"></textarea>
+      <button class="primary-button compact" type="submit">Submit for review</button>
+    </form>
+  `;
+
+  $("[data-resource-center]").innerHTML = `
+    <h3>Community Resource Center</h3>
+    <div class="list-stack">
+      ${communityResources.map((resource) => `
+        <a class="resource-row" href="${resource.url}" target="_blank" rel="noreferrer">
+          <span>${resource.name}<small>${resource.type} - ${resource.note}</small></span>
+          ${badge("Open", "neutral")}
+        </a>
+      `).join("")}
+    </div>
+  `;
+
+  $("[data-dead-repo-archive]").innerHTML = `
+    <h3>Dead Repository Archive</h3>
+    <div class="list-stack">
+      ${deadRepositoryArchive.map((repo) => `
+        <div class="list-row"><span>${repo.name}<small>${repo.originalUrl}<br>${repo.recovery}</small></span>${badge(repo.state, repo.state.includes("lost") ? "bad" : "warn")}</div>
+      `).join("")}
+    </div>
+  `;
+
+  $("[data-smart-recommendations]").innerHTML = `
+    <h3>Smart Recommendations</h3>
+    <p class="panel-note">Detected ${device.name} on ${device.os} ${device.firmware}. Recommended compatible essentials and restoration services:</p>
+    <div class="list-stack">
+      ${recommendedPackagesForDevice(device).map(({ pkg, result }) => {
+        const repo = packageRepository(pkg);
+        const missingRepo = repo && !device.repositories.includes(repo.id);
+        return `<div class="list-row"><span>${pkg.name}<small>${pkg.summary}</small></span>${badge(missingRepo ? `Add ${repo.name}` : `${result.score}% fit`, missingRepo ? "warn" : "good")}</div>`;
+      }).join("")}
+    </div>
+  `;
+
+  $$("[data-copy-repo]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copyRepo);
+        toast("Repository URL copied.");
+      } catch {
+        toast(button.dataset.copyRepo);
+      }
+    });
+  });
+
+  $("[data-submission-form]").addEventListener("submit", (event) => {
+    event.preventDefault();
+    event.currentTarget.reset();
+    toast("Repository submission staged for moderation.");
   });
 }
 
@@ -895,7 +1196,7 @@ function activateView(name) {
 
 function viewFromHash() {
   const value = window.location.hash.replace("#", "").replace("-view", "");
-  return ["dashboard", "marketplace", "health", "restoration", "snapshots", "preservation"].includes(value) ? value : null;
+  return ["dashboard", "marketplace", "repositories", "health", "restoration", "snapshots", "preservation"].includes(value) ? value : null;
 }
 
 function toast(message) {
@@ -916,6 +1217,7 @@ function renderAll() {
   renderDevices();
   renderDeviceDetail();
   renderPackages();
+  renderRepositories();
   renderHealth();
   renderRestoration();
   renderSnapshots();
@@ -950,10 +1252,15 @@ $("#searchInput").addEventListener("input", (event) => {
   state.searchTerm = event.target.value.trim().toLowerCase();
   renderDevices();
   renderPackages();
+  renderRepositories();
 });
 
 $("[data-capture-snapshot]").addEventListener("click", captureSnapshot);
 $("[data-run-health]").addEventListener("click", () => toast("Health scan refreshed local compatibility and repository checks."));
+$("[data-refresh-repositories]").addEventListener("click", () => {
+  renderRepositories();
+  toast("Repository health checks refreshed from the local community database.");
+});
 $("[data-export-report]").addEventListener("click", exportReport);
 const telemetryToggle = $("[data-telemetry-toggle]");
 if (telemetryToggle) {

@@ -1199,6 +1199,174 @@ h4 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.repo-hub,
+.hub-section {
+  display: grid;
+  gap: 16px;
+}
+
+.repository-toolbar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.repository-toolbar .segmented {
+  flex-wrap: wrap;
+}
+
+.repo-summary-grid,
+.repository-grid,
+.repo-package-grid,
+.essential-grid,
+.service-grid,
+.two-column-hub {
+  display: grid;
+  gap: 16px;
+}
+
+.repo-summary-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.repo-summary-grid article,
+.repository-card,
+.repo-package-card,
+.essential-card,
+.service-card,
+.resource-row {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.repo-summary-grid article {
+  padding: 16px;
+}
+
+.repo-summary-grid strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 2rem;
+}
+
+.repository-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.repository-card,
+.repo-package-card,
+.essential-card,
+.service-card {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  padding: 16px;
+}
+
+.repo-health-row,
+.repo-actions,
+.repo-contains {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.repo-meta {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 7px 12px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.repo-meta dt {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.repo-meta dd {
+  min-width: 0;
+  margin: 0;
+}
+
+.repo-contains span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.repo-package-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.repo-package-card {
+  grid-template-columns: 112px minmax(0, 1fr);
+}
+
+.package-screenshot {
+  display: grid;
+  place-items: center;
+  min-height: 112px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, rgba(110, 168, 255, 0.16), rgba(123, 216, 143, 0.12)), var(--surface-2);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.essential-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.service-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.two-column-hub {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.submission-form {
+  display: grid;
+  gap: 10px;
+}
+
+.submission-form input,
+.submission-form textarea {
+  width: 100%;
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  color: var(--ink);
+  font: inherit;
+}
+
+.submission-form textarea {
+  min-height: 86px;
+  padding-block: 10px;
+  resize: vertical;
+}
+
+.resource-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+}
+
 .package-card {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
@@ -2496,6 +2664,12 @@ pre {
 .console-body .device-card,
 .console-body .device-hero-card,
 .console-body .package-card,
+.console-body .repository-card,
+.console-body .repo-package-card,
+.console-body .essential-card,
+.console-body .service-card,
+.console-body .repo-summary-grid article,
+.console-body .resource-row,
 .console-body .dialog-card,
 .console-body .workflow-card,
 .console-body .doctor-score-card,
@@ -2580,11 +2754,28 @@ pre {
 }
 
 .console-body .package-media,
+.console-body .package-screenshot,
 .console-body .ios-device,
 .console-body .care-steps li,
 .console-body .timeline-list article,
 .console-body .intel-grid span {
   background: #f7f8fb;
+}
+
+.console-body .submission-form input,
+.console-body .submission-form textarea {
+  border-color: var(--marketing-line);
+  background: #f7f8fb;
+  color: var(--marketing-ink);
+}
+
+.console-body .repo-meta dt,
+.console-body .repo-meta dd {
+  color: var(--marketing-muted);
+}
+
+.console-body .repo-meta dt {
+  color: var(--marketing-ink);
 }
 
 .console-body .safety-dialog {
@@ -2615,7 +2806,13 @@ pre {
 
   .doctor-showcase,
   .care-panel,
-  .doctor-console {
+  .doctor-console,
+  .repository-toolbar,
+  .repository-grid,
+  .repo-package-grid,
+  .essential-grid,
+  .service-grid,
+  .two-column-hub {
     grid-template-columns: 1fr;
   }
 
@@ -2654,6 +2851,8 @@ pre {
   .feature-strip,
   .stat-strip,
   .care-grid,
+  .repo-summary-grid,
+  .repo-package-card,
   .mini-metrics {
     grid-template-columns: 1fr;
   }

@@ -2,6 +2,40 @@
 
 LegacyDock is an open-source, local-first operating center for preserving, maintaining, repairing, enhancing, and documenting legacy Apple devices running iOS 6 through iOS 9.
 
+It is not another jailbreak tool, piracy surface, or package manager clone. LegacyDock is meant to become the trusted hub users open when they need to understand an old iPhone, iPad, or iPod touch and safely manage its software environment.
+
+## What Is Included Now
+
+This repository now contains a fuller static product foundation:
+
+- proper landing page with a retro-modern Apple-inspired visual direction,
+- Jan.ai-inspired product storytelling and Flathub-inspired browse/storefront flow,
+- standalone docs, changelog, and pricing pages,
+- separate `console.html` product console,
+- dark theme by default,
+- working product console demo,
+- device dashboard,
+- Device Doctor health dashboard with explainable performance, stability, battery, storage, compatibility, and repository scores,
+- basic diagnostics for repositories, packages, dependencies, storage, battery, and compatibility,
+- LegacyDock Care intelligence for repair plans, community signals, bootloop risk, smart alternatives, modernization guidance, snapshot intelligence, and health timeline,
+- Legacy Repository Hub with searchable repositories, package browsing, health status, essential tweaks, service restoration catalog, submissions, dead repo archive, community resources, and device-specific recommendations,
+- compatibility-aware marketplace,
+- explainable package safety review,
+- repository health scanner,
+- restoration guidance lab,
+- snapshot creation and diffing,
+- preservation report export,
+- optional cloud workspace positioning,
+- full iOS 6.x.x through iOS 9.x.x compatibility catalog,
+- JSON schemas for the core data model,
+- local engines for compatibility, repository scanning, snapshots, and reports,
+- production-oriented local core modules for `libimobiledevice` discovery, Debian package index parsing, dependency resolution, guarded operation planning, and JSON workspace persistence,
+- reusable Device Doctor core modules for explainable diagnostics, Care repair planning, community intelligence, snapshot intelligence, and health timeline data,
+- CLI commands for device discovery, doctor checks, install planning, snapshots, preservation reports, and package index imports,
+- automated tests for core parsing, adapter mapping, dependency resolution, and safety gates,
+- architecture, integration, community intelligence, and roadmap docs.
+
+The site is built with static HTML, CSS, and JavaScript so it can run directly on GitHub Pages without a build pipeline.
 
 ## Try It Locally
 
@@ -63,6 +97,7 @@ See:
 
 - [Architecture](docs/architecture.md)
 - [Device Doctor And Care](docs/device-doctor-care.md)
+- [Repository Hub And Community Resources](docs/repository-hub.md)
 - [Integration Research](docs/integrations.md)
 - [Commercial Readiness Plan](docs/commercial-readiness.md)
 - [Community Intelligence](docs/community-intelligence.md)

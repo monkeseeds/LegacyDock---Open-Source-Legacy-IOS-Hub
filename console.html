@@ -50,6 +50,7 @@
           <aside class="console-sidebar" aria-label="Console sections">
             <button class="console-tab active" data-view="dashboard">Dashboard</button>
             <button class="console-tab" data-view="marketplace">Marketplace</button>
+            <button class="console-tab" data-view="repositories">Repositories</button>
             <button class="console-tab" data-view="health">Device Doctor</button>
             <button class="console-tab" data-view="restoration">Restoration Lab</button>
             <button class="console-tab" data-view="snapshots">Snapshots</button>
@@ -90,6 +91,59 @@
                 </div>
               </div>
               <div class="package-grid" data-package-grid></div>
+            </section>
+
+            <section class="console-view" id="repositories-view" aria-labelledby="repositories-heading">
+              <div class="view-head">
+                <div>
+                  <p class="kicker">Legacy Repository Hub</p>
+                  <h2 id="repositories-heading">Repositories & Community Resources</h2>
+                </div>
+                <button class="primary-button compact" data-refresh-repositories>Refresh health</button>
+              </div>
+              <div class="repo-hub">
+                <div class="repository-toolbar">
+                  <div class="segmented" role="tablist" aria-label="Repository category filter" data-repository-filters></div>
+                  <div class="segmented" role="tablist" aria-label="Package iOS filter" data-ios-package-filters></div>
+                </div>
+                <div class="repo-summary-grid" data-repo-summary></div>
+                <div class="repository-grid" data-repository-grid></div>
+                <section class="hub-section">
+                  <div class="view-head compact-head">
+                    <div>
+                      <p class="kicker">Package Browser</p>
+                      <h3>Browse packages without opening Cydia.</h3>
+                    </div>
+                  </div>
+                  <div class="repo-package-grid" data-repo-package-grid></div>
+                </section>
+                <section class="hub-section">
+                  <div class="view-head compact-head">
+                    <div>
+                      <p class="kicker">Curated Database</p>
+                      <h3>Essential tweaks by job.</h3>
+                    </div>
+                  </div>
+                  <div class="essential-grid" data-essential-grid></div>
+                </section>
+                <section class="hub-section">
+                  <div class="view-head compact-head">
+                    <div>
+                      <p class="kicker">Legacy Services</p>
+                      <h3>Restoration projects and required repositories.</h3>
+                    </div>
+                  </div>
+                  <div class="service-grid" data-service-grid></div>
+                </section>
+                <section class="hub-section two-column-hub">
+                  <div class="panel" data-submission-panel></div>
+                  <div class="panel" data-resource-center></div>
+                </section>
+                <section class="hub-section two-column-hub">
+                  <div class="panel" data-dead-repo-archive></div>
+                  <div class="panel" data-smart-recommendations></div>
+                </section>
+              </div>
             </section>
 
             <section class="console-view" id="health-view" aria-labelledby="health-heading">

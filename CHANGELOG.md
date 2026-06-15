@@ -2,6 +2,7 @@
 
 ## 2026-06-15
 
+- Added the Legacy Repository Hub with searchable repository cards, health status, Cydia add/copy actions, package browsing, essential tweaks, service restoration catalog, dead repo archive, community resources, and smart recommendations.
 - Expanded Device Doctor into an explainable health dashboard with performance, stability, battery, storage, compatibility, repository, and overall health scores.
 - Added LegacyDock Care intelligence panels for repair plans, community intelligence, bootloop risk, smart alternatives, modernization guidance, snapshot intelligence, and health timeline.
 - Updated pricing around the "scanning is free, intelligence is premium" model with LegacyDock Care at $4.99/month or $39/year.
