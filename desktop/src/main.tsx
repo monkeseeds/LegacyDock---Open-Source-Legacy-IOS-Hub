@@ -577,7 +577,7 @@ function App() {
         <Pill tone="good">Free basic scan</Pill>
         <h2>Issues found</h2>
         <div className="issue-list">{issues.map((issue) => <div className="issue-card" key={issue.title}><Pill tone={issue.severity === "Medium" ? "warn" : "good"}>{issue.severity}</Pill><strong>{issue.title}</strong><small>{issue.explanation}</small><em>{issue.fix}</em></div>)}</div>
-        <p className="muted">Advanced scans can become a future LegacyDock Care feature.</p>
+        <p className="muted section-footnote">Advanced scans can become a future LegacyDock Care feature.</p>
       </article>
     </section>,
     <section className="panel" key="services">
@@ -763,7 +763,8 @@ function App() {
           <section className="subpanel">
             <Pill tone="good">Desktop updates</Pill>
             <h3>Hosted release channel</h3>
-            <p className="muted">LegacyDock now checks the Tauri updater endpoint at <code>updates.legacydock.com/latest.json</code> and installs signed Windows update bundles when available.</p>
+            <p className="muted">LegacyDock checks the hosted updater manifest and installs signed Windows update bundles when available.</p>
+            <small className="endpoint-note"><strong>Endpoint</strong> bnauijvhhsawcvscsefx.supabase.co/storage/v1/object/public/legacydock-updates/latest.json</small>
             <div className="summary-grid single-column update-summary">
               <div><span>Channel</span><strong>Stable</strong><small>NSIS update bundle from the hosted Windows release feed</small></div>
               <div><span>Status</span><strong>{updateSummary ? `v${updateSummary.nextVersion} available` : "No pending update"}</strong><small>{updateProgress || "Use Check for updates to contact the hosted manifest."}</small></div>

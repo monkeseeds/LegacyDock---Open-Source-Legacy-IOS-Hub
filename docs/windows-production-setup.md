@@ -69,7 +69,7 @@ SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_KEY=
 TAURI_PUBLIC_KEY=
 TAURI_PUBLIC_KEY_PATH=outputs/updater/legacydock.key.pub
-UPDATE_ENDPOINT=https://updates.legacydock.com/latest.json
+UPDATE_ENDPOINT=https://bnauijvhhsawcvscsefx.supabase.co/storage/v1/object/public/legacydock-updates/latest.json
 APP_ENV=development
 LEGACYDOCK_LIBIMOBILEDEVICE_DIR=tools/libimobiledevice/win-x64
 TAURI_SIGNING_PRIVATE_KEY_PATH=outputs/updater/legacydock.key
@@ -95,7 +95,7 @@ Do not hardcode signing credentials in source control. Unsigned builds are previ
 The intended production update endpoints are:
 
 ```text
-https://updates.legacydock.com/latest.json
+https://bnauijvhhsawcvscsefx.supabase.co/storage/v1/object/public/legacydock-updates/latest.json
 https://downloads.legacydock.com/releases/
 ```
 
@@ -120,7 +120,7 @@ The root `npm run desktop:build:windows` script now loads `.env` and `.env.local
 The updater plugin is wired into the desktop app now. Current local builds generate Windows updater signatures and a valid `updates/stable.json` manifest. Public hosting still needs to publish that manifest and the matching signed installer at:
 
 ```text
-https://updates.legacydock.com/latest.json
+https://bnauijvhhsawcvscsefx.supabase.co/storage/v1/object/public/legacydock-updates/latest.json
 https://downloads.legacydock.com/releases/
 ```
 

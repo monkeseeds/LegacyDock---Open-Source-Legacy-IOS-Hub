@@ -212,7 +212,7 @@ test("defines Tauri desktop workspace configuration", async () => {
   assert.deepEqual(tauriConfig.bundle.targets, ["nsis", "msi"]);
   assert.deepEqual(tauriConfig.bundle.icon, ["icons/icon.ico"]);
   assert.equal(tauriConfig.bundle.createUpdaterArtifacts, true);
-  assert.equal(tauriConfig.plugins.updater.endpoints[0], "https://updates.legacydock.com/latest.json");
+  assert.equal(tauriConfig.plugins.updater.endpoints[0], "https://bnauijvhhsawcvscsefx.supabase.co/storage/v1/object/public/legacydock-updates/latest.json");
   assert.equal(tauriConfig.plugins.updater.pubkey, updaterKey.trim());
   assert.ok(desktopPackage.dependencies.react);
   assert.ok(desktopPackage.dependencies["@tauri-apps/plugin-updater"]);
@@ -228,7 +228,7 @@ test("defines Tauri desktop workspace configuration", async () => {
   assert.match(envExample, /TAURI_PUBLIC_KEY_PATH=outputs\/updater\/legacydock\.key\.pub/);
   assert.match(envExample, /TAURI_SIGNING_PRIVATE_KEY_PATH=outputs\/updater\/legacydock\.key/);
   assert.match(envExample, /LEGACYDOCK_LIBIMOBILEDEVICE_DIR=tools\/libimobiledevice\/win-x64/);
-  assert.match(envExample, /UPDATE_ENDPOINT=https:\/\/updates\.legacydock\.com\/latest\.json/);
+  assert.match(envExample, /UPDATE_ENDPOINT=https:\/\/bnauijvhhsawcvscsefx\.supabase\.co\/storage\/v1\/object\/public\/legacydock-updates\/latest\.json/);
   assert.match(windowsSetup, /Windows packaging is now working locally/);
   assert.match(windowsSetup, /Repo-local `libimobiledevice` tools are installed/);
   assert.match(windowsSetup, /updater plugin is wired into the desktop app/i);

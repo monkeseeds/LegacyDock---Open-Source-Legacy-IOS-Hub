@@ -44,7 +44,7 @@
     "updater": {
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEVEQTZGRTU4MTZGOTMxRUMKUldUc01ma1dXUDZtN1k4RlNub2NoenZjbG5PQnZKWEFyUjRnMjJUaUJidFRaU1FPM2JuVlNtazgK",
       "endpoints": [
-        "https://updates.legacydock.com/latest.json"
+        "https://bnauijvhhsawcvscsefx.supabase.co/storage/v1/object/public/legacydock-updates/latest.json"
       ],
       "windows": {
         "installMode": "passive"

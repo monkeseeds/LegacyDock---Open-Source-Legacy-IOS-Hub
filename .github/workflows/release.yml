@@ -10,7 +10,7 @@ permissions:
 
 env:
   APP_ENV: production
-  UPDATE_ENDPOINT: https://updates.legacydock.com/latest.json
+  UPDATE_ENDPOINT: https://bnauijvhhsawcvscsefx.supabase.co/storage/v1/object/public/legacydock-updates/latest.json
 
 jobs:
   verify:
@@ -50,7 +50,7 @@ jobs:
     runs-on: windows-latest
     env:
       APP_ENV: production
-      UPDATE_ENDPOINT: https://updates.legacydock.com/latest.json
+      UPDATE_ENDPOINT: https://bnauijvhhsawcvscsefx.supabase.co/storage/v1/object/public/legacydock-updates/latest.json
       TAURI_PUBLIC_KEY: ${{ secrets.TAURI_PUBLIC_KEY }}
       TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
       TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}

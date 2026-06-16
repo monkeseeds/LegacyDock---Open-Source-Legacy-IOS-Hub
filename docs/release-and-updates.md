@@ -32,7 +32,7 @@ updates/stable.json
 The production endpoints are planned as:
 
 ```text
-https://updates.legacydock.com/latest.json
+https://bnauijvhhsawcvscsefx.supabase.co/storage/v1/object/public/legacydock-updates/latest.json
 https://downloads.legacydock.com/releases/
 ```
 

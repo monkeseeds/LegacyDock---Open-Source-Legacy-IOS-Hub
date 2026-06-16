@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="LegacyDock desktop releases for Windows." />
+    <meta name="description" content="LegacyDock desktop releases, updater feed status, and Windows preview build notes." />
     <title>LegacyDock Releases</title>
     <link rel="icon" href="./assets/logodock.svg" />
     <link rel="stylesheet" href="./styles.css" />
@@ -39,11 +39,11 @@
         <div>
           <p class="kicker">Desktop Releases</p>
           <h1 id="releases-title">Releases &middot; LegacyDock</h1>
-          <p>Windows 10 and Windows 11 desktop builds are produced by GitHub Actions. macOS and Linux packaging are deferred.</p>
+          <p>Windows 10 and Windows 11 desktop preview builds are live. The Tauri updater feed is wired, macOS packaging comes next, and Linux can follow later.</p>
         </div>
         <div class="release-head-actions">
           <a class="secondary-button compact" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/releases" target="_blank" rel="noreferrer">GitHub releases</a>
-          <a class="primary-button compact" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/actions/workflows/release.yml" target="_blank" rel="noreferrer">Run release build</a>
+          <a class="primary-button compact" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/actions/workflows/release.yml" target="_blank" rel="noreferrer">Windows build pipeline</a>
         </div>
       </section>
 
@@ -58,14 +58,14 @@
           <aside class="release-meta">
             <strong>v0.1.0</strong>
             <span>Latest</span>
-            <small>June 15, 2026</small>
+            <small>June 17, 2026</small>
           </aside>
 
           <div class="release-body">
             <div class="release-title-row">
               <div>
                 <h2>LegacyDock Desktop Preview</h2>
-                <p>Tag <code>v0.1.0</code> &middot; Tauri desktop scaffold &middot; setup wizard preview</p>
+                <p>Tag <code>v0.1.0</code> &middot; rebuilt Windows installers &middot; updater feed wired</p>
               </div>
               <span class="release-badge">Pre-release</span>
             </div>
@@ -73,20 +73,39 @@
             <div class="release-notes">
               <h3>What changed</h3>
               <ul>
-                <li>Added Tauri desktop app scaffold with React, Vite, Tailwind, and Rust command modules.</li>
-                <li>Added Desktop Setup Wizard for detection, compatibility, repository health, setup checklist, Device Doctor, service restoration, and final report export.</li>
-                <li>Restyled the website and desktop app with a legacy Apple/Cydia-inspired Helvetica, brushed-metal, and glossy aqua interface treatment.</li>
-                <li>Simplified pricing by removing the Studio card and moving yearly billing into the LegacyDock Care card.</li>
-                <li>Updated Care yearly pricing to $49.99, added a "2 months free!" yearly badge, restored the console footer, removed bottom whitespace, and tightened mock-card text wrapping.</li>
-                <li>Configured the Windows-only release path with NSIS and MSI artifacts, signing secret placeholders, and update-feed planning.</li>
-                <li>Kept device-changing actions disabled; current setup guidance is manual and local-first.</li>
+                <li>Rebuilt the current Windows installer set and removed stale smoke-test installers so the release folder only keeps the fresh <code>0.1.0</code> NSIS and MSI artifacts.</li>
+                <li>Wired the desktop updater to the hosted Supabase manifest at <code>legacydock-updates/latest.json</code> and verified the in-app update check flow.</li>
+                <li>Fixed desktop clipping issues across the reports screen, updater panel, privacy controls, and Device Doctor footnotes.</li>
+                <li>Kept the full desktop setup wizard in place: device detection, compatibility scan, repository health, setup checklist, Device Doctor, service restoration, and final summary export.</li>
+                <li>Preserved the legacy Apple/Cydia-inspired brushed-metal UI pass across the site and the Tauri app shell.</li>
+                <li>Kept the pricing cleanup from removing the Studio card, folding yearly billing into LegacyDock Care, and setting the yearly price at $49.99.</li>
+                <li>Kept all device-changing actions manual and guarded; the current preview is local-first and diagnostic-first.</li>
+              </ul>
+
+              <h3>Release status</h3>
+              <ul>
+                <li>Windows packaging: working locally with NSIS and MSI outputs.</li>
+                <li>Updater feed: connected to the hosted Supabase public manifest.</li>
+                <li>Updater signing: active for update artifacts.</li>
+                <li>Windows code signing: still pending, so SmartScreen warnings are still expected.</li>
+                <li>macOS installer: planned next after Windows hardening.</li>
               </ul>
 
               <h3>Install notes</h3>
               <p>
-                Early artifacts are unsigned until Windows code-signing certificates and updater signing keys are configured.
-                Windows SmartScreen may warn on preview builds.
+                These preview installers are updater-signed but not yet Windows code-signed.
+                Windows SmartScreen may still warn until the production certificate is added.
               </p>
+
+              <h3>Next release blockers</h3>
+              <ul>
+                <li>Windows code-signing certificate wiring for trusted installer delivery.</li>
+                <li>Real-device QA with <code>libimobiledevice</code> against iOS 6 through iOS 9 hardware.</li>
+                <li>Supabase auth, storage structure, and row-level security for cloud-backed features.</li>
+                <li>Final privacy, terms, export/delete, and telemetry consent review.</li>
+                <li>Third-party license review before bundling external tools or mirrored assets.</li>
+                <li>Beta release checklist covering install, update, rollback, and consent regressions.</li>
+              </ul>
             </div>
 
             <details class="release-assets" open>
@@ -96,16 +115,23 @@
                 <a class="asset-row" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/actions/workflows/release.yml" target="_blank" rel="noreferrer">
                   <span>
                     <strong>LegacyDock_0.1.0_x64-setup.exe</strong>
-                    <small>NSIS setup installer - generated by the Windows release job</small>
+                    <small>NSIS setup installer for the current Windows desktop preview</small>
                   </span>
-                  <em>Build artifact</em>
+                  <em>Preview build</em>
                 </a>
                 <a class="asset-row" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/actions/workflows/release.yml" target="_blank" rel="noreferrer">
                   <span>
                     <strong>LegacyDock_0.1.0_x64_en-US.msi</strong>
-                    <small>MSI installer - generated by the Windows release job</small>
+                    <small>MSI installer for managed Windows environments and manual install testing</small>
                   </span>
-                  <em>Build artifact</em>
+                  <em>Preview build</em>
+                </a>
+                <a class="asset-row" href="./updates/stable.json" target="_blank" rel="noreferrer">
+                  <span>
+                    <strong>stable.json</strong>
+                    <small>Hosted update manifest shape used by the Tauri desktop updater</small>
+                  </span>
+                  <em>Feed</em>
                 </a>
               </div>
 
