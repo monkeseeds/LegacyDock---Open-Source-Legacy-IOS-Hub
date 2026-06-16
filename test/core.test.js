@@ -258,9 +258,9 @@ test("publishes releases navigation and desktop artifact workflow", async () => 
   assert.doesNotMatch(pricing, /<small>Care Yearly<\/small>/);
   assert.doesNotMatch(pricing, /<small>Studio<\/small>/);
   assert.match(consolePage, /Desktop Console Showcase/);
-  assert.match(consolePage, /LegacyDock application features local device detection/);
+  assert.match(consolePage, /LegacyDock features local device detection/);
   assert.match(consolePage, /class="ld-footer console-footer"/);
-  assert.match(consolePage, /Desktop builds, local diagnostics, and repo care for legacy iOS/);
+  assert.match(consolePage, /Made for the legacy iOS community/);
   assert.doesNotMatch(consolePage, /Read-only inspection/);
   assert.doesNotMatch(consolePage, /Repository intelligence/);
   assert.doesNotMatch(consolePage, /src="\.\/app\.js"/);

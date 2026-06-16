@@ -3381,6 +3381,12 @@ pre {
     linear-gradient(180deg, #eef1f4 0%, #d9dde2 48%, #cfd4da 100%);
 }
 
+.showcase-body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
 .console-body .console-sidebar {
   background:
     linear-gradient(180deg, #f6f7f9, #dce2e8),
@@ -3448,8 +3454,9 @@ pre {
 
 .console-showcase-page {
   width: min(1120px, calc(100% - 48px));
+  flex: 1 0 auto;
   margin-inline: auto;
-  padding: 34px 0 30px;
+  padding: 34px 0 18px;
 }
 
 .console-showcase-hero,
@@ -3656,7 +3663,8 @@ pre {
 }
 
 .console-footer {
-  padding-top: 28px;
+  flex: 0 0 auto;
+  padding: 20px 0 14px;
   border-top: 1px solid rgba(62, 75, 89, 0.18);
 }
 
@@ -3669,7 +3677,7 @@ pre {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
-  margin-bottom: 28px;
+  margin-bottom: 16px;
 }
 
 .showcase-strip article {
