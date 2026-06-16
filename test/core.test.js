@@ -252,12 +252,15 @@ test("publishes releases navigation and desktop artifact workflow", async () => 
   assert.match(releases, /\$49\.99/);
   assert.match(pricing, /id="care-yearly"/);
   assert.match(pricing, /\$49\.99\/yr/);
+  assert.match(pricing, /2 months free!/);
   assert.match(pricing, /Save With Yearly Care/);
   assert.doesNotMatch(pricing, /class="billing-switch"/);
   assert.doesNotMatch(pricing, /<small>Care Yearly<\/small>/);
   assert.doesNotMatch(pricing, /<small>Studio<\/small>/);
   assert.match(consolePage, /Desktop Console Showcase/);
-  assert.match(consolePage, /website now previews the desktop console/);
+  assert.match(consolePage, /LegacyDock application features local device detection/);
+  assert.doesNotMatch(consolePage, /Read-only inspection/);
+  assert.doesNotMatch(consolePage, /Repository intelligence/);
   assert.doesNotMatch(consolePage, /src="\.\/app\.js"/);
   assert.doesNotMatch(consolePage, /data-view=/);
   assert.match(siteCss, /Helvetica Neue/);

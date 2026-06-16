@@ -871,6 +871,20 @@ h4 {
   min-height: 92px;
 }
 
+.savings-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 28px;
+  padding: 0 10px;
+  border: 1px solid rgba(123, 216, 143, 0.3);
+  border-radius: 999px;
+  background: rgba(123, 216, 143, 0.1);
+  color: var(--green);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
 .pricing-plan:has(#care-monthly:checked) .monthly-price,
 .pricing-plan:has(#care-yearly:checked) .yearly-price {
   display: grid;
@@ -2628,6 +2642,12 @@ pre {
   text-shadow: 0 -1px rgba(0, 0, 0, 0.45);
 }
 
+.marketing-body .savings-badge {
+  border-color: rgba(22, 128, 58, 0.18);
+  background: rgba(22, 128, 58, 0.06);
+  color: #16803a;
+}
+
 .marketing-body .pricing-plan .secondary-button,
 .marketing-body .feature-comparison .secondary-button,
 .marketing-body .docs-article .secondary-button {
@@ -3604,7 +3624,7 @@ pre {
 
 .mock-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
 }
 
@@ -3614,12 +3634,25 @@ pre {
 .workflow-preview article {
   display: grid;
   gap: 6px;
+  min-width: 0;
   padding: 14px;
+}
+
+.mock-grid article {
+  min-height: 92px;
+  align-content: center;
 }
 
 .mock-grid span,
 .mock-list small {
   color: #56606b;
+}
+
+.mock-grid strong {
+  max-width: 100%;
+  font-size: 1rem;
+  line-height: 1.18;
+  overflow-wrap: anywhere;
 }
 
 .mock-list {

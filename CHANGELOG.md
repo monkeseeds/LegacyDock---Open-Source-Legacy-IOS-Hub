@@ -2,7 +2,7 @@
 
 ## 2026-06-15
 
-- Updated Care yearly pricing to $49.99/year and changed the website console into a desktop app showcase instead of an in-browser console.
+- Updated Care yearly pricing to $49.99/year with a "2 months free!" badge and changed the website console into a desktop app showcase instead of an in-browser console.
 - Simplified pricing by removing the Studio card and folding Care Yearly into a switchable LegacyDock Care plan card.
 - Restyled the website and Tauri app with a legacy Apple/Cydia-inspired visual system using Helvetica, brushed-metal headers, linen backgrounds, glossy aqua controls, and classic utility panels.
 - Added the full desktop Console workspace to the Tauri app with Devices, Repositories, Package Browser, Device Doctor, Snapshots, Reports, and resource views.
