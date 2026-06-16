@@ -23,7 +23,17 @@ cargo --version
 idevice_id --version
 ```
 
-On this machine, Node is available and `pnpm.cmd` reports `11.0.9`. Rust/Cargo and `libimobiledevice` were not detected on `PATH`, so native Tauri packaging and real USB device validation still require local setup.
+On this machine:
+
+- `node -v` reports `v24.15.0`
+- `npm.cmd -v` reports `11.12.1`
+- `pnpm.cmd -v` reports `11.0.9`
+- `rustc --version` reports `1.96.0`
+- `cargo --version` reports `1.96.0`
+- WebView2 Runtime is installed
+- `libimobiledevice` tools were still not detected on `PATH`
+
+Windows packaging is now working locally. Real USB device validation still requires `libimobiledevice`.
 
 ## Commands
 
@@ -32,9 +42,21 @@ npm run check
 npm test
 npm run desktop:frontend
 npm run desktop:build:windows
+pnpm.cmd install
+pnpm.cmd tauri build
 ```
 
 The Windows installer target builds NSIS `.exe` and MSI artifacts only.
+
+Verified on this machine:
+
+- `npm run desktop:build:windows`
+- `pnpm.cmd tauri build`
+
+Produced installers:
+
+- `src-tauri/target/release/bundle/nsis/LegacyDock_0.1.0_x64-setup.exe`
+- `src-tauri/target/release/bundle/msi/LegacyDock_0.1.0_x64_en-US.msi`
 
 ## Configuration
 
@@ -122,3 +144,12 @@ Development -> Internal testing -> Beta -> Production -> Signed Windows installe
 ```
 
 Every production release should be signed, versioned, reproducible, checksumed, and supported by QA notes for Windows 10, Windows 11, and actual iOS 6-9 hardware.
+
+## Remaining Setup
+
+Still needed before real device work:
+
+- Install `idevice_id`, `ideviceinfo`, `idevicepair`, and `idevicebackup2`
+- Pair and validate against an actual legacy iPhone, iPad, or iPod
+- Add Windows signing credentials later
+- Add hosted updater infrastructure later

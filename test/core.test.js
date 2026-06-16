@@ -198,21 +198,27 @@ test("defines Tauri desktop workspace configuration", async () => {
   const migrations = await readFile("src-tauri/src/migrations.rs", "utf8");
   const envExample = await readFile(".env.example", "utf8");
   const windowsSetup = await readFile("docs/windows-production-setup.md", "utf8");
+  const packageRoot = JSON.parse(await readFile("package.json", "utf8"));
 
   assert.equal(tauriConfig.productName, "LegacyDock");
+  assert.equal(tauriConfig.identifier, "com.legacydock.desktop");
   assert.equal(tauriConfig.build.devUrl, "http://127.0.0.1:1420");
   assert.equal(tauriConfig.build.frontendDist, "../desktop/dist");
   assert.deepEqual(tauriConfig.bundle.targets, ["nsis", "msi"]);
+  assert.deepEqual(tauriConfig.bundle.icon, ["icons/icon.ico"]);
   assert.ok(desktopPackage.dependencies.react);
   assert.ok(desktopPackage.devDependencies["@tauri-apps/cli"]);
   assert.ok(desktopPackage.devDependencies.tailwindcss);
+  assert.equal(packageRoot.scripts.tauri, "desktop\\node_modules\\.bin\\tauri.cmd");
   assert.equal(updateFeed.platforms["windows-x86_64"].signature, "SIGNATURE_REQUIRED_BEFORE_STABLE_RELEASE");
   assert.match(updateFeed.platforms["windows-x86_64"].url, /^https:\/\/downloads\.legacydock\.com\/releases\//);
   assert.match(envExample, /SUPABASE_URL=/);
   assert.match(envExample, /TAURI_PUBLIC_KEY=/);
   assert.match(envExample, /UPDATE_ENDPOINT=https:\/\/updates\.legacydock\.com\/latest\.json/);
-  assert.match(windowsSetup, /Windows 10 and Windows 11 first/);
-  assert.match(windowsSetup, /Rust\/Cargo and `libimobiledevice` were not detected/);
+  assert.match(windowsSetup, /Windows packaging is now working locally/);
+  assert.match(windowsSetup, /libimobiledevice` tools were still not detected/);
+  assert.match(windowsSetup, /LegacyDock_0\.1\.0_x64-setup\.exe/);
+  assert.match(windowsSetup, /LegacyDock_0\.1\.0_x64_en-US\.msi/);
   assert.match(migrations, /schema_migrations/);
 });
 

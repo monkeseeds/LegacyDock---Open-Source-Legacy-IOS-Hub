@@ -2,10 +2,10 @@
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "LegacyDock",
   "version": "0.1.0",
-  "identifier": "com.legacydock.app",
+  "identifier": "com.legacydock.desktop",
   "build": {
-    "beforeDevCommand": "npm --prefix ../desktop run dev",
-    "beforeBuildCommand": "npm --prefix ../desktop run build",
+    "beforeDevCommand": "npm --prefix desktop run dev",
+    "beforeBuildCommand": "npm --prefix desktop run build",
     "devUrl": "http://127.0.0.1:1420",
     "frontendDist": "../desktop/dist"
   },
@@ -30,6 +30,7 @@
     "targets": ["nsis", "msi"],
     "copyright": "Copyright LegacyDock contributors",
     "category": "Utility",
+    "icon": ["icons/icon.ico"],
     "shortDescription": "Legacy iOS diagnostics and repository hub.",
     "longDescription": "LegacyDock is a local-first desktop utility for preserving and maintaining legacy iOS devices.",
     "windows": {

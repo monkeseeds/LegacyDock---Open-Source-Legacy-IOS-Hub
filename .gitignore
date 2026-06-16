@@ -1,5 +1,6 @@
 work/
 outputs/
+node_modules/
 .DS_Store
 Thumbs.db
 *.log
@@ -9,7 +10,9 @@ Thumbs.db
 desktop/node_modules/
 desktop/dist/
 src-tauri/target/
+src-tauri/gen/
 legacydock.sqlite
+rustup-init.exe
 *.p12
 *.pfx
 *.pem
