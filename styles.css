@@ -792,7 +792,7 @@ h4 {
 
 .pricing-table {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
   align-items: stretch;
 }
@@ -824,6 +824,56 @@ h4 {
   background:
     linear-gradient(180deg, rgba(123, 216, 143, 0.09), transparent 42%),
     var(--surface);
+}
+
+.plan-toggle {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.plan-toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.plan-toggle label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  border-radius: var(--radius);
+  color: var(--muted);
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.plan-toggle input:checked + label {
+  background: rgba(110, 168, 255, 0.14);
+  color: var(--blue);
+}
+
+.care-price {
+  display: none;
+  gap: 14px;
+}
+
+.care-price h2 {
+  margin-bottom: 0;
+}
+
+.care-price p {
+  min-height: 92px;
+}
+
+.pricing-plan:has(#care-monthly:checked) .monthly-price,
+.pricing-plan:has(#care-yearly:checked) .yearly-price {
+  display: grid;
 }
 
 .feature-comparison {
@@ -2558,6 +2608,24 @@ pre {
 .marketing-body .billing-switch a {
   border-color: var(--marketing-line);
   color: var(--marketing-muted);
+}
+
+.marketing-body .plan-toggle {
+  border-color: var(--marketing-line);
+  background:
+    linear-gradient(180deg, #f7f8fa, #dfe5ec);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.marketing-body .plan-toggle label {
+  color: var(--marketing-muted);
+}
+
+.marketing-body .plan-toggle input:checked + label {
+  background:
+    linear-gradient(180deg, #8fd3ff 0%, #3d91df 48%, #1165b5 49%, #0a4e93 100%);
+  color: white;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.45);
 }
 
 .marketing-body .pricing-plan .secondary-button,

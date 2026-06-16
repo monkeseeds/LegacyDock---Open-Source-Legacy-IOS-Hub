@@ -66,9 +66,22 @@
 
         <article class="pricing-plan featured-plan">
           <small>LegacyDock Care</small>
-          <h2>$4.99/mo</h2>
-          <p>For users who want the safest, smartest, community-verified way to fix and modernize legacy devices.</p>
-          <a class="primary-button compact" href="#checkout-care-monthly">Start Care Mode</a>
+          <div class="plan-toggle" aria-label="LegacyDock Care billing">
+            <input id="care-monthly" name="care-billing" type="radio" checked />
+            <label for="care-monthly">Monthly</label>
+            <input id="care-yearly" name="care-billing" type="radio" />
+            <label for="care-yearly">Yearly</label>
+          </div>
+          <div class="care-price monthly-price">
+            <h2>$4.99/mo</h2>
+            <p>For users who want the safest, smartest, community-verified way to fix and modernize legacy devices.</p>
+            <a class="primary-button compact" href="#checkout-care-monthly">Start Care Mode</a>
+          </div>
+          <div class="care-price yearly-price">
+            <h2>$39/yr</h2>
+            <p>For collectors and maintainers who want Care intelligence with a lower yearly price and cloud convenience.</p>
+            <a class="primary-button compact" href="#checkout-care-yearly">Save With Yearly Care</a>
+          </div>
           <ul>
             <li>Intelligent repair plans</li>
             <li>Community intelligence</li>
@@ -76,36 +89,8 @@
             <li>Smart alternatives</li>
             <li>Device modernization assistant</li>
             <li>Snapshot intelligence and health timeline</li>
+            <li>Yearly option includes cloud sync and backups</li>
             <li>All Free features</li>
-          </ul>
-        </article>
-
-        <article class="pricing-plan">
-          <small>Care Yearly</small>
-          <h2>$39/yr</h2>
-          <p>For collectors and maintainers who want Care intelligence with a lower yearly price.</p>
-          <a class="secondary-button compact" href="#checkout-care-yearly">Save With Yearly Care</a>
-          <ul>
-            <li>Everything in LegacyDock Care</li>
-            <li>Cloud sync</li>
-            <li>Cloud backups</li>
-            <li>Device history</li>
-            <li>Collections</li>
-            <li>Cross-device synchronization</li>
-          </ul>
-        </article>
-
-        <article class="pricing-plan">
-          <small>Studio</small>
-          <h2>$15/mo</h2>
-          <p>For repair shops, refurbishers, and teams managing many preserved devices.</p>
-          <a class="secondary-button compact" href="#checkout-studio">Equip The Repair Bench</a>
-          <ul>
-            <li>Repair shop inventory</li>
-            <li>Customer notes and shared backups</li>
-            <li>Team workspaces</li>
-            <li>Priority support planning</li>
-            <li>All Care features</li>
           </ul>
         </article>
       </section>
