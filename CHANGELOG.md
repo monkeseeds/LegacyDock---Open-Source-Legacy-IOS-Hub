@@ -2,6 +2,7 @@
 
 ## 2026-06-16
 
+- Wired the Tauri updater plugin into the desktop app, added updater permissions/capabilities, enabled updater artifact generation, added a desktop update center, and generated a real signed `updates/stable.json` manifest from the Windows NSIS bundle.
 - Installed the Windows `libimobiledevice` binaries locally into `tools/libimobiledevice/win-x64`, added a repeatable bootstrap script, and taught both the Node adapter and the Tauri Rust device layer to look for that repo-local tool path.
 - Added local updater-signing support by wiring root Tauri build scripts through an env loader that reads `.env` and `.env.local`, including `TAURI_SIGNING_PRIVATE_KEY_PATH` and `TAURI_PUBLIC_KEY_PATH`.
 - Generated and documented the local updater-key workflow for Tauri signing without touching Windows code-signing, which remains blocked on the certificate.

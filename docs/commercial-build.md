@@ -51,7 +51,7 @@ The API is local-first and conservative. It plans operations, creates local snap
 - Tauri desktop workspace in `desktop/` and `src-tauri/`.
 - Desktop Setup Wizard for welcome, detection, compatibility, repo health, essential setup, Device Doctor, service restoration, and final summary.
 - First release Tauri packaging targets: Windows `nsis` setup `.exe` and Windows `msi`.
-- Tauri update-feed scaffold at `updates/stable.json`.
+- Tauri updater plugin wiring, signed updater artifact generation, and static update-manifest generation at `updates/stable.json`.
 - GitHub Actions desktop release job for Windows installer artifacts.
 - Rust SQLite migration runner in `src-tauri/src/migrations.rs`.
 - Installed desktop npm dependencies, generated `desktop/package-lock.json`, fixed npm audit findings, and verified the React/Vite production frontend build.
@@ -83,5 +83,5 @@ The override is stored in local storage for future console sessions.
 - Upgrade setup report export from text to PDF after the desktop PDF pipeline is selected.
 - Add billing keys, price IDs, customer portal, and webhook deployment later.
 - Add hosted cloud storage, moderation queues, and recommendation services.
-- Add Windows signing certificates, installer publishing, and real signed auto-update feed entries.
+- Add Windows signing certificates and publish the generated signed installer plus `updates/stable.json` to the real hosted update endpoints.
 - Extend the completed local consent/export/delete flows with hosted account deletion before cloud launch.

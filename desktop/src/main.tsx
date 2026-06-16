@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { invoke } from "@tauri-apps/api/core";
+import { check } from "@tauri-apps/plugin-updater";
 import {
   Activity,
   Archive,
@@ -59,6 +60,13 @@ type ConsentState = {
   acceptedPrivacy: boolean;
   acceptedTerms: boolean;
   updatedAt: string | null;
+};
+
+type UpdateSummary = {
+  currentVersion: string;
+  nextVersion: string;
+  notes?: string | null;
+  date?: string | null;
 };
 
 type AppMode = "wizard" | "console";
@@ -276,6 +284,10 @@ function App() {
   const [status, setStatus] = useState("Connect your legacy iOS device to begin.");
   const [consent, setConsent] = useState<ConsentState>(() => loadConsentState());
   const [deleteConfirmation, setDeleteConfirmation] = useState("");
+  const [pendingUpdate, setPendingUpdate] = useState<any | null>(null);
+  const [updateSummary, setUpdateSummary] = useState<UpdateSummary | null>(null);
+  const [updateBusy, setUpdateBusy] = useState(false);
+  const [updateProgress, setUpdateProgress] = useState("");
 
   const issues = useMemo(() => doctorIssues(selectedDevice), [selectedDevice]);
   const supportedRange = Number(selectedDevice.firmware.split(".")[0]) >= 3 && Number(selectedDevice.firmware.split(".")[0]) <= 9;
@@ -394,6 +406,67 @@ function App() {
     setConsent(defaultConsentState);
     setDeleteConfirmation("");
     setStatus("Local LegacyDock workspace data cleared.");
+  }
+
+  async function checkForUpdates() {
+    setUpdateBusy(true);
+    setUpdateProgress("Checking updates...");
+    try {
+      const update = await check();
+      if (!update) {
+        setPendingUpdate(null);
+        setUpdateSummary(null);
+        setUpdateProgress("LegacyDock is already on the latest published build.");
+        return;
+      }
+      setPendingUpdate(update);
+      setUpdateSummary({
+        currentVersion: update.currentVersion,
+        nextVersion: update.version,
+        notes: update.body,
+        date: update.date
+      });
+      setUpdateProgress(`Update ${update.version} is ready to download.`);
+    } catch (error) {
+      setPendingUpdate(null);
+      setUpdateSummary(null);
+      setUpdateProgress("Update endpoint is not reachable yet. Keep using local builds until hosting is live.");
+      setStatus(error instanceof Error ? error.message : "Updater check failed.");
+    } finally {
+      setUpdateBusy(false);
+    }
+  }
+
+  async function installUpdate() {
+    if (!pendingUpdate) return;
+    setUpdateBusy(true);
+    setUpdateProgress("Preparing download...");
+    try {
+      let downloaded = 0;
+      let total = 0;
+      await pendingUpdate.downloadAndInstall((event: any) => {
+        switch (event.event) {
+          case "Started":
+            total = event.data.contentLength || 0;
+            setUpdateProgress(total ? `Downloading 0 / ${total} bytes...` : "Downloading update...");
+            break;
+          case "Progress":
+            downloaded += event.data.chunkLength;
+            setUpdateProgress(total ? `Downloading ${downloaded} / ${total} bytes...` : `Downloaded ${downloaded} bytes...`);
+            break;
+          case "Finished":
+            setUpdateProgress("Update package verified and installed. Windows may close the app to finish installation.");
+            break;
+        }
+      });
+      setPendingUpdate(null);
+      setStatus("Updater installed the new LegacyDock build.");
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "Update install failed.");
+      setUpdateProgress("Update download or install failed.");
+    } finally {
+      setUpdateBusy(false);
+    }
   }
 
   useEffect(() => {
@@ -685,6 +758,20 @@ function App() {
               <button onClick={exportWorkspaceJson}><Database size={17} /> Export workspace JSON</button>
               <button onClick={copyRepos}><Clipboard size={17} /> Copy repo list</button>
               <button onClick={saveProfile}><Archive size={17} /> Save device profile</button>
+            </div>
+          </section>
+          <section className="subpanel">
+            <Pill tone="good">Desktop updates</Pill>
+            <h3>Hosted release channel</h3>
+            <p className="muted">LegacyDock now checks the Tauri updater endpoint at <code>updates.legacydock.com/latest.json</code> and installs signed Windows update bundles when available.</p>
+            <div className="summary-grid single-column update-summary">
+              <div><span>Channel</span><strong>Stable</strong><small>NSIS update bundle from the hosted Windows release feed</small></div>
+              <div><span>Status</span><strong>{updateSummary ? `v${updateSummary.nextVersion} available` : "No pending update"}</strong><small>{updateProgress || "Use Check for updates to contact the hosted manifest."}</small></div>
+              {updateSummary && <div><span>Version path</span><strong>{updateSummary.currentVersion} {"->"} {updateSummary.nextVersion}</strong><small>{updateSummary.notes || "No release notes supplied by the manifest yet."}</small></div>}
+            </div>
+            <div className="action-panel">
+              <button className="primary-action" disabled={updateBusy} onClick={checkForUpdates}><RefreshCcw size={17} /> {updateBusy ? "Working..." : "Check for updates"}</button>
+              <button disabled={!pendingUpdate || updateBusy} onClick={installUpdate}><FileDown size={17} /> Install available update</button>
             </div>
           </section>
           <section className="subpanel">

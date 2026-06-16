@@ -117,7 +117,14 @@ desktop\node_modules\.bin\tauri.cmd signer generate --ci -w outputs/updater/lega
 
 The root `npm run desktop:build:windows` script now loads `.env` and `.env.local`, and if `TAURI_SIGNING_PRIVATE_KEY_PATH` or `TAURI_PUBLIC_KEY_PATH` are set it reads those files into the Tauri signing environment automatically.
 
-Stable auto-update must stay disabled until signed installers, signed update metadata, rollback metadata, checksums, and release provenance are all verified.
+The updater plugin is wired into the desktop app now. Current local builds generate Windows updater signatures and a valid `updates/stable.json` manifest. Public hosting still needs to publish that manifest and the matching signed installer at:
+
+```text
+https://updates.legacydock.com/latest.json
+https://downloads.legacydock.com/releases/
+```
+
+Until those URLs are live and the Windows installer is code-signed, treat auto-update as pre-release infrastructure rather than public release infrastructure.
 
 ## Supabase Architecture
 

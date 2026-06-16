@@ -202,6 +202,8 @@ test("defines Tauri desktop workspace configuration", async () => {
   const envExample = await readFile(".env.example", "utf8");
   const windowsSetup = await readFile("docs/windows-production-setup.md", "utf8");
   const packageRoot = JSON.parse(await readFile("package.json", "utf8"));
+  const updaterCapability = JSON.parse(await readFile("src-tauri/capabilities/default.json", "utf8"));
+  const updaterKey = await readFile("config/updater/legacydock.pub", "utf8");
 
   assert.equal(tauriConfig.productName, "LegacyDock");
   assert.equal(tauriConfig.identifier, "com.legacydock.desktop");
@@ -209,12 +211,18 @@ test("defines Tauri desktop workspace configuration", async () => {
   assert.equal(tauriConfig.build.frontendDist, "../desktop/dist");
   assert.deepEqual(tauriConfig.bundle.targets, ["nsis", "msi"]);
   assert.deepEqual(tauriConfig.bundle.icon, ["icons/icon.ico"]);
+  assert.equal(tauriConfig.bundle.createUpdaterArtifacts, true);
+  assert.equal(tauriConfig.plugins.updater.endpoints[0], "https://updates.legacydock.com/latest.json");
+  assert.equal(tauriConfig.plugins.updater.pubkey, updaterKey.trim());
   assert.ok(desktopPackage.dependencies.react);
+  assert.ok(desktopPackage.dependencies["@tauri-apps/plugin-updater"]);
   assert.ok(desktopPackage.devDependencies["@tauri-apps/cli"]);
   assert.ok(desktopPackage.devDependencies.tailwindcss);
   assert.equal(packageRoot.scripts.tauri, "node scripts/run-tauri.cjs");
-  assert.equal(updateFeed.platforms["windows-x86_64"].signature, "SIGNATURE_REQUIRED_BEFORE_STABLE_RELEASE");
+  assert.ok(updateFeed.platforms["windows-x86_64"].signature.length > 50);
   assert.match(updateFeed.platforms["windows-x86_64"].url, /^https:\/\/downloads\.legacydock\.com\/releases\//);
+  assert.match(updateFeed.notes, /updater is now wired/i);
+  assert.ok(updaterCapability.permissions.includes("updater:default"));
   assert.match(envExample, /SUPABASE_URL=/);
   assert.match(envExample, /TAURI_PUBLIC_KEY=/);
   assert.match(envExample, /TAURI_PUBLIC_KEY_PATH=outputs\/updater\/legacydock\.key\.pub/);
@@ -223,6 +231,7 @@ test("defines Tauri desktop workspace configuration", async () => {
   assert.match(envExample, /UPDATE_ENDPOINT=https:\/\/updates\.legacydock\.com\/latest\.json/);
   assert.match(windowsSetup, /Windows packaging is now working locally/);
   assert.match(windowsSetup, /Repo-local `libimobiledevice` tools are installed/);
+  assert.match(windowsSetup, /updater plugin is wired into the desktop app/i);
   assert.match(windowsSetup, /TAURI_SIGNING_PRIVATE_KEY_PATH/);
   assert.match(windowsSetup, /LegacyDock_0\.1\.0_x64-setup\.exe/);
   assert.match(windowsSetup, /LegacyDock_0\.1\.0_x64_en-US\.msi/);
@@ -249,6 +258,8 @@ test("includes the desktop setup wizard and synchronized logo assets", async () 
   assert.match(desktopApp, /Export workspace JSON/);
   assert.match(desktopApp, /Delete local data/);
   assert.match(desktopApp, /Read privacy notes/);
+  assert.match(desktopApp, /Check for updates/);
+  assert.match(desktopApp, /Install available update/);
   assert.equal(sharedHash, desktopHash);
 });
 
@@ -296,6 +307,8 @@ test("publishes releases navigation and desktop artifact workflow", async () => 
   assert.match(desktopCss, /Helvetica Neue/);
   assert.match(workflow, /LegacyDock-Windows/);
   assert.match(workflow, /TAURI_SIGNING_PRIVATE_KEY/);
+  assert.match(workflow, /Generate updater manifest/);
+  assert.match(workflow, /updates\/stable\.json/);
   assert.match(workflow, /WINDOWS_CERTIFICATE/);
   assert.doesNotMatch(workflow, /LegacyDock-macOS/);
 });

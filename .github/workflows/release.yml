@@ -98,6 +98,9 @@ jobs:
       - name: Build Windows installer
         run: npm run desktop:build:windows
 
+      - name: Generate updater manifest
+        run: npm run desktop:update:manifest
+
       - name: Generate installer checksums
         shell: pwsh
         run: |
@@ -115,5 +118,7 @@ jobs:
           path: |
             src-tauri/target/release/bundle/**/*.exe
             src-tauri/target/release/bundle/**/*.msi
+            src-tauri/target/release/bundle/**/*.sig
+            updates/stable.json
             legacydock-windows-installers.sha256
           if-no-files-found: error
