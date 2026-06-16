@@ -3449,7 +3449,7 @@ pre {
 .console-showcase-page {
   width: min(1120px, calc(100% - 48px));
   margin-inline: auto;
-  padding: 34px 0 54px;
+  padding: 34px 0 30px;
 }
 
 .console-showcase-hero,
@@ -3639,7 +3639,7 @@ pre {
 }
 
 .mock-grid article {
-  min-height: 92px;
+  min-height: 100px;
   align-content: center;
 }
 
@@ -3650,9 +3650,14 @@ pre {
 
 .mock-grid strong {
   max-width: 100%;
-  font-size: 1rem;
-  line-height: 1.18;
-  overflow-wrap: anywhere;
+  font-size: 0.96rem;
+  line-height: 1.24;
+  overflow-wrap: break-word;
+}
+
+.console-footer {
+  padding-top: 28px;
+  border-top: 1px solid rgba(62, 75, 89, 0.18);
 }
 
 .mock-list {
