@@ -231,6 +231,7 @@ test("publishes releases navigation and desktop artifact workflow", async () => 
   const index = await readFile("index.html", "utf8");
   const docs = await readFile("docs.html", "utf8");
   const pricing = await readFile("pricing.html", "utf8");
+  const consolePage = await readFile("console.html", "utf8");
   const releases = await readFile("releases.html", "utf8");
   const siteCss = await readFile("styles.css", "utf8");
   const desktopCss = await readFile("desktop/src/styles.css", "utf8");
@@ -248,10 +249,17 @@ test("publishes releases navigation and desktop artifact workflow", async () => 
   assert.match(releases, /Source code \(zip\)/);
   assert.match(releases, /legacy Apple\/Cydia-inspired/);
   assert.match(releases, /removing the Studio card/);
+  assert.match(releases, /\$49\.99/);
   assert.match(pricing, /id="care-yearly"/);
+  assert.match(pricing, /\$49\.99\/yr/);
   assert.match(pricing, /Save With Yearly Care/);
+  assert.doesNotMatch(pricing, /class="billing-switch"/);
   assert.doesNotMatch(pricing, /<small>Care Yearly<\/small>/);
   assert.doesNotMatch(pricing, /<small>Studio<\/small>/);
+  assert.match(consolePage, /Desktop Console Showcase/);
+  assert.match(consolePage, /website now previews the desktop console/);
+  assert.doesNotMatch(consolePage, /src="\.\/app\.js"/);
+  assert.doesNotMatch(consolePage, /data-view=/);
   assert.match(siteCss, /Helvetica Neue/);
   assert.match(siteCss, /Classic Apple \/ Cydia skin/);
   assert.match(desktopCss, /Helvetica Neue/);

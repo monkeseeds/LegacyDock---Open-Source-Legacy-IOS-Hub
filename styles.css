@@ -3426,6 +3426,249 @@ pre {
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
 }
 
+.console-showcase-page {
+  width: min(1120px, calc(100% - 48px));
+  margin-inline: auto;
+  padding: 34px 0 54px;
+}
+
+.console-showcase-hero,
+.showcase-workflow {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.82fr) minmax(0, 1.18fr);
+  gap: 28px;
+  align-items: center;
+}
+
+.console-showcase-hero {
+  min-height: 560px;
+  margin-bottom: 28px;
+  padding: 42px;
+  border-radius: 20px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 28%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 4px),
+    linear-gradient(135deg, #121923, #070a0f 72%, #020304);
+  color: white;
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.12),
+    0 28px 74px rgba(20, 27, 36, 0.22);
+}
+
+.console-showcase-hero h1 {
+  max-width: 680px;
+  margin-top: 10px;
+  font-size: clamp(3.2rem, 6vw, 5.4rem);
+  line-height: 0.94;
+  background: linear-gradient(180deg, #ffffff 0%, #d8e0ea 45%, #94a5ba 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.console-showcase-hero p,
+.showcase-workflow p,
+.workflow-preview span,
+.showcase-strip p {
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.55;
+}
+
+.console-product-shot {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04)),
+    rgba(255, 255, 255, 0.05);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.12),
+    0 24px 64px rgba(0, 0, 0, 0.35);
+}
+
+.mock-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 14px;
+  background:
+    linear-gradient(180deg, rgba(239, 243, 247, 0.96), rgba(166, 177, 190, 0.9));
+  color: #151b23;
+}
+
+.mock-titlebar span {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background: #d4dae1;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.82);
+}
+
+.mock-titlebar span:nth-child(1) {
+  background: #ff6b5f;
+}
+
+.mock-titlebar span:nth-child(2) {
+  background: #f8c45b;
+}
+
+.mock-titlebar span:nth-child(3) {
+  background: #6ed77a;
+}
+
+.mock-titlebar strong {
+  margin-left: 10px;
+  font-size: 0.86rem;
+}
+
+.mock-console {
+  display: grid;
+  grid-template-columns: 142px minmax(0, 1fr);
+  min-height: 390px;
+}
+
+.mock-console aside {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 14px;
+  background:
+    linear-gradient(180deg, rgba(245, 248, 252, 0.9), rgba(208, 216, 226, 0.86));
+}
+
+.mock-console aside span,
+.mock-list span,
+.mock-grid article,
+.workflow-preview article,
+.showcase-strip article {
+  border: 1px solid rgba(62, 75, 89, 0.22);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(235, 239, 243, 0.92));
+  color: #151b23;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.92);
+}
+
+.mock-console aside span {
+  min-height: 36px;
+  padding: 10px;
+  color: #56606b;
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.mock-console aside span.active {
+  border-color: #164f8d;
+  background:
+    linear-gradient(180deg, #8fd3ff 0%, #3d91df 48%, #1165b5 49%, #0a4e93 100%);
+  color: white;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.45);
+}
+
+.mock-console section {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  padding: 18px;
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0 1px, rgba(0, 0, 0, 0.035) 1px 2px),
+    linear-gradient(180deg, #eef1f4 0%, #d9dde2 100%);
+}
+
+.mock-status {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 18px;
+  align-items: center;
+  padding: 18px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #151d28, #070a0e 72%);
+  color: white;
+}
+
+.mock-status strong,
+.mock-status small {
+  grid-column: 1;
+}
+
+.mock-status em {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  color: #7bd88f;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 850;
+}
+
+.mock-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.mock-grid article,
+.mock-list span,
+.showcase-strip article,
+.workflow-preview article {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+}
+
+.mock-grid span,
+.mock-list small {
+  color: #56606b;
+}
+
+.mock-list {
+  display: grid;
+  gap: 10px;
+}
+
+.showcase-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.showcase-strip article {
+  min-height: 220px;
+  padding: 22px;
+}
+
+.showcase-strip span {
+  color: #1165b5;
+  font-weight: 900;
+}
+
+.showcase-strip p {
+  color: #56606b;
+}
+
+.showcase-workflow {
+  padding: 34px;
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 28%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 4px),
+    linear-gradient(135deg, #121923, #070a0f 72%, #020304);
+  color: white;
+  box-shadow: 0 28px 74px rgba(20, 27, 36, 0.2);
+}
+
+.workflow-preview {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.workflow-preview span {
+  color: #56606b;
+}
+
 @media (max-width: 1180px) {
   .repo-release-head {
     align-items: start;
@@ -3454,6 +3697,8 @@ pre {
   .doctor-showcase,
   .care-panel,
   .doctor-console,
+  .console-showcase-hero,
+  .showcase-workflow,
   .repository-toolbar,
   .repository-grid,
   .repo-package-grid,
@@ -3527,6 +3772,9 @@ pre {
   .feature-strip,
   .stat-strip,
   .care-grid,
+  .showcase-strip,
+  .workflow-preview,
+  .mock-grid,
   .repo-summary-grid,
   .repo-package-card,
   .mini-metrics {

@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="LegacyDock Console demo for compatibility, package safety, snapshots, restoration guidance, and preservation reports." />
-    <title>LegacyDock Console</title>
+    <meta name="description" content="LegacyDock Console showcase for the desktop app experience." />
+    <title>LegacyDock Console Showcase</title>
     <link rel="icon" href="./assets/logodock.svg" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body class="marketing-body console-body">
+  <body class="marketing-body console-body showcase-body">
     <header class="site-header" data-header>
       <a class="brand" href="./index.html" aria-label="LegacyDock home">
         <img src="./assets/logodock.svg" alt="" />
@@ -30,220 +30,97 @@
         <a class="icon-button icon-link" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub" target="_blank" rel="noreferrer" title="Open GitHub repository" aria-label="Open GitHub repository">
           <img src="./assets/icons/github.svg" alt="" />
         </a>
-        <a class="pill-button" href="./index.html">Home</a>
+        <a class="pill-button" href="./releases.html">Releases</a>
       </div>
     </header>
 
-    <main>
-      <section class="console-page" id="console" aria-labelledby="console-title">
-        <div class="console-head">
-          <div>
-            <p class="kicker">Working product skeleton</p>
-            <h1 id="console-title">LegacyDock Console</h1>
-          </div>
-          <div class="console-tools">
-            <div class="api-status" data-api-status aria-live="polite"></div>
-            <label class="search-box" for="searchInput">
-              <span>Search</span>
-              <input id="searchInput" type="search" placeholder="Search devices, packages, repos" />
-            </label>
+    <main class="console-showcase-page">
+      <section class="console-showcase-hero" aria-labelledby="console-title">
+        <div>
+          <p class="kicker">Desktop Console Showcase</p>
+          <h1 id="console-title">A native operating center for legacy iOS care.</h1>
+          <p>
+            The website now previews the desktop console instead of running it in-browser. LegacyDock Console belongs in the Tauri app where local device detection, repo checks, diagnostics, snapshots, and reports can run safely.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-button" href="./releases.html">Get Desktop Builds</a>
+            <a class="secondary-button" href="./docs.html">Read The Docs</a>
           </div>
         </div>
 
-        <div class="console-shell">
-          <aside class="console-sidebar" aria-label="Console sections">
-            <button class="console-tab active" data-view="dashboard">Dashboard</button>
-            <button class="console-tab" data-view="marketplace">Marketplace</button>
-            <button class="console-tab" data-view="repositories">Repositories</button>
-            <button class="console-tab" data-view="health">Device Doctor</button>
-            <button class="console-tab" data-view="restoration">Restoration Lab</button>
-            <button class="console-tab" data-view="snapshots">Snapshots</button>
-            <button class="console-tab" data-view="preservation">Preservation</button>
-          </aside>
-
-          <div class="console-main">
-            <section class="console-view active" id="dashboard-view" aria-labelledby="dashboard-heading">
-              <div class="view-head">
-                <div>
-                  <p class="kicker">Connected devices</p>
-                  <h2 id="dashboard-heading">Operating Center</h2>
-                </div>
-                <div class="segmented" role="tablist" aria-label="Device filter">
-                  <button class="active" data-device-filter="all">All</button>
-                  <button data-device-filter="stable">Stable</button>
-                  <button data-device-filter="attention">Review</button>
-                </div>
-              </div>
-              <div class="compatibility-strip" data-compatibility-matrix></div>
-              <div class="device-workspace">
-                <div class="device-list" data-device-list></div>
-                <div class="device-detail" data-device-detail></div>
-              </div>
-            </section>
-
-            <section class="console-view" id="marketplace-view" aria-labelledby="marketplace-heading">
-              <div class="view-head">
-                <div>
-                  <p class="kicker">Explainable compatibility</p>
-                  <h2 id="marketplace-heading">Marketplace</h2>
-                </div>
-                <div class="segmented" role="tablist" aria-label="Package filter">
-                  <button class="active" data-package-filter="all">All</button>
-                  <button data-package-filter="safe">Safe</button>
-                  <button data-package-filter="repair">Repair</button>
-                  <button data-package-filter="theme">Themes</button>
-                </div>
-              </div>
-              <div class="package-grid" data-package-grid></div>
-            </section>
-
-            <section class="console-view" id="repositories-view" aria-labelledby="repositories-heading">
-              <div class="view-head">
-                <div>
-                  <p class="kicker">Legacy Repository Hub</p>
-                  <h2 id="repositories-heading">Repositories & Community Resources</h2>
-                </div>
-                <button class="primary-button compact" data-refresh-repositories>Refresh health</button>
-              </div>
-              <div class="repo-hub">
-                <div class="repository-toolbar">
-                  <div class="segmented" role="tablist" aria-label="Repository category filter" data-repository-filters></div>
-                  <div class="segmented" role="tablist" aria-label="Package iOS filter" data-ios-package-filters></div>
-                </div>
-                <div class="repo-summary-grid" data-repo-summary></div>
-                <div class="repository-grid" data-repository-grid></div>
-                <section class="hub-section">
-                  <div class="view-head compact-head">
-                    <div>
-                      <p class="kicker">Package Browser</p>
-                      <h3>Browse packages without opening Cydia.</h3>
-                    </div>
-                  </div>
-                  <div class="repo-package-grid" data-repo-package-grid></div>
-                </section>
-                <section class="hub-section">
-                  <div class="view-head compact-head">
-                    <div>
-                      <p class="kicker">Curated Database</p>
-                      <h3>Essential tweaks by job.</h3>
-                    </div>
-                  </div>
-                  <div class="essential-grid" data-essential-grid></div>
-                </section>
-                <section class="hub-section">
-                  <div class="view-head compact-head">
-                    <div>
-                      <p class="kicker">Legacy Services</p>
-                      <h3>Restoration projects and required repositories.</h3>
-                    </div>
-                  </div>
-                  <div class="service-grid" data-service-grid></div>
-                </section>
-                <section class="hub-section two-column-hub">
-                  <div class="panel" data-submission-panel></div>
-                  <div class="panel" data-resource-center></div>
-                </section>
-                <section class="hub-section two-column-hub">
-                  <div class="panel" data-dead-repo-archive></div>
-                  <div class="panel" data-smart-recommendations></div>
-                </section>
-              </div>
-            </section>
-
-            <section class="console-view" id="health-view" aria-labelledby="health-heading">
-              <div class="view-head">
-                <div>
-                  <p class="kicker">Device Doctor and LegacyDock Care</p>
-                  <h2 id="health-heading">Device Doctor</h2>
-                </div>
-                <button class="primary-button compact" data-run-health>Run scan</button>
-              </div>
-              <div class="doctor-layout">
-                <div class="doctor-score-panel">
-                  <div class="health-dial" data-health-score>86</div>
-                  <div class="doctor-score-list" data-doctor-score-list></div>
-                </div>
-                <div class="issue-list" data-issue-list></div>
-              </div>
-              <div class="care-console" aria-label="LegacyDock Care intelligence">
-                <div class="panel care-panel-block" data-repair-plan></div>
-                <div class="panel care-panel-block" data-community-intel></div>
-                <div class="panel care-panel-block" data-bootloop-risk></div>
-                <div class="panel care-panel-block" data-smart-alternatives></div>
-                <div class="panel care-panel-block" data-modernization></div>
-                <div class="panel care-panel-block" data-snapshot-intel></div>
-                <div class="panel care-panel-block wide" data-health-timeline></div>
-              </div>
-            </section>
-
-            <section class="console-view" id="restoration-view" aria-labelledby="restoration-heading">
-              <div class="view-head">
-                <div>
-                  <p class="kicker">Guided handoff</p>
-                  <h2 id="restoration-heading">Restoration Lab</h2>
-                </div>
-                <a class="secondary-button compact" href="https://github.com/LukeZGD/Legacy-iOS-Kit/wiki/Jailbreaking" target="_blank" rel="noreferrer">Open source guide</a>
-              </div>
-              <div class="restoration-grid">
-                <div class="workflow-list" data-restoration-list></div>
-                <div class="panel" data-restoration-source></div>
-              </div>
-            </section>
-
-            <section class="console-view" id="snapshots-view" aria-labelledby="snapshots-heading">
-              <div class="view-head">
-                <div>
-                  <p class="kicker">Git plus Time Machine</p>
-                  <h2 id="snapshots-heading">Snapshots</h2>
-                </div>
-                <button class="primary-button compact" data-capture-snapshot>Capture snapshot</button>
-              </div>
-              <div class="snapshot-tools">
-                <div class="timeline" data-snapshot-timeline></div>
-                <div class="diff-panel" data-snapshot-diff></div>
-              </div>
-            </section>
-
-            <section class="console-view" id="preservation-view" aria-labelledby="preservation-heading">
-              <div class="view-head">
-                <div>
-                  <p class="kicker">Collector archive</p>
-                  <h2 id="preservation-heading">Preservation Report</h2>
-                </div>
-                <button class="primary-button compact" data-export-report>Export report</button>
-              </div>
-              <div class="preservation-grid">
-                <div class="panel" data-preservation-profile></div>
-                <div class="panel" data-preservation-checks></div>
-                <div class="panel wide"><pre data-manifest-preview></pre></div>
-              </div>
-            </section>
-
+        <div class="console-product-shot" aria-label="LegacyDock desktop console preview">
+          <div class="mock-titlebar">
+            <span></span>
+            <span></span>
+            <span></span>
+            <strong>LegacyDock Console</strong>
           </div>
+          <div class="mock-console">
+            <aside>
+              <span class="active">Devices</span>
+              <span>Repositories</span>
+              <span>Packages</span>
+              <span>Doctor</span>
+              <span>Snapshots</span>
+              <span>Reports</span>
+            </aside>
+            <section>
+              <div class="mock-status">
+                <strong>iPhone 4</strong>
+                <small>iOS 6.1.3 / read-only preview</small>
+                <em>86</em>
+              </div>
+              <div class="mock-grid">
+                <article><span>Repos</span><strong>4 verified</strong></article>
+                <article><span>Packages</span><strong>7 recommended</strong></article>
+                <article><span>Risk</span><strong>Low</strong></article>
+                <article><span>Report</span><strong>Ready</strong></article>
+              </div>
+              <div class="mock-list">
+                <span><strong>BigBoss</strong><small>Package index available</small></span>
+                <span><strong>SkyGlow</strong><small>MapsX and TubeRepair guidance</small></span>
+                <span><strong>Device Doctor</strong><small>Manual repair plan generated</small></span>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="showcase-strip" aria-label="Console capabilities">
+        <article>
+          <span>01</span>
+          <h2>Detect</h2>
+          <p>Identify model, firmware, battery state, storage, and connection status locally.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h2>Diagnose</h2>
+          <p>Run Device Doctor checks for missing repos, risky tweaks, low storage, and service restoration needs.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h2>Preserve</h2>
+          <p>Keep snapshots, setup reports, repo lists, and package recommendations attached to each device profile.</p>
+        </article>
+      </section>
+
+      <section class="showcase-workflow">
+        <div>
+          <p class="kicker">Why Desktop</p>
+          <h2>The console is local-first by design.</h2>
+          <p>
+            A browser page can show the product, but the real console needs native permissions, local storage, USB detection, and guarded repair workflows. That is why the web page is a showcase and the Tauri app is the working surface.
+          </p>
+        </div>
+        <div class="workflow-preview">
+          <article><strong>Read-only inspection</strong><span>USB detection and package-state parsing before any install planning.</span></article>
+          <article><strong>Repository intelligence</strong><span>Health checks, package index parsing, compatibility filters, and trusted source notes.</span></article>
+          <article><strong>Safe action planning</strong><span>Snapshots, confirmation phrases, rollback previews, and manual install guidance.</span></article>
+          <article><strong>Exportable records</strong><span>Device profiles, setup reports, compatibility notes, and restoration checklists.</span></article>
         </div>
       </section>
     </main>
 
-    <dialog class="safety-dialog" data-install-dialog>
-      <form method="dialog">
-        <div class="dialog-head">
-          <div>
-            <p class="kicker">Safety review</p>
-            <h2 data-dialog-title>Package</h2>
-          </div>
-          <button class="icon-button text-control" value="cancel" aria-label="Close">Close</button>
-        </div>
-        <div class="risk-strip" data-dialog-risks></div>
-        <div class="dialog-grid" data-dialog-body></div>
-        <menu>
-          <button class="secondary-button compact" value="cancel">Cancel</button>
-          <button class="primary-button compact" value="default" data-confirm-install>Queue install</button>
-        </menu>
-      </form>
-    </dialog>
-
-    <div class="toast" data-toast role="status" aria-live="polite"></div>
     <script src="./site.js"></script>
-    <script src="./app.js"></script>
   </body>
 </html>
