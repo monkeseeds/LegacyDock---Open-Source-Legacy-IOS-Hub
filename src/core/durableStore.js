@@ -128,6 +128,12 @@ export async function createDurableStore(options = {}) {
         await this.set(collection, [item, ...current]);
         return item;
       },
+      async clearAll() {
+        for (const [key, value] of Object.entries(defaultState)) {
+          await this.set(key, Array.isArray(value) ? [] : { ...value });
+        }
+        return { clearedAt: now(), scope: "local-workspace" };
+      },
       close() {
         database.close();
       }
@@ -153,6 +159,20 @@ export async function createDurableStore(options = {}) {
         [collection]: [item, ...(store[collection] || [])]
       }));
       return item;
+    },
+    async clearAll() {
+      await updateJsonStore(jsonPath, defaultState, () => ({
+        devices: [],
+        snapshots: [],
+        reports: [],
+        repositories: [],
+        packageIndexes: [],
+        healthHistory: [],
+        submissions: [],
+        settings: {},
+        entitlements: []
+      }));
+      return { clearedAt: now(), scope: "local-workspace" };
     },
     close() {}
   };

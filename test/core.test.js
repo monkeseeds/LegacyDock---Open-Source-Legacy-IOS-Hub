@@ -181,12 +181,15 @@ test("exposes commercial readiness endpoints", async () => {
   const storage = await api.handle("GET", "/api/storage/status");
   const desktop = await api.handle("GET", "/api/commercial/desktop");
   const compliance = await api.handle("GET", "/api/security/compliance");
+  const deletion = await api.handle("POST", "/api/security/delete-local");
   const release = await api.handle("GET", "/api/release/manifest");
 
   assert.equal(storage.body.activeEngine, "json-fallback");
   assert.equal(desktop.body.desktop.shell, "Tauri");
   assert.equal(desktop.body.desktop.frontend, "React + Vite + Tailwind");
   assert.equal(compliance.body.ready, commercialComplianceStatus().ready);
+  assert.equal(compliance.body.checklist.find((item) => item.id === "telemetry-consent").status, "complete");
+  assert.equal(deletion.body.scope, "local-workspace");
   assert.ok(release.body.targets.some((target) => target.os === "windows" && target.active));
   assert.ok(release.body.targets.some((target) => target.os === "macos" && !target.active));
 });
@@ -209,14 +212,18 @@ test("defines Tauri desktop workspace configuration", async () => {
   assert.ok(desktopPackage.dependencies.react);
   assert.ok(desktopPackage.devDependencies["@tauri-apps/cli"]);
   assert.ok(desktopPackage.devDependencies.tailwindcss);
-  assert.equal(packageRoot.scripts.tauri, "desktop\\node_modules\\.bin\\tauri.cmd");
+  assert.equal(packageRoot.scripts.tauri, "node scripts/run-tauri.cjs");
   assert.equal(updateFeed.platforms["windows-x86_64"].signature, "SIGNATURE_REQUIRED_BEFORE_STABLE_RELEASE");
   assert.match(updateFeed.platforms["windows-x86_64"].url, /^https:\/\/downloads\.legacydock\.com\/releases\//);
   assert.match(envExample, /SUPABASE_URL=/);
   assert.match(envExample, /TAURI_PUBLIC_KEY=/);
+  assert.match(envExample, /TAURI_PUBLIC_KEY_PATH=outputs\/updater\/legacydock\.key\.pub/);
+  assert.match(envExample, /TAURI_SIGNING_PRIVATE_KEY_PATH=outputs\/updater\/legacydock\.key/);
+  assert.match(envExample, /LEGACYDOCK_LIBIMOBILEDEVICE_DIR=tools\/libimobiledevice\/win-x64/);
   assert.match(envExample, /UPDATE_ENDPOINT=https:\/\/updates\.legacydock\.com\/latest\.json/);
   assert.match(windowsSetup, /Windows packaging is now working locally/);
-  assert.match(windowsSetup, /libimobiledevice` tools were still not detected/);
+  assert.match(windowsSetup, /Repo-local `libimobiledevice` tools are installed/);
+  assert.match(windowsSetup, /TAURI_SIGNING_PRIVATE_KEY_PATH/);
   assert.match(windowsSetup, /LegacyDock_0\.1\.0_x64-setup\.exe/);
   assert.match(windowsSetup, /LegacyDock_0\.1\.0_x64_en-US\.msi/);
   assert.match(migrations, /schema_migrations/);
@@ -238,7 +245,10 @@ test("includes the desktop setup wizard and synchronized logo assets", async () 
   assert.match(desktopApp, /Repository Hub/);
   assert.match(desktopApp, /Package Browser/);
   assert.match(desktopApp, /Snapshots/);
-  assert.match(desktopApp, /Preservation and setup exports/);
+  assert.match(desktopApp, /Reports And Controls/);
+  assert.match(desktopApp, /Export workspace JSON/);
+  assert.match(desktopApp, /Delete local data/);
+  assert.match(desktopApp, /Read privacy notes/);
   assert.equal(sharedHash, desktopHash);
 });
 

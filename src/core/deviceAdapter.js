@@ -1,4 +1,6 @@
 import { execFile } from "node:child_process";
+import { existsSync } from "node:fs";
+import { isAbsolute, join } from "node:path";
 import { promisify } from "node:util";
 
 const execFileAsync = promisify(execFile);
@@ -46,11 +48,27 @@ function capacityPercent(total, available) {
 }
 
 async function defaultRun(command, args, options = {}) {
-  const { stdout } = await execFileAsync(command, args, {
+  const { stdout } = await execFileAsync(resolveTool(command), args, {
     timeout: options.timeout || 8000,
     windowsHide: true
   });
   return stdout;
+}
+
+function executableName(tool) {
+  return process.platform === "win32" && !tool.endsWith(".exe") ? `${tool}.exe` : tool;
+}
+
+function resolveTool(tool) {
+  const executable = executableName(tool);
+  const configuredRoot = process.env.LEGACYDOCK_LIBIMOBILEDEVICE_DIR;
+  const candidates = [
+    configuredRoot && join(isAbsolute(configuredRoot) ? configuredRoot : process.cwd(), executable),
+    join(process.cwd(), "tools", "libimobiledevice", "win-x64", executable)
+  ].filter(Boolean);
+
+  const installed = candidates.find((candidate) => existsSync(candidate));
+  return installed || executable;
 }
 
 function missingToolResult(tool, error) {

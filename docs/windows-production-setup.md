@@ -11,7 +11,7 @@ Required on a Windows build machine:
 - Rust and Cargo
 - Microsoft C++ Build Tools or Visual Studio Build Tools
 - WebView2 Runtime
-- `libimobiledevice` tools on `PATH` for real device detection
+- `libimobiledevice` tools on `PATH` or in `tools/libimobiledevice/win-x64` for real device detection
 
 Verify:
 
@@ -31,9 +31,10 @@ On this machine:
 - `rustc --version` reports `1.96.0`
 - `cargo --version` reports `1.96.0`
 - WebView2 Runtime is installed
-- `libimobiledevice` tools were still not detected on `PATH`
+- Repo-local `libimobiledevice` tools are installed at `tools/libimobiledevice/win-x64`
+- `libimobiledevice` tools are still not globally on `PATH`
 
-Windows packaging is now working locally. Real USB device validation still requires `libimobiledevice`.
+Windows packaging is now working locally. Real USB device validation still requires a connected iPhone, iPad, or iPod.
 
 ## Commands
 
@@ -67,8 +68,12 @@ SUPABASE_URL=
 SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_KEY=
 TAURI_PUBLIC_KEY=
+TAURI_PUBLIC_KEY_PATH=outputs/updater/legacydock.key.pub
 UPDATE_ENDPOINT=https://updates.legacydock.com/latest.json
 APP_ENV=development
+LEGACYDOCK_LIBIMOBILEDEVICE_DIR=tools/libimobiledevice/win-x64
+TAURI_SIGNING_PRIVATE_KEY_PATH=outputs/updater/legacydock.key
+TAURI_SIGNING_PRIVATE_KEY_PASSWORD=
 ```
 
 Cloud features must remain optional. The app should still run local diagnostics, repository management, compatibility checks, snapshots, backups, restoration guidance, and reports without an account or internet connection.
@@ -94,13 +99,23 @@ https://updates.legacydock.com/latest.json
 https://downloads.legacydock.com/releases/
 ```
 
-Updater signing keys must be generated outside the repository. Commit only the public key after it exists; keep the private key in a secret manager:
+Updater signing keys should be generated into an ignored local folder. Commit only the public key after it exists; keep the private key in a secret manager:
 
 ```text
 TAURI_PUBLIC_KEY
+TAURI_PUBLIC_KEY_PATH
 TAURI_SIGNING_PRIVATE_KEY
+TAURI_SIGNING_PRIVATE_KEY_PATH
 TAURI_SIGNING_PRIVATE_KEY_PASSWORD
 ```
+
+Local helper flow used here:
+
+```powershell
+desktop\node_modules\.bin\tauri.cmd signer generate --ci -w outputs/updater/legacydock.key -p <password>
+```
+
+The root `npm run desktop:build:windows` script now loads `.env` and `.env.local`, and if `TAURI_SIGNING_PRIVATE_KEY_PATH` or `TAURI_PUBLIC_KEY_PATH` are set it reads those files into the Tauri signing environment automatically.
 
 Stable auto-update must stay disabled until signed installers, signed update metadata, rollback metadata, checksums, and release provenance are all verified.
 
@@ -149,7 +164,7 @@ Every production release should be signed, versioned, reproducible, checksumed, 
 
 Still needed before real device work:
 
-- Install `idevice_id`, `ideviceinfo`, `idevicepair`, and `idevicebackup2`
+- Optionally add `idevice_id`, `ideviceinfo`, `idevicepair`, and `idevicebackup2` to global `PATH`
 - Pair and validate against an actual legacy iPhone, iPad, or iPod
 - Add Windows signing credentials later
 - Add hosted updater infrastructure later

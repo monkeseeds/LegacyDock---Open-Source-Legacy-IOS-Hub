@@ -13,11 +13,15 @@ LegacyDock is local-first. Free diagnostics, snapshots, repository metadata, and
 
 Telemetry must be off unless the user opts in. Crash reports and analytics must redact UDIDs, serial numbers, device names, credentials, repository secrets, and local file paths.
 
-Crash reporting and analytics are architecture-only for now. They must remain disabled by default until consent UI, redaction, export, and deletion flows are complete.
+The desktop app now includes visible local consent controls for telemetry, crash reporting, privacy review, and terms review. Those controls are stored locally. Telemetry and crash reporting still remain inactive until hosted services are enabled and redaction rules are finalized.
 
 ## Export And Deletion
 
-Users must be able to export local data and delete local workspace data. Hosted cloud data deletion is required before paid cloud features launch.
+Users can export a text setup report and a local JSON workspace bundle from the desktop app. Users can also delete local LegacyDock browser-state records from the desktop app. Hosted cloud data deletion is still required before paid cloud features launch.
+
+## Local Tools
+
+LegacyDock can use a repo-local `libimobiledevice` install at `tools/libimobiledevice/win-x64` or a path supplied through `LEGACYDOCK_LIBIMOBILEDEVICE_DIR`. Device detection remains local-first and should not upload UDIDs or pairing metadata.
 
 ## Credentials
 

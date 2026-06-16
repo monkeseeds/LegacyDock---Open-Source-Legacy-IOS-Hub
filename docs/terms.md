@@ -17,3 +17,7 @@ LegacyDock may document or hand off to external jailbreak, restore, SHSH, ramdis
 ## Safety
 
 Device-changing actions must require explicit user confirmation, snapshot checks, and rollback planning. Current mutation support is dry-run only.
+
+## Local Controls
+
+LegacyDock includes local export, consent, and local data deletion controls in the desktop app. These controls apply to LegacyDock-managed local records only and do not delete third-party repository data, external tool data, or device-side package changes.

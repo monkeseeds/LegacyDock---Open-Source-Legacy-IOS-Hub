@@ -1,5 +1,7 @@
 use serde::Serialize;
 use std::collections::HashMap;
+use std::env;
+use std::path::PathBuf;
 use std::process::Command;
 
 #[derive(Debug, Serialize)]
@@ -25,8 +27,44 @@ fn parse_key_values(text: &str) -> HashMap<String, String> {
         .collect()
 }
 
+fn executable_name(tool: &str) -> String {
+    if cfg!(target_os = "windows") && !tool.ends_with(".exe") {
+        format!("{tool}.exe")
+    } else {
+        tool.to_string()
+    }
+}
+
+fn resolve_tool(tool: &str) -> String {
+    let executable = executable_name(tool);
+    let mut candidates: Vec<PathBuf> = Vec::new();
+
+    if let Ok(configured_root) = env::var("LEGACYDOCK_LIBIMOBILEDEVICE_DIR") {
+        candidates.push(PathBuf::from(configured_root).join(&executable));
+    }
+
+    if let Ok(current_dir) = env::current_dir() {
+        candidates.push(current_dir.join("tools").join("libimobiledevice").join("win-x64").join(&executable));
+    }
+
+    if let Ok(current_exe) = env::current_exe() {
+        if let Some(parent) = current_exe.parent() {
+            candidates.push(parent.join("tools").join("libimobiledevice").join("win-x64").join(&executable));
+            if let Some(grandparent) = parent.parent() {
+                candidates.push(grandparent.join("tools").join("libimobiledevice").join("win-x64").join(&executable));
+            }
+        }
+    }
+
+    candidates
+        .into_iter()
+        .find(|candidate| candidate.exists())
+        .map(|candidate| candidate.to_string_lossy().to_string())
+        .unwrap_or(executable)
+}
+
 fn read_lockdown(udid: &str) -> Result<DeviceProfile, String> {
-    let output = Command::new("ideviceinfo")
+    let output = Command::new(resolve_tool("ideviceinfo"))
         .arg("-u")
         .arg(udid)
         .output()
@@ -47,7 +85,7 @@ fn read_lockdown(udid: &str) -> Result<DeviceProfile, String> {
 
 #[tauri::command]
 pub fn discover_devices() -> Result<DiscoveryResult, String> {
-    let output = Command::new("idevice_id")
+    let output = Command::new(resolve_tool("idevice_id"))
         .arg("-l")
         .output()
         .map_err(|error| format!("idevice_id unavailable: {error}"))?;

@@ -13,6 +13,7 @@ src-tauri/target/
 src-tauri/gen/
 legacydock.sqlite
 rustup-init.exe
+tools/libimobiledevice/
 *.p12
 *.pfx
 *.pem

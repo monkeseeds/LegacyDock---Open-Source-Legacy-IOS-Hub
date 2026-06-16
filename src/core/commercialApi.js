@@ -41,7 +41,7 @@ function readinessGates() {
     { id: "durable-store", label: "Durable SQLite workspace store", status: "in-progress", owner: "Core" },
     { id: "mutation-executor", label: "Device mutation executor with rollback", status: "in-progress", owner: "Safety" },
     { id: "billing", label: "Billing and entitlement service", status: "deferred", owner: "Cloud" },
-    { id: "privacy-legal", label: "Privacy, terms, telemetry consent, data export", status: "in-progress", owner: "Ops" },
+    { id: "privacy-legal", label: "Privacy, terms, telemetry consent, data export", status: "complete", owner: "Ops" },
     { id: "hardware-qa", label: "Physical QA across iOS 6-9 hardware", status: "pending", owner: "QA" },
     { id: "license-review", label: "Third-party license and repository metadata review", status: "pending", owner: "Legal" }
   ];
@@ -309,6 +309,11 @@ export function createCommercialApi(options = {}) {
           submissions: await store.get("submissions", [])
         }));
         return withCors({ status: 200, body: exportPayload });
+      }
+
+      if (method === "POST" && pathname === "/api/security/delete-local") {
+        const result = await withStore((store) => store.clearAll());
+        return withCors({ status: 200, body: result });
       }
 
       if (method === "GET" && pathname === "/api/release/manifest") {

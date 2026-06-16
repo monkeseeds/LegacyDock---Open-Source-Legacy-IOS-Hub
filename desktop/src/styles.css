@@ -299,7 +299,8 @@ h3 {
 .console-grid,
 .device-console-grid,
 .package-console-grid,
-.repo-health-strip {
+.repo-health-strip,
+.reports-grid {
   display: grid;
   gap: 16px;
 }
@@ -720,6 +721,88 @@ dd {
   padding: 14px;
 }
 
+.reports-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 8px;
+}
+
+.subpanel {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035)),
+    rgba(255, 255, 255, 0.045);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.danger-panel {
+  border-color: rgba(247, 194, 93, 0.24);
+}
+
+.setting-row,
+.danger-field {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.14);
+}
+
+.setting-row strong,
+.setting-row small,
+.danger-field strong,
+.danger-field span {
+  display: block;
+}
+
+.setting-row small,
+.danger-field span {
+  color: #b9c2d0;
+  line-height: 1.45;
+}
+
+.setting-row input,
+.danger-field input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+}
+
+.danger-field {
+  grid-template-columns: 1fr;
+}
+
+.danger-field input {
+  width: 100%;
+  height: 42px;
+  margin-top: 8px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: inherit;
+  background: rgba(0, 0, 0, 0.24);
+  outline: 0;
+}
+
+.inline-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.inline-links a {
+  min-height: 34px;
+  padding: 0 12px;
+}
+
 .resource-row {
   grid-template-columns: auto minmax(0, 1fr);
 }
@@ -751,7 +834,8 @@ dd {
   .repo-health-strip,
   .device-console-grid,
   .package-console-grid,
-  .service-grid {
+  .service-grid,
+  .reports-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

@@ -16,6 +16,7 @@ import {
   ShieldAlert,
   ShieldCheck,
   Smartphone,
+  Trash2,
   Wrench
 } from "lucide-react";
 import "./styles.css";
@@ -49,6 +50,15 @@ type SetupItem = {
   compatibility: string;
   risk: "Low" | "Medium" | "High";
   instructions: string;
+};
+
+type ConsentState = {
+  localOnlyMode: boolean;
+  telemetryOptIn: boolean;
+  crashReportsOptIn: boolean;
+  acceptedPrivacy: boolean;
+  acceptedTerms: boolean;
+  updatedAt: string | null;
 };
 
 type AppMode = "wizard" | "console";
@@ -159,6 +169,17 @@ const services = [
   { name: "YouTube restoration", fixes: "Classic YouTube client/web fallback", supported: "iOS 5-7", repo: "SkyGlow", limits: "Playback support changes upstream.", steps: "Start with TubeRepair and keep rollback notes." }
 ];
 
+const defaultConsentState: ConsentState = {
+  localOnlyMode: true,
+  telemetryOptIn: false,
+  crashReportsOptIn: false,
+  acceptedPrivacy: false,
+  acceptedTerms: false,
+  updatedAt: null
+};
+
+const deletePhrase = "DELETE LOCAL DATA";
+
 function Pill({ children, tone = "neutral" }: { children: React.ReactNode; tone?: "good" | "warn" | "bad" | "neutral" }) {
   return <span className={`pill pill-${tone}`}>{children}</span>;
 }
@@ -181,6 +202,16 @@ function fallbackDevice(): Device {
     battery_health: 86,
     status: "demo"
   };
+}
+
+function loadConsentState(): ConsentState {
+  if (typeof window === "undefined") return defaultConsentState;
+  try {
+    const saved = window.localStorage.getItem("legacydock.desktop.consent");
+    return saved ? { ...defaultConsentState, ...JSON.parse(saved) } : defaultConsentState;
+  } catch {
+    return defaultConsentState;
+  }
 }
 
 function reportText(device: Device, completed: string[], issues: ReturnType<typeof doctorIssues>) {
@@ -243,6 +274,8 @@ function App() {
   const [repoHealth, setRepoHealth] = useState<RepositoryHealth[]>([]);
   const [completed, setCompleted] = useState<string[]>([]);
   const [status, setStatus] = useState("Connect your legacy iOS device to begin.");
+  const [consent, setConsent] = useState<ConsentState>(() => loadConsentState());
+  const [deleteConfirmation, setDeleteConfirmation] = useState("");
 
   const issues = useMemo(() => doctorIssues(selectedDevice), [selectedDevice]);
   const supportedRange = Number(selectedDevice.firmware.split(".")[0]) >= 3 && Number(selectedDevice.firmware.split(".")[0]) <= 9;
@@ -307,12 +340,70 @@ function App() {
     link.download = `legacydock-${selectedDevice.identifier}-setup-report.txt`;
     link.click();
     URL.revokeObjectURL(url);
+    setStatus("Text setup report exported.");
+  }
+
+  function updateConsent(patch: Partial<ConsentState>) {
+    setConsent((current) => ({
+      ...current,
+      ...patch,
+      updatedAt: new Date().toISOString()
+    }));
+  }
+
+  function exportWorkspaceJson() {
+    const payload = {
+      schema: "legacydock.desktop-local-export.v1",
+      exportedAt: new Date().toISOString(),
+      device: selectedDevice,
+      devices: detectedDevices,
+      repositories: curatedRepos,
+      recommendedPackages,
+      unsupportedPackages,
+      completed,
+      issues,
+      snapshots: snapshotRecords,
+      communityResources,
+      settings: consent,
+      reports: [
+        {
+          id: `${selectedDevice.id}-setup-report`,
+          type: "setup-report",
+          generatedAt: new Date().toISOString(),
+          body: reportText(selectedDevice, completed, issues)
+        }
+      ]
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `legacydock-${selectedDevice.identifier}-workspace-export.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+    setStatus("Workspace export saved locally.");
+  }
+
+  function deleteLocalWorkspace() {
+    Object.keys(localStorage)
+      .filter((key) => key.startsWith("legacydock."))
+      .forEach((key) => localStorage.removeItem(key));
+    setCompleted([]);
+    setDevices([]);
+    setSelectedDevice(fallbackDevice());
+    setConsent(defaultConsentState);
+    setDeleteConfirmation("");
+    setStatus("Local LegacyDock workspace data cleared.");
   }
 
   useEffect(() => {
     runDoctor();
     checkRepos();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("legacydock.desktop.consent", JSON.stringify(consent));
+  }, [consent]);
 
   const stepView = [
     <section className="wizard-hero" key="welcome">
@@ -579,13 +670,61 @@ function App() {
       </article>
     </section>,
     reports: <section className="console-grid" key="console-reports">
-      <article className="panel">
-        <Pill>Reports</Pill>
-        <h2>Preservation and setup exports</h2>
-        <div className="action-panel">
-          <button onClick={exportReport}><FileDown size={17} /> Export setup report</button>
-          <button onClick={copyRepos}><Clipboard size={17} /> Copy repo list</button>
-          <button onClick={saveProfile}><Database size={17} /> Save device profile</button>
+      <article className="panel large-panel">
+        <div className="panel-head">
+          <div><Pill>Reports And Controls</Pill><h2>Exports, consent, and local data safety</h2></div>
+          <Pill tone={consent.localOnlyMode ? "good" : "warn"}>{consent.localOnlyMode ? "Local-only mode" : "Cloud-ready preferences"}</Pill>
+        </div>
+        <div className="reports-grid">
+          <section className="subpanel">
+            <Pill tone="good">Data export</Pill>
+            <h3>Portable local records</h3>
+            <p className="muted">Export a plain-text setup report or a full local JSON workspace bundle with recommendations, reports, and consent settings.</p>
+            <div className="action-panel">
+              <button onClick={exportReport}><FileDown size={17} /> Export setup report</button>
+              <button onClick={exportWorkspaceJson}><Database size={17} /> Export workspace JSON</button>
+              <button onClick={copyRepos}><Clipboard size={17} /> Copy repo list</button>
+              <button onClick={saveProfile}><Archive size={17} /> Save device profile</button>
+            </div>
+          </section>
+          <section className="subpanel">
+            <Pill tone="good">Privacy and terms</Pill>
+            <h3>Visible consent controls</h3>
+            <label className="setting-row">
+              <span><strong>Keep LegacyDock local-only</strong><small>Disable account assumptions and keep diagnostics, exports, and setup notes on this machine.</small></span>
+              <input type="checkbox" checked={consent.localOnlyMode} onChange={(event) => updateConsent({ localOnlyMode: event.target.checked })} />
+            </label>
+            <label className="setting-row">
+              <span><strong>Allow redacted telemetry later</strong><small>Off by default. No telemetry leaves the app until you opt in and hosted services are active.</small></span>
+              <input type="checkbox" checked={consent.telemetryOptIn} onChange={(event) => updateConsent({ telemetryOptIn: event.target.checked })} />
+            </label>
+            <label className="setting-row">
+              <span><strong>Allow redacted crash reports later</strong><small>Crash reporting stays disabled until consent, redaction, export, and deletion controls are all present.</small></span>
+              <input type="checkbox" checked={consent.crashReportsOptIn} onChange={(event) => updateConsent({ crashReportsOptIn: event.target.checked })} />
+            </label>
+            <label className="setting-row">
+              <span><strong>Privacy notes reviewed</strong><small>Local data includes device profiles, repository metadata, snapshots, reports, and settings.</small></span>
+              <input type="checkbox" checked={consent.acceptedPrivacy} onChange={(event) => updateConsent({ acceptedPrivacy: event.target.checked })} />
+            </label>
+            <label className="setting-row">
+              <span><strong>Terms reviewed</strong><small>LegacyDock remains metadata-first and does not grant rights to bypass ownership, licenses, or upstream terms.</small></span>
+              <input type="checkbox" checked={consent.acceptedTerms} onChange={(event) => updateConsent({ acceptedTerms: event.target.checked })} />
+            </label>
+            <div className="inline-links">
+              <a href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/blob/main/docs/privacy.md" target="_blank" rel="noreferrer">Read privacy notes</a>
+              <a href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/blob/main/docs/terms.md" target="_blank" rel="noreferrer">Read terms</a>
+            </div>
+          </section>
+          <section className="subpanel danger-panel">
+            <Pill tone="warn">Delete local data</Pill>
+            <h3>Reset this LegacyDock workspace</h3>
+            <p className="muted">This removes saved profile data, consent choices, and any local LegacyDock browser-state records on this machine.</p>
+            <label className="danger-field">
+              <span>Type <strong>{deletePhrase}</strong> to confirm.</span>
+              <input value={deleteConfirmation} onChange={(event) => setDeleteConfirmation(event.target.value)} placeholder={deletePhrase} />
+            </label>
+            <button disabled={deleteConfirmation !== deletePhrase} onClick={deleteLocalWorkspace}><Trash2 size={17} /> Delete local data</button>
+          </section>
         </div>
       </article>
       <article className="panel">
@@ -624,7 +763,7 @@ function App() {
       <section className="workspace">
         <header className="topbar">
           <div>
-            <Pill tone="good">Local MVP / no accounts</Pill>
+            <Pill tone={consent.localOnlyMode ? "good" : "warn"}>{consent.localOnlyMode ? "Local MVP / no accounts" : "Consent preferences saved locally"}</Pill>
             <h1>{appMode === "wizard" ? "Legacy iOS setup, made obvious." : "LegacyDock Console"}</h1>
             <p>{appMode === "wizard" ? status : "Repository hub, package browser, Device Doctor, snapshots, and reports inside the desktop app."}</p>
           </div>

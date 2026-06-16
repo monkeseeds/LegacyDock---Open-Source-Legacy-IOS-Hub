@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-06-16
+
+- Installed the Windows `libimobiledevice` binaries locally into `tools/libimobiledevice/win-x64`, added a repeatable bootstrap script, and taught both the Node adapter and the Tauri Rust device layer to look for that repo-local tool path.
+- Added local updater-signing support by wiring root Tauri build scripts through an env loader that reads `.env` and `.env.local`, including `TAURI_SIGNING_PRIVATE_KEY_PATH` and `TAURI_PUBLIC_KEY_PATH`.
+- Generated and documented the local updater-key workflow for Tauri signing without touching Windows code-signing, which remains blocked on the certificate.
+- Finished desktop privacy and data-control flows with visible consent toggles, local-only mode, text and JSON export actions, and local workspace deletion controls.
+- Marked privacy/legal readiness complete in the local commercial API, added a local delete endpoint, and updated the privacy, terms, and Windows setup docs to match the current desktop behavior.
+
 ## 2026-06-15
 
 - Switched the active production release setup to Windows 10/11 only with NSIS/MSI packaging, Windows signing placeholders, updater endpoint planning, Supabase-ready configuration, and a Windows production setup guide.

@@ -84,4 +84,4 @@ The override is stored in local storage for future console sessions.
 - Add billing keys, price IDs, customer portal, and webhook deployment later.
 - Add hosted cloud storage, moderation queues, and recommendation services.
 - Add Windows signing certificates, installer publishing, and real signed auto-update feed entries.
-- Add telemetry consent UI and hosted data deletion flows.
+- Extend the completed local consent/export/delete flows with hosted account deletion before cloud launch.

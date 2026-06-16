@@ -58,7 +58,7 @@ npm run api
 - Enable device mutation executors only after hardware preflight, snapshots, rollback, and recovery workflows are proven.
 - Add Supabase-hosted optional sync, reports, moderation, backups, and team inventory services.
 - Add billing checkout, portal, webhooks, and hosted entitlements later.
-- Add telemetry consent UI and hosted data deletion flows.
+- Extend the completed local consent/export/delete flows with hosted account deletion before cloud launch.
 - Run physical QA across representative iOS 6, 7, 8, and 9 devices.
 - Complete license review before copying, linking, or bundling GPL ecosystem tools.
 
