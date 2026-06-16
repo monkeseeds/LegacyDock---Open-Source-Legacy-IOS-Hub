@@ -8,7 +8,7 @@ The durable promise is simple: connect a legacy Apple device, understand its sta
 
 ## MVP Scope
 
-1. Desktop companion for macOS, Windows, and Linux.
+1. Windows desktop companion first, with macOS and Linux deferred behind platform adapter boundaries.
 2. Local device detection with model, identifier, firmware, jailbreak status, package manager, installed packages, repositories, storage, memory, and battery state.
 3. Compatibility-aware package and repository browser.
 4. Dependency and conflict explanation layer.

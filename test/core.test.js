@@ -187,7 +187,8 @@ test("exposes commercial readiness endpoints", async () => {
   assert.equal(desktop.body.desktop.shell, "Tauri");
   assert.equal(desktop.body.desktop.frontend, "React + Vite + Tailwind");
   assert.equal(compliance.body.ready, commercialComplianceStatus().ready);
-  assert.ok(release.body.targets.some((target) => target.os === "windows"));
+  assert.ok(release.body.targets.some((target) => target.os === "windows" && target.active));
+  assert.ok(release.body.targets.some((target) => target.os === "macos" && !target.active));
 });
 
 test("defines Tauri desktop workspace configuration", async () => {
@@ -195,15 +196,23 @@ test("defines Tauri desktop workspace configuration", async () => {
   const desktopPackage = JSON.parse(await readFile("desktop/package.json", "utf8"));
   const updateFeed = JSON.parse(await readFile("updates/stable.json", "utf8"));
   const migrations = await readFile("src-tauri/src/migrations.rs", "utf8");
+  const envExample = await readFile(".env.example", "utf8");
+  const windowsSetup = await readFile("docs/windows-production-setup.md", "utf8");
 
   assert.equal(tauriConfig.productName, "LegacyDock");
   assert.equal(tauriConfig.build.devUrl, "http://127.0.0.1:1420");
   assert.equal(tauriConfig.build.frontendDist, "../desktop/dist");
-  assert.deepEqual(tauriConfig.bundle.targets, ["nsis", "msi", "dmg"]);
+  assert.deepEqual(tauriConfig.bundle.targets, ["nsis", "msi"]);
   assert.ok(desktopPackage.dependencies.react);
   assert.ok(desktopPackage.devDependencies["@tauri-apps/cli"]);
   assert.ok(desktopPackage.devDependencies.tailwindcss);
   assert.equal(updateFeed.platforms["windows-x86_64"].signature, "SIGNATURE_REQUIRED_BEFORE_STABLE_RELEASE");
+  assert.match(updateFeed.platforms["windows-x86_64"].url, /^https:\/\/downloads\.legacydock\.com\/releases\//);
+  assert.match(envExample, /SUPABASE_URL=/);
+  assert.match(envExample, /TAURI_PUBLIC_KEY=/);
+  assert.match(envExample, /UPDATE_ENDPOINT=https:\/\/updates\.legacydock\.com\/latest\.json/);
+  assert.match(windowsSetup, /Windows 10 and Windows 11 first/);
+  assert.match(windowsSetup, /Rust\/Cargo and `libimobiledevice` were not detected/);
   assert.match(migrations, /schema_migrations/);
 });
 
@@ -245,7 +254,8 @@ test("publishes releases navigation and desktop artifact workflow", async () => 
   assert.match(releases, /class="github-release"/);
   assert.match(releases, /class="release-assets"/);
   assert.match(releases, /Windows[\s\S]*\.exe/);
-  assert.match(releases, /macOS[\s\S]*\.dmg/);
+  assert.match(releases, /Windows[\s\S]*\.msi/);
+  assert.doesNotMatch(releases, /LegacyDock_0\.1\.0_universal\.dmg/);
   assert.match(releases, /Source code \(zip\)/);
   assert.match(releases, /legacy Apple\/Cydia-inspired/);
   assert.match(releases, /removing the Studio card/);
@@ -269,5 +279,7 @@ test("publishes releases navigation and desktop artifact workflow", async () => 
   assert.match(siteCss, /Classic Apple \/ Cydia skin/);
   assert.match(desktopCss, /Helvetica Neue/);
   assert.match(workflow, /LegacyDock-Windows/);
-  assert.match(workflow, /LegacyDock-macOS/);
+  assert.match(workflow, /TAURI_SIGNING_PRIVATE_KEY/);
+  assert.match(workflow, /WINDOWS_CERTIFICATE/);
+  assert.doesNotMatch(workflow, /LegacyDock-macOS/);
 });

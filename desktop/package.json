@@ -9,8 +9,7 @@
     "preview": "vite preview --host 127.0.0.1 --port 1420",
     "tauri:dev": "tauri dev --config ../src-tauri/tauri.conf.json",
     "tauri:build": "tauri build --config ../src-tauri/tauri.conf.json",
-    "tauri:build:windows": "tauri build --config ../src-tauri/tauri.conf.json --bundles nsis,msi",
-    "tauri:build:macos": "tauri build --config ../src-tauri/tauri.conf.json --bundles dmg"
+    "tauri:build:windows": "tauri build --config ../src-tauri/tauri.conf.json --bundles nsis,msi"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.0.0",

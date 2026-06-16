@@ -2,6 +2,7 @@
 
 ## 2026-06-15
 
+- Switched the active production release setup to Windows 10/11 only with NSIS/MSI packaging, Windows signing placeholders, updater endpoint planning, Supabase-ready configuration, and a Windows production setup guide.
 - Updated Care yearly pricing to $49.99/year with a "2 months free!" badge, changed the website console into a desktop app showcase, restored its footer, removed bottom whitespace, and tightened mock-card text wrapping.
 - Simplified pricing by removing the Studio card and folding Care Yearly into a switchable LegacyDock Care plan card.
 - Restyled the website and Tauri app with a legacy Apple/Cydia-inspired visual system using Helvetica, brushed-metal headers, linen backgrounds, glossy aqua controls, and classic utility panels.

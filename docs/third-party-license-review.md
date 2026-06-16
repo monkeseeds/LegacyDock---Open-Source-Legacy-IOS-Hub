@@ -2,6 +2,19 @@
 
 This repository currently uses third-party ecosystem names, URLs, and metadata as credited references. It does not vendor jailbreak tools, repository packages, or package payloads.
 
+## Internal Audit Fields
+
+Every dependency or bundled resource needs:
+
+- dependency
+- version
+- source
+- license
+- attribution requirements
+- redistribution rights
+- modification rights
+- commercial compatibility
+
 ## Reviewed References
 
 | Reference | Use | Current Handling |
@@ -24,3 +37,5 @@ Before bundling code, binaries, package payloads, screenshots, or mirrored index
 ## Current Status
 
 Commercial releases should treat this as a preliminary review, not final legal approval.
+
+No third-party binaries, package payloads, mirrored indexes, screenshots, or external resources should be bundled until the audit fields above are complete.

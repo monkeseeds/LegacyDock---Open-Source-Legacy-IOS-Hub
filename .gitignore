@@ -3,7 +3,14 @@ outputs/
 .DS_Store
 Thumbs.db
 *.log
+.env
+.env.*
+!.env.example
 desktop/node_modules/
 desktop/dist/
 src-tauri/target/
 legacydock.sqlite
+*.p12
+*.pfx
+*.pem
+*.key

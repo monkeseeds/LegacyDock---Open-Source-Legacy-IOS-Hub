@@ -40,7 +40,7 @@ function readinessGates() {
     { id: "live-device-adapters", label: "Live AFC/SSH/package-state adapters", status: "in-progress", owner: "Core" },
     { id: "durable-store", label: "Durable SQLite workspace store", status: "in-progress", owner: "Core" },
     { id: "mutation-executor", label: "Device mutation executor with rollback", status: "in-progress", owner: "Safety" },
-    { id: "billing", label: "Stripe checkout and entitlement service", status: "in-progress", owner: "Cloud" },
+    { id: "billing", label: "Billing and entitlement service", status: "deferred", owner: "Cloud" },
     { id: "privacy-legal", label: "Privacy, terms, telemetry consent, data export", status: "in-progress", owner: "Ops" },
     { id: "hardware-qa", label: "Physical QA across iOS 6-9 hardware", status: "pending", owner: "QA" },
     { id: "license-review", label: "Third-party license and repository metadata review", status: "pending", owner: "Legal" }

@@ -22,12 +22,12 @@ LegacyDock now has a production-oriented local core, but the project should stil
 - Desktop shell contract for app menus, tray behavior, bundled local service startup, permissions, and update policy.
 - Tauri v2 desktop scaffold with React, Vite, Tailwind, and Rust command modules for diagnostics, repository checks, package parsing, database initialization, device discovery, and dry-run mutation planning.
 - Desktop Setup Wizard for local, beginner-friendly legacy iOS setup across detection, compatibility, repositories, recommendations, Device Doctor, service restoration, and summary reports.
-- Windows and macOS Tauri packaging targets, update-feed scaffold, privacy notes, terms, and preliminary third-party license review.
+- Windows-only Tauri packaging targets, update-feed scaffold, signing-secret placeholders, privacy notes, terms, and preliminary third-party license review.
 - SQLite schema and durable storage abstraction with JSON fallback for development environments.
 - Read-only live inspection parsers for Cydia sources, dpkg status, package manager inference, and SSH credential policy.
 - Safe mutation queue with preflight checks, required snapshots, confirmation phrases, and rollback previews.
 - Package index ingestion pipeline for Debian `Packages` metadata, cache expiry, trust labels, and metadata-only repository handling.
-- Local entitlement model with signed license payloads, offline grace periods, feature gates, and Stripe integration requirements.
+- Local entitlement model with signed license payloads, offline grace periods, feature gates, and deferred billing integration requirements.
 - Encrypted cloud sync envelope, compatibility submission, moderation status, and hosted cloud service contracts.
 - Privacy/legal compliance checklist, data export contract, and release manifest.
 - Node test suite for core product logic.
@@ -49,14 +49,17 @@ npm run api
 
 ## Commercial Release Gates
 
-- Install and configure the local Tauri desktop toolchain.
-- Add signed installers for Windows, macOS, and Linux.
+- Install and configure the local Windows Tauri desktop toolchain.
+- Add signed Windows installers for Windows 10 and Windows 11.
 - Replace fixture package and device data with live hardware adapters after physical-device QA.
 - Package a real SQLite driver and migration runner inside the desktop app.
 - Add native AFC/SSH execution paths after read-only inspection is validated.
 - Add cryptographic snapshot manifests and restore previews.
 - Enable device mutation executors only after hardware preflight, snapshots, rollback, and recovery workflows are proven.
-- Add Stripe checkout, portal, webhooks, hosted entitlements, encrypted cloud sync, and team inventory services.
+- Add Supabase-hosted optional sync, reports, moderation, backups, and team inventory services.
+- Add billing checkout, portal, webhooks, and hosted entitlements later.
 - Add telemetry consent UI and hosted data deletion flows.
 - Run physical QA across representative iOS 6, 7, 8, and 9 devices.
 - Complete license review before copying, linking, or bundling GPL ecosystem tools.
+
+See [Windows Production Setup](windows-production-setup.md) for the current Windows-only release checklist.

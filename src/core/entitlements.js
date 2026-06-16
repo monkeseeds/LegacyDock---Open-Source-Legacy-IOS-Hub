@@ -46,8 +46,9 @@ export function verifyLicense({ payload, signature, secret = "development-only-s
 
 export function stripeIntegrationPlan() {
   return {
-    checkout: "requires STRIPE_SECRET_KEY and published price ids",
-    customerPortal: "requires Stripe billing portal configuration",
+    status: "deferred-for-windows-production-phase",
+    checkout: "requires STRIPE_SECRET_KEY and published price ids when billing setup begins",
+    customerPortal: "requires Stripe billing portal configuration when billing setup begins",
     webhooks: ["checkout.session.completed", "customer.subscription.updated", "customer.subscription.deleted"],
     localPolicy: "LegacyDock keeps free local diagnostics available without an account."
   };

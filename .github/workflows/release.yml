@@ -1,4 +1,4 @@
-name: LegacyDock Release Builds
+name: LegacyDock Windows Release Builds
 
 on:
   push:
@@ -8,9 +8,13 @@ on:
 permissions:
   contents: read
 
+env:
+  APP_ENV: production
+  UPDATE_ENDPOINT: https://updates.legacydock.com/latest.json
+
 jobs:
   verify:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,9 +31,12 @@ jobs:
         run: npm test
 
       - name: Generate source checksum
-        shell: bash
+        shell: pwsh
         run: |
-          git ls-files -z | xargs -0 sha256sum > legacydock-source.sha256
+          git ls-files | ForEach-Object {
+            $hash = (Get-FileHash -Algorithm SHA256 $_).Hash.ToLowerInvariant()
+            "$hash  $_"
+          } | Set-Content legacydock-source.sha256
 
       - name: Upload verification artifact
         uses: actions/upload-artifact@v4
@@ -37,24 +44,21 @@ jobs:
           name: legacydock-verification
           path: legacydock-source.sha256
 
-  desktop:
-    name: Desktop ${{ matrix.platform }}
+  windows-desktop:
+    name: Windows Desktop Installer
     needs: verify
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - platform: windows
-            os: windows-latest
-            build-script: desktop:build:windows
-            artifact-name: LegacyDock-Windows
-            artifact-path: src-tauri/target/release/bundle/**/*
-          - platform: macos
-            os: macos-latest
-            build-script: desktop:build:macos
-            artifact-name: LegacyDock-macOS
-            artifact-path: src-tauri/target/release/bundle/**/*
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-latest
+    env:
+      APP_ENV: production
+      UPDATE_ENDPOINT: https://updates.legacydock.com/latest.json
+      TAURI_PUBLIC_KEY: ${{ secrets.TAURI_PUBLIC_KEY }}
+      TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+      TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+      WINDOWS_CERTIFICATE: ${{ secrets.WINDOWS_CERTIFICATE }}
+      WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+      WINDOWS_CERTIFICATE_THUMBPRINT: ${{ secrets.WINDOWS_CERTIFICATE_THUMBPRINT }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -69,15 +73,47 @@ jobs:
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
 
+      - name: Document release secret status
+        shell: pwsh
+        run: |
+          $names = @(
+            "TAURI_PUBLIC_KEY",
+            "TAURI_SIGNING_PRIVATE_KEY",
+            "WINDOWS_CERTIFICATE",
+            "WINDOWS_CERTIFICATE_THUMBPRINT",
+            "SUPABASE_URL",
+            "SUPABASE_ANON_KEY"
+          )
+          foreach ($name in $names) {
+            if ([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($name))) {
+              Write-Warning "$name is not configured. Build may be unsigned or cloud-disabled."
+            } else {
+              Write-Host "$name is configured."
+            }
+          }
+
       - name: Install desktop dependencies
         run: npm --prefix desktop ci
 
-      - name: Build desktop installer
-        run: npm run ${{ matrix.build-script }}
+      - name: Build Windows installer
+        run: npm run desktop:build:windows
 
-      - name: Upload desktop installer
+      - name: Generate installer checksums
+        shell: pwsh
+        run: |
+          Get-ChildItem src-tauri/target/release/bundle -Recurse -File |
+            Where-Object { $_.Extension -in ".exe", ".msi" } |
+            ForEach-Object {
+              $hash = (Get-FileHash -Algorithm SHA256 $_.FullName).Hash.ToLowerInvariant()
+              "$hash  $($_.FullName)"
+            } | Set-Content legacydock-windows-installers.sha256
+
+      - name: Upload Windows installers
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.artifact-name }}
-          path: ${{ matrix.artifact-path }}
+          name: LegacyDock-Windows
+          path: |
+            src-tauri/target/release/bundle/**/*.exe
+            src-tauri/target/release/bundle/**/*.msi
+            legacydock-windows-installers.sha256
           if-no-files-found: error

@@ -12,7 +12,7 @@ The first desktop experience is a Setup Wizard that guides beginners through dev
 - Data: SQLite through `rusqlite`
 - Repository checks: Rust `reqwest`
 - Device detection: `libimobiledevice` command boundary
-- Packaging: Windows `nsis` setup `.exe`, Windows `msi`, and macOS `dmg` first
+- Packaging: Windows `nsis` setup `.exe` and Windows `msi` first. macOS/Linux are deferred.
 
 ## Workspace
 
@@ -30,7 +30,6 @@ Node desktop dependencies have been installed and the React/Vite frontend build 
 npm run desktop:install
 npm run desktop:frontend
 npm run desktop:build:windows
-npm run desktop:build:macos
 ```
 
 These still require Rust, Cargo, and Tauri platform prerequisites:
@@ -79,10 +78,11 @@ The MVP wizard is local-only:
 ## Setup Still Required
 
 - Install Rust and platform build tools.
-- Install Tauri prerequisites for Windows, macOS, or Linux.
+- Install Tauri prerequisites for Windows.
 - Install `libimobiledevice` for real USB detection.
 - Add signing certificates before stable installers.
 - Add physical device QA before enabling native mutation executors.
+- Add macOS/Linux packaging later behind the same platform abstraction boundaries.
 
 ## Current Local Verification
 

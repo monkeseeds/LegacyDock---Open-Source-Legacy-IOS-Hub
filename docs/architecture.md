@@ -30,13 +30,13 @@ The current CLI is intentionally conservative: it can discover, inspect, parse, 
 
 ## Native App Direction
 
-The likely production shape is:
+The current production phase targets Windows 10 and Windows 11 only. macOS and Linux should remain possible later, but active packaging, signing, update, and QA work is Windows-first.
 
-1. Tauri desktop shell for macOS, Windows, and Linux.
+1. Tauri desktop shell for Windows `nsis` and MSI installers.
 2. Rust local core for device adapters, file IO, SQLite, and snapshot storage.
 3. Web UI reused from this project.
 4. Optional local HTTP or IPC API between the UI and the local core.
-5. Cloud sync as an optional account-backed service, never required for local use.
+5. Supabase-backed cloud sync as an optional account-backed service, never required for local use.
 6. External toolkit handoff for dangerous restore or jailbreak workflows until native safety gates are mature.
 
 Electron remains a fallback if Node-native device libraries or cross-platform USB handling prove substantially easier there.

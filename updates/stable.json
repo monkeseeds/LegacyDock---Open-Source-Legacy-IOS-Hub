@@ -5,7 +5,7 @@
   "platforms": {
     "windows-x86_64": {
       "signature": "SIGNATURE_REQUIRED_BEFORE_STABLE_RELEASE",
-      "url": "https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/releases/download/v0.1.0/LegacyDock_0.1.0_x64-setup.exe"
+      "url": "https://downloads.legacydock.com/releases/v0.1.0/LegacyDock_0.1.0_x64-setup.exe"
     }
   }
 }

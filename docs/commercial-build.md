@@ -50,9 +50,9 @@ The API is local-first and conservative. It plans operations, creates local snap
 
 - Tauri desktop workspace in `desktop/` and `src-tauri/`.
 - Desktop Setup Wizard for welcome, detection, compatibility, repo health, essential setup, Device Doctor, service restoration, and final summary.
-- First release Tauri packaging targets: Windows `nsis` setup `.exe`, Windows `msi`, and macOS `dmg`.
+- First release Tauri packaging targets: Windows `nsis` setup `.exe` and Windows `msi`.
 - Tauri update-feed scaffold at `updates/stable.json`.
-- GitHub Actions desktop release jobs for Windows and macOS installer artifacts.
+- GitHub Actions desktop release job for Windows installer artifacts.
 - Rust SQLite migration runner in `src-tauri/src/migrations.rs`.
 - Installed desktop npm dependencies, generated `desktop/package-lock.json`, fixed npm audit findings, and verified the React/Vite production frontend build.
 - Desktop shell contract for menus, tray behavior, bundled local API startup, permissions, and update channels.
@@ -60,7 +60,7 @@ The API is local-first and conservative. It plans operations, creates local snap
 - Read-only live device inspection parsers for Cydia sources, dpkg package state, package manager inference, and SSH credential policy.
 - Safe mutation queue with snapshot, confirmation phrase, preflight, and rollback preview requirements.
 - Package index ingestion for Debian `Packages` metadata, cache expiry, repository trust labels, and metadata-only redistribution policy.
-- Local entitlement payloads with signed licenses, offline grace periods, feature gates, and Stripe integration requirements.
+- Local entitlement payloads with signed licenses, offline grace periods, feature gates, and deferred billing integration requirements.
 - Encrypted cloud sync envelopes, compatibility submissions, and hosted-service status contracts.
 - Privacy/legal compliance checklist, data export contract, and release manifest for installers, checksums, provenance, and auto-update requirements.
 
@@ -81,7 +81,7 @@ The override is stored in local storage for future console sessions.
 - Install local Rust, Cargo, and Tauri platform prerequisites for local builds, or use GitHub Actions release artifacts.
 - Connect real hardware through libimobiledevice, AFC, and opt-in SSH testing.
 - Upgrade setup report export from text to PDF after the desktop PDF pipeline is selected.
-- Add Stripe keys, price IDs, customer portal, and webhook deployment.
+- Add billing keys, price IDs, customer portal, and webhook deployment later.
 - Add hosted cloud storage, moderation queues, and recommendation services.
-- Add signing certificates, Apple notarization, installer publishing, and real signed auto-update feed entries.
+- Add Windows signing certificates, installer publishing, and real signed auto-update feed entries.
 - Add telemetry consent UI and hosted data deletion flows.

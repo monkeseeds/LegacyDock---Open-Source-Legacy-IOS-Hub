@@ -13,6 +13,8 @@ LegacyDock is local-first. Free diagnostics, snapshots, repository metadata, and
 
 Telemetry must be off unless the user opts in. Crash reports and analytics must redact UDIDs, serial numbers, device names, credentials, repository secrets, and local file paths.
 
+Crash reporting and analytics are architecture-only for now. They must remain disabled by default until consent UI, redaction, export, and deletion flows are complete.
+
 ## Export And Deletion
 
 Users must be able to export local data and delete local workspace data. Hosted cloud data deletion is required before paid cloud features launch.

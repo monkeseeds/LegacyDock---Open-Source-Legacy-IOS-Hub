@@ -10,6 +10,7 @@ Have fun!
 ## What Is Included Now
 - Static website, docs, changelog, pricing page, and GitHub Pages-ready console.
 - Tauri desktop scaffold with React, Vite, Tailwind, and Rust command modules.
+- Windows-only production release scaffold for Windows 10/11 packaging, signing preparation, secure updater planning, and Supabase-ready optional cloud contracts.
 - Desktop Setup Wizard for beginner-friendly device detection, compatibility, repo health, essential setup, Device Doctor, service restoration, and final setup reports.
 - Local API for devices, repositories, packages, Device Doctor, snapshots, reports, package ingestion, entitlements, cloud contracts, compliance, and release metadata.
 - Repository Hub, package browser, essential tweaks, restoration catalog, dead repo archive, and community resource links.
@@ -63,10 +64,10 @@ The production direction is:
 
 1. Tauri desktop app with a React/Vite/Tailwind interface and Rust backend.
 2. Setup Wizard first, then deeper dashboard tools after a device profile exists.
-3. Windows installers first, followed by macOS and Linux once signing and QA are ready.
+3. Windows 10/11 installers first; macOS and Linux are deferred but kept possible through isolated platform boundaries.
 4. SQLite for local device state, snapshots, repository indexes, reports, settings, and entitlements.
 5. Read-only `libimobiledevice`, AFC, package-state, and repository inspection before any device mutation.
-6. Optional hosted services later for Stripe entitlements, encrypted sync, backups, teams, moderation, and compatibility intelligence.
+6. Optional Supabase-backed services later for accounts, encrypted sync, backups, teams, moderation, and compatibility intelligence. Stripe is deferred for now.
 
 See:
 
@@ -75,6 +76,7 @@ See:
 - [Repository Hub And Community Resources](docs/repository-hub.md)
 - [Integration Research](docs/integrations.md)
 - [Commercial Readiness Plan](docs/commercial-readiness.md)
+- [Windows Production Setup](docs/windows-production-setup.md)
 - [Community Intelligence](docs/community-intelligence.md)
 - [Changelog](CHANGELOG.md)
 - [Product Blueprint](docs/legacydock-blueprint.md)

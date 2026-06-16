@@ -4,9 +4,9 @@ export function releaseManifest(version = "0.1.0") {
     version,
     channels: ["dev", "beta", "stable"],
     targets: [
-      { os: "windows", format: "msi/nsis", signing: "required-before-stable" },
-      { os: "macos", format: "dmg", signing: "required-before-stable" },
-      { os: "linux", format: "appimage/deb", signing: "recommended" }
+      { os: "windows", format: "msi/nsis", signing: "required-before-stable", active: true },
+      { os: "macos", format: "dmg", signing: "deferred", active: false },
+      { os: "linux", format: "appimage/deb", signing: "deferred", active: false }
     ],
     checks: [
       "npm run check",

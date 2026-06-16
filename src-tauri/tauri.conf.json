@@ -27,7 +27,7 @@
   },
   "bundle": {
     "active": true,
-    "targets": ["nsis", "msi", "dmg"],
+    "targets": ["nsis", "msi"],
     "copyright": "Copyright LegacyDock contributors",
     "category": "Utility",
     "shortDescription": "Legacy iOS diagnostics and repository hub.",
