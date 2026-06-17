@@ -2535,7 +2535,7 @@ pre {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0;
-  margin-top: 22px;
+  margin: 22px auto;
 }
 
 .stat-strip article {
@@ -2558,6 +2558,10 @@ pre {
 .care-panel {
   grid-template-columns: 0.7fr 1.3fr;
   margin-bottom: 34px;
+}
+
+.product-story .page-hero {
+  margin-bottom: 0;
 }
 
 .care-grid {
