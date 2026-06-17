@@ -13,6 +13,7 @@ import { planInstallOperation } from "./operationPlanner.js";
 import { ingestPackageIndex } from "./repositoryIngestion.js";
 import { queueMutation } from "./mutationExecutor.js";
 import { releaseManifest } from "./releasePipeline.js";
+import { supabaseEnvContract, supabaseLaunchChecklist, supabaseSchemaPlan } from "./supabaseContract.js";
 import { readJsonStore, updateJsonStore } from "./workspaceStore.js";
 
 const defaultWorkspace = { snapshots };
@@ -41,9 +42,10 @@ function readinessGates() {
     { id: "durable-store", label: "Durable SQLite workspace store", status: "in-progress", owner: "Core" },
     { id: "mutation-executor", label: "Device mutation executor with rollback", status: "in-progress", owner: "Safety" },
     { id: "billing", label: "Billing and entitlement service", status: "deferred", owner: "Cloud" },
+    { id: "supabase-contract", label: "Supabase auth, storage, and RLS contract", status: "in-progress", owner: "Cloud" },
     { id: "privacy-legal", label: "Privacy, terms, telemetry consent, data export", status: "complete", owner: "Ops" },
     { id: "hardware-qa", label: "Physical QA across iOS 6-9 hardware", status: "pending", owner: "QA" },
-    { id: "license-review", label: "Third-party license and repository metadata review", status: "pending", owner: "Legal" }
+    { id: "license-review", label: "Third-party license and repository metadata review", status: "in-progress", owner: "Legal" }
   ];
 }
 
@@ -72,7 +74,8 @@ function publicStatus() {
       "entitlements",
       "encrypted-cloud-contracts",
       "compliance-export",
-      "release-manifest"
+      "release-manifest",
+      "supabase-contract"
     ]
   };
 }
@@ -288,6 +291,17 @@ export function createCommercialApi(options = {}) {
 
       if (method === "GET" && pathname === "/api/cloud/status") {
         return withCors({ status: 200, body: cloudServiceStatus() });
+      }
+
+      if (method === "GET" && pathname === "/api/cloud/supabase-contract") {
+        return withCors({
+          status: 200,
+          body: {
+            env: supabaseEnvContract(),
+            schema: supabaseSchemaPlan(),
+            launchChecklist: supabaseLaunchChecklist()
+          }
+        });
       }
 
       if (method === "POST" && pathname === "/api/cloud/submissions") {

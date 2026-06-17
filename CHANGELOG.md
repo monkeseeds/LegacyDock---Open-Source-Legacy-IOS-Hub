@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-06-17
+
+- Rebuilt the current Windows `0.1.0` installers, removed stale smoke-test artifacts, refreshed the signed updater manifest, and updated the public Releases page to reflect the live Windows preview state and blocker list.
+- Fixed remaining desktop clipping and wrapping issues in the reports, updater, privacy, and Device Doctor surfaces.
+- Expanded privacy notes and terms into fuller local-first operational docs with clearer local/export/delete boundaries and hosted-cloud caveats.
+- Added a Supabase cloud contract doc, env contract, starter RLS/schema SQL scaffold, and commercial API route for hosted auth/storage planning without shipping secrets.
+- Added a formal beta release checklist with build, signing, updater, rollback, privacy, attribution, and hardware QA gates.
+- Expanded third-party license review into a real inventory/status document and added a release-facing `THIRD_PARTY_NOTICES.md` file.
+
 ## 2026-06-16
 
 - Wired the Tauri updater plugin into the desktop app, added updater permissions/capabilities, enabled updater artifact generation, added a desktop update center, and generated a real signed `updates/stable.json` manifest from the Windows NSIS bundle.

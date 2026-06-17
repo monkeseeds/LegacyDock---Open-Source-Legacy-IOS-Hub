@@ -6,6 +6,18 @@ A passion project catered towards the jaibreaking, sideloading and ios enthusias
 
 Have fun!
 
+## What Is LegacyDock
+
+LegacyDock is the companion app Cydia never had.
+
+It provides device diagnostics, debugging, compatibility intelligence, snapshots, backups, repair tools, and curated tweaks to preserve and enhance legacy devices.
+
+While Cydia excels at installing and managing packages directly on your device, LegacyDock focuses on everything around that experience. It helps you understand your device, prevent problems before they happen, recover from issues when they do, and preserve your setup for years to come.
+
+Using device diagnostics, debugging tools, compatibility intelligence, snapshots, backups, repair tools, and community-powered recommendations, LegacyDock helps users safely maintain and enhance their legacy Apple devices.
+
+Before installing a tweak, LegacyDock can tell you if it is compatible with your device and iOS version, highlight known conflicts, estimate performance and battery impact, and surface community-reported issues. After installation, Device Doctor can scan for broken dependencies, dead repositories, configuration problems, and other common issues that often require hours of troubleshooting.
+
 
 ## What Is Included Now
 - Static website, docs, changelog, pricing page, and GitHub Pages-ready console.

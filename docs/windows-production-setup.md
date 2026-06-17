@@ -142,6 +142,8 @@ Supabase is the preferred backend when cloud features begin. Planned tables/serv
 
 Every table needs Row Level Security before production. Service keys must never ship in the desktop app. The app should use a small API abstraction so hosted sync can be disabled without breaking local workflows.
 
+The repo now includes a starter contract doc at [Supabase Cloud Contract](supabase-cloud.md) and a first-pass SQL scaffold at `supabase/legacydock-cloud.sql`.
+
 ## Privacy And Telemetry
 
 Telemetry, analytics, and crash reporting are disabled by default. Any future collection must be explicit opt-in, redacted, visible to the user, exportable, and removable. Local-only mode must remain available.
@@ -166,6 +168,8 @@ Development -> Internal testing -> Beta -> Production -> Signed Windows installe
 ```
 
 Every production release should be signed, versioned, reproducible, checksumed, and supported by QA notes for Windows 10, Windows 11, and actual iOS 6-9 hardware.
+
+Use [Beta Release Checklist](beta-release-checklist.md) as the release gate before calling any Windows preview a beta.
 
 ## Remaining Setup
 

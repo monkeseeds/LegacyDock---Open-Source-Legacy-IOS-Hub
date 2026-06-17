@@ -13,6 +13,7 @@ export function releaseManifest(version = "0.1.0") {
       "npm test",
       "desktop smoke launch",
       "API health smoke",
+      "beta release checklist",
       "hardware QA matrix",
       "third-party license review"
     ],

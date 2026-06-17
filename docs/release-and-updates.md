@@ -36,6 +36,8 @@ https://bnauijvhhsawcvscsefx.supabase.co/storage/v1/object/public/legacydock-upd
 https://downloads.legacydock.com/releases/
 ```
 
+Before publishing to the `beta` or `stable` channels, run the [Beta Release Checklist](beta-release-checklist.md) and keep the previous installer available for rollback.
+
 Stable auto-update must stay disabled until release artifacts are signed and the feed contains real signatures.
 
 ## Release Requirements

@@ -30,6 +30,8 @@ LegacyDock now has a production-oriented local core, but the project should stil
 - Local entitlement model with signed license payloads, offline grace periods, feature gates, and deferred billing integration requirements.
 - Encrypted cloud sync envelope, compatibility submission, moderation status, and hosted cloud service contracts.
 - Privacy/legal compliance checklist, data export contract, and release manifest.
+- Supabase cloud env contract, storage bucket plan, schema scaffold, and row-level security starter SQL.
+- Beta release checklist covering build, signing, updater, rollback, privacy, attribution, and hardware QA gates.
 - Node test suite for core product logic.
 
 ## Local Core Commands
@@ -58,9 +60,10 @@ npm run api
 - Add cryptographic snapshot manifests and restore previews.
 - Enable device mutation executors only after hardware preflight, snapshots, rollback, and recovery workflows are proven.
 - Add Supabase-hosted optional sync, reports, moderation, backups, and team inventory services.
+- Choose the hosted auth model and apply the Supabase schema/RLS scaffold to the real project.
 - Add billing checkout, portal, webhooks, and hosted entitlements later.
 - Extend the completed local consent/export/delete flows with hosted account deletion before cloud launch.
 - Run physical QA across representative iOS 6, 7, 8, and 9 devices.
 - Complete license review before copying, linking, or bundling GPL ecosystem tools.
 
-See [Windows Production Setup](windows-production-setup.md) for the current Windows-only release checklist.
+See [Windows Production Setup](windows-production-setup.md), [Supabase Cloud Contract](supabase-cloud.md), and [Beta Release Checklist](beta-release-checklist.md) for the current release path.

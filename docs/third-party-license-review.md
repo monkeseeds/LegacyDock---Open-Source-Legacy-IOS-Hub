@@ -1,41 +1,78 @@
 # Third-Party License Review
 
-This repository currently uses third-party ecosystem names, URLs, and metadata as credited references. It does not vendor jailbreak tools, repository packages, or package payloads.
+This review is the commercial-release inventory for upstream tools, libraries, ecosystem references, and repository metadata represented by LegacyDock.
 
-## Internal Audit Fields
+## Current Rule
 
-Every dependency or bundled resource needs:
+Right now LegacyDock may:
 
-- dependency
-- version
-- source
-- license
+- credit upstream projects
+- link to upstream repos, wikis, and community resources
+- store metadata and compatibility notes
+- show user-controlled install guidance
+
+Right now LegacyDock must not:
+
+- bundle third-party package payloads without permission
+- mirror repository contents without permission
+- ship external screenshots or branded assets without review
+- imply ownership of upstream tweaks, repos, or restoration services
+
+## Review Status Matrix
+
+| Component | Current use | Bundled now | Commercial action before beta |
+| --- | --- | --- | --- |
+| React/Vite/Tailwind desktop frontend | App runtime and UI build chain | Yes, through the app build | Keep notices and dependency audit current |
+| Tauri and Rust desktop shell | Native app shell, updater, commands | Yes, through the app build | Keep license notices and update policy documented |
+| `libimobiledevice` tooling | Optional local device detection | Not committed as a shipped binary here | Verify redistribution rights before bundling in installers |
+| Legacy iOS Kit | Prior art, restore/jailbreak guidance | No | Keep attribution and do not vendor code or binaries without review |
+| iOS Obscura Server / iPhoneOS Obscura | Prior art, archive/reference links | No | Keep attribution and link-only handling unless permission changes |
+| BigBoss, SkyGlow, Yzu, Galactic Server, and similar repos | Repository metadata examples | Metadata only | Confirm wording stays attribution-first and does not suggest repo ownership |
+| MapsX, TubeRepair, Veteris, SBSettings, Activator, iCleaner, iFile, RecordMyScreen, ColoredKnob, LiveWallpaper | Compatibility and restoration examples | Metadata only | Do not bundle payloads or screenshots without explicit permission |
+| GitHub-hosted update artifacts | App release delivery | Yes | Keep artifact provenance, checksums, and signing records |
+
+## Required Audit Fields
+
+Every bundled dependency, external tool, mirrored index, or packaged asset needs:
+
+- component name
+- source URL or repository
+- version or commit
+- current use inside LegacyDock
+- whether it is bundled, downloaded, linked, or user-supplied
 - attribution requirements
-- redistribution rights
-- modification rights
-- commercial compatibility
+- redistribution status
+- commercial compatibility decision
+- owner of the review
+- review date
 
-## Reviewed References
+## Before Bundling Any External Binary
 
-| Reference | Use | Current Handling |
-| --- | --- | --- |
-| Legacy iOS Kit | Restore, downgrade, jailbreak, SHSH, and ramdisk prior art | Linked and credited only |
-| iOS Obscura Server | Archive/search prior art | Linked and credited only |
-| BigBoss, Cydia/Telesphoreo, ModMyi, Chariz, SkyGlow, Yzu, Galactic Server | Repository metadata examples | Metadata and links only |
-| TubeRepair, MapsX, Veteris, SBSettings, iFile, Activator, iCleaner, RecordMyScreen, ColoredKnob, LiveWallpaper | Package/service examples | Catalog references only |
+Do all of the following first:
 
-## Bundling Rule
+1. Confirm the upstream license or distribution terms.
+2. Preserve required notices.
+3. Credit the maintainer in user-visible docs when required.
+4. Keep acquisition and installation user-controlled unless redistribution is explicitly allowed.
+5. Record the decision in a reusable notice file or release artifact.
 
-Before bundling code, binaries, package payloads, screenshots, or mirrored indexes:
+## Repository And Package Metadata Rule
 
-- Confirm the upstream license.
-- Credit the maintainer.
-- Preserve required notices.
-- Avoid redistributing copyrighted package payloads without permission.
-- Keep user acquisition and installation user-controlled.
+LegacyDock should treat repository and package data as metadata unless explicit redistribution permission exists. Package indexes, screenshots, or mirrored archives should not be bundled by default just because they are publicly reachable.
 
-## Current Status
+## Current Release Decision
 
-Commercial releases should treat this as a preliminary review, not final legal approval.
+Status: **in progress**
 
-No third-party binaries, package payloads, mirrored indexes, screenshots, or external resources should be bundled until the audit fields above are complete.
+What is ready:
+
+- prior-art credits exist
+- metadata-only handling is documented
+- bundling rules are explicit
+
+What is still required before a beta or commercial installer can claim full readiness:
+
+- final review of every binary or tool placed in an installer
+- review of any third-party screenshots or branded art
+- explicit decision on whether `libimobiledevice` will be bundled or remain user-installed
+- reusable third-party notice output for release artifacts

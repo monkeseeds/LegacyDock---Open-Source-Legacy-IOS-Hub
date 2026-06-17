@@ -819,6 +819,23 @@ h4 {
   font-size: 2.5rem;
 }
 
+.plan-audience {
+  display: grid;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+.plan-audience strong {
+  color: var(--ink);
+}
+
+.plan-audience span {
+  color: var(--muted);
+  font-weight: 700;
+}
+
 .featured-plan {
   border-color: rgba(123, 216, 143, 0.34);
   background:
@@ -896,6 +913,45 @@ h4 {
   gap: 26px;
   margin-top: 28px;
   padding: 26px;
+}
+
+.comparison-table-wrap {
+  overflow-x: auto;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.comparison-table th {
+  color: var(--ink);
+  font-size: 0.86rem;
+  text-transform: uppercase;
+}
+
+.comparison-table td {
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.comparison-grid ul {
+  display: grid;
+  gap: 10px;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.single-column-grid {
+  grid-template-columns: 1fr;
 }
 
 .console-page {
@@ -2586,7 +2642,9 @@ pre {
 .marketing-body .concept-grid p,
 .marketing-body .numbered-list,
 .marketing-body .release-card ul,
-.marketing-body .pricing-plan ul {
+.marketing-body .pricing-plan ul,
+.marketing-body .comparison-grid ul,
+.marketing-body .comparison-table td {
   color: var(--marketing-muted);
 }
 
@@ -2607,6 +2665,8 @@ pre {
 .marketing-body .pricing-plan h2,
 .marketing-body .feature-comparison h2,
 .marketing-body .feature-comparison h3,
+.marketing-body .comparison-table th,
+.marketing-body .plan-audience strong,
 .marketing-body .concept-grid h3 {
   color: var(--marketing-ink);
 }

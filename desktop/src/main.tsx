@@ -187,6 +187,14 @@ const defaultConsentState: ConsentState = {
 };
 
 const deletePhrase = "DELETE LOCAL DATA";
+const consentChecklistSize = 5;
+const desktopPolicyLinks = {
+  privacy: "https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/blob/main/docs/privacy.md",
+  terms: "https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/blob/main/docs/terms.md",
+  licenseReview: "https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/blob/main/docs/third-party-license-review.md",
+  betaChecklist: "https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/blob/main/docs/beta-release-checklist.md",
+  supabase: "https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/blob/main/docs/supabase-cloud.md"
+};
 
 function Pill({ children, tone = "neutral" }: { children: React.ReactNode; tone?: "good" | "warn" | "bad" | "neutral" }) {
   return <span className={`pill pill-${tone}`}>{children}</span>;
@@ -291,6 +299,7 @@ function App() {
 
   const issues = useMemo(() => doctorIssues(selectedDevice), [selectedDevice]);
   const supportedRange = Number(selectedDevice.firmware.split(".")[0]) >= 3 && Number(selectedDevice.firmware.split(".")[0]) <= 9;
+  const consentProgress = [consent.localOnlyMode, consent.telemetryOptIn === false, consent.crashReportsOptIn === false, consent.acceptedPrivacy, consent.acceptedTerms].filter(Boolean).length;
   const visiblePackages = useMemo(() => {
     const query = search.trim().toLowerCase();
     return consolePackages.filter((pkg) => {
@@ -377,6 +386,13 @@ function App() {
       snapshots: snapshotRecords,
       communityResources,
       settings: consent,
+      compliance: {
+        localOnlyMode: consent.localOnlyMode,
+        telemetryDefault: consent.telemetryOptIn ? "opted-in" : "off",
+        crashReportsDefault: consent.crashReportsOptIn ? "opted-in" : "off",
+        hostedDeletion: "required-before-cloud-launch",
+        thirdPartyReview: "see docs/third-party-license-review.md"
+      },
       reports: [
         {
           id: `${selectedDevice.id}-setup-report`,
@@ -778,6 +794,10 @@ function App() {
           <section className="subpanel">
             <Pill tone="good">Privacy and terms</Pill>
             <h3>Visible consent controls</h3>
+            <div className="summary-grid single-column compact-summary">
+              <div><span>Consent progress</span><strong>{consentProgress} / {consentChecklistSize}</strong><small>{consent.updatedAt ? `Last updated ${new Date(consent.updatedAt).toLocaleString()}` : "No local review recorded yet."}</small></div>
+              <div><span>Hosted deletion</span><strong>Pending</strong><small>Local delete is ready now. Hosted delete/export parity is still required before cloud launch.</small></div>
+            </div>
             <label className="setting-row">
               <span><strong>Keep LegacyDock local-only</strong><small>Disable account assumptions and keep diagnostics, exports, and setup notes on this machine.</small></span>
               <input type="checkbox" checked={consent.localOnlyMode} onChange={(event) => updateConsent({ localOnlyMode: event.target.checked })} />
@@ -799,14 +819,37 @@ function App() {
               <input type="checkbox" checked={consent.acceptedTerms} onChange={(event) => updateConsent({ acceptedTerms: event.target.checked })} />
             </label>
             <div className="inline-links">
-              <a href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/blob/main/docs/privacy.md" target="_blank" rel="noreferrer">Read privacy notes</a>
-              <a href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/blob/main/docs/terms.md" target="_blank" rel="noreferrer">Read terms</a>
+              <a href={desktopPolicyLinks.privacy} target="_blank" rel="noreferrer">Read privacy notes</a>
+              <a href={desktopPolicyLinks.terms} target="_blank" rel="noreferrer">Read terms</a>
+              <a href={desktopPolicyLinks.licenseReview} target="_blank" rel="noreferrer">Read license review</a>
+            </div>
+          </section>
+          <section className="subpanel">
+            <Pill>Cloud and release</Pill>
+            <h3>Hosted contract and beta gate</h3>
+            <div className="summary-grid single-column compact-summary">
+              <div><span>Supabase</span><strong>Scaffolded</strong><small>Schema, env contract, buckets, and RLS starter policies are documented for the optional cloud path.</small></div>
+              <div><span>Beta status</span><strong>Not clear yet</strong><small>Signing, hardware QA, and final license decisions still block a real beta label.</small></div>
+            </div>
+            <ul className="plain-list compact-list">
+              <li>No service key should ever ship in the desktop app.</li>
+              <li>Keep exports and backups private if hosted storage is enabled.</li>
+              <li>Review rollback, updater, privacy, and attribution gates before public beta.</li>
+            </ul>
+            <div className="inline-links">
+              <a href={desktopPolicyLinks.supabase} target="_blank" rel="noreferrer">Read Supabase contract</a>
+              <a href={desktopPolicyLinks.betaChecklist} target="_blank" rel="noreferrer">Read beta checklist</a>
             </div>
           </section>
           <section className="subpanel danger-panel">
             <Pill tone="warn">Delete local data</Pill>
             <h3>Reset this LegacyDock workspace</h3>
             <p className="muted">This removes saved profile data, consent choices, and any local LegacyDock browser-state records on this machine.</p>
+            <ul className="plain-list compact-list">
+              <li>Device-side tweaks, repos, and package changes are not removed.</li>
+              <li>Third-party repository data and external tool records are not touched.</li>
+              <li>Hosted account deletion is a separate future flow.</li>
+            </ul>
             <label className="danger-field">
               <span>Type <strong>{deletePhrase}</strong> to confirm.</span>
               <input value={deleteConfirmation} onChange={(event) => setDeleteConfirmation(event.target.value)} placeholder={deletePhrase} />

@@ -183,15 +183,21 @@ test("exposes commercial readiness endpoints", async () => {
   const compliance = await api.handle("GET", "/api/security/compliance");
   const deletion = await api.handle("POST", "/api/security/delete-local");
   const release = await api.handle("GET", "/api/release/manifest");
+  const supabase = await api.handle("GET", "/api/cloud/supabase-contract");
 
   assert.equal(storage.body.activeEngine, "json-fallback");
   assert.equal(desktop.body.desktop.shell, "Tauri");
   assert.equal(desktop.body.desktop.frontend, "React + Vite + Tailwind");
   assert.equal(compliance.body.ready, commercialComplianceStatus().ready);
   assert.equal(compliance.body.checklist.find((item) => item.id === "telemetry-consent").status, "complete");
+  assert.equal(compliance.body.checklist.find((item) => item.id === "hosted-delete").status, "required");
+  assert.equal(compliance.body.dataHandling.deletionScopes.localDesktop, "available-now");
   assert.equal(deletion.body.scope, "local-workspace");
   assert.ok(release.body.targets.some((target) => target.os === "windows" && target.active));
   assert.ok(release.body.targets.some((target) => target.os === "macos" && !target.active));
+  assert.equal(supabase.body.env.requiredClientEnv.includes("SUPABASE_ANON_KEY"), true);
+  assert.equal(supabase.body.schema.storageBuckets.some((bucket) => bucket.name === "legacydock-exports"), true);
+  assert.equal(supabase.body.launchChecklist.includes("apply schema and RLS policies"), true);
 });
 
 test("defines Tauri desktop workspace configuration", async () => {
@@ -225,6 +231,9 @@ test("defines Tauri desktop workspace configuration", async () => {
   assert.ok(updaterCapability.permissions.includes("updater:default"));
   assert.match(envExample, /SUPABASE_URL=/);
   assert.match(envExample, /TAURI_PUBLIC_KEY=/);
+  assert.match(envExample, /SUPABASE_AUTH_REDIRECT_URL=legacydock:\/\/auth\/callback/);
+  assert.match(envExample, /SUPABASE_STORAGE_BUCKET_EXPORTS=legacydock-exports/);
+  assert.match(envExample, /SUPABASE_STORAGE_BUCKET_BACKUPS=legacydock-backups/);
   assert.match(envExample, /TAURI_PUBLIC_KEY_PATH=outputs\/updater\/legacydock\.key\.pub/);
   assert.match(envExample, /TAURI_SIGNING_PRIVATE_KEY_PATH=outputs\/updater\/legacydock\.key/);
   assert.match(envExample, /LEGACYDOCK_LIBIMOBILEDEVICE_DIR=tools\/libimobiledevice\/win-x64/);
@@ -269,6 +278,13 @@ test("publishes releases navigation and desktop artifact workflow", async () => 
   const pricing = await readFile("pricing.html", "utf8");
   const consolePage = await readFile("console.html", "utf8");
   const releases = await readFile("releases.html", "utf8");
+  const privacy = await readFile("docs/privacy.md", "utf8");
+  const terms = await readFile("docs/terms.md", "utf8");
+  const licenseReview = await readFile("docs/third-party-license-review.md", "utf8");
+  const betaChecklist = await readFile("docs/beta-release-checklist.md", "utf8");
+  const supabaseDoc = await readFile("docs/supabase-cloud.md", "utf8");
+  const supabaseSql = await readFile("supabase/legacydock-cloud.sql", "utf8");
+  const notices = await readFile("THIRD_PARTY_NOTICES.md", "utf8");
   const siteCss = await readFile("styles.css", "utf8");
   const desktopCss = await readFile("desktop/src/styles.css", "utf8");
   const workflow = await readFile(".github/workflows/release.yml", "utf8");
@@ -276,6 +292,8 @@ test("publishes releases navigation and desktop artifact workflow", async () => 
   assert.doesNotMatch(index.match(/<nav class="site-nav"[\s\S]*?<\/nav>/)?.[0] || "", /Browse|Open Console/);
   assert.match(index, /href="\.\/releases\.html">Releases/);
   assert.match(docs, /href="\.\/releases\.html">Releases/);
+  assert.match(docs, /Beta Checklist/);
+  assert.match(docs, /Supabase Cloud/);
   assert.match(releases, /Releases &middot; LegacyDock/);
   assert.match(releases, /class="release-tabs"/);
   assert.match(releases, /class="github-release"/);
@@ -305,10 +323,18 @@ test("publishes releases navigation and desktop artifact workflow", async () => 
   assert.match(siteCss, /Helvetica Neue/);
   assert.match(siteCss, /Classic Apple \/ Cydia skin/);
   assert.match(desktopCss, /Helvetica Neue/);
+  assert.match(desktopCss, /compact-summary/);
   assert.match(workflow, /LegacyDock-Windows/);
   assert.match(workflow, /TAURI_SIGNING_PRIVATE_KEY/);
   assert.match(workflow, /Generate updater manifest/);
   assert.match(workflow, /updates\/stable\.json/);
   assert.match(workflow, /WINDOWS_CERTIFICATE/);
   assert.doesNotMatch(workflow, /LegacyDock-macOS/);
+  assert.match(privacy, /Hosted account deletion/);
+  assert.match(terms, /Preview and beta builds/);
+  assert.match(licenseReview, /Current Rule/);
+  assert.match(betaChecklist, /updater regression/i);
+  assert.match(supabaseDoc, /SUPABASE_AUTH_REDIRECT_URL/);
+  assert.match(supabaseSql, /enable row level security/);
+  assert.match(notices, /If that information is missing, do not bundle the asset/);
 });

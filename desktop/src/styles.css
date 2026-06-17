@@ -759,6 +759,21 @@ dd {
   min-width: 0;
 }
 
+.compact-summary {
+  gap: 10px;
+}
+
+.compact-list {
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.compact-list li {
+  color: #b9c2d0;
+  line-height: 1.45;
+}
+
 .endpoint-note {
   display: grid;
   gap: 4px;

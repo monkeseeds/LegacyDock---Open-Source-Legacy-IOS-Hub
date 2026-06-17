@@ -47,6 +47,8 @@ export function cloudServiceStatus() {
     teamWorkspaces: "contract-ready",
     communityReports: "moderated-submissions-ready",
     hostedRecommendationEngine: "not-connected",
+    auth: "decision-pending",
+    rls: "schema-scaffolded",
     dataPolicy: "encrypt before upload; free diagnostics remain local"
   };
 }
