@@ -85,9 +85,19 @@ const wizardSteps = [
 
 const curatedRepos = [
   { name: "BigBoss", url: "http://apt.thebigboss.org/repofiles/cydia/", reason: "Core utilities, Activator, iCleaner, iFile, and classic packages.", category: "Essential", status: "Verified", packageCount: 18421, rating: 4.9, maintainer: "BigBoss team", notes: "HTTP is normal for older Cydia setups." },
-  { name: "SkyGlow", url: "http://cydia.skyglow.es/", reason: "Service restoration packages such as MapsX and TubeRepair.", category: "Service Restoration", status: "Verified", packageCount: 42, rating: 4.7, maintainer: "SkyGlow community", notes: "Recommended for iOS 6 restoration experiments." },
-  { name: "Yzu", url: "http://yzu.moe/dev/", reason: "Legacy application preservation tools including Veteris.", category: "Applications", status: "Degraded", packageCount: 18, rating: 4.5, maintainer: "Yzu", notes: "Useful for app restoration, but responses may redirect." },
-  { name: "Galactic Server", url: "http://repo.galactic-server.info/", reason: "Classic utility packages such as SBSettings.", category: "Utilities", status: "Verified", packageCount: 73, rating: 4.4, maintainer: "Galactic Server", notes: "Good utility source for iOS 5 and iOS 6 devices." }
+  { name: "SkyGlow", url: "https://cydia.skyglow.es/", reason: "Service restoration packages such as MapsX, TubeRepair, and iTunesStoreX.", category: "Essential", status: "Verified", packageCount: 42, rating: 4.7, maintainer: "SkyGlow community", notes: "Recommended for iOS 6 restoration experiments." },
+  { name: "Yzu", url: "https://yzu.moe/dev/", reason: "Legacy application preservation tools including Veteris and WeatherX.", category: "Essential", status: "Degraded", packageCount: 18, rating: 4.5, maintainer: "Electimon / Yzu", notes: "Useful for app restoration, but responses may redirect." },
+  { name: "Zebra Official Repo", url: "https://getzbra.com/repo/", reason: "Official Zebra package manager repository for newer legacy setups.", category: "Essential", status: "Verified", packageCount: 12, rating: 4.6, maintainer: "Zebra team", notes: "Best fit for package-manager testing on iOS 9+." },
+  { name: "bag.xml", url: "https://cydia.bag-xml.com/", reason: "TubeRepair, Discord Classic, and service-fix packages for older devices.", category: "Service Restoration", status: "Verified", packageCount: 24, rating: 4.6, maintainer: "bag.xml", notes: "Useful for community service fixes and classic app projects." },
+  { name: "InvoxiPlayGames", url: "https://cydia.invoxiplaygames.uk/", reason: "Checkmate Store!, DiscOld, TubeFixer, and other legacy utility fixes.", category: "Service Restoration", status: "Verified", packageCount: 29, rating: 4.7, maintainer: "InvoxiPlayGames", notes: "Recommended when App Store and client compatibility need work." },
+  { name: "Invoxi Beta", url: "https://cydia.invoxiplaygames.uk/beta/", reason: "Experimental releases from the Invoxi ecosystem.", category: "Service Restoration", status: "Experimental", packageCount: 11, rating: 4.1, maintainer: "InvoxiPlayGames", notes: "Use only after a snapshot and rollback plan." },
+  { name: "Preloading", url: "https://cydia.preloading.dev/", reason: "TubeReplacer and related restoration tools.", category: "Service Restoration", status: "Verified", packageCount: 9, rating: 4.4, maintainer: "Preloading", notes: "Useful for restoration-focused repair paths." },
+  { name: "MomentumDev", url: "http://repo.mtmdev.org/", reason: "Legacy app ecosystem and app-side preservation utilities.", category: "Applications", status: "Verified", packageCount: 34, rating: 4.3, maintainer: "MomentumDev", notes: "Often paired with Yzu for older app installs." },
+  { name: "Legacy iOS Repo", url: "https://albyvar.github.io/legacyrepo/", reason: "Packages and preserved app-side resources for iOS 6 and below.", category: "Applications", status: "Verified", packageCount: 58, rating: 4.4, maintainer: "albyvar", notes: "Good archive-style source for older firmware." },
+  { name: "Pwnage Archive", url: "http://pwnage.dev/", reason: "Archived legacy tweaks and historical package references.", category: "Archives", status: "Archive", packageCount: 63, rating: 4.1, maintainer: "Pwnage", notes: "Archive-oriented source; review package freshness carefully." },
+  { name: "Karen's Repo Mirror", url: "https://lukezgd.github.io/repo/", reason: "AppSync Unified and legacy package mirrors.", category: "Device Utilities", status: "Verified", packageCount: 21, rating: 4.5, maintainer: "LukeZGD mirror", notes: "Helpful utility mirror, especially for older setups." },
+  { name: "iOS 3 Party", url: "https://cydia.invoxiplaygames.uk/ios3/", reason: "iOS 3-specific packages and old-device utility fixes.", category: "Device Utilities", status: "Verified", packageCount: 8, rating: 4.2, maintainer: "InvoxiPlayGames", notes: "Specialized source for very old firmware." },
+  { name: "Galactic Server", url: "http://repo.galactic-server.info/", reason: "Classic utility packages such as SBSettings.", category: "Device Utilities", status: "Verified", packageCount: 73, rating: 4.4, maintainer: "Galactic Server", notes: "Good utility source for iOS 5 and iOS 6 devices." }
 ];
 
 const recommendedPackages = ["Activator", "iCleaner", "iFile", "SBSettings", "Veteris", "MapsX", "TubeRepair"];
@@ -114,7 +124,10 @@ const snapshotRecords = [
 const communityResources = [
   { name: "r/LegacyJailbreak", type: "Community", value: "Reddit troubleshooting and setup reports" },
   { name: "iPhoneOS Obscura", type: "Archive", value: "Historical iOS software preservation resource" },
-  { name: "Legacy iOS Kit", type: "Tooling", value: "Jailbreak and restoration workflow reference" }
+  { name: "Legacy iOS Kit", type: "Tooling", value: "Jailbreak and restoration workflow reference" },
+  { name: "ChatGPT for Legacy iOS", type: "Application", value: "bag.xml community project for older iOS devices" },
+  { name: "Discord Classic", type: "Application", value: "bag.xml project for classic Discord compatibility" },
+  { name: "TubeRepair", type: "Service", value: "Community project for classic YouTube restoration" }
 ];
 
 const setupItems: SetupItem[] = [

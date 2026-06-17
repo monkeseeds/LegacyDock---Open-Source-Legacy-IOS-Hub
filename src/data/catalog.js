@@ -121,6 +121,126 @@ export const repositories = [
     trust: 91,
     packageIndexHash: "sha256:cz6-local-fixture",
     tags: ["marketplace"]
+  },
+  {
+    id: "skyglow",
+    name: "SkyGlow",
+    url: "https://cydia.skyglow.es/",
+    status: "verified",
+    lastRefreshDays: 1,
+    trust: 95,
+    packageIndexHash: "sha256:sg2-local-fixture",
+    tags: ["essential", "service-restoration"]
+  },
+  {
+    id: "yzu",
+    name: "Yzu",
+    url: "https://yzu.moe/dev/",
+    status: "slow",
+    lastRefreshDays: 3,
+    trust: 89,
+    packageIndexHash: "sha256:yz4-local-fixture",
+    tags: ["essential", "applications"]
+  },
+  {
+    id: "bag-xml",
+    name: "bag.xml",
+    url: "https://cydia.bag-xml.com/",
+    status: "verified",
+    lastRefreshDays: 2,
+    trust: 91,
+    packageIndexHash: "sha256:bg3-local-fixture",
+    tags: ["service-restoration", "applications"]
+  },
+  {
+    id: "invoxiplaygames",
+    name: "InvoxiPlayGames",
+    url: "https://cydia.invoxiplaygames.uk/",
+    status: "verified",
+    lastRefreshDays: 2,
+    trust: 92,
+    packageIndexHash: "sha256:iv7-local-fixture",
+    tags: ["service-restoration", "utilities"]
+  },
+  {
+    id: "invoxi-beta",
+    name: "Invoxi Beta",
+    url: "https://cydia.invoxiplaygames.uk/beta/",
+    status: "experimental",
+    lastRefreshDays: 1,
+    trust: 78,
+    packageIndexHash: "sha256:ivb1-local-fixture",
+    tags: ["service-restoration", "beta"]
+  },
+  {
+    id: "preloading",
+    name: "Preloading",
+    url: "https://cydia.preloading.dev/",
+    status: "verified",
+    lastRefreshDays: 2,
+    trust: 90,
+    packageIndexHash: "sha256:pl5-local-fixture",
+    tags: ["service-restoration"]
+  },
+  {
+    id: "pwnage-archive",
+    name: "Pwnage Archive",
+    url: "http://pwnage.dev/",
+    status: "archive",
+    lastRefreshDays: 12,
+    trust: 83,
+    packageIndexHash: "sha256:pw8-local-fixture",
+    tags: ["archive"]
+  },
+  {
+    id: "momentumdev",
+    name: "MomentumDev",
+    url: "http://repo.mtmdev.org/",
+    status: "verified",
+    lastRefreshDays: 4,
+    trust: 86,
+    packageIndexHash: "sha256:mmd5-local-fixture",
+    tags: ["applications"]
+  },
+  {
+    id: "legacy-ios-repo",
+    name: "Legacy iOS Repo",
+    url: "https://albyvar.github.io/legacyrepo/",
+    status: "verified",
+    lastRefreshDays: 5,
+    trust: 87,
+    packageIndexHash: "sha256:lir6-local-fixture",
+    tags: ["applications", "archive"]
+  },
+  {
+    id: "ios-3-party",
+    name: "iOS 3 Party",
+    url: "https://cydia.invoxiplaygames.uk/ios3/",
+    status: "verified",
+    lastRefreshDays: 4,
+    trust: 88,
+    packageIndexHash: "sha256:i3p2-local-fixture",
+    tags: ["utilities", "ios3"]
+  },
+  {
+    id: "karen-mirror",
+    name: "Karen's Repo Mirror",
+    url: "https://lukezgd.github.io/repo/",
+    status: "verified",
+    lastRefreshDays: 4,
+    trust: 90,
+    packageIndexHash: "sha256:kr9-local-fixture",
+    tags: ["utilities", "mirror"]
+  },
+  {
+    id: "zebra-official",
+    name: "Zebra Official Repo",
+    url: "https://getzbra.com/repo/",
+    status: "verified",
+    lastRefreshDays: 2,
+    trust: 93,
+    packageIndexHash: "sha256:zb4-local-fixture",
+    tags: ["essential", "package-manager"]
   }
 ];
 

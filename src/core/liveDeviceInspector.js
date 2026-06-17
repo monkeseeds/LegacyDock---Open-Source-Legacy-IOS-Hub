@@ -28,6 +28,7 @@ export function parseDpkgStatus(text = "") {
 
 export function inferPackageManager(files = {}) {
   if (files["/Applications/Cydia.app"] || files["/etc/apt/sources.list.d/cydia.list"]) return "Cydia";
+  if (files["/Applications/Installer.app"] || files["/Applications/Installer 5.app"]) return "Installer 5";
   if (files["/Applications/Sileo.app"]) return "Sileo";
   if (files["/Applications/Zebra.app"]) return "Zebra";
   return "unknown";

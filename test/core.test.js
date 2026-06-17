@@ -115,10 +115,15 @@ Depends: mobilesubstrate, preferenceloader
     dpkgStatusText: "Package: winterboard\nVersion: 0.9\n"
   });
   const ssh = sshCredentialPolicy({ host: "192.168.1.2", username: "root", password: "alpine", userConfirmed: true });
+  const installerInspection = buildReadOnlyInspection({
+    lockdown: { DeviceName: "Test iPhone", ProductType: "iPhone5,2", ProductVersion: "8.4.1" },
+    files: { "/Applications/Installer.app": true }
+  });
 
   assert.equal(sources[0].url, "http://apt.thebigboss.org/repofiles/cydia/");
   assert.deepEqual(installed[0].dependencies, ["mobilesubstrate", "preferenceloader"]);
   assert.equal(inspection.mutationEnabled, false);
+  assert.equal(installerInspection.device.packageManager, "Installer 5");
   assert.equal(ssh.redacted.password, "[redacted]");
 });
 
@@ -275,6 +280,7 @@ test("includes the desktop setup wizard and synchronized logo assets", async () 
 test("publishes releases navigation and desktop artifact workflow", async () => {
   const index = await readFile("index.html", "utf8");
   const docs = await readFile("docs.html", "utf8");
+  const repositoryHub = await readFile("docs/repository-hub.md", "utf8");
   const pricing = await readFile("pricing.html", "utf8");
   const consolePage = await readFile("console.html", "utf8");
   const releases = await readFile("releases.html", "utf8");
@@ -294,6 +300,10 @@ test("publishes releases navigation and desktop artifact workflow", async () => 
   assert.match(docs, /href="\.\/releases\.html">Releases/);
   assert.match(docs, /Beta Checklist/);
   assert.match(docs, /Supabase Cloud/);
+  assert.match(repositoryHub, /Package Managers LegacyDock Should Understand/);
+  assert.match(repositoryHub, /Installer 5/);
+  assert.match(repositoryHub, /Zebra Official Repo/);
+  assert.match(repositoryHub, /https:\/\/cydia\.bag-xml\.com\//);
   assert.match(releases, /Releases &middot; LegacyDock/);
   assert.match(releases, /class="release-tabs"/);
   assert.match(releases, /class="github-release"/);
