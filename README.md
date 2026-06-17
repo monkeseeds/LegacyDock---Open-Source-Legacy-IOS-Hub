@@ -6,7 +6,7 @@ A passion project catered towards the jaibreaking, sideloading and ios enthusias
 
 Have fun!
 
-## What Is LegacyDock
+## What It Does
 
 LegacyDock is the companion app Cydia never had.
 
