@@ -53,6 +53,8 @@ This is the working gate for a LegacyDock desktop beta. A release should not be 
 
 Minimum matrix before beta sign-off:
 
+Follow the full [Beta Device QA Runbook](./beta-device-qa.md) while filling this matrix.
+
 | Device | Firmware | USB detect | Repo guidance | Doctor scan | Export/delete | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
 | iPhone 4 | iOS 6.1.3 | [ ] | [ ] | [ ] | [ ] | |

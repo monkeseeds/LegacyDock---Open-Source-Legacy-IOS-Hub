@@ -14,14 +14,18 @@ LegacyDock stays local-first. Supabase is the optional hosted layer for sync, ba
 Client-side:
 
 ```env
-SUPABASE_URL=
-SUPABASE_ANON_KEY=
-SUPABASE_AUTH_REDIRECT_URL=legacydock://auth/callback
+VITE_SUPABASE_URL=
+VITE_SUPABASE_ANON_KEY=
+VITE_SUPABASE_AUTH_REDIRECT_URL=legacydock://auth/callback
 ```
+
+The desktop app reads the `VITE_` values through Vite and initializes the official Supabase JS client. The anon key can ship in the app; the service key cannot.
 
 Server-side only:
 
 ```env
+SUPABASE_URL=
+SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_KEY=
 ```
 
@@ -37,13 +41,19 @@ SUPABASE_STORAGE_BUCKET_COMMUNITY=legacydock-community
 
 ## Auth Model
 
-Decision still needed from the project owner.
-
 Recommended default:
 
 - keep the free desktop experience local-only
-- add hosted auth only when cloud sync or paid features are turned on
-- prefer a simple email login or magic-link flow before adding providers
+- use email magic-link auth for the first hosted flow
+- require hosted auth only when cloud sync, backups, teams, moderation, or paid intelligence are turned on
+- keep local diagnostics, exports, and setup guidance usable without an account
+
+Current desktop status:
+
+- `Console > Reports` has a hosted auth panel
+- the panel sends a Supabase magic link when `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are present
+- sign-out is wired through `supabase.auth.signOut()`
+- native deep-link callback handling still needs final Tauri registration before production
 
 ## Tables
 

@@ -12,6 +12,7 @@
     "tauri:build:windows": "tauri build --config ../src-tauri/tauri.conf.json --bundles nsis,msi"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.108.2",
     "@tauri-apps/api": "^2.0.0",
     "@tauri-apps/plugin-updater": "^2.0.0",
     "lucide-react": "^0.468.0",

@@ -11,6 +11,8 @@ import {
   FileDown,
   Github,
   HeartPulse,
+  LogOut,
+  Mail,
   PackageCheck,
   PackageSearch,
   RefreshCcw,
@@ -20,6 +22,7 @@ import {
   Trash2,
   Wrench
 } from "lucide-react";
+import { isSupabaseConfigured, supabase, supabaseRedirectUrl, type SupabaseSession } from "./supabase";
 import "./styles.css";
 
 type Device = {
@@ -190,6 +193,14 @@ const services = [
   { name: "YouTube restoration", fixes: "Classic YouTube client/web fallback", supported: "iOS 5-7", repo: "SkyGlow", limits: "Playback support changes upstream.", steps: "Start with TubeRepair and keep rollback notes." }
 ];
 
+const betaQaChecks = [
+  { title: "USB detection", command: "idevice_id -l", expected: "At least one UDID appears without exposing it outside the machine." },
+  { title: "Pairing trust", command: "idevicepair validate", expected: "Device trust is valid before LegacyDock reads metadata." },
+  { title: "Device metadata", command: "ideviceinfo", expected: "Model, ProductVersion, battery, and storage fields can be inspected." },
+  { title: "Package managers", command: "Cydia, Zebra, Installer 5, Sileo", expected: "Sources and installed-package state are read-only detected where available." },
+  { title: "App flow", command: "Detect > Doctor > Repositories > Reports", expected: "No mutation runs; setup report exports with local-only notes." }
+];
+
 const defaultConsentState: ConsentState = {
   localOnlyMode: true,
   telemetryOptIn: false,
@@ -206,6 +217,7 @@ const desktopPolicyLinks = {
   terms: "https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/blob/main/docs/terms.md",
   licenseReview: "https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/blob/main/docs/third-party-license-review.md",
   betaChecklist: "https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/blob/main/docs/beta-release-checklist.md",
+  deviceQa: "https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/blob/main/docs/beta-device-qa.md",
   supabase: "https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/blob/main/docs/supabase-cloud.md"
 };
 
@@ -309,6 +321,10 @@ function App() {
   const [updateSummary, setUpdateSummary] = useState<UpdateSummary | null>(null);
   const [updateBusy, setUpdateBusy] = useState(false);
   const [updateProgress, setUpdateProgress] = useState("");
+  const [authEmail, setAuthEmail] = useState("");
+  const [authMessage, setAuthMessage] = useState(isSupabaseConfigured ? "Hosted auth client is configured." : "Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to enable hosted auth.");
+  const [authBusy, setAuthBusy] = useState(false);
+  const [supabaseSession, setSupabaseSession] = useState<SupabaseSession | null>(null);
 
   const issues = useMemo(() => doctorIssues(selectedDevice), [selectedDevice]);
   const supportedRange = Number(selectedDevice.firmware.split(".")[0]) >= 3 && Number(selectedDevice.firmware.split(".")[0]) <= 9;
@@ -322,6 +338,13 @@ function App() {
     });
   }, [packageFilter, search]);
   const detectedDevices = devices.length ? devices : [selectedDevice, { ...fallbackDevice(), id: "demo-ipad2", name: "iPad 2", identifier: "iPad2,1", firmware: "9.3.5", battery_health: 74, status: "demo" }];
+
+  useEffect(() => {
+    if (!supabase) return;
+    supabase.auth.getSession().then(({ data }) => setSupabaseSession(data.session));
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => setSupabaseSession(session));
+    return () => listener.subscription.unsubscribe();
+  }, []);
 
   async function discover() {
     setStatus("Scanning USB connection locally...");
@@ -425,6 +448,31 @@ function App() {
     setStatus("Workspace export saved locally.");
   }
 
+  function exportQaChecklist() {
+    const lines = [
+      "LegacyDock Beta Device QA Checklist",
+      `Generated: ${new Date().toISOString()}`,
+      `Device profile: ${selectedDevice.name} / iOS ${selectedDevice.firmware}`,
+      "",
+      "Commands and gates:",
+      ...betaQaChecks.map((check) => `- ${check.title}: ${check.command} -> ${check.expected}`),
+      "",
+      "Required notes:",
+      "- Confirm Windows USB driver and trust prompt behavior.",
+      "- Test at least one iOS 6 device and one iOS 9 device before beta.",
+      "- Confirm Cydia plus any available Zebra, Installer 5, or Sileo state detection.",
+      "- Export setup report and workspace JSON after every QA run."
+    ];
+    const blob = new Blob([lines.join("\n")], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "legacydock-beta-device-qa.txt";
+    link.click();
+    URL.revokeObjectURL(url);
+    setStatus("Real-device QA checklist exported.");
+  }
+
   function deleteLocalWorkspace() {
     Object.keys(localStorage)
       .filter((key) => key.startsWith("legacydock."))
@@ -495,6 +543,36 @@ function App() {
       setUpdateProgress("Update download or install failed.");
     } finally {
       setUpdateBusy(false);
+    }
+  }
+
+  async function sendMagicLink() {
+    if (!supabase || !authEmail.trim()) return;
+    setAuthBusy(true);
+    setAuthMessage("Sending secure sign-in link...");
+    try {
+      const { error } = await supabase.auth.signInWithOtp({
+        email: authEmail.trim(),
+        options: { emailRedirectTo: supabaseRedirectUrl }
+      });
+      setAuthMessage(error ? error.message : "Check your email for the LegacyDock sign-in link.");
+    } catch (error) {
+      setAuthMessage(error instanceof Error ? error.message : "Supabase sign-in failed.");
+    } finally {
+      setAuthBusy(false);
+    }
+  }
+
+  async function signOutHostedAccount() {
+    if (!supabase) return;
+    setAuthBusy(true);
+    try {
+      const { error } = await supabase.auth.signOut();
+      setAuthMessage(error ? error.message : "Signed out of hosted services.");
+    } catch (error) {
+      setAuthMessage(error instanceof Error ? error.message : "Supabase sign-out failed.");
+    } finally {
+      setAuthBusy(false);
     }
   }
 
@@ -841,8 +919,23 @@ function App() {
             <Pill>Cloud and release</Pill>
             <h3>Hosted contract and beta gate</h3>
             <div className="summary-grid single-column compact-summary">
-              <div><span>Supabase</span><strong>Scaffolded</strong><small>Schema, env contract, buckets, and RLS starter policies are documented for the optional cloud path.</small></div>
+              <div><span>Supabase</span><strong>{isSupabaseConfigured ? "Client ready" : "Needs env"}</strong><small>{isSupabaseConfigured ? "Desktop auth is wired to the anon-key Supabase client." : "Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY before hosted auth can run."}</small></div>
               <div><span>Beta status</span><strong>Not clear yet</strong><small>Signing, hardware QA, and final license decisions still block a real beta label.</small></div>
+            </div>
+            <div className="auth-panel">
+              <div>
+                <strong>{supabaseSession?.user?.email || "Hosted sign-in"}</strong>
+                <small>{authMessage}</small>
+                <small>Redirect: {supabaseRedirectUrl}</small>
+              </div>
+              <label className="auth-field">
+                <span>Email for magic link</span>
+                <input value={authEmail} onChange={(event) => setAuthEmail(event.target.value)} placeholder="you@example.com" disabled={!isSupabaseConfigured || authBusy} />
+              </label>
+              <div className="auth-actions">
+                <button disabled={!isSupabaseConfigured || authBusy || !authEmail.trim()} onClick={sendMagicLink}><Mail size={17} /> Send magic link</button>
+                <button disabled={!isSupabaseConfigured || authBusy || !supabaseSession} onClick={signOutHostedAccount}><LogOut size={17} /> Sign out</button>
+              </div>
             </div>
             <ul className="plain-list compact-list">
               <li>No service key should ever ship in the desktop app.</li>
@@ -852,6 +945,26 @@ function App() {
             <div className="inline-links">
               <a href={desktopPolicyLinks.supabase} target="_blank" rel="noreferrer">Read Supabase contract</a>
               <a href={desktopPolicyLinks.betaChecklist} target="_blank" rel="noreferrer">Read beta checklist</a>
+            </div>
+          </section>
+          <section className="subpanel">
+            <Pill tone="warn">Real-device QA</Pill>
+            <h3>Hardware beta pass</h3>
+            <p className="muted">Run this pass with actual iOS 6-9 devices before calling a build beta-ready. LegacyDock keeps the pass read-only and records what was detected.</p>
+            <div className="qa-list">
+              {betaQaChecks.map((check) => (
+                <article key={check.title}>
+                  <strong>{check.title}</strong>
+                  <code>{check.command}</code>
+                  <small>{check.expected}</small>
+                </article>
+              ))}
+            </div>
+            <div className="action-panel">
+              <button onClick={exportQaChecklist}><FileDown size={17} /> Export QA checklist</button>
+            </div>
+            <div className="inline-links">
+              <a href={desktopPolicyLinks.deviceQa} target="_blank" rel="noreferrer">Read device QA runbook</a>
             </div>
           </section>
           <section className="subpanel danger-panel">

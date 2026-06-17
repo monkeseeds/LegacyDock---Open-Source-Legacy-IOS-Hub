@@ -2,6 +2,8 @@
 
 ## 2026-06-17
 
+- Wired the desktop app to the official Supabase JS client for optional hosted magic-link auth, added Vite-safe environment variables, and kept the service key out of the app boundary.
+- Added a real-device beta QA panel to the desktop Reports surface plus a dedicated QA runbook for Windows libimobiledevice checks, package-manager detection, and read-only device validation.
 - Rebuilt the current Windows `0.1.0` installers, removed stale smoke-test artifacts, refreshed the signed updater manifest, and updated the public Releases page to reflect the live Windows preview state and blocker list.
 - Fixed remaining desktop clipping and wrapping issues in the reports, updater, privacy, and Device Doctor surfaces.
 - Expanded privacy notes and terms into fuller local-first operational docs with clearer local/export/delete boundaries and hosted-cloud caveats.

@@ -237,6 +237,9 @@ test("defines Tauri desktop workspace configuration", async () => {
   assert.match(envExample, /SUPABASE_URL=/);
   assert.match(envExample, /TAURI_PUBLIC_KEY=/);
   assert.match(envExample, /SUPABASE_AUTH_REDIRECT_URL=legacydock:\/\/auth\/callback/);
+  assert.match(envExample, /VITE_SUPABASE_URL=/);
+  assert.match(envExample, /VITE_SUPABASE_ANON_KEY=/);
+  assert.match(envExample, /VITE_SUPABASE_AUTH_REDIRECT_URL=legacydock:\/\/auth\/callback/);
   assert.match(envExample, /SUPABASE_STORAGE_BUCKET_EXPORTS=legacydock-exports/);
   assert.match(envExample, /SUPABASE_STORAGE_BUCKET_BACKUPS=legacydock-backups/);
   assert.match(envExample, /TAURI_PUBLIC_KEY_PATH=outputs\/updater\/legacydock\.key\.pub/);
@@ -274,6 +277,11 @@ test("includes the desktop setup wizard and synchronized logo assets", async () 
   assert.match(desktopApp, /Read privacy notes/);
   assert.match(desktopApp, /Check for updates/);
   assert.match(desktopApp, /Install available update/);
+  assert.match(desktopApp, /Send magic link/);
+  assert.match(desktopApp, /Real-device QA/);
+  assert.match(desktopApp, /Export QA checklist/);
+  assert.match(desktopApp, /Installer 5/);
+  assert.match(await readFile("desktop/src/supabase.ts", "utf8"), /createClient/);
   assert.equal(sharedHash, desktopHash);
 });
 
@@ -288,6 +296,7 @@ test("publishes releases navigation and desktop artifact workflow", async () => 
   const terms = await readFile("docs/terms.md", "utf8");
   const licenseReview = await readFile("docs/third-party-license-review.md", "utf8");
   const betaChecklist = await readFile("docs/beta-release-checklist.md", "utf8");
+  const deviceQa = await readFile("docs/beta-device-qa.md", "utf8");
   const supabaseDoc = await readFile("docs/supabase-cloud.md", "utf8");
   const supabaseSql = await readFile("supabase/legacydock-cloud.sql", "utf8");
   const notices = await readFile("THIRD_PARTY_NOTICES.md", "utf8");
@@ -299,6 +308,7 @@ test("publishes releases navigation and desktop artifact workflow", async () => 
   assert.match(index, /href="\.\/releases\.html">Releases/);
   assert.match(docs, /href="\.\/releases\.html">Releases/);
   assert.match(docs, /Beta Checklist/);
+  assert.match(docs, /Device QA/);
   assert.match(docs, /Supabase Cloud/);
   assert.match(repositoryHub, /Package Managers LegacyDock Should Understand/);
   assert.match(repositoryHub, /Installer 5/);
@@ -344,7 +354,11 @@ test("publishes releases navigation and desktop artifact workflow", async () => 
   assert.match(terms, /Preview and beta builds/);
   assert.match(licenseReview, /Current Rule/);
   assert.match(betaChecklist, /updater regression/i);
-  assert.match(supabaseDoc, /SUPABASE_AUTH_REDIRECT_URL/);
+  assert.match(betaChecklist, /Beta Device QA Runbook/);
+  assert.match(deviceQa, /idevicepair validate/);
+  assert.match(deviceQa, /Cydia, Zebra, Installer 5, or Sileo/);
+  assert.match(supabaseDoc, /VITE_SUPABASE_AUTH_REDIRECT_URL/);
+  assert.match(supabaseDoc, /magic-link auth/);
   assert.match(supabaseSql, /enable row level security/);
   assert.match(notices, /If that information is missing, do not bundle the asset/);
 });
