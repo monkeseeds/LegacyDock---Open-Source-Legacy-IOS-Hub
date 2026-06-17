@@ -56,7 +56,7 @@
       <section class="github-release-list" aria-label="LegacyDock release list">
         <article class="github-release" id="latest">
           <aside class="release-meta">
-            <strong>v0.1.0</strong>
+            <strong>v0.1.2</strong>
             <span>Latest</span>
             <small>June 17, 2026</small>
           </aside>
@@ -65,7 +65,7 @@
             <div class="release-title-row">
               <div>
                 <h2>LegacyDock Desktop Preview</h2>
-                <p>Tag <code>v0.1.0</code> &middot; rebuilt Windows installers &middot; updater feed wired</p>
+                <p>Tag <code>v0.1.2</code> &middot; Supabase auth build &middot; updater feed verified</p>
               </div>
               <span class="release-badge">Pre-release</span>
             </div>
@@ -73,8 +73,8 @@
             <div class="release-notes">
               <h3>What changed</h3>
               <ul>
-                <li>Rebuilt the current Windows installer set and removed stale smoke-test installers so the release folder only keeps the fresh <code>0.1.0</code> NSIS and MSI artifacts.</li>
-                <li>Wired the desktop updater to the hosted Supabase manifest at <code>legacydock-updates/latest.json</code> and verified the in-app update check flow.</li>
+                <li>Built a fresh Windows installer set for <code>0.1.2</code> so the desktop app includes the live Supabase magic-link auth panel.</li>
+                <li>Verified the hosted Supabase updater manifest at <code>legacydock-updates/latest.json</code> and confirmed the published <code>0.1.1</code> update artifact is reachable.</li>
                 <li>Fixed desktop clipping issues across the reports screen, updater panel, privacy controls, and Device Doctor footnotes.</li>
                 <li>Kept the full desktop setup wizard in place: device detection, compatibility scan, repository health, setup checklist, Device Doctor, service restoration, and final summary export.</li>
                 <li>Preserved the legacy Apple/Cydia-inspired brushed-metal UI pass across the site and the Tauri app shell.</li>
@@ -101,7 +101,7 @@
               <ul>
                 <li>Windows code-signing certificate wiring for trusted installer delivery.</li>
                 <li>Real-device QA with <code>libimobiledevice</code> against iOS 6 through iOS 9 hardware.</li>
-                <li>Supabase auth, storage structure, and row-level security for cloud-backed features.</li>
+                <li>Supabase storage structure, row-level security, and hosted export/delete parity for cloud-backed features.</li>
                 <li>Final privacy, terms, export/delete, and telemetry consent review.</li>
                 <li>Third-party license review before bundling external tools or mirrored assets.</li>
                 <li>Beta release checklist covering install, update, rollback, and consent regressions.</li>
@@ -114,14 +114,14 @@
                 <h3>Windows</h3>
                 <a class="asset-row" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/actions/workflows/release.yml" target="_blank" rel="noreferrer">
                   <span>
-                    <strong>LegacyDock_0.1.0_x64-setup.exe</strong>
+                    <strong>LegacyDock_0.1.2_x64-setup.exe</strong>
                     <small>NSIS setup installer for the current Windows desktop preview</small>
                   </span>
                   <em>Preview build</em>
                 </a>
                 <a class="asset-row" href="https://github.com/monkeseeds/LegacyDock---Open-Source-Legacy-IOS-Hub/actions/workflows/release.yml" target="_blank" rel="noreferrer">
                   <span>
-                    <strong>LegacyDock_0.1.0_x64_en-US.msi</strong>
+                    <strong>LegacyDock_0.1.2_x64_en-US.msi</strong>
                     <small>MSI installer for managed Windows environments and manual install testing</small>
                   </span>
                   <em>Preview build</em>

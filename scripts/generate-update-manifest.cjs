@@ -25,7 +25,7 @@ const manifest = {
   platforms: {
     "windows-x86_64": {
       signature: fs.readFileSync(signaturePath, "utf8").trim(),
-      url: `https://downloads.legacydock.com/releases/v${version}/${installerName}`
+      url: `https://bnauijvhhsawcvscsefx.supabase.co/storage/v1/object/public/legacydock-updates/releases/v${version}/${installerName}`
     }
   }
 };

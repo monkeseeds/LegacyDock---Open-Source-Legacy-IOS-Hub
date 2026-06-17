@@ -1,11 +1,11 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.2",
   "notes": "LegacyDock desktop updater is now wired for signed Windows update artifacts, local update checks, and hosted manifest publishing.",
-  "pub_date": "2026-06-16T17:45:08.694Z",
+  "pub_date": "2026-06-17T12:06:50.964Z",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUc01ma1dXUDZtN2NoUmhmNVRkZmdEWmpCcjZaUVlJYUxlMTdDc2VIVWQxckh1YnJCK1ZvUFZEK3JsWi84SmUwWkRsMkFmR3hIZ3NWcDN6aEt6MWtKN2JxaGpWa0dDNWdrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgxNjMxOTAwCWZpbGU6TGVnYWN5RG9ja18wLjEuMF94NjQtc2V0dXAuZXhlCjYyTXpORlBUMnZhVk9RdEhMS0lzMHFoRDR4V0dQb2FMeUM0VVp5YndOaHdqdm5aZnZpSkJUK25vamdCQ2Y1bmhubDFVQXVDNXFOWmtUK1JLaWcxdURBPT0K",
-      "url": "https://downloads.legacydock.com/releases/v0.1.0/LegacyDock_0.1.0_x64-setup.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUc01ma1dXUDZtN2JxSkhrVURnejNDRzh2akZBc2RxUXhlT1dGb3JUT2JUOWdrVk5IaTUwS0YxcXhTT20xcXJUMmIrUEdkaEN3bEppalYyamlzQ3ZTcjEzVVBuQy9LN3dFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgxNjk3OTc3CWZpbGU6TGVnYWN5RG9ja18wLjEuMl94NjQtc2V0dXAuZXhlCmtaZnJmU2U3KzRidmRkSjU5THBvRUY0N2ZCOUtwWFM4UURLR2NvS1pqOUNGL2lnMGpKUlNpUGNPVWh6bWpFcElJVFRBMkhBSTR1SUZOdjYzcUVqU0JRPT0K",
+      "url": "https://bnauijvhhsawcvscsefx.supabase.co/storage/v1/object/public/legacydock-updates/releases/v0.1.2/LegacyDock_0.1.2_x64-setup.exe"
     }
   }
 }

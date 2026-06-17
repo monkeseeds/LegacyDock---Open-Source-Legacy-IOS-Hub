@@ -1,6 +1,6 @@
 {
   "name": "legacydock",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": true,
   "description": "Open-source, local-first hub for preserving and maintaining legacy iOS devices.",
   "type": "module",

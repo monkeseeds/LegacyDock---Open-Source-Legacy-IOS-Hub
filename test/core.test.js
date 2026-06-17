@@ -231,7 +231,7 @@ test("defines Tauri desktop workspace configuration", async () => {
   assert.ok(desktopPackage.devDependencies.tailwindcss);
   assert.equal(packageRoot.scripts.tauri, "node scripts/run-tauri.cjs");
   assert.ok(updateFeed.platforms["windows-x86_64"].signature.length > 50);
-  assert.match(updateFeed.platforms["windows-x86_64"].url, /^https:\/\/downloads\.legacydock\.com\/releases\//);
+  assert.match(updateFeed.platforms["windows-x86_64"].url, /^https:\/\/bnauijvhhsawcvscsefx\.supabase\.co\/storage\/v1\/object\/public\/legacydock-updates\/releases\//);
   assert.match(updateFeed.notes, /updater is now wired/i);
   assert.ok(updaterCapability.permissions.includes("updater:default"));
   assert.match(envExample, /SUPABASE_URL=/);
@@ -250,8 +250,8 @@ test("defines Tauri desktop workspace configuration", async () => {
   assert.match(windowsSetup, /Repo-local `libimobiledevice` tools are installed/);
   assert.match(windowsSetup, /updater plugin is wired into the desktop app/i);
   assert.match(windowsSetup, /TAURI_SIGNING_PRIVATE_KEY_PATH/);
-  assert.match(windowsSetup, /LegacyDock_0\.1\.0_x64-setup\.exe/);
-  assert.match(windowsSetup, /LegacyDock_0\.1\.0_x64_en-US\.msi/);
+  assert.match(windowsSetup, /LegacyDock_0\.1\.2_x64-setup\.exe/);
+  assert.match(windowsSetup, /LegacyDock_0\.1\.2_x64_en-US\.msi/);
   assert.match(migrations, /schema_migrations/);
 });
 

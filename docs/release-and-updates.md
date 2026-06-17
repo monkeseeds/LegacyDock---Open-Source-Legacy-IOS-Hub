@@ -33,7 +33,7 @@ The production endpoints are planned as:
 
 ```text
 https://bnauijvhhsawcvscsefx.supabase.co/storage/v1/object/public/legacydock-updates/latest.json
-https://downloads.legacydock.com/releases/
+https://bnauijvhhsawcvscsefx.supabase.co/storage/v1/object/public/legacydock-updates/releases/
 ```
 
 Before publishing to the `beta` or `stable` channels, run the [Beta Release Checklist](beta-release-checklist.md) and keep the previous installer available for rollback.

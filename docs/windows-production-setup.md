@@ -56,8 +56,8 @@ Verified on this machine:
 
 Produced installers:
 
-- `src-tauri/target/release/bundle/nsis/LegacyDock_0.1.0_x64-setup.exe`
-- `src-tauri/target/release/bundle/msi/LegacyDock_0.1.0_x64_en-US.msi`
+- `src-tauri/target/release/bundle/nsis/LegacyDock_0.1.2_x64-setup.exe`
+- `src-tauri/target/release/bundle/msi/LegacyDock_0.1.2_x64_en-US.msi`
 
 ## Configuration
 
@@ -96,7 +96,7 @@ The intended production update endpoints are:
 
 ```text
 https://bnauijvhhsawcvscsefx.supabase.co/storage/v1/object/public/legacydock-updates/latest.json
-https://downloads.legacydock.com/releases/
+https://bnauijvhhsawcvscsefx.supabase.co/storage/v1/object/public/legacydock-updates/releases/
 ```
 
 Updater signing keys should be generated into an ignored local folder. Commit only the public key after it exists; keep the private key in a secret manager:
@@ -121,7 +121,7 @@ The updater plugin is wired into the desktop app now. Current local builds gener
 
 ```text
 https://bnauijvhhsawcvscsefx.supabase.co/storage/v1/object/public/legacydock-updates/latest.json
-https://downloads.legacydock.com/releases/
+https://bnauijvhhsawcvscsefx.supabase.co/storage/v1/object/public/legacydock-updates/releases/
 ```
 
 Until those URLs are live and the Windows installer is code-signed, treat auto-update as pre-release infrastructure rather than public release infrastructure.
