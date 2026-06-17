@@ -20,7 +20,6 @@ Before installing a tweak, LegacyDock can tell you if it is compatible with your
 
 
 ## What Is Included Now
-- Static website, docs, changelog, pricing page, and GitHub Pages-ready console.
 - Tauri desktop scaffold with React, Vite, Tailwind, and Rust command modules.
 - Windows-only production release scaffold for Windows 10/11 packaging, signing preparation, secure updater planning, and Supabase-ready optional cloud contracts.
 - Desktop Setup Wizard for beginner-friendly device detection, compatibility, repo health, essential setup, Device Doctor, service restoration, and final setup reports.
